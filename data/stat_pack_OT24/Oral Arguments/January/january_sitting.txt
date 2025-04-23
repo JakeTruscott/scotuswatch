@@ -1,0 +1,116 @@
+<table class="table table-striped table-hover table-condensed" style="font-size: 12px; color: black; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Case </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Docket </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Petitioner Counsel </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Respondent Counsel </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Arguing Amici </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Lower Court </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Cert Amici </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Merits Amici </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Tony R. Hewitt v. United States; and No. 23–1150. Corey Deyon Duffey and Jarvis Dupree Ross v. United States. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 23–1002 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Michael Kimberly </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Masha Hansford </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Michael McGinley </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> C. A. 5th Circuit. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 2 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Karyn D. Stanley v. City of Sanford, Florida. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 23–997 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Deepak Gupta </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Jessica C. Conner </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Frederick Liu </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> C. A. 11th Circuit. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 2 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Patrick D. Thompson v. United States. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 23–1095 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Chris C. Gair </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Caroline A. Flynn </td>
+   <td style="text-align:center;width: 3cm; text-align: center;">  </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> C. A. 7th Circuit. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 0 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Gary Waetzig v. Halliburton Energy Services, Inc. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 23–971 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Vincent Levy </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Matthew McGill </td>
+   <td style="text-align:center;width: 3cm; text-align: center;">  </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> C. A. 10th Circuit. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 0 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Free Speech Coalition, Inc., et al. v. Ken Paxton, Attorney General of Texas. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 23–1122 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Derek L. Shaffer </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Aaron L. Nielson </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Brian H. Fletcher </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> C. A. 5th Circuit. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 4 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 41 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Food and Drug Administration, et al. v. R.J. Reynolds Vapor Co., et al. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 23–1187 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Vivek Suri </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Ryan J. Wilson </td>
+   <td style="text-align:center;width: 3cm; text-align: center;">  </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> C. A. 5th Circuit. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 0 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> McLaughlin Chiropractic Associates, Inc. v. McKesson Corporation, et al. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 23–1226 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Matthew W.H. Wessler </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Joseph Palmore </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Matthew Guarnieri </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> C. A. 9th Circuit. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 0 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 3 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Janice Hughes Barnes, Individually and as Representative of the Estate of Ashtian Barnes, Deceased v. Roberto Felix, Jr., et al. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 23–1239 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Nathaniel A.G. Zelinsky </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Charles McCLoud and Lanora C. Pettit </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Zoe A. Jacoby </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> C. A. 5th Circuit. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 7 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 25 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Casey Cunningham, et al. v. Cornell University, et al. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 23–1007 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Xiao Wang </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Nicole A. Saharsky </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Yaira Dubin </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> C. A. 2nd Circuit. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 0 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> TikTok, Inc. v. Garland </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 24-656 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Noel J. Francisco </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Elizabeth B. Prelogar </td>
+   <td style="text-align:center;width: 3cm; text-align: center;">  </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> C.A. D.C. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 4 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 22 </td>
+  </tr>
+</tbody>
+</table>

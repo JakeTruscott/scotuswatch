@@ -1,0 +1,90 @@
+\begin{landscape}
+\subsection{\centering Opinion Lengths}
+\begin{minipage}[t]{0.5\linewidth}
+\begin{table}[H]
+    \centering
+            \caption{Ten Longest Decisions (2023 Term)}
+            \vspace{2mm}
+    \csvreader[
+        tabular= {p{0.6\textwidth}cc},
+        table head=\toprule
+		\multicolumn{1}{c}{Case} &
+		\multicolumn{1}{c}{Author} &
+		\multicolumn{1}{c}{Type}  \\
+		\midrule,
+        table foot=\bottomrule \multicolumn{3}{l}{\footnotesize{\emph{Note}: Word Counts calculated using \texttt{scotustext} (R) -- Footnotes omitted.}} \\ \bottomrule  % Specify the footer rule
+    ]{"Statpack Replication Data/Decisions/Opinion Lengths/ten_longest_decisions.csv"}{}%
+    {\footnotesize \csvcoli & \footnotesize \csvcoliv & \footnotesize \csvcolv} % Specify the columns to include
+    \label{tab:yourlabel}
+\end{table}
+\end{minipage}
+\begin{minipage}[t]{0.5\linewidth}
+\begin{table}[H]
+    \centering
+            \caption{Ten Shortest Decisions (2023 Term)}
+            \vspace{2mm}
+    \csvreader[
+        tabular= {p{0.6\textwidth}cc},
+        table head=\toprule
+		\multicolumn{1}{c}{Case} &
+		\multicolumn{1}{c}{Author} &
+		\multicolumn{1}{c}{Type} \\
+		\midrule,
+        table foot=\bottomrule \multicolumn{3}{l}{\footnotesize{\emph{Note}: Word Counts calculated using \texttt{scotustext} (R) -- Footnotes omitted.}} \\ \bottomrule  % Specify the footer rule
+    ]{"Statpack Replication Data/Decisions/Opinion Lengths/ten_shortest_decisions.csv"}{}%
+    {\footnotesize \csvcoli & \footnotesize \csvcoliv & \footnotesize \csvcolv} % Specify the columns to include
+    \label{tab:yourlabel}
+\end{table}
+\end{minipage}
+
+\vspace{5mm}
+\centering
+\footnotesize{\emph{Note}: Full (approximate) opinion-level word counts available in online supplemental data repository.}
+
+
+\end{landscape}
+
+\newpage
+
+\begin{landscape}
+\begin{figure}[H]
+\centering
+\caption{Average Opinion Lengths by Type (OT18-OT23)}
+\vspace{1.5mm}
+\includegraphics[width = 1.25\textwidth]{"Figures/statpack_figures/opinion_lengths_longitudinal.png"}
+
+\end{figure}
+
+\vspace{0.5mm}
+
+\centering
+\footnotesize{\emph{Note}: Dashed red line represents longitudinal mean.}
+
+
+\newpage
+
+\subsection{\centering Decision Turnover}
+
+\begin{figure}[H]
+\centering
+\caption{Average Decision Turnover by Sitting (OT2023)}
+\vspace{1.5mm}
+\includegraphics[width = 0.85\textwidth]{Figures/statpack_figures/decision_turnover_OT23.png}
+\end{figure}
+
+\newpage
+
+\begin{figure}[H]
+\centering
+\caption{Average Decision Turnover by Term (OT18-OT23)}
+\vspace{1.5mm}
+\includegraphics[width = 0.85\textwidth]{Figures/statpack_figures/decision_turnover_OT18_OT23.png} \\
+\vspace{1.5mm}
+\footnotesize{\emph{Note}: Longitudinal data retrieved from Supreme Court Database.}
+
+\end{figure}
+
+
+\end{landscape}
+
+

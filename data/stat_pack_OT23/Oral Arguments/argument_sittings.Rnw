@@ -1,0 +1,223 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{rotating}
+\usepackage{float}
+\usepackage{multicol}
+\usepackage{multirow}
+\usetikzlibrary{calc}
+\newcommand\HRule{\rule{\textwidth}{1pt}}
+\usepackage{titlesec}
+\titleformat{\section}[block]{\huge\bfseries\centering\underline}{}{0em}{}
+\usepackage{tocloft}
+\usepackage{titletoc}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+\begin{document}
+
+\begin{table}[H]
+    \centering
+    \footnotesize
+    \caption{\large October Sitting}
+    \vspace{2.5mm}
+    \begin{tabular}{>{\centering\arraybackslash}p{0.5\textwidth} >{\centering\arraybackslash}p{0.25\textwidth} >{\centering\arraybackslash}p{0.25\textwidth}}
+        \toprule
+        \multicolumn{1}{c}{Case} & \multicolumn{1}{c}{Docket} & \multicolumn{1}{c}{Attorneys} \\
+        \midrule
+        \multirow{3}{=}{Acheson Hotels, LLC v. Deborah Laufer} & \multirow{3}{*}{22-429} & Adam G. Unikowsky \\ & &  Erica L. Ross \\ & &  Kelsi B. Corkran \\
+        \addlinespace
+        \multirow{3}{=}{Alexander v. South Carolina State Conference Of The Naacp} & \multirow{3}{*}{22-807} & John M. Gore \\ & &  Leah C. Aden \\ & &  Caroline A. Flynn \\
+        \addlinespace
+        \multirow{2}{=}{CFPB, Et Al. v. Community Financial Services Association Of America, Limited, Et Al.} & \multirow{2}{*}{22-448} & Elizabeth B. Prelogar \\ & &  Noel J. Francisco \\
+        \addlinespace
+        \multirow{2}{=}{Great Lakes Insurance Se v. Raiders Retreat Realty Co., LLC} & \multirow{2}{*}{22-500} & Jeffrey B. Wall \\ & &  Howard J. Bashman \\
+        \addlinespace
+        \multirow{2}{=}{Mark E. Pulsifer v. United States} & \multirow{2}{*}{22-340} & Shay Dvoretzky \\ & &  Frederick Liu \\
+        \addlinespace
+        \multirow{3}{=}{Trevor Murray v. Ubs Securities, LLC, Et Al.} & \multirow{3}{*}{22-660} & Easha Anand \\ & &  Anthony A. Yang \\ & &  Eugene Scalia \\
+        \addlinespace
+        \bottomrule
+    \end{tabular}
+    \label{tab:mytable}
+\end{table}
+
+
+\begin{table}[H]
+    \centering
+    \footnotesize
+    \caption{\large November Sitting}
+    \vspace{2.5mm}
+    \begin{tabular}{>{\centering\arraybackslash}p{0.5\textwidth} >{\centering\arraybackslash}p{0.25\textwidth} >{\centering\arraybackslash}p{0.25\textwidth}}
+        \toprule
+        \multicolumn{1}{c}{Case} & \multicolumn{1}{c}{Docket} & \multicolumn{1}{c}{Attorneys} \\
+        \midrule
+        \multirow{2}{=}{Department Of Agriculture Rural Development Rural Housing Service v. Reginald Kirtz} & \multirow{2}{*}{22-846} & Benjamin W. Snyder \\ & &  Nandan M. Joshi \\
+        \addlinespace
+        \multirow{3}{=}{Halima Tariffa Culley, Et Al. v. Steven T. Marshall, Attorney General Of Alabama, Et Al.} & \multirow{3}{*}{22-585} & Shay Dvoretzky \\ & &  Edmund G. LaCour, Jr. \\ & &  Nicole F. Reaves \\
+        \addlinespace
+        \multirow{2}{=}{James R. Rudisill v. Denis R. Mcdonough, Secretary Of Veterans Affairs} & \multirow{2}{*}{22-888} & Misha Tseytlin \\ & &  Vivek Suri \\
+        \addlinespace
+        \multirow{2}{=}{Katherine K. Vidal, Under Secretary Of Commerce For Intellectual Property And Director, United States Patent And Trademark Office v. Steve Elster} & \multirow{2}{*}{22-704} & Malcolm L. Stewart \\ & &  Jonathan E. Taylor \\
+        \addlinespace
+        \multirow{3}{=}{Kevin Lindke v. James R. Freed} & \multirow{3}{*}{22-611} & Allon Kedem \\ & &  Victoria R. Ferres \\ & &  Masha G. Hansford \\
+        \addlinespace
+        \multirow{3}{=}{Michelle O'connor-Ratcliff, Et Al. v. Christopher Garnier, Et Ux.} & \multirow{3}{*}{22-324} & Hashim M. Mooppan \\ & &  Sopan Joshi \\ & &  Pamela S. Karlan \\
+        \addlinespace
+        \multirow{2}{=}{United States v. Zackey Rahimi} & \multirow{2}{*}{22-915} & Elizabeth B. Prelogar \\ & &  J. Matthew Wright \\
+        \addlinespace
+        \bottomrule
+    \end{tabular}
+    \label{tab:mytable}
+\end{table}
+
+
+\begin{table}[H]
+    \centering
+    \footnotesize
+    \caption{\large December Sitting}
+    \vspace{2.5mm}
+    \begin{tabular}{>{\centering\arraybackslash}p{0.5\textwidth} >{\centering\arraybackslash}p{0.25\textwidth} >{\centering\arraybackslash}p{0.25\textwidth}}
+        \toprule
+        \multicolumn{1}{c}{Case} & \multicolumn{1}{c}{Docket} & \multicolumn{1}{c}{Attorneys} \\
+        \midrule
+        \multirow{2}{=}{Charles G. Moore, Et Ux. v. United States} & \multirow{2}{*}{22-800} & Andrew M. Grossman \\ & &  Elizabeth B. Prelogar \\
+        \addlinespace
+        \multirow{2}{=}{Damian Mcelrath v. Georgia} & \multirow{2}{*}{22-721} & Richard A. Simpson \\ & &  Stephen J. Petrany \\
+        \addlinespace
+        \multirow{3}{=}{Jatonya Clayborn Muldrow v. City Of St. Louis, Missouri, Et Al.} & \multirow{3}{*}{22-193} & Brian Wolfman \\ & &  Aimee W. Brown \\ & &  Robert M. Loeb \\
+        \addlinespace
+        \multirow{3}{=}{Justin Rashaad Brown v. United States} & \multirow{3}{*}{22-6389} & Jeffrey T. Green \\ & &  Andrew L. Adler \\ & &  Austin L. Raynor \\
+        \addlinespace
+        \multirow{2}{=}{Securities And Exchange Commission v. George R. Jarkesy, Jr., Et Al.} & \multirow{2}{*}{22-859} & Brian H. Fletcher \\ & &  S. Michael McColloch \\
+        \addlinespace
+        \multirow{2}{=}{Situ Kamu Wilkinson v. Merrick B. Garland, Attorney General} & \multirow{2}{*}{22-666} & Jaime A. Santos \\ & &  Colleen E. Roh Sinzdak \\
+        \addlinespace
+        \multirow{3}{=}{William K. Harrington, United States Trustee, Region 2 v. Purdue Pharma L.p., Et Al.} & \multirow{3}{*}{23-124} & Curtis E. Gannon \\ & &  Gregory G. Garre \\ & &  Pratik A. Shah \\
+        \addlinespace
+        \bottomrule
+    \end{tabular}
+    \label{tab:mytable}
+\end{table}
+
+
+\begin{table}[H]
+    \centering
+    \footnotesize
+    \caption{\large January Sitting}
+    \vspace{2.5mm}
+    \begin{tabular}{>{\centering\arraybackslash}p{0.5\textwidth} >{\centering\arraybackslash}p{0.25\textwidth} >{\centering\arraybackslash}p{0.25\textwidth}}
+        \toprule
+        \multicolumn{1}{c}{Case} & \multicolumn{1}{c}{Docket} & \multicolumn{1}{c}{Attorneys} \\
+        \midrule
+        \multirow{2}{=}{Federal Bureau Of Investigation, Et Al. v. Yonas Fikre} & \multirow{2}{*}{22-1178} & Sopan Joshi \\ & &  Gadeir Abbas \\
+        \addlinespace
+        \multirow{3}{=}{George Sheetz v. County Of El Dorado, California} & \multirow{3}{*}{22-1074} & Paul J. Beard II \\ & &  Aileen M. McGrath \\ & &  Erica L. Ross \\
+        \addlinespace
+        \multirow{3}{=}{Jason Smith v. Arizona} & \multirow{3}{*}{22-899} & Hari Santhanam \\ & &  Eric J. Feigin \\ & &  Alexander W. Samuels \\
+        \addlinespace
+        \multirow{2}{=}{Loper Bright Enterprises, Et Al. v. Gina Raimondo, Secretary Of Commerce, Et Al.} & \multirow{2}{*}{22-451} & Paul D. Clement \\ & &  Elizabeth B. Prelogar \\
+        \addlinespace
+        \multirow{3}{=}{Macquarie Infrastructure Corporation, Et Al. v. Moab Partners, L.p., Et Al.} & \multirow{3}{*}{22-1165} & Linda T. Coberly \\ & &  David C. Frederick \\ & &  Ephraim McDowell \\
+        \addlinespace
+        \multirow{2}{=}{Moris Esmelis Campos-Chaves v. Merrick B. Garland, Attorney General} & \multirow{2}{*}{22-674} & Charles L. McCloud \\ & &  Easha Anand \\
+        \addlinespace
+        \multirow{2}{=}{Office Of The United States Trustee v. John Q. Hammons Fall 2006, LLC, Et Al.} & \multirow{2}{*}{22-1238} & Masha G. Hansford \\ & &  Daniel L. Geyser \\
+        \addlinespace
+        \multirow{2}{=}{Relentless, Inc., Et Al. v. Department Of Commerce, Et Al.} & \multirow{2}{*}{22-1219} & Roman Martinez \\ & &  Elizabeth B. Prelogar \\
+        \addlinespace
+        \multirow{3}{=}{Richard Devillier, Et Al. v. Texas} & \multirow{3}{*}{22-913} & Robert J. McNamara \\ & &  Aaron L. Nielson \\ & &  Edwin S. Kneedler \\
+        \addlinespace
+        \bottomrule
+    \end{tabular}
+    \label{tab:mytable}
+\end{table}
+
+
+\begin{table}[H]
+    \centering
+    \footnotesize
+    \caption{\large February Sitting}
+    \vspace{2.5mm}
+    \begin{tabular}{>{\centering\arraybackslash}p{0.5\textwidth} >{\centering\arraybackslash}p{0.25\textwidth} >{\centering\arraybackslash}p{0.25\textwidth}}
+        \toprule
+        \multicolumn{1}{c}{Case} & \multicolumn{1}{c}{Docket} & \multicolumn{1}{c}{Attorneys} \\
+        \midrule
+        \multirow{3}{=}{Alex Cantero, Et Al., Individually And On Behalf Of All Others Similarly  Situated v. Bank Of America, N.a.} & \multirow{3}{*}{22-529} & Jonathan E. Taylor \\ & &  Malcolm L. Stewart \\ & &  Lisa S. Blatt \\ \addlinespace
+        \multirow{3}{=}{Ashley Moody, Attorney General Of Florida, Et Al. v. Netchoice, LLC, Dba Netchoice, Et Al.} & \multirow{3}{*}{22-277} & Henry C. Whitaker \\ & &  Paul D. Clement \\ & &  Elizabeth B. Prelogar \\ \addlinespace \multirow{2}{=}{Coinbase, Inc. v. David Suski, Et Al.} & \multirow{2}{*}{23-3} & Jessica L. Ellsworth \\ & &  David J. Harris \\ \addlinespace
+        \multirow{2}{=}{Corner Post, Inc. v. Board Of Governors Of The Federal Reserve System} & \multirow{2}{*}{22-1008} & Bryan K. Weir \\ & &  Benjamin W. Snyder \\ \addlinespace
+        \multirow{3}{=}{Donald J. Trump v. Norma Anderson, Et Al.} & \multirow{3}{*}{23-719} & Jonathan F. Mitchell \\ & &  Jason C. Murray \\ & &  Shannon W. Stevenson \\ \addlinespace
+        \multirow{2}{=}{Louis Mcintosh, Aka Lou D v. United States} & \multirow{2}{*}{22-7386} & Steven Y. Yurowitz \\ & &  Matthew Guarnieri \\ \addlinespace \multirow{2}{=}{Merrick B. Garland, Attorney General, Et Al. v. Michael Cargill} & \multirow{2}{*}{22-976} & Brian H. Fletcher \\ & &  Jonathan F. Mitchell \\ \addlinespace
+        \multirow{2}{=}{Neal Bissonnette, Et Al. v. Lepage Bakeries Park St., LLC, Et Al.} & \multirow{2}{*}{23-51} & Jennifer D. Bennett \\ & &  Traci L. Lovitt \\ \addlinespace
+        \multirow{3}{=}{Netchoice, LLC, Dba Netchoice, Et Al. v. Ken Paxton, Attorney General Of Texas} & \multirow{3}{*}{22-555} & Paul D. Clement \\ & &  Elizabeth B. Prelogar \\ & &  Aaron L. Nielson \\ \addlinespace
+        \multirow{4}{=}{Ohio, Et Al., Applicants, v. Epa, Et Al.} & \multirow{4}{*}{23A349} & Mathura J. Sridharan \\ & &  Catherine E. Stetson \\ & &  Malcolm L. Stewart \\ & &  Judith N. Vale \\ \addlinespace
+        \multirow{3}{=}{Warner Chappell Music, Inc., Et Al. v. Sherman Nealy, Et Al.} & \multirow{3}{*}{22-1078} & Kannon K. Shanmugam \\ & &  Joe Wesley Earnhardt \\ & &  Yaira Dubin \\ \addlinespace
+        \bottomrule
+    \end{tabular}
+    \label{tab:mytable}
+\end{table}
+
+
+\begin{table}[H]
+    \centering
+    \footnotesize
+    \caption{\large March Sitting}
+    \vspace{2.5mm}
+    \begin{tabular}{>{\centering\arraybackslash}p{0.5\textwidth} >{\centering\arraybackslash}p{0.25\textwidth} >{\centering\arraybackslash}p{0.25\textwidth}}
+        \toprule
+        \multicolumn{1}{c}{Case} & \multicolumn{1}{c}{Docket} & \multicolumn{1}{c}{Attorneys} \\
+        \midrule
+        \multirow{2}{=}{Delilah Guadalupe Diaz v. United States} & \multirow{2}{*}{23-14} & Jeffrey L. Fisher \\
+        & & Matthew Guarnieri \\
+        \addlinespace
+        \multirow{3}{=}{Food And Drug Administration, Et Al. v. Alliance For Hippocratic Medicine, Et Al.} & \multirow{3}{*}{23-235} & Elizabeth B. Prelogar \\
+        & & Jessica L. Ellsworth \\
+        & & Erin M. Hawley \\
+        \addlinespace
+        \multirow{3}{=}{National Rifle Association Of America v. Maria T. Vullo} & \multirow{3}{*}{22-842} & David D. Cole \\
+        & & Ephraim McDowell \\
+        & & Neal Kumar Katyal \\
+        \addlinespace
+        \multirow{3}{=}{Paul Erlinger v. United States} & \multirow{3}{*}{23-370} & Jeffrey L. Fisher \\
+        & & Eric J. Feigin \\
+        & & D. Nick Harper \\
+        \addlinespace
+        \multirow{2}{=}{Stuart R. Harrow v. Department Of Defense} & \multirow{2}{*}{23-21} & Joshua P. Davis \\
+        & & Aimee W. Brown \\
+        \addlinespace
+        \multirow{3}{=}{Sylvia Gonzalez v. Edward Trevino, Ii, Et Al.} & \multirow{3}{*}{22-1025} & Anya A. Bidwell \\
+        & & Nicole F. Reaves \\
+        & & Lisa S. Blatt \\
+        \addlinespace
+        \multirow{3}{=}{Texas, Plaintiff, v. New Mexico And Colorado, Defendants} & \multirow{3}{*}{22O141} & Frederick Liu \\
+        & & Lanora C. Pettit \\
+        & & Jeffrey J. Wechsler \\
+        \addlinespace
+        \multirow{2}{=}{Thomas A. Connelly, As Executor Of The Estate Of Michael P. Connelly, Sr. v. United States} & \multirow{2}{*}{23-146} & Kannon K. Shanmugam \\
+        & & Yaira Dubin \\
+        \addlinespace
+        \multirow{4}{=}{Truck Insurance Exchange v. Kaiser Gypsum Company, Inc., Et Al.} & \multirow{4}{*}{22-1079} & Allyson N. Ho \\
+        & & Anthony A. Yang \\
+        & & C. Kevin Marshall \\
+        \addlinespace
+        & & David C. Frederick \\
+        \multirow{2}{=}{Vivek H. Murthy, Surgeon General, Et Al. v. Missouri, Et Al.} & \multirow{2}{*}{23-411} & Brian H. Fletcher \\
+        & & J. Benjamin Aguinaga \\
+        \addlinespace
+        \multirow{3}{=}{Xavier Becerra, Secretary Of Health And Human Services, Et Al. v. Respondent} & \multirow{3}{*}{23-250} & Caroline A. Flynn \\
+        & & Adam G. Unikowsky \\
+        & & Lloyd B. Miller \\
+        \addlinespace
+        \bottomrule
+    \end{tabular}
+    \label{tab:mytable}
+\end{table}
+
+
+\end{document}

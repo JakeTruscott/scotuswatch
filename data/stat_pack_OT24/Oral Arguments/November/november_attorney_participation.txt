@@ -1,0 +1,289 @@
+<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 12px; color: black; margin-left: auto; margin-right: auto;border-bottom: 0;">
+ <thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1"></th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1"></th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1"></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">BARRETT</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">GORSUCH</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">JACKSON</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">KAGAN</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">KAVANAUGH</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">ROBERTS</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">SOTOMAYOR</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">THOMAS</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">ALITO</div></th>
+</tr>
+  <tr>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;">   </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> Attorney </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> Total Words </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> <img src="https://api.oyez.org/sites/default/files/filefield_paths/barret-thumb.png" style="width: 75px; height: 75px; object-fit: cover;"> </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> <img src="https://api.oyez.org/sites/default/files/filefield_paths/neil_gorsuch.thumb__0.png" style="width: 75px; height: 75px; object-fit: cover;"> </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> <img src="https://api.oyez.org/sites/default/files/filefield_paths/thumbnail_ketanji_brown_jackson.png" style="width: 75px; height: 75px; object-fit: cover;"> </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> <img src="https://api.oyez.org/sites/default/files/images/people/elena_kagan/elena_kagan.thumb.png" style="width: 75px; height: 75px; object-fit: cover;"> </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> <img src="https://api.oyez.org/sites/default/files/filefield_paths/Kavanaugh-thumb.png" style="width: 75px; height: 75px; object-fit: cover;"> </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> <img src="https://api.oyez.org/sites/default/files/images/people/john_g_roberts_jr/john_g_roberts_jr.thumb.png" style="width: 75px; height: 75px; object-fit: cover;"> </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> <img src="https://api.oyez.org/sites/default/files/images/people/sonia_sotomayor/sonia_sotomayor.thumb.png" style="width: 75px; height: 75px; object-fit: cover;"> </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> <img src="https://api.oyez.org/sites/default/files/images/people/clarence_thomas/clarence_thomas.thumb.png" style="width: 75px; height: 75px; object-fit: cover;"> </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> <img src="https://api.oyez.org/sites/default/files/images/people/samuel_alito_jr/samuel_alito_jr.thumb.png" style="width: 75px; height: 75px; object-fit: cover;"> </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Advocate Christ Medica v. Becerra </td>
+   <td style="text-align:center;text-align: center;"> Ephraim McDowell </td>
+   <td style="text-align:center;text-align: center;"> 3100 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">115</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(112, 138, 58, 255) !important;font-size: large;">361</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">680</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">268</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">1026</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">357</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">230</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">63</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Advocate Christ Medica v. Becerra </td>
+   <td style="text-align:center;text-align: center;"> Melissa Arbus Sherry </td>
+   <td style="text-align:center;text-align: center;"> 5267 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">484</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">197</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">538</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">556</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">973</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">1326</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(112, 138, 58, 255) !important;font-size: large;">793</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">111</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">289</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Delligatti v. United States </td>
+   <td style="text-align:center;text-align: center;"> Allon Kedem </td>
+   <td style="text-align:center;text-align: center;"> 3894 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">644</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">420</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">346</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(112, 138, 58, 255) !important;font-size: large;">611</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">1366</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">230</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">211</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">66</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Delligatti v. United States </td>
+   <td style="text-align:center;text-align: center;"> Eric J. Feigin </td>
+   <td style="text-align:center;text-align: center;"> 3271 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(112, 138, 58, 255) !important;font-size: large;">661</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">812</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">492</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">227</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">817</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">6</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">256</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> E.M.D. Sales, Inc. v. Carrera </td>
+   <td style="text-align:center;text-align: center;"> Aimee W. Brown </td>
+   <td style="text-align:center;text-align: center;"> 1855 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">741</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">84</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">446</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">78</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">106</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">400</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> E.M.D. Sales, Inc. v. Carrera </td>
+   <td style="text-align:center;text-align: center;"> Lauren E. Bateman </td>
+   <td style="text-align:center;text-align: center;"> 1630 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">321</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">332</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">576</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">211</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">190</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> E.M.D. Sales, Inc. v. Carrera </td>
+   <td style="text-align:center;text-align: center;"> Lisa S. Blatt </td>
+   <td style="text-align:center;text-align: center;"> 2388 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">233</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">287</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">414</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">795</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">480</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">179</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Facebook, Inc v. Amalgamated Bank </td>
+   <td style="text-align:center;text-align: center;"> Kannon K. Shanmugam </td>
+   <td style="text-align:center;text-align: center;"> 5614 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">436</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">600</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(112, 138, 58, 255) !important;font-size: large;">635</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">761</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">353</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">1388</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">469</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">574</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">398</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Facebook, Inc v. Amalgamated Bank </td>
+   <td style="text-align:center;text-align: center;"> Kevin J. Barber </td>
+   <td style="text-align:center;text-align: center;"> 2544 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">399</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">476</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">145</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">302</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">343</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(112, 138, 58, 255) !important;font-size: large;">369</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">248</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">119</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">143</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Facebook, Inc v. Amalgamated Bank </td>
+   <td style="text-align:center;text-align: center;"> Kevin K. Russell </td>
+   <td style="text-align:center;text-align: center;"> 2753 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">81</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">315</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">113</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">50</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">394</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">662</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">199</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">534</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(112, 138, 58, 255) !important;font-size: large;">405</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> NVIDIA Corp. v. E. Ohman </td>
+   <td style="text-align:center;text-align: center;"> Colleen E. Roh Sinzdak </td>
+   <td style="text-align:center;text-align: center;"> 1294 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">132</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">396</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">343</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">191</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">72</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">160</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> NVIDIA Corp. v. E. Ohman </td>
+   <td style="text-align:center;text-align: center;"> Deepak Gupta </td>
+   <td style="text-align:center;text-align: center;"> 3643 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">509</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">176</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">321</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(112, 138, 58, 255) !important;font-size: large;">512</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">983</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">137</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">286</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">719</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> NVIDIA Corp. v. E. Ohman </td>
+   <td style="text-align:center;text-align: center;"> Neal Kumar Katyal </td>
+   <td style="text-align:center;text-align: center;"> 5217 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">101</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">466</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">673</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(112, 138, 58, 255) !important;font-size: large;">631</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">351</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">1841</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">494</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">190</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">470</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Valazquez v. Garland </td>
+   <td style="text-align:center;text-align: center;"> Anthony A. Yang </td>
+   <td style="text-align:center;text-align: center;"> 3875 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">228</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(112, 138, 58, 255) !important;font-size: large;">565</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">824</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">927</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">371</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">441</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">105</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">414</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Valazquez v. Garland </td>
+   <td style="text-align:center;text-align: center;"> Gerard J. Cedrone </td>
+   <td style="text-align:center;text-align: center;"> 3466 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(112, 138, 58, 255) !important;font-size: large;">523</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">115</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">67</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">114</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">1375</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">412</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">214</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">646</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Wisconsin Bell, Inc. v. U.S., ex rel. Health </td>
+   <td style="text-align:center;text-align: center;"> Allyson N. Ho </td>
+   <td style="text-align:center;text-align: center;"> 4070 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">622</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">10</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(112, 138, 58, 255) !important;font-size: large;">599</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">339</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">576</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">1381</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">236</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">307</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Wisconsin Bell, Inc. v. U.S., ex rel. Health </td>
+   <td style="text-align:center;text-align: center;"> Tejinder Singh </td>
+   <td style="text-align:center;text-align: center;"> 4357 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">117</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(112, 138, 58, 255) !important;font-size: large;">568</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">438</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">371</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">442</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">1067</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">364</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">744</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">246</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Wisconsin Bell, Inc. v. U.S., ex rel. Health </td>
+   <td style="text-align:center;text-align: center;"> Vivek Suri </td>
+   <td style="text-align:center;text-align: center;"> 1474 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">168</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">104</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">339</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">87</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">679</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">97</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">0</span> </td>
+  </tr>
+</tbody>
+<tfoot><tr><td style="padding: 0; " colspan="100%">
+<span style="font-style: italic;"><br></span> <sup></sup> <div style="font-size: 15px;">Note: Values corresponding with Justice columns indicates volume of words they offered in response to arguing attorney</div>
+</td></tr></tfoot>
+</table>

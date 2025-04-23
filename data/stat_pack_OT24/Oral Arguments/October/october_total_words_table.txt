@@ -1,0 +1,138 @@
+<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 12px; margin-left: auto; margin-right: auto;">
+ <thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1"></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">ALITO</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">BARRETT</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">GORSUCH</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">JACKSON</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">KAGAN</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">KAVANAUGH</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">ROBERTS</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">SOTOMAYOR</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">THOMAS</div></th>
+</tr>
+  <tr>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: #080808 !important;text-align: center;padding: 0; margin: 0;"> Case </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: #080808 !important;text-align: center;padding: 0; margin: 0;"> <img src="https://api.oyez.org/sites/default/files/images/people/samuel_alito_jr/samuel_alito_jr.thumb.png" style="width: 75px; height: 75px; object-fit: cover;"> </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: #080808 !important;text-align: center;padding: 0; margin: 0;"> <img src="https://api.oyez.org/sites/default/files/filefield_paths/barret-thumb.png" style="width: 75px; height: 75px; object-fit: cover;"> </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: #080808 !important;text-align: center;padding: 0; margin: 0;"> <img src="https://api.oyez.org/sites/default/files/filefield_paths/neil_gorsuch.thumb__0.png" style="width: 75px; height: 75px; object-fit: cover;"> </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: #080808 !important;text-align: center;padding: 0; margin: 0;"> <img src="https://api.oyez.org/sites/default/files/filefield_paths/thumbnail_ketanji_brown_jackson.png" style="width: 75px; height: 75px; object-fit: cover;"> </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: #080808 !important;text-align: center;padding: 0; margin: 0;"> <img src="https://api.oyez.org/sites/default/files/images/people/elena_kagan/elena_kagan.thumb.png" style="width: 75px; height: 75px; object-fit: cover;"> </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: #080808 !important;text-align: center;padding: 0; margin: 0;"> <img src="https://api.oyez.org/sites/default/files/filefield_paths/Kavanaugh-thumb.png" style="width: 75px; height: 75px; object-fit: cover;"> </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: #080808 !important;text-align: center;padding: 0; margin: 0;"> <img src="https://api.oyez.org/sites/default/files/images/people/john_g_roberts_jr/john_g_roberts_jr.thumb.png" style="width: 75px; height: 75px; object-fit: cover;"> </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: #080808 !important;text-align: center;padding: 0; margin: 0;"> <img src="https://api.oyez.org/sites/default/files/images/people/sonia_sotomayor/sonia_sotomayor.thumb.png" style="width: 75px; height: 75px; object-fit: cover;"> </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: #080808 !important;text-align: center;padding: 0; margin: 0;"> <img src="https://api.oyez.org/sites/default/files/images/people/clarence_thomas/clarence_thomas.thumb.png" style="width: 75px; height: 75px; object-fit: cover;"> </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Bouarfa v. Mayorkas, Sec DHS </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #77845C !important;font-size: large;">230</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7A8268 !important;font-size: large;">101</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #6D8C2E !important;font-size: large;">638</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #6B8E23 !important;font-size: large;">952</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #708A3A !important;font-size: large;">539</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7F7F7F !important;font-size: large;">23</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #758651 !important;font-size: large;">340</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #728845 !important;font-size: large;">342</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7C8073 !important;font-size: large;">97</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Bufkin v. McDonough, Sec VA </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #758651 !important;font-size: large;">640</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7C8073 !important;font-size: large;">107</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #6D8C2E !important;font-size: large;">1250</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #6B8E23 !important;font-size: large;">1436</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #728845 !important;font-size: large;">704</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7A8268 !important;font-size: large;">262</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #77845C !important;font-size: large;">389</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #708A3A !important;font-size: large;">787</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7F7F7F !important;font-size: large;">48</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Garland, Att'y Gen. v. VanDerStok </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #728845 !important;font-size: large;">633</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #758651 !important;font-size: large;">402</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #6D8C2E !important;font-size: large;">836</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #6B8E23 !important;font-size: large;">943</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #77845C !important;font-size: large;">330</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7A8268 !important;font-size: large;">235</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7C8073 !important;font-size: large;">203</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #708A3A !important;font-size: large;">753</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7F7F7F !important;font-size: large;">173</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Glossip v. Oklahoma </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #728845 !important;font-size: large;">1350</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #77845C !important;font-size: large;">770</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7F7F7F !important;font-size: large;">0</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #6B8E23 !important;font-size: large;">3730</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #708A3A !important;font-size: large;">3006</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7C8073 !important;font-size: large;">360</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7A8268 !important;font-size: large;">608</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #6D8C2E !important;font-size: large;">3489</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #758651 !important;font-size: large;">1262</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Lackey v. Stinnie </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7A8268 !important;font-size: large;">668</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #77845C !important;font-size: large;">805</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #6D8C2E !important;font-size: large;">2216</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #6B8E23 !important;font-size: large;">2857</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #708A3A !important;font-size: large;">2046</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7C8073 !important;font-size: large;">532</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #758651 !important;font-size: large;">1690</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #728845 !important;font-size: large;">1940</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7F7F7F !important;font-size: large;">232</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Medical Marijuana, Inc. v. Horn </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #77845C !important;font-size: large;">408</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7C8073 !important;font-size: large;">267</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #758651 !important;font-size: large;">506</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #6B8E23 !important;font-size: large;">1161</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #708A3A !important;font-size: large;">845</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #6D8C2E !important;font-size: large;">905</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7A8268 !important;font-size: large;">358</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #728845 !important;font-size: large;">584</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7F7F7F !important;font-size: large;">82</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Royal Canin v. Wullschleger </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #77845C !important;font-size: large;">438</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #728845 !important;font-size: large;">577</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7A8268 !important;font-size: large;">366</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #6D8C2E !important;font-size: large;">1003</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #6B8E23 !important;font-size: large;">1068</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #708A3A !important;font-size: large;">651</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7C8073 !important;font-size: large;">321</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #758651 !important;font-size: large;">475</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7F7F7F !important;font-size: large;">160</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> San Francisco v. EPA </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7A8268 !important;font-size: large;">431</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7F7F7F !important;font-size: large;">144</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #758651 !important;font-size: large;">837</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #728845 !important;font-size: large;">1267</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #6D8C2E !important;font-size: large;">1517</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #708A3A !important;font-size: large;">1307</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #77845C !important;font-size: large;">640</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #6B8E23 !important;font-size: large;">1521</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7C8073 !important;font-size: large;">170</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Williams v. Washington </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7A8268 !important;font-size: large;">600</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #77845C !important;font-size: large;">658</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #728845 !important;font-size: large;">743</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #6B8E23 !important;font-size: large;">1074</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #708A3A !important;font-size: large;">973</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #758651 !important;font-size: large;">677</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7C8073 !important;font-size: large;">486</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #6D8C2E !important;font-size: large;">1031</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: #7F7F7F !important;font-size: large;">119</span> </td>
+  </tr>
+</tbody>
+</table>

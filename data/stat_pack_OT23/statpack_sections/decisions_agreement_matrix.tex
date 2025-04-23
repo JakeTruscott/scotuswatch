@@ -1,0 +1,36 @@
+\begin{landscape}
+\subsection{\centering Justice-Level Agreement (2023 Term)}
+
+{
+\begin{table}[H]
+\centering
+    \renewcommand{\arraystretch}{1.5} % Add space between rows
+    \caption{Justice-Level Agreement (2023 Term)}
+    \vspace{2mm}
+\csvreader[
+    tabular={m{1.5cm}*{9}{>{\centering\arraybackslash}m{1.5cm}}},
+    table head={
+            \multicolumn{1}{c}{} &
+            \multirow{2}{*}{\includegraphics[width=1.5cm]{"Figures/justice_images/Roberts.png"}} &
+            \multirow{2}{*}{\includegraphics[width=1.5cm]{"Figures/justice_images/Thomas.png"}} &
+            \multirow{2}{*}{\includegraphics[width=1.5cm]{"Figures/justice_images/Alito.png"}} &
+            \multirow{2}{*}{\includegraphics[width=1.5cm]{"Figures/justice_images/Sotomayor.png"}} &
+            \multirow{2}{*}{\includegraphics[width=1.5cm]{"Figures/justice_images/Kagan.png"}} &
+            \multirow{2}{*}{\includegraphics[width=1.5cm]{"Figures/justice_images/Gorsuch.png"}} &
+            \multirow{2}{*}{\includegraphics[width=1.5cm]{"Figures/justice_images/Kavanaugh.png"}} &
+            \multirow{2}{*}{\includegraphics[width=1.5cm]{"Figures/justice_images/Barrett.png"}} & \\
+            \addlinespace
+            \addlinespace
+            & \footnotesize{Roberts} & \footnotesize{Thomas} & \footnotesize{Alito} & \footnotesize{Sotomayor} & \footnotesize{Kagan} & \footnotesize{Gorsuch} & \footnotesize{Kavanaugh} & \footnotesize{Barrett} \\
+            \cmidrule{1-9}
+    },
+        table foot=\bottomrule \multicolumn{9}{l}{\footnotesize{\emph{Note}: Cell values represent percentage of cases where Justices coalesced similarly (Majority vs. Dissent) -- Includes \emph{Per Curiams}}} \\ \bottomrule % Specify the footer rule
+]{"Tables/decision_tables/agreement_matrix.csv"}{}%
+{
+    \includegraphics[width=1.5cm]{Figures/justice_images/\csvcoli}
+    & \csvcolii & \csvcoliii & \csvcoliv & \csvcolv & \csvcolvi & \csvcolvii & \csvcolviii & \csvcolix
+}
+\label{tab:yourlabel}
+\end{table}
+}
+\end{landscape}

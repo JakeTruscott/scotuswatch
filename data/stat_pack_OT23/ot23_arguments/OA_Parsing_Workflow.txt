@@ -1,0 +1,18 @@
+################################################
+# Workflow Re: Oral Argument Analysis
+################################################
+
+# 1) Add Argument(s) to OT_23 CSV
+
+Set Completed to 0 if New Transcript -- This Will Ensure it Doesn't Repeat Already-Completed Transcripts
+
+# 2) Open .venv for Oyez Scraper
+
+"C:\Users\Jake Truscott\Documents\GitHub\jaketruscott.github.io\_scotuswatch\ot23_arguments\.venv\Oyez Scrapper\oyez_scraper.py"
+
+
+# 3) Run Oyez Scraper -- Push to transcript_links csv
+
+# 4) Open oa_23_oa_parser.R
+
+# 5) Process - Push to Respective Sitting .rdata File
