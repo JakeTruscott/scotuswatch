@@ -9,3 +9,6 @@ _scotuswatch.Rproj
 
 # Ignore any saved environments
 .RData
+
+# Ignore this file
+.gitignore
