@@ -1,14 +1,4 @@
-# Ignore the docket_parser directory
 docket_parser/
-
-# Ignore R history file
 .Rhistory
-
-# Ignore the _scotuswatch R project file
 _scotuswatch.Rproj
-
-# Ignore any saved environments
 .RData
-
-# Ignore this file
-.gitignore
