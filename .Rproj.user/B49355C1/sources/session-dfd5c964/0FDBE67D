@@ -1,0 +1,26 @@
+{
+    "id": "0FDBE67D",
+    "path": "C:/Users/jaketruscott/Github/scotuswatch/code/R/oral_arguments_parser_from_oyez.R",
+    "project_path": "code/R/oral_arguments_parser_from_oyez.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1745520507426.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "244,0",
+        "scrollLine": "244"
+    },
+    "folds": "28|24|86|0|\n93|1|130|0|\n132|1|228|0|\n",
+    "lastKnownWriteTime": 1737307722,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1745526701764,
+    "read_only": false,
+    "read_only_alternatives": []
+}
