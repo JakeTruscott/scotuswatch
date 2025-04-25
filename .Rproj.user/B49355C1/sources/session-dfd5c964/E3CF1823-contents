@@ -296,9 +296,6 @@ print_oral_argument_sittings_template <- function(output_path = NA){
 
 }
 
-#sitting_path <- 'data/oral_argument_sittings/input/2024/oral_argument_sitting_march.csv'
-#output_path = 'data/oral_argument_sittings/output/2024'
-
 oral_argument_sittings <- function(sitting_path,
                                    output_path,
                                    output_month = NULL){
@@ -363,6 +360,11 @@ oral_argument_sittings <- function(sitting_path,
 
 } # Recompile Sittings CSVs and Export as HTML & Txt (HTML Structure)
 
+"files <- list.files('Stat Reviews/OT24_StatReview/oral_arguments/sittings/input', full.names = T)
+
+oral_argument_sittings(sitting_path = files[6],
+                       output_path = 'Stat Reviews/OT24_StatReview/oral_arguments/sittings/output',
+                       output_month = 'november')"
 
 
 ###############################################################################
@@ -588,25 +590,53 @@ case_data = get_case_data(term, docket)
 
 } # Main Function - Returns Transcript Object
 
-#temp_csv <- read.csv('data/oral_argument_sittings/input/2024/oral_argument_sitting_march.csv', as.is = T)
-#unique_dockets <- as.character(unique(temp_csv$docket))
-temp <- oyez_transcript_search(docket = unique_dockets,
-                               term = '2024',
-                               output_path = 'code/oral_argument_oyez/oral_arguments_processed/2024',
-                               output_name = 'OT_24_March')
+files <- list.files('Stat Reviews/OT24_StatReview/oral_arguments/sittings/input', full.names = T)
+for (i in 2:length(files)){
+  temp_file <- read.csv(files[i], as.is = T)
+  temp_sitting <- stringr::str_to_title(gsub('.*sitting\\_', '', gsub('\\.csv', '', files[i])))
+  temp_output_name = paste0('OT_24_', temp_sitting)
+
+  temp_dockets <- temp_file %>%
+    select(docket) %>%
+    mutate(docket = gsub(' .*', '', docket)) %>%
+    pull(docket)
+
+  temp <- oyez_transcript_search(docket = temp_dockets,
+                                 term = '2024',
+                                 output_path = 'Stat Reviews/OT24_StatReview/oral_arguments/transcripts',
+                                 output_name = temp_output_name)
+
+}
+
+
+
 
 
 ###############################################################################
-# Compile Term-Level SCOTUS Transcripts Frame (Combined)
+# Compile Term-Level SCOTUS Transcripts Frame (Combined) == Export
 ###############################################################################
 
-combined_transcripts_term <- function(transcripts_folder){
+combined_transcripts_term <- function(transcripts_folder,
+                                      output_folder = NULL,
+                                      output_name = NULL,
+                                      assign_file_name = TRUE){
 
   combined_transcript <- data.frame() # Empty DF to Store Output
 
   transcript_list <- list.files(transcripts_folder, full.names = T) # Get Files in Folder
   for (file in transcript_list) {
     loaded_data <- get(load(file))
+
+    if (assign_file_name == TRUE){
+      file_name <- gsub(transcripts_folder, '', file)
+      file_name <- gsub('\\/', '', file_name)
+    } else {
+      file_name = NA
+    }
+
+    loaded_data <- loaded_data %>%
+      mutate(file_name = file_name)
+
     combined_transcript <- bind_rows(combined_transcript, loaded_data)
   } # Load each RData file and store the objects in the list
 
@@ -633,13 +663,30 @@ combined_transcripts_term <- function(transcripts_folder){
       mutate(case_name = gsub( " V.\\ ", " v. ", case_name))
   } # Processing
 
+  if (!is.null(output_folder)){
+
+    if (!is.null(output_name)){
+
+      temp_csv_output = file.path(output_folder, paste0(output_name, '.csv'))
+      temp_rdata_output = file.path(output_folder, paste0(output_name, '.rdata'))
+    } else {
+      temp_csv_output = file.path(output_folder, 'transcripts_combined.csv')
+      temp_rdata_output = file.path(output_folder, 'transcripts_combined.rdata')
+    }
+
+
+  } # Export (If Declared)
+
+
   return(combined_transcript)
 
 
 }
 
-test <- combined_transcripts_term(transcripts_folder = 'code/oral_argument_oyez/oral_arguments_processed/2024')
-
+combined_transcripts <- combined_transcripts_term(
+  transcripts_folder = 'Stat Reviews/OT24_StatReview/oral_arguments/transcripts',
+  output_folder = 'data/term_level_combined_transcripts',
+  output_name = 'scotus_OT24')
 
 
 

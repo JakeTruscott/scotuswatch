@@ -1,0 +1,138 @@
+<table class="table table-striped table-hover table-condensed" style="font-size: 12px; color: black; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Case </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Date Argued </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Docket </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Petitioner Counsel </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Respondent Counsel </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Arguing Amici </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Lower Court </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Cert Amici </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Merits Amici </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Robert F. Kennedy, Jr., Secretary of Health and Human Services, et al. v. Braidwood Management, Inc., et al. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 4/21/2025 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 24-316 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Hashim M. Mooppan </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Jonathan F. Mitchell </td>
+   <td style="text-align:center;width: 3cm; text-align: center;">  </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CA5 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 4 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 21 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Donte Parrish v. United States </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 4/21/2025 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 24-275 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Amanda Rice </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Aimee Brown </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Michael R. Huston </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CA4 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 0 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Tamer Mahmoud, et al. v. Thomas W. Taylor, et al. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 4/22/2025 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 24-297 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Eric S. Baxter; Sarah M. Harris </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Alan E. Schoenfeld </td>
+   <td style="text-align:center;width: 3cm; text-align: center;">  </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CA4 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 11 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 60 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Commissioner of Internal Revenue v. Jennifer Zuch </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 4/22/2025 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 24-416 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Erica L. Ross </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Shay Dvoretzky </td>
+   <td style="text-align:center;width: 3cm; text-align: center;">  </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CA3 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 0 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 3 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Diamond Alternative Energy, LLC, et al. v. Environmental Protection Agency, et al. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 4/23/2025 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 24-7 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Jeffrey B. Wall </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Edwin S. Kneedler; Joshua A. Klein </td>
+   <td style="text-align:center;width: 3cm; text-align: center;">  </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CADC </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 13 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 15 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> A. J. T., By and Through Her Parents, A. T. &amp; G. T. v. Osseo Area Schools, Independent School District No. 279, et al. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 4/28/2025 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 24-249 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Roman Martinez; Nicole F. Reaves </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Lisa S. Blatt </td>
+   <td style="text-align:center;width: 3cm; text-align: center;">  </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CA8 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 1 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 3 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Simon A. Soto, Individually and on Behalf of All Others Similarly Situated v. United States </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 4/28/2025 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 24-320 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Tacy F. Flint </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Caroline A. Flynn </td>
+   <td style="text-align:center;width: 3cm; text-align: center;">  </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CAFED </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 1 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Curtrina Martin, Individually and as Parent and Next Friend of G. W., a Minor, et al. v. United States, et al. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 4/29/2025 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 24-362 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Patrick M. Jaicomo </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Frederick Liu </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Christopher E. Mills </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CA11 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 2 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Laboratory Corporation of America Holdings, dba Labcorp v. Luke Davis, et al. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 4/29/2025 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 24-304 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Noel J. Francisco </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Deepak Gupta </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Sopan Joshi </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CA9 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 1 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 19 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Oklahoma Statewide Charter School Board, et al. v. Gentner Drummond, Attorney General of Oklahoma, ex rel. Oklahoma </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 4/30/2025 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 24-394 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> James A. Campbell </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Gregory G. Garre </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> D. John Sauer </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> OK Sup. Ct. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 12 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 48 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> St. Isidore of Seville Catholic Virtual School v. Gentner Drummond, Attorney General of Oklahoma, ex rel. Oklahoma </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 4/30/2025 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 24-396 (vided above) </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Michael H. McGinley </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Gregory G. Garre </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> D. John Sauer </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> OK Sup. Ct. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 10 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> NA </td>
+  </tr>
+</tbody>
+</table>
