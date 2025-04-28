@@ -92,7 +92,9 @@ check_and_install_packages() # Deploy
 
 #decisions <- read.csv("data/stat_pack_OT24/ot24_decisions/OT_24_Decisions.csv", as.is = T)
 
-decisions_table <- function(input_path, output_path, output_type = 'html', cases_break = 10){
+decisions_table <- function(input_path, output_path, output_type = 'html', cases_break = 15){
+
+  decisions_file_path = input_path
 
   {
 
@@ -154,6 +156,9 @@ decisions_table <- function(input_path, output_path, output_type = 'html', cases
     break
   } # Load File -- If Not CSV or Rdata -- STOP
 
+  decisions <- decisions %>%
+    relocate(Docket, .after = 'Case')
+
   {
 
     decisions <- decisions %>%
@@ -189,10 +194,8 @@ decisions_table <- function(input_path, output_path, output_type = 'html', cases
 
     decisions_data <- decisions
     matching_columns <- intersect(colnames(decisions_data), names(justice_image_labels))
-    original_column_names <- colnames(decisions_data)
-    matching_columns <- colnames(decisions_data)[8:16]
 
-  } # Compile Tables
+  } # Compile Column Names
 
   {
 
@@ -268,7 +271,106 @@ decisions_table <- function(input_path, output_path, output_type = 'html', cases
 
   } # Recover Decisions Info for Each In decision_partitions
 
+  {
+
+    for (i in 1:length(decision_partitions)){
+
+      temp_decisions <- decision_partitions[[i]]
+      min_case_id <- min(temp_decisions$case_id)
+      max_case_id <- max(temp_decisions$case_id)
+      temp_vote_matrix_path <- file.path(output_path, paste0('decisions_vote_matrix_', min_case_id, '_', max_case_id))
+      original_column_names <- names(decisions)
+      original_column_names = original_column_names[!original_column_names %in% c('Case', 'Date Argued', 'Date Decided', 'Lower Court', 'Decision', 'Docket', 'Coalition', 'Author')]
+      original_column_names <- c(rep('', length = 6), original_column_names)
+      temp_decisions <- temp_decisions %>%
+        dplyr::select(-c(case_id, Author, `Date Argued`)) %>%
+        mutate(`Date Decided` = as.Date(`Date Decided`, "%m/%d/%y")) %>%
+        arrange(`Date Decided`) %>%
+        relocate(Docket, .after = 'Coalition')
+
+      {
+
+        temp_vote_matrix <- temp_decisions %>%
+          kbl(longtable = TRUE, escape = FALSE, booktabs = TRUE, align = "c") %>%
+          add_header_above(c(original_column_names)) %>%
+          column_spec(1, width = "3cm", bold = TRUE, border_right = TRUE) %>%
+          column_spec(2, width = '2cm', bold = TRUE, border_right = TRUE) %>%
+          #column_spec(c(2:11), width = "1.25cm", border_right = TRUE) %>%
+          column_spec(2:ncol(temp_decisions), width = "1.25cm", border_right = TRUE, extra_css = "vertical-align: middle; font-size: 18px;") %>%
+          row_spec(0, bold = TRUE, color = 'white', background = '#080808', align = 'center') %>%
+          row_spec(seq(1, nrow(temp_decisions), 1), align = 'center') %>%
+          row_spec(nrow(temp_decisions), extra_css = "border-bottom: 2px solid;") %>%
+          kable_styling(font_size = 15, bootstrap_options = c("striped", "hover", "responsive")) %>%
+          add_footnote(
+            c(
+              "<span style=\"border-radius: 0px; padding: 1px; background-color: white !important; color: white;\"></span>",
+              "<span style=\"border-radius: 0px; padding: 0px; background-color: white !important; color: white;\"></span>",
+
+              "<span style=\"margin-left: 10px;\"></span>
+        <span style=\"border-radius: 1px; padding: 1px; background-color: darkolivegreen !important; color: white;\">M*</span> = Majority Author
+         <span style=\"margin-left: 10px;\"></span>
+         <span style=\"border-radius: 1px; padding: 1px; background-color: #99CCFF !important; color: white;\">M</span> = Joined Majority
+         <span style=\"margin-left: 10px;\"></span>
+         <span style=\"border-radius: 1px; padding: 1px; background-color: #66B2FF !important; color: white;\">RC</span> = Wrote Concurrence
+         <span style=\"margin-left: 10px;\"></span>
+         <span style=\"border-radius: 1px; padding: 1px; background-color: #3399FF !important; color: white;\">JRC</span> = Joined Concurrence
+         <span style=\"margin-left: 10px;\"></span>
+         <span style=\"border-radius: 1px; padding: 1px; background-color: #66B2FF !important; color: white;\">RC & JRC</span> = Wrote & Joined Concurrence",
+
+              "<span style=\"border-radius: 3px; padding: 1px; background-color: white !important; color: white;\"> </span>",
+
+              "<span style=\"margin-left: 10px;\"></span>
+        <span style=\"border-radius: 1px; padding: 1px; background-color: #FF9933 !important; color: white;\">CJ</span> = Wrote Concurrence In Judgement
+         <span style=\"margin-left: 10px;\"></span>
+        <span style=\"border-radius: 1px; padding: 1px; background-color: #FFCC99 !important; color: white;\">JCJ</span> = Joined Concurrence In Judgement
+         <span style=\"margin-left: 10px;\"></span>
+        <span style=\"border-radius: 1px; padding: 1px; background-color: #B265FF !important; color: white;\">SC</span> = Wrote Special Concurrence
+         <span style=\"margin-left: 10px;\"></span>
+        <span style=\"border-radius: 1px; padding: 1px; background-color: #6600CC !important; color: white;\">JSC</span> = Joined Special Concurrence
+         <span style=\"margin-left: 10px;\"></span>",
+
+              "<span style=\"border-radius: 3px; padding: 1px; background-color: white !important; color: white;\"> </span>",
+
+              "<span style=\"margin-left: 10px;\"></span>
+        <span style=\"border-radius: 1px; padding: 1px; background-color: #FF3333 !important; color: white;\">D</span> = Wrote Dissent
+         <span style=\"margin-left: 10px;\"></span>
+        <span style=\"border-radius: 1px; padding: 1px; background-color: #CC0000 !important; color: white;\">JD</span> = Joined Dissent
+         <span style=\"margin-left: 10px;\"></span>
+        <span style=\"border-radius: 1px; padding: 1px; background-color: #990000 !important; color: white;\">D & JD</span> = Wrote & Joined Dissent
+         <span style=\"margin-left: 10px;\"></span>"
+
+
+            ),
+            notation = "none",
+            escape = FALSE  # Add escape parameter to allow HTML formatting
+          )
+
+        } # Compile Temp Vote Matrix
+
+      {
+
+        save_kable(temp_vote_matrix, file = paste0(temp_vote_matrix_path, '.html'))
+        temp_vote_matrix <- as.character(temp_vote_matrix)
+        writeLines(temp_vote_matrix, paste0(temp_vote_matrix_path, '_html.txt'))
+        message('Completed Decisions Vote Matrix For Cases ', min_case_id, ' to ', max_case_id)
+
+
+      } # Export
+
+    }
+
+
+
+  } #Compile Vote Matrix Table
+
+
 } # Decisions Table
+
+decisions_table(input_path = "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions/data/OT_24_Decisions.csv",
+                output_path = "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions/tables",
+                output_type = 'html',
+                cases_break = 15)
+
 
 ###############################################################################
 # Oral Argument Sittings
@@ -690,4 +792,131 @@ combined_transcripts <- combined_transcripts_term(
 
 
 
+###############################################################################
+# Oral Argument Analyses
+# Justices & Attorney Participation
+###############################################################################
+
+transcript <- get(load('data/term_level_combined_transcripts/scotus_OT24.rdata'))
+
+
+oa_analysis <- function(transcript,
+                        speaker_subset = NULL,
+                        metric,
+                        save_output = TRUE,
+                        output_path,
+                        output_name = NULL,
+                        output_type = NULL){
+
+  {
+    color_cells <- function(data) {
+
+      colfunc <- colorRampPalette(c("grey50", "olivedrab"))(9)
+
+      colored_data <- data.frame() %>%
+        bind_rows(data[1,])  # Initialize with first row
+
+      for (i in 1:nrow(data)) {
+
+        row_data <- data[i, ] %>%
+          select(-c('case_name', 'docket'))
+        temp_case <- row_data[, 1]
+        colnames(row_data) <- NULL
+
+        combined_values <- c(row_data[, 1])
+        values <- unlist(row_data[, -1])
+        values[is.na(values)] <- 0
+        unique_values <- unique(values)
+
+        if (length(unique_values) > 1) {
+          unique_breaks <- quantile(unique_values, probs = seq(0, 1, length.out = 10), na.rm = TRUE)
+        } else {
+          unique_breaks <- c(min(values) - 1, max(values) + 1)
+        }
+
+        color_index <- as.numeric(cut(values, breaks = unique_breaks, labels = 1:9, include.lowest = TRUE))
+        values <- cell_spec(values, color = 'white', bold = TRUE, background = colfunc[color_index], font_size = 'large')
+
+        temp_combined_df <- data.frame(ncol = length(values) + 1)
+        for (value in 1:length(values)) {
+          temp_combined_df[, value + 1] <- values[value]
+        }
+
+        temp_combined_df[, 1] <- temp_case
+        colnames(temp_combined_df) <- NULL
+
+        colored_data[i, ] <- temp_combined_df
+      }
+
+      return(colored_data)
+    }
+  } # Color Cells Function (HTML)
+  {
+
+    temp_data <- transcript
+    if (!is.null(speaker_subset)){
+
+      if (grepl('Justice', speaker_subset, ignore.case = T)){
+        temp_data <- temp_data %>%
+          filter(speaker_type == 'Justice')
+      } else if (grepl('Attorney', speaker_subset, ignore.case = T)){
+        temp_data <- temp_data %>%
+          filter(speaker_type == 'Attorney')
+      } else {
+        temp_data <- temp_data
+      }
+
+    }
+
+  } # Subset Data (If Declared)
+
+  metric_recovery <- data.frame()
+
+  if (grepl('time', metric, ignore.case = T)){
+
+    temp_time <- temp_data %>%
+      mutate(elapsed = text_stop - text_start) %>%
+      group_by(docket, speaker) %>%
+      summarise(total_elapsed = sum(elapsed), .groups = 'drop') %>%
+      mutate(total_elapsed = round(total_elapsed/60, 2)) %>%
+      pivot_wider(
+        names_from = speaker,
+        values_from = total_elapsed) %>%
+      left_join(temp_data %>%
+                  select(docket, case_name), by = 'docket') %>%
+      unique() %>%
+      relocate(case_name) %>%
+      mutate(across(everything(), ~replace_na(.x, 0))) # Recover Time in Minutes by Speaker
+
+
+    if (output_type == 'html'){
+
+      temp_time <- color_cells(temp_time)
+
+    } else {
+
+    } # If HTML -- Or CSV (NULL)
+
+
+
+  }
+
+
+
+
+} # Varying OA Analyses
+
+# Output Type: GGPLOT, CSV, HTML, TXT (HTML)
+# Speaker Subset: Justice, Attorney, All
+# Metric: Time, Words, Participation (Attorney Only)
+
+oa_analysis_attorney_participation <- function(temp_data, output_type){
+
+
+
+}
+
+oa_analysis_time_words <- function(temp_data, output_type){
+
+}
 

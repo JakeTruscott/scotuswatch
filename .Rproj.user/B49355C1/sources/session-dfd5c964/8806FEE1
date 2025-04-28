@@ -1,0 +1,26 @@
+{
+    "id": "8806FEE1",
+    "path": "C:/Users/jaketruscott/Github/scotuswatch/code/R/oral_argument_stats.R",
+    "project_path": "code/R/oral_argument_stats.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1745602146808.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "134,22",
+        "scrollLine": "0"
+    },
+    "folds": "17|1|44|0|\n63|3|92|2|\n94|3|130|2|\n",
+    "lastKnownWriteTime": 1744322836,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1745602156469,
+    "read_only": false,
+    "read_only_alternatives": []
+}
