@@ -1,0 +1,136 @@
+<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 14px; color: black; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Case </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Docket </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Date Argued </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Date Decided </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Lower Court </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Decision </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Author </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Coalition </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> City and County of San Francisco v. EPA </td>
+   <td style="text-align:center;"> 23-753 </td>
+   <td style="text-align:center;"> 2024-10-16 </td>
+   <td style="text-align:center;"> 2025-03-04 </td>
+   <td style="text-align:center;"> CA9 </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> Alito </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Bufkin v. Collins </td>
+   <td style="text-align:center;"> 23-713 </td>
+   <td style="text-align:center;"> 2024-10-16 </td>
+   <td style="text-align:center;"> 2025-03-05 </td>
+   <td style="text-align:center;"> CAFC </td>
+   <td style="text-align:center;"> Affirm </td>
+   <td style="text-align:center;"> Thomas </td>
+   <td style="text-align:center;"> (7-2) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Thompson v. United States </td>
+   <td style="text-align:center;"> 23-1095 </td>
+   <td style="text-align:center;"> 2025-01-14 </td>
+   <td style="text-align:center;"> 2025-03-21 </td>
+   <td style="text-align:center;"> CA7 </td>
+   <td style="text-align:center;"> Vacate and Remand </td>
+   <td style="text-align:center;"> Roberts </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Delligatti v. United States </td>
+   <td style="text-align:center;"> 23-825 </td>
+   <td style="text-align:center;"> 2024-11-12 </td>
+   <td style="text-align:center;"> 2025-03-21 </td>
+   <td style="text-align:center;"> CA2 </td>
+   <td style="text-align:center;"> Affirm </td>
+   <td style="text-align:center;"> Thomas </td>
+   <td style="text-align:center;"> (7-2) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Bondi v. Vanderstok </td>
+   <td style="text-align:center;"> 23-852 </td>
+   <td style="text-align:center;"> 2024-10-08 </td>
+   <td style="text-align:center;"> 2025-03-26 </td>
+   <td style="text-align:center;"> CA5 </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> Gorsuch </td>
+   <td style="text-align:center;"> (7-2) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> United States v. Miller </td>
+   <td style="text-align:center;"> 23-824 </td>
+   <td style="text-align:center;"> 2024-12-02 </td>
+   <td style="text-align:center;"> 2025-03-26 </td>
+   <td style="text-align:center;"> CA10 </td>
+   <td style="text-align:center;"> Reverse </td>
+   <td style="text-align:center;"> Jackson </td>
+   <td style="text-align:center;"> (8-1) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> FDA v. Wages and White Lion Investments, LLC </td>
+   <td style="text-align:center;"> 23-1038 </td>
+   <td style="text-align:center;"> 2024-12-02 </td>
+   <td style="text-align:center;"> 2025-04-02 </td>
+   <td style="text-align:center;"> CA5 </td>
+   <td style="text-align:center;"> Vacate and Remand </td>
+   <td style="text-align:center;"> Alito </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Medical Marijuana, Inc. v. Horn </td>
+   <td style="text-align:center;"> 23-365 </td>
+   <td style="text-align:center;"> 2024-10-15 </td>
+   <td style="text-align:center;"> 2025-04-02 </td>
+   <td style="text-align:center;"> CA2 </td>
+   <td style="text-align:center;"> Affirm and Remand </td>
+   <td style="text-align:center;"> Barrett </td>
+   <td style="text-align:center;"> (5-4) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Department of Education v. California </td>
+   <td style="text-align:center;"> 24A910 </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> 2025-04-04 </td>
+   <td style="text-align:center;"> DCMA </td>
+   <td style="text-align:center;"> Granted </td>
+   <td style="text-align:center;"> Per Curiam </td>
+   <td style="text-align:center;"> (5-4) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Trump v. J.G.G. </td>
+   <td style="text-align:center;"> 24A931 </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> 2025-04-07 </td>
+   <td style="text-align:center;"> DCDC </td>
+   <td style="text-align:center;"> Granted </td>
+   <td style="text-align:center;"> Per Curiam </td>
+   <td style="text-align:center;"> (5-4)* </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Cunningham v. Cornell Univ. </td>
+   <td style="text-align:center;"> 23-1007 </td>
+   <td style="text-align:center;"> 2025-01-22 </td>
+   <td style="text-align:center;"> 2025-04-17 </td>
+   <td style="text-align:center;"> CA2 </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> Sotomayor </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Monsalvo Velazquez v. Bondi </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 23-929 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2024-11-12 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2025-04-22 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> CA10 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Reverse and Remand </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Gorusch </td>
+   <td style="text-align:center;border-bottom: 2px solid;">  </td>
+  </tr>
+</tbody>
+</table>

@@ -1,0 +1,166 @@
+<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 14px; color: black; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Case </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Docket </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Date Argued </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Date Decided </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Lower Court </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Decision </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Author </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Coalition </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Hamm v. Smith </td>
+   <td style="text-align:center;"> 23-167 </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> 2024-11-04 </td>
+   <td style="text-align:center;"> CA11 </td>
+   <td style="text-align:center;"> Vacate and Remand </td>
+   <td style="text-align:center;"> Per Curiam </td>
+   <td style="text-align:center;"> Per Curiam </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Facebook v. Amalgamated Bank </td>
+   <td style="text-align:center;"> 23-980 </td>
+   <td style="text-align:center;"> 2024-11-06 </td>
+   <td style="text-align:center;"> 2024-11-22 </td>
+   <td style="text-align:center;"> CA9 </td>
+   <td style="text-align:center;"> DIG </td>
+   <td style="text-align:center;"> Per Curiam </td>
+   <td style="text-align:center;"> Per Curiam </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Bouarfa v. Mayorkas </td>
+   <td style="text-align:center;"> 23-583 </td>
+   <td style="text-align:center;"> 2024-10-15 </td>
+   <td style="text-align:center;"> 2024-12-10 </td>
+   <td style="text-align:center;"> CA11 </td>
+   <td style="text-align:center;"> Affirm </td>
+   <td style="text-align:center;"> JACKSON </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> NVIDIA v. E. Ohman Jor Fonder </td>
+   <td style="text-align:center;"> 23-970 </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> 2024-12-11 </td>
+   <td style="text-align:center;"> CA9 </td>
+   <td style="text-align:center;"> DIG </td>
+   <td style="text-align:center;"> Per Curiam </td>
+   <td style="text-align:center;"> Per Curiam </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Royal Canin v. Wullschleger </td>
+   <td style="text-align:center;"> 23-677 </td>
+   <td style="text-align:center;"> 2024-10-07 </td>
+   <td style="text-align:center;"> 2025-01-15 </td>
+   <td style="text-align:center;"> CA8 </td>
+   <td style="text-align:center;"> Affirm </td>
+   <td style="text-align:center;"> KAGAN </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> E.M.D. Sales v. Carrera </td>
+   <td style="text-align:center;"> 23-217 </td>
+   <td style="text-align:center;"> 2024-11-05 </td>
+   <td style="text-align:center;"> 2025-01-15 </td>
+   <td style="text-align:center;"> CA4 </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> KAVANAUGH </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Tik Tok v. Garland </td>
+   <td style="text-align:center;"> 24-656 </td>
+   <td style="text-align:center;"> 2025-01-10 </td>
+   <td style="text-align:center;"> 2025-01-17 </td>
+   <td style="text-align:center;"> CADC </td>
+   <td style="text-align:center;"> Affirm </td>
+   <td style="text-align:center;"> Per Curiam </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Andrew v. White </td>
+   <td style="text-align:center;"> 23-6573 </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> 2025-01-21 </td>
+   <td style="text-align:center;"> CA10 </td>
+   <td style="text-align:center;"> Vacate and Remand </td>
+   <td style="text-align:center;"> Per Curiam </td>
+   <td style="text-align:center;"> Per Curiam </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Hungary v. Simon </td>
+   <td style="text-align:center;"> 23-867 </td>
+   <td style="text-align:center;"> 2024-12-03 </td>
+   <td style="text-align:center;"> 2025-02-21 </td>
+   <td style="text-align:center;"> CADC </td>
+   <td style="text-align:center;"> Vacate and Remand </td>
+   <td style="text-align:center;"> Sotomayor </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Wisconsin Bell, Inc. v. United States ex rel. Health </td>
+   <td style="text-align:center;"> 23-1127 </td>
+   <td style="text-align:center;"> 2024-11-04 </td>
+   <td style="text-align:center;"> 2025-02-21 </td>
+   <td style="text-align:center;"> CA7 </td>
+   <td style="text-align:center;"> Affirm and Remand </td>
+   <td style="text-align:center;"> Kagan </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Williams v. Reed </td>
+   <td style="text-align:center;"> 23-191 </td>
+   <td style="text-align:center;"> 2024-10-07 </td>
+   <td style="text-align:center;"> 2025-02-21 </td>
+   <td style="text-align:center;"> SCAL </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> Kavanaugh </td>
+   <td style="text-align:center;"> (5-4) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Lackey v. Stinnie </td>
+   <td style="text-align:center;"> 23-621 </td>
+   <td style="text-align:center;"> 2024-10-08 </td>
+   <td style="text-align:center;"> 2025-02-25 </td>
+   <td style="text-align:center;"> CA4 </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> Roberts </td>
+   <td style="text-align:center;"> (7-2) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Glossip v. Oklahoma </td>
+   <td style="text-align:center;"> 22-7466 </td>
+   <td style="text-align:center;"> 2024-10-09 </td>
+   <td style="text-align:center;"> 2025-02-25 </td>
+   <td style="text-align:center;"> OCCA </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> Sotomayor </td>
+   <td style="text-align:center;"> (6-2) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Waetzig v. Halliburton Energy Services, Inc. </td>
+   <td style="text-align:center;"> 23-971 </td>
+   <td style="text-align:center;"> 2025-01-14 </td>
+   <td style="text-align:center;"> 2025-02-26 </td>
+   <td style="text-align:center;"> CA10 </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> Alito </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Dewberry Group, Inc. v. Dewberry Engineers Inc. </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 23-900 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2024-12-11 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2025-02-26 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> CA4 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Vacate and Remand </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Kagan </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> (9-0) </td>
+  </tr>
+</tbody>
+</table>

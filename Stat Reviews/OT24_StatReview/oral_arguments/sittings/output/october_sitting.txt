@@ -1,0 +1,116 @@
+<table class="table table-striped table-hover table-condensed" style="font-size: 12px; color: black; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Case </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Date Argued </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Docket </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Petitioner Counsel </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Respondent Counsel </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Arguing Amici </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Lower Court </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Cert Amici </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Merits Amici </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Nancy Williams, et al. v. Fitzgerald Washington, AL Sec. of Labor </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 45572 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 23-191 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Adam G. Unikowsky </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Edmund G. LaCour, Jr. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;">  </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> SCAL </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 0 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 6 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Royal Canin U.S.A, Inc., et al. v. Anastasia Wullschleger, et al. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 45572 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 23-677 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Katherine B. Wellington </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Ashley C. Keller </td>
+   <td style="text-align:center;width: 3cm; text-align: center;">  </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CA8 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 1 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 6 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Garland, Attorney Gen., et al. v. Jennifer VanDerStok, et al. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 45573 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 23-852 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Elizabeth B. Prelogar </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Peter A. Patterson </td>
+   <td style="text-align:center;width: 3cm; text-align: center;">  </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CA5 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 2 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 24 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Gerald F. Lackey, Comm. VA DMV v. Damian Stinnie, et al. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 45573 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 23-621 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Erika L. Maley </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Brian D. Schmalzbach </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Anthony A. Yang </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CA4 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 1 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Richard Eugene Glossip v. Oklahoma </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 45574 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 23-7466 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Seth P. Waxman </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Paul D. Clement </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Christopher G. Michel </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CCAOK </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 3 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Medical Marijuana, Inc., et al. v. Douglas J. Horn </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 45580 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 23-365 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Lisa S. Blatt </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Easha Anand </td>
+   <td style="text-align:center;width: 3cm; text-align: center;">  </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CA2 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 1 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 7 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Amina Bouarfa v. Alejandro Mayorkas, Sec. of Homeland Security, et al. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 45580 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 23-583 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Samir Deger-Sen </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Colleen R. Sinzdak </td>
+   <td style="text-align:center;width: 3cm; text-align: center;">  </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CA11 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 1 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Joshua Bufkin v. Denis R. McDonough, Sec. of Veterans Affairs </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 45581 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 23-713 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Melanie L. Bostwick </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Sopan Joshi </td>
+   <td style="text-align:center;width: 3cm; text-align: center;">  </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CAFC </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 4 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> City and County of San Francisco, CA v. EPA </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 45581 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 23-753 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Tara M. Steeley </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> Frederick Liu </td>
+   <td style="text-align:center;width: 3cm; text-align: center;">  </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CA9 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 2 </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> 10 </td>
+  </tr>
+</tbody>
+</table>

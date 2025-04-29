@@ -1,0 +1,48 @@
+<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 12px; color: black; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> Case </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> Attorney </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> Docket </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> Words </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Miriam Fuld, Et Al. v. Palestine Liberation Organization, Et Al.. United States v.  )  No. 24-151 Palestine Liberation Organization, Et Al. </td>
+   <td style="text-align:center;text-align: center;"> Edwin S. Kneedler </td>
+   <td style="text-align:center;text-align: center;"> 24-20 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">4083</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Eunice Medina, Director, South Carolina Department Of Health And Human  Services v. Planned Parenthood South Atlantic, Et Al. </td>
+   <td style="text-align:center;text-align: center;"> John J. Bursch </td>
+   <td style="text-align:center;text-align: center;"> 23-1275 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">4306</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Miriam Fuld, Et Al. v. Palestine Liberation Organization, Et Al.. United States v.  )  No. 24-151 Palestine Liberation Organization, Et Al. </td>
+   <td style="text-align:center;text-align: center;"> Kent A. Yalowitz </td>
+   <td style="text-align:center;text-align: center;"> 24-20 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">2680</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Eunice Medina, Director, South Carolina Department Of Health And Human  Services v. Planned Parenthood South Atlantic, Et Al. </td>
+   <td style="text-align:center;text-align: center;"> Kyle D. Hawkins </td>
+   <td style="text-align:center;text-align: center;"> 23-1275 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">1750</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Miriam Fuld, Et Al. v. Palestine Liberation Organization, Et Al.. United States v.  )  No. 24-151 Palestine Liberation Organization, Et Al. </td>
+   <td style="text-align:center;text-align: center;"> Mitchell R. Berger </td>
+   <td style="text-align:center;text-align: center;"> 24-20 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">3937</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Eunice Medina, Director, South Carolina Department Of Health And Human  Services v. Planned Parenthood South Atlantic, Et Al. </td>
+   <td style="text-align:center;text-align: center;"> Nicole A. Saharsky </td>
+   <td style="text-align:center;text-align: center;"> 23-1275 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">5761</span> </td>
+  </tr>
+</tbody>
+</table>

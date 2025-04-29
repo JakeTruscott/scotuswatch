@@ -32,7 +32,7 @@ check_and_install_packages <- function(){
   packages <- c('anytime', 'dplyr', 'ggplot2', 'ggpattern', 'ggtext', 'ggthemes',
                 'grid', 'htmltools', 'httr', 'jsonlite', 'kableExtra', 'png',
                 'readxl', 'reticulate', 'rvest', 'scotustext', 'stringi',
-                'stringr', 'tidyr', 'tm')
+                'stringr', 'tidyr', 'tm', 'webshot2')
 
   missing_packages <- packages[!packages %in% installed.packages()[, "Package"]]
 
@@ -90,9 +90,8 @@ check_and_install_packages() # Deploy
 # Decisions Table (HTML/CSV Output)
 ###############################################################################
 
-#decisions <- read.csv("data/stat_pack_OT24/ot24_decisions/OT_24_Decisions.csv", as.is = T)
 
-decisions_table <- function(input_path, output_path, output_type = 'html', cases_break = 15){
+decisions_table <- function(input_path, output_path, output_type = 'html', cases_break = 15, remove_existing_files = T){
 
   decisions_file_path = input_path
 
@@ -155,6 +154,10 @@ decisions_table <- function(input_path, output_path, output_type = 'html', cases
     message('Unrecognized File Path: Please Load a CSV or .Rdata File')
     break
   } # Load File -- If Not CSV or Rdata -- STOP
+
+  if (remove_existing_files == T){
+    invisible(do.call(file.remove, list(list.files(output_path, full.names = TRUE))))
+  } # Delete Existing Files
 
   decisions <- decisions %>%
     relocate(Docket, .after = 'Case')
@@ -235,16 +238,16 @@ decisions_table <- function(input_path, output_path, output_type = 'html', cases
       if (output_type == 'html'){
 
         temp_decisions <- temp_decisions %>%
+          select(c('Case', 'Docket', 'Date Argued', 'Date Decided', 'Lower Court', 'Decision', 'Author', 'Coalition')) %>%
           mutate(`Date Decided` = as.Date(`Date Decided`, "%m/%d/%y"),
                  `Date Argued` = as.Date(`Date Argued`, "%m/%d/%y")) %>%
           arrange(`Date Decided`) %>%
           kbl(longtable = TRUE, escape = FALSE, booktabs = TRUE, align = "c") %>%
-          column_spec(c(1:6), bold = TRUE) %>%
-          column_spec(7, bold = TRUE, border_right = TRUE) %>%
+          column_spec(1, bold = TRUE) %>%
           row_spec(0, bold = TRUE, color = 'white', background = '#080808', align = 'center') %>%
-          row_spec(seq(1, nrow(temp_decisions), 1), align = 'center') %>%
           row_spec(nrow(temp_decisions), extra_css = "border-bottom: 2px solid;") %>%
-          kable_styling(font_size = 18, bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+          kable_styling(font_size = 14, bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
 
         temp_decisions <- as.character(temp_decisions)
         writeLines(temp_decisions, paste0(temp_output_file_name, '_html.txt'))
@@ -281,12 +284,13 @@ decisions_table <- function(input_path, output_path, output_type = 'html', cases
       temp_vote_matrix_path <- file.path(output_path, paste0('decisions_vote_matrix_', min_case_id, '_', max_case_id))
       original_column_names <- names(decisions)
       original_column_names = original_column_names[!original_column_names %in% c('Case', 'Date Argued', 'Date Decided', 'Lower Court', 'Decision', 'Docket', 'Coalition', 'Author')]
-      original_column_names <- c(rep('', length = 6), original_column_names)
+      original_column_names <- c(rep('', length = 2), original_column_names)
       temp_decisions <- temp_decisions %>%
         dplyr::select(-c(case_id, Author, `Date Argued`)) %>%
         mutate(`Date Decided` = as.Date(`Date Decided`, "%m/%d/%y")) %>%
         arrange(`Date Decided`) %>%
-        relocate(Docket, .after = 'Coalition')
+        relocate(Docket, .after = 'Coalition') %>%
+        select(-c('Date Decided', 'Lower Court', 'Decision', 'Coalition'))
 
       {
 
@@ -300,7 +304,7 @@ decisions_table <- function(input_path, output_path, output_type = 'html', cases
           row_spec(0, bold = TRUE, color = 'white', background = '#080808', align = 'center') %>%
           row_spec(seq(1, nrow(temp_decisions), 1), align = 'center') %>%
           row_spec(nrow(temp_decisions), extra_css = "border-bottom: 2px solid;") %>%
-          kable_styling(font_size = 15, bootstrap_options = c("striped", "hover", "responsive")) %>%
+          kable_styling(font_size = 14, bootstrap_options = c("striped", "hover", "responsive")) %>%
           add_footnote(
             c(
               "<span style=\"border-radius: 0px; padding: 1px; background-color: white !important; color: white;\"></span>",
@@ -365,11 +369,6 @@ decisions_table <- function(input_path, output_path, output_type = 'html', cases
 
 
 } # Decisions Table
-
-decisions_table(input_path = "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions/data/OT_24_Decisions.csv",
-                output_path = "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions/tables",
-                output_type = 'html',
-                cases_break = 15)
 
 
 ###############################################################################
@@ -461,12 +460,6 @@ oral_argument_sittings <- function(sitting_path,
 
 
 } # Recompile Sittings CSVs and Export as HTML & Txt (HTML Structure)
-
-"files <- list.files('Stat Reviews/OT24_StatReview/oral_arguments/sittings/input', full.names = T)
-
-oral_argument_sittings(sitting_path = files[6],
-                       output_path = 'Stat Reviews/OT24_StatReview/oral_arguments/sittings/output',
-                       output_month = 'november')"
 
 
 ###############################################################################
@@ -692,25 +685,6 @@ case_data = get_case_data(term, docket)
 
 } # Main Function - Returns Transcript Object
 
-files <- list.files('Stat Reviews/OT24_StatReview/oral_arguments/sittings/input', full.names = T)
-for (i in 2:length(files)){
-  temp_file <- read.csv(files[i], as.is = T)
-  temp_sitting <- stringr::str_to_title(gsub('.*sitting\\_', '', gsub('\\.csv', '', files[i])))
-  temp_output_name = paste0('OT_24_', temp_sitting)
-
-  temp_dockets <- temp_file %>%
-    select(docket) %>%
-    mutate(docket = gsub(' .*', '', docket)) %>%
-    pull(docket)
-
-  temp <- oyez_transcript_search(docket = temp_dockets,
-                                 term = '2024',
-                                 output_path = 'Stat Reviews/OT24_StatReview/oral_arguments/transcripts',
-                                 output_name = temp_output_name)
-
-}
-
-
 
 
 
@@ -762,8 +736,12 @@ combined_transcripts_term <- function(transcripts_folder,
       mutate(case_name = gsub("(\\, Respondent|\\, Respondents|\\, Appellees|\\, Appellee| Respondent\\,)", "", case_name)) %>%
       mutate(case_name = str_to_title(case_name)) %>%
       mutate(case_name = gsub("Llc", "LLC", case_name)) %>%
-      mutate(case_name = gsub( " V.\\ ", " v. ", case_name))
-  } # Processing
+      mutate(case_name = gsub( " V.\\ ", " v. ", case_name)) %>%
+      mutate(sitting = unlist(regmatches(object_title, gregexpr("\\b(January|February|March|April|May|June|July|August|September|October|November|December)\\b", object_title)))) %>%
+      relocate(sitting, .after = 'docket')
+
+
+    } # Processing
 
   if (!is.null(output_folder)){
 
@@ -776,6 +754,8 @@ combined_transcripts_term <- function(transcripts_folder,
       temp_rdata_output = file.path(output_folder, 'transcripts_combined.rdata')
     }
 
+    save(combined_transcript, file = temp_rdata_output)
+    write.csv(combined_transcript, file = temp_csv_output)
 
   } # Export (If Declared)
 
@@ -785,10 +765,6 @@ combined_transcripts_term <- function(transcripts_folder,
 
 }
 
-combined_transcripts <- combined_transcripts_term(
-  transcripts_folder = 'Stat Reviews/OT24_StatReview/oral_arguments/transcripts',
-  output_folder = 'data/term_level_combined_transcripts',
-  output_name = 'scotus_OT24')
 
 
 
@@ -797,34 +773,25 @@ combined_transcripts <- combined_transcripts_term(
 # Justices & Attorney Participation
 ###############################################################################
 
-transcript <- get(load('data/term_level_combined_transcripts/scotus_OT24.rdata'))
-
-
 oa_analysis <- function(transcript,
-                        speaker_subset = NULL,
-                        metric,
-                        save_output = TRUE,
-                        output_path,
-                        output_name = NULL,
-                        output_type = NULL){
+                        check_folder_status = T,
+                        output_path){
 
   {
-    color_cells <- function(data) {
+
+    color_cells_justice <- function(data) {
 
       colfunc <- colorRampPalette(c("grey50", "olivedrab"))(9)
 
-      colored_data <- data.frame() %>%
-        bind_rows(data[1,])  # Initialize with first row
+      colored_data <- data.frame()
 
       for (i in 1:nrow(data)) {
 
         row_data <- data[i, ] %>%
-          select(-c('case_name', 'docket'))
-        temp_case <- row_data[, 1]
-        colnames(row_data) <- NULL
+          relocate(case_name) %>%
+          relocate(docket, .after = 'case_name')
 
-        combined_values <- c(row_data[, 1])
-        values <- unlist(row_data[, -1])
+        values <- unlist(row_data[ , !(names(row_data) %in% c('case_name', 'docket')) ])
         values[is.na(values)] <- 0
         unique_values <- unique(values)
 
@@ -837,86 +804,544 @@ oa_analysis <- function(transcript,
         color_index <- as.numeric(cut(values, breaks = unique_breaks, labels = 1:9, include.lowest = TRUE))
         values <- cell_spec(values, color = 'white', bold = TRUE, background = colfunc[color_index], font_size = 'large')
 
-        temp_combined_df <- data.frame(ncol = length(values) + 1)
-        for (value in 1:length(values)) {
-          temp_combined_df[, value + 1] <- values[value]
-        }
+        temp_combined_df <- data.frame(
+          case_name = data[i, ]$case_name,
+          docket = data[i, ]$docket,
+          t(values),
+          check.names = FALSE
+        )
+        names(temp_combined_df) <- names(row_data)
 
-        temp_combined_df[, 1] <- temp_case
-        colnames(temp_combined_df) <- NULL
 
-        colored_data[i, ] <- temp_combined_df
+        colored_data <- bind_rows(colored_data, temp_combined_df)
       }
 
       return(colored_data)
     }
-  } # Color Cells Function (HTML)
-  {
 
-    temp_data <- transcript
-    if (!is.null(speaker_subset)){
+    color_cells_attorney <- function(data, type = NULL) {
 
-      if (grepl('Justice', speaker_subset, ignore.case = T)){
-        temp_data <- temp_data %>%
-          filter(speaker_type == 'Justice')
-      } else if (grepl('Attorney', speaker_subset, ignore.case = T)){
-        temp_data <- temp_data %>%
-          filter(speaker_type == 'Attorney')
+
+      if (type == 'Participation'){
+
+        colfunc <- colorRampPalette(c("grey50", "olivedrab"))(9)
+
+        colored_data <- data.frame()
+
+        for (i in 1:nrow(data)) {
+
+          row_data <- data[i, ]
+
+          values <- unlist(row_data[ , !(names(row_data) %in% c('Case', 'Docket', 'Attorney')) ])
+          values[is.na(values)] <- 0
+          unique_values <- unique(values)
+
+          if (length(unique_values) > 1) {
+            unique_breaks <- quantile(unique_values, probs = seq(0, 1, length.out = 10), na.rm = TRUE)
+          } else {
+            unique_breaks <- c(min(values) - 1, max(values) + 1)
+          }
+
+          color_index <- as.numeric(cut(values, breaks = unique_breaks, labels = 1:9, include.lowest = TRUE))
+          values <- cell_spec(values, color = 'white', bold = TRUE, background = colfunc[color_index], font_size = 'large')
+
+          temp_combined_df <- data.frame(
+            Case = data[i, ]$Case,
+            Docket = data[i, ]$Docket,
+            Attorney = data[i,]$Attorney,
+            t(values),
+            check.names = FALSE
+          )
+          names(temp_combined_df) <- names(row_data)
+
+
+          colored_data <- bind_rows(colored_data, temp_combined_df)
+        }
+
+        return(colored_data)
+
+
       } else {
-        temp_data <- temp_data
+        colfunc <- colorRampPalette(c("grey50", "olivedrab"))(9)
+
+        colored_data <- data.frame()
+
+        values <- unlist(data[ , !(names(data) %in% c('Case', 'Docket', 'Attorney')) ])
+        unique_values <- unique(values)
+
+        if (length(unique_values) > 1) {
+          unique_breaks <- quantile(unique_values, probs = seq(0, 1, length.out = 10), na.rm = TRUE)
+        } else {
+          unique_breaks <- c(min(values) - 1, max(values) + 1)
+        }
+
+        color_index <- as.numeric(cut(values, breaks = unique_breaks, labels = 1:9, include.lowest = TRUE))
+
+        values <- cell_spec(values, color = 'white', bold = TRUE, background = colfunc[color_index], font_size = 'large')
+
+
+        if (type == 'Time'){
+          temp_combined_df <- data.frame(
+            data[names(data) %in% c('Case', 'Docket', 'Attorney')],
+            `Time Speaking` = values,
+            check.names = FALSE
+          )
+        } else {
+          temp_combined_df <- data.frame(
+            data[names(data) %in% c('Case', 'Docket', 'Attorney')],
+            `Words` = values,
+            check.names = FALSE
+          )
+
+        }
+
+        return(temp_combined_df)
       }
+
+
 
     }
 
-  } # Subset Data (If Declared)
+  } # Color Cells Function (HTML)
 
-  metric_recovery <- data.frame()
+  {
+    temp_data <- transcript
+    unique_sittings <- unique(temp_data$sitting)
 
-  if (grepl('time', metric, ignore.case = T)){
+    if (check_folder_status == T){
+      for (sitting in 1:length(unique_sittings)){
 
-    temp_time <- temp_data %>%
-      mutate(elapsed = text_stop - text_start) %>%
-      group_by(docket, speaker) %>%
-      summarise(total_elapsed = sum(elapsed), .groups = 'drop') %>%
-      mutate(total_elapsed = round(total_elapsed/60, 2)) %>%
-      pivot_wider(
-        names_from = speaker,
-        values_from = total_elapsed) %>%
-      left_join(temp_data %>%
-                  select(docket, case_name), by = 'docket') %>%
-      unique() %>%
-      relocate(case_name) %>%
-      mutate(across(everything(), ~replace_na(.x, 0))) # Recover Time in Minutes by Speaker
+        if (!dir.exists(file.path(output_path, unique_sittings[sitting]))){
+          dir.create(file.path(output_path, unique_sittings[sitting]))
+        }
 
+        if (!dir.exists(file.path(output_path, 'Combined'))){
+          dir.create(file.path(output_path, 'Combined'))
+        }
 
-    if (output_type == 'html'){
-
-      temp_time <- color_cells(temp_time)
-
-    } else {
-
-    } # If HTML -- Or CSV (NULL)
+      } # Check if Folder Already Created -- If Not, Add
+    } # Create Output Folders (If Necessary)
 
 
 
-  }
+  } # Recover temp_data using transcript & Create Subfolders (If Needed)
+
+  {
+
+    for (i in 1:length(unique_sittings)){
+
+      temp_justice_words_sitting <- temp_data %>%
+        filter(speaker_type == 'Justice') %>%
+        filter(sitting == unique_sittings[i]) %>%
+        group_by(speaker, docket) %>%
+        summarise(total_words = sum(word_count), .groups = 'drop') %>%
+        ungroup() %>%
+        unique() %>%
+        pivot_wider(
+          names_from = speaker,
+          values_from = total_words) %>%
+        left_join(temp_data %>%
+                    select(docket, case_name), by = 'docket') %>%
+        unique() %>%
+        relocate(case_name) %>%
+        mutate(across(everything(), ~replace_na(.x, 0)))
+
+
+      {
+
+        temp_justice_words_sitting_colored <- color_cells_justice(temp_justice_words_sitting)
+
+        temp_justice_words_sitting_kable <- temp_justice_words_sitting_colored %>%
+          rename('Case' = case_name,
+                 'Docket' = docket) %>%
+          kbl(longtable = TRUE, escape = FALSE, booktabs = TRUE, align = "c") %>%
+          column_spec(1, bold = TRUE, border_right = TRUE) %>%
+          row_spec(0,
+                   bold = TRUE,
+                   color = 'white',
+                   background = '#080808',
+                   align = 'center',
+                   extra_css = "padding: 0; margin: 0;") %>%
+          row_spec(seq(1, nrow(temp_justice_words_sitting_colored), 1), align = 'center') %>%
+          kable_styling(font_size = 12, bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+        temp_html_output_path <- file.path(output_path, unique_sittings[i], paste0(unique_sittings[i], '_justice_words.html'))
+        save_kable(temp_justice_words_sitting_kable, temp_html_output_path) # Save HTML Kable
+
+        temp_txt_output_path <- file.path(output_path, unique_sittings[i], paste0(unique_sittings[i], '_justice_words.txt'))
+        temp_justice_words_sitting_txt <- as.character(temp_justice_words_sitting_kable)
+        writeLines(temp_justice_words_sitting_txt, temp_txt_output_path) # Save HTML Txt
+
+
+        } # Kable HTML & TXT HTML
+
+      {
+
+        temp_csv_output_path <- file.path(output_path, unique_sittings[i], paste0(unique_sittings[i], '_justice_words.csv'))
+        write.csv(temp_justice_words_sitting, file = temp_csv_output_path, row.names = F)
+
+      } # CSV Output
+
+    } # For Each Sitting -- Produce Individual Values & Figures -- Export HTML (Kable), HTML TXT, CSV, and Figure
+
+
+  } # Justice Words by Sitting (KBL HTMl, TXT HTML, and CSV)
+
+  message('Compiled Justice-Level Word Counts')
+
+  {
+
+    for (i in 1:length(unique_sittings)){
+
+      temp_justice_sitting_time <- temp_data %>%
+        filter(speaker_type == 'Justice') %>%
+        filter(sitting == unique_sittings[i]) %>%
+        mutate(elapsed = text_stop - text_start) %>%
+        group_by(docket, speaker) %>%
+        summarise(total_elapsed = sum(elapsed), .groups = 'drop') %>%
+        mutate(total_elapsed = round(total_elapsed/60, 2)) %>%
+        pivot_wider(
+          names_from = speaker,
+          values_from = total_elapsed) %>%
+        left_join(temp_data %>%
+                    select(docket, case_name), by = 'docket') %>%
+        unique() %>%
+        relocate(case_name) %>%
+        mutate(across(everything(), ~replace_na(.x, 0))) # Recover Time in Minutes by Speaker
+
+
+      {
+
+        temp_justice_time_sitting_colored <- color_cells_justice(temp_justice_sitting_time)
+
+        temp_justice_time_sitting_kable <- temp_justice_time_sitting_colored %>%
+          rename('Case' = case_name,
+                 'Docket' = docket) %>%
+          kbl(longtable = TRUE, escape = FALSE, booktabs = TRUE, align = "c") %>%
+          column_spec(1, bold = TRUE, border_right = TRUE) %>%
+          row_spec(0,
+                   bold = TRUE,
+                   color = 'white',
+                   background = '#080808',
+                   align = 'center',
+                   extra_css = "padding: 0; margin: 0;") %>%
+          row_spec(seq(1, nrow(temp_justice_time_sitting_colored), 1), align = 'center') %>%
+          kable_styling(font_size = 12, bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+        temp_html_output_path <- file.path(output_path, unique_sittings[i], paste0(unique_sittings[i], '_justice_time.html'))
+        save_kable(temp_justice_time_sitting_kable, temp_html_output_path) # Save HTML Kable
+
+        temp_txt_output_path <- file.path(output_path, unique_sittings[i], paste0(unique_sittings[i], '_justice_time.txt'))
+        temp_justice_time_sitting_txt <- as.character(temp_justice_time_sitting_kable)
+        writeLines(temp_justice_time_sitting_txt, temp_txt_output_path) # Save HTML Txt
+
+
+        } # Kable HTML & TXT HTML
+
+      {
+
+        temp_csv_output_path <- file.path(output_path, unique_sittings[i], paste0(unique_sittings[i], '_justice_time.csv'))
+        write.csv(temp_justice_sitting_time, file = temp_csv_output_path, row.names = F)
+
+      } # CSV Output
+
+    } # For Each Sitting -- Produce Individual Values & Figures -- Export HTML (Kable), HTML TXT, CSV, and Figure
+
+
+  } # Justice Time by Sitting (KBL HTMl, TXT HTML, and CSV)
+
+  message('Compiled Justice-Level Speaking Times')
+
+  {
+    for (i in 1:length(unique_sittings)){
+
+      temp_attorney_sitting_words <- temp_data %>%
+        filter(speaker_type == 'Attorney') %>%
+        filter(sitting == unique_sittings[i]) %>%
+        group_by(speaker, docket) %>%
+        summarise(total_words = sum(word_count), .groups = 'drop') %>%
+        ungroup() %>%
+        unique() %>%
+        left_join(temp_data %>%
+                    select(docket, case_name), by = 'docket', relationship = 'many-to-many') %>%
+        unique() %>%
+        relocate(case_name) %>%
+        mutate(across(everything(), ~replace_na(.x, 0))) %>%
+        rename(Case = case_name,
+               Attorney = speaker,
+               Docket = docket)
+
+
+      {
+
+        temp_attorney_words_sitting_colored <- color_cells_attorney(data = temp_attorney_sitting_words, type = 'Words')
+
+        temp_attorney_words_sitting_kable <- temp_attorney_words_sitting_colored %>%
+          kbl(longtable = TRUE, escape = FALSE, booktabs = TRUE, align = "c") %>%
+          column_spec(1, bold = TRUE, border_right = TRUE) %>%
+          row_spec(0,
+                   bold = TRUE,
+                   color = 'white',
+                   background = '#080808',
+                   align = 'center',
+                   extra_css = "padding: 0; margin: 0;") %>%
+          row_spec(seq(1, nrow(temp_attorney_words_sitting_colored), 1), align = 'center') %>%
+          kable_styling(font_size = 12, bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+        temp_html_output_path <- file.path(output_path, unique_sittings[i], paste0(unique_sittings[i], '_attorney_words.html'))
+        save_kable(temp_attorney_words_sitting_kable, temp_html_output_path) # Save HTML Kable
+
+        temp_txt_output_path <- file.path(output_path, unique_sittings[i], paste0(unique_sittings[i], '_attorney_words.txt'))
+        temp_attorney_time_sitting_txt <- as.character(temp_attorney_words_sitting_kable)
+        writeLines(temp_attorney_time_sitting_txt, temp_txt_output_path) # Save HTML Txt
+
+
+        } # Kable HTML & TXT HTML
+
+      {
+
+        temp_csv_output_path <- file.path(output_path, unique_sittings[i], paste0(unique_sittings[i], '_attorney_words.csv'))
+        write.csv(temp_attorney_sitting_words, file = temp_csv_output_path, row.names = F)
+
+      } # CSV Output
+
+    }
+
+
+  } # Attorney Words
+
+  message('Completed Attorney Word Counts')
+
+  {
+    for (i in 1:length(unique_sittings)){
+
+      temp_attorney_sitting_time <- temp_data %>%
+        filter(speaker_type == 'Attorney') %>%
+        filter(sitting == unique_sittings[i]) %>%
+        mutate(elapsed = text_stop - text_start) %>%
+        group_by(docket, speaker) %>%
+        summarise(total_elapsed = sum(elapsed), .groups = 'drop') %>%
+        mutate(total_elapsed = round(total_elapsed/60, 2)) %>%
+        left_join(temp_data %>%
+                    select(docket, case_name), by = 'docket', relationship = 'many-to-many') %>%
+        unique() %>%
+        relocate(case_name) %>%
+        mutate(total_elapsed = ifelse(is.na(total_elapsed), 0, total_elapsed)) %>%
+        rename(Case = case_name,
+               Docket = docket,
+               Attorney = speaker,
+               `Time Speaking` = total_elapsed)
+
+
+      {
+
+        temp_attorney_time_sitting_colored <- color_cells_attorney(temp_attorney_sitting_time, type = 'Time')
+
+        temp_attorney_time_sitting_kable <- temp_attorney_time_sitting_colored %>%
+          kbl(longtable = TRUE, escape = FALSE, booktabs = TRUE, align = "c") %>%
+          column_spec(1, bold = TRUE, border_right = TRUE) %>%
+          row_spec(0,
+                   bold = TRUE,
+                   color = 'white',
+                   background = '#080808',
+                   align = 'center',
+                   extra_css = "padding: 0; margin: 0;") %>%
+          row_spec(seq(1, nrow(temp_attorney_time_sitting_colored), 1), align = 'center') %>%
+          kable_styling(font_size = 12, bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+        temp_html_output_path <- file.path(output_path, unique_sittings[i], paste0(unique_sittings[i], '_attorney_time.html'))
+        save_kable(temp_attorney_time_sitting_kable, temp_html_output_path) # Save HTML Kable
+
+        temp_txt_output_path <- file.path(output_path, unique_sittings[i], paste0(unique_sittings[i], '_attorney_time.txt'))
+        temp_attorney_time_sitting_txt <- as.character(temp_attorney_time_sitting_kable)
+        writeLines(temp_attorney_time_sitting_txt, temp_txt_output_path) # Save HTML Txt
+
+
+        } # Kable HTML & TXT HTML
+
+      {
+
+        temp_csv_output_path <- file.path(output_path, unique_sittings[i], paste0(unique_sittings[i], '_attorney_time.csv'))
+        write.csv(temp_attorney_sitting_time, file = temp_csv_output_path, row.names = F)
+
+      } # CSV Output
+
+    }
+
+
+  } # Attorney Time
+
+  message('Completed Attorney Speaking Times')
+
+  {
+
+    for (i in 1:length(unique_sittings)){
+
+      temp_sitting_attorney_participation <- temp_data %>%
+        filter(sitting == unique_sittings[i]) %>%
+        mutate(follows_justice = ifelse(speaker_type == 'Attorney' & lag(speaker_type) == 'Justice', 1, 0),
+               preceding_justice = ifelse(follows_justice == 1, lag(speaker), NA)) %>%
+        filter(follows_justice == 1) %>%
+        select(-c(follows_justice)) %>%
+        group_by(docket, speaker, preceding_justice) %>%
+        summarise(total_words = sum(word_count), .groups = 'drop') %>%
+        pivot_wider(
+          names_from = preceding_justice,
+          values_from = total_words) %>%
+        left_join(temp_data %>%
+                    select(docket, case_name), by = 'docket', relationship = 'many-to-many') %>%
+        unique() %>%
+        relocate(case_name) %>%
+        rename(Case = case_name,
+               Docket = docket,
+               Attorney = speaker)
+
+
+      {
+
+        temp_sitting_attorney_participation_colored <- color_cells_attorney(temp_sitting_attorney_participation, type = 'Participation')
+
+        temp_sitting_attorney_participation_kable <- temp_sitting_attorney_participation_colored %>%
+          kbl(longtable = TRUE, escape = FALSE, booktabs = TRUE, align = "c") %>%
+          column_spec(1, bold = TRUE, border_right = TRUE) %>%
+          row_spec(0,
+                   bold = TRUE,
+                   color = 'white',
+                   background = '#080808',
+                   align = 'center',
+                   extra_css = "padding: 0; margin: 0;") %>%
+          row_spec(seq(1, nrow(temp_sitting_attorney_participation_colored ), 1), align = 'center') %>%
+          kable_styling(font_size = 12, bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+        temp_html_output_path <- file.path(output_path, unique_sittings[i], paste0(unique_sittings[i], '_attorney_participation.html'))
+        save_kable(temp_sitting_attorney_participation_kable, temp_html_output_path) # Save HTML Kable
+
+        temp_txt_output_path <- file.path(output_path, unique_sittings[i], paste0(unique_sittings[i], '_attorney_participation.txt'))
+        temp_sitting_attorney_participation_txt <- as.character(temp_sitting_attorney_participation_kable)
+        writeLines(temp_sitting_attorney_participation_txt, temp_txt_output_path) # Save HTML Txt
+
+
+        } # Kable HTML & TXT HTML
+
+      {
+
+        temp_csv_output_path <- file.path(output_path, unique_sittings[i], paste0(unique_sittings[i], '_attorney_participation.csv'))
+        write.csv(temp_sitting_attorney_participation, file = temp_csv_output_path, row.names = F)
+
+      } # CSV Output
 
 
 
 
-} # Varying OA Analyses
+    }
 
-# Output Type: GGPLOT, CSV, HTML, TXT (HTML)
-# Speaker Subset: Justice, Attorney, All
-# Metric: Time, Words, Participation (Attorney Only)
+  } # Attorney Participation (Responses to Justices)
 
-oa_analysis_attorney_participation <- function(temp_data, output_type){
+  message('Completed Attorney Participation')
 
+  {
+
+    {
+
+      figure_data <- temp_data %>%
+        filter(speaker_type == 'Justice') %>%
+        select(speaker, word_count) %>%
+        group_by(speaker) %>%
+        summarise(total_words = sum(word_count), .groups = 'drop') %>%
+        mutate(justice = gsub('(Justice |Chief Justice)', '', speaker, ignore.case = T)) %>%
+        mutate(image_labels = justice_image_labels[match(justice, names(justice_image_labels))],
+               image_labels = gsub(' style\\=.*', '', image_labels),
+               image_labels = paste0(image_labels, " width='100' /><br><strong>", justice, "</strong>"))
+
+      image_labels <- figure_data$image_labels
+
+      justice_words_combined_figure <- ggplot(figure_data, aes(x = factor(justice), y = total_words)) +
+        geom_col(aes(fill = total_words), colour = 'gray5') +
+        scale_fill_gradient(low = 'gray50', high = 'olivedrab') +
+        geom_label(aes(label = scales::comma(total_words)), vjust = 1, size = 4) +
+        geom_hline(yintercept = 0) +
+        scale_x_discrete(labels = image_labels) +
+        theme_classic() +
+        labs(x = '',
+             y = '',
+             fill = '') +
+        theme(
+          axis.text.x = ggtext::element_markdown(),
+          panel.grid = element_blank(),
+          axis.text.y = element_blank(),
+          axis.ticks.x = element_blank(),
+          axis.ticks.y = element_blank(),
+          legend.background = element_rect(linewidth = 1, fill = "NA", colour = "black"),
+          legend.box.background = element_rect(fill = NA, colour = "black"),
+          legend.position = "none",
+          legend.title = element_blank(),
+          legend.title.align = 0.5,
+          legend.text = element_text(size = 12),
+          plot.caption = element_text(hjust = 0.5, size = 12),
+          plot.title = element_text(size = 18, face = "bold", hjust = 0.5),
+          plot.subtitle = element_text(size = 15, hjust = 0.5))
+
+
+      temp_combined_figure_output_path <- file.path(output_path, 'Combined', 'justice_words_combined.png')
+      ggsave(justice_words_combined_figure, filename = temp_combined_figure_output_path, height = 8, width = 10, bg = 'white')
+
+
+    } # Justice Words Combined (Figure)
+
+    {
+
+      figure_data <- temp_data %>%
+        filter(speaker_type == 'Justice') %>%
+        mutate(elapsed = text_stop - text_start,
+               elapsed = round(elapsed/60, 2)) %>%
+        select(speaker, elapsed) %>%
+        group_by(speaker) %>%
+        summarise(total_time = sum(elapsed), .groups = 'drop') %>%
+        mutate(justice = gsub('(Justice |Chief Justice)', '', speaker, ignore.case = T)) %>%
+        mutate(image_labels = justice_image_labels[match(justice, names(justice_image_labels))],
+               image_labels = gsub(' style\\=.*', '', image_labels),
+               image_labels = paste0(image_labels, " width='100' /><br><strong>", justice, "</strong>"))
+
+      image_labels <- figure_data$image_labels
+
+      justice_time_combined_figure <- ggplot(figure_data, aes(x = factor(justice), y = total_time)) +
+        geom_col(aes(fill = total_time), colour = 'gray5') +
+        scale_fill_gradient(low = 'gray50', high = 'olivedrab') +
+        geom_label(aes(label = scales::comma(total_time)), vjust = 1, size = 4) +
+        geom_hline(yintercept = 0) +
+        scale_x_discrete(labels = image_labels) +
+        theme_classic() +
+        labs(x = '',
+             y = '',
+             fill = '') +
+        theme(
+          axis.text.x = ggtext::element_markdown(),
+          panel.grid = element_blank(),
+          axis.text.y = element_blank(),
+          axis.ticks.x = element_blank(),
+          axis.ticks.y = element_blank(),
+          legend.background = element_rect(linewidth = 1, fill = "NA", colour = "black"),
+          legend.box.background = element_rect(fill = NA, colour = "black"),
+          legend.position = "none",
+          legend.title = element_blank(),
+          legend.title.align = 0.5,
+          legend.text = element_text(size = 12),
+          plot.caption = element_text(hjust = 0.5, size = 12),
+          plot.title = element_text(size = 18, face = "bold", hjust = 0.5),
+          plot.subtitle = element_text(size = 15, hjust = 0.5))
+
+      temp_combined_figure_output_path <- file.path(output_path, 'Combined', 'justice_time_combined.png')
+      ggsave(justice_time_combined_figure, filename = temp_combined_figure_output_path, height = 8, width = 10, bg = 'white')
+
+
+    } # Justice Time Combined (Figure)
+
+
+  } # Combined Analyses
+
+  message('Completed Justice-Level Combined Analysis')
 
 
 }
 
-oa_analysis_time_words <- function(temp_data, output_type){
-
-}
 
