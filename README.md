@@ -1,6 +1,9 @@
 # scotuswatch Online Repository
 Online repository for Scotuswatch -- Data compilation and analysis principally reported to EmpiricalSCOTUS
 
+
+<img src="https://github.com/user-attachments/assets/616d6779-915d-4197-b406-0372c8c56c30" alt="empirical_scotus_logo" width="300"/>
+
 # Data Accesibility and Replication Policy
 
 All data, analyses, and corresponding compilation code listed as _public_ are available for public use and redistribution. We simply ask that any individual, services, outlets, or organization that employs our data includes a proper citation to Adam Feldman (J.D., Ph.D.), Jake Truscott (Ph.D.), EmpiricalSCOTUS, and any other outlet or organization referenced by the authors concerning any sources of data or supplemental information used. 
