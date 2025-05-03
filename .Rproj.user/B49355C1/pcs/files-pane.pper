@@ -2,8 +2,8 @@
     "sortOrder": [
         {
             "columnIndex": 2,
-            "ascending": true
+            "ascending": false
         }
     ],
-    "path": "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/oral_arguments/sittings/output"
+    "path": "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/compilation/sections/oral_arguments"
 }

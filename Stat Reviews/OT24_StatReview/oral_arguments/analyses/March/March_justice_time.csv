@@ -1,12 +1,10 @@
-"case_name","docket","GORSUCH","JACKSON","KAGAN","KAVANAUGH","ROBERTS","SOTOMAYOR","THOMAS","ALITO","BARRETT"
-"Oklahoma, Et Al. v. Environmental Protection Agency, Et Al.. Pacificorp, Et Al. v.  )  No. 23-1068 Environmental Protection Agency, Et Al.","23-1067",2.18,4.99,3.02,1.52,0.98,1.11,0.58,0,0
-"Smith & Wesson Brands, Inc., Et Al. v. Estados Unidos Mexicanos","23-1141",2.47,9.82,4.48,2.58,3.52,5.28,3.09,2.33,2.26
-"Cc/Devas (Mauritius Limited, Et Al. v. Antrix Corp. Ltd., Et Al.. Devas Multimedia Private Limited v.  ) No. 24-17 Antrix Corp. Ltd., Et Al.","23-1201",2.09,3.63,1.22,0,1,2.34,0.71,0.2,0
-"Environmental Protection Agency v. Calumet Shreveport Refining, L.l.c., Et Al.","23-1229",7.45,5.7,5.85,5.14,1.41,7.07,2.15,2.85,2.56
-"Blom Bank Sal v. Michal Honickman, Et Al.","23-1259",3.37,6.8,3.78,0.72,0.48,2.52,0.65,0.73,0.97
-"Pierre Yassue Nashun Riley v. Pamela Bondi, Attorney General","23-1270",2.48,3.12,2.96,0.21,2.68,4.94,2.02,1.7,0.81
-"Nuclear Regulatory Commission, Et Al. v. Texas, Et Al.. Interim Storage Partners, LLC v.  )  No. 23-1312 Texas, Et Al.","23-1300",6.29,6.65,4.33,3.35,2.06,5.39,2.4,2.3,0
-"Danny Richard Rivers v. Eric Guerrero, Director, Texas Department Of Criminal Justice, Correctional Institutions Division","23-1345",1.62,4.17,0,0.73,0.97,4.45,0.45,0.62,0.44
-"Louisiana v. Phillip Callais, Et Al.. Press Robinson, Et Al. v.  ) No. 24 -110 Phillip Callais, Et Al.","24-109",3.14,6.98,7.23,2.98,1.45,5.57,1.32,4.68,2.38
-"Catholic Charities Bureau, Inc., Et Al. v. Wisconsin Labor & Industry Review Commission, Et Al.","24-154",6.03,10.57,5.85,2.93,3.49,3.42,2.83,2.48,5.39
-"Federal Communications Commission, Et Al. v. Consumers' Research, Et Al.. Schools, Health & Libraries Broadband Coalition, Et Al. v.  ) No. 24-422 Consumers' Research, Et Al.","24-354",10.46,9.99,11.19,6.48,2.03,10.95,2.35,6.55,5.22
+"case_name","docket","ROBERTS","THOMAS","ALITO","SOTOMAYOR","KAGAN","GORSUCH","KAVANAUGH","BARRETT","JACKSON"
+"Oklahoma v. EPA","23-1067",0.98,0.58,0,1.11,3.02,2.18,1.52,0,4.99
+"EPA v. Calumet Shreveport Refining","23-1229",1.41,2.15,2.85,7.07,5.85,7.45,5.14,2.56,5.7
+"Riley v. Bondi","23-1270",2.68,2.02,1.7,4.94,2.96,2.48,0.21,0.81,3.12
+"Medina v. Planned Parenthood South Atlantic","23-1275",1.49,1.61,2,7.3,6.18,2,5.11,4.82,9.16
+"Rivers v. Guerrero","23-1345",0.97,0.45,0.62,4.45,0,1.62,0.73,0.44,4.17
+"Lousiana v. Callais","24-109",1.45,1.32,4.68,5.57,7.23,3.14,2.98,2.38,6.98
+"Catholic Charities Bureau v. WI Labor and Industry Review","24-154",3.49,2.83,2.48,3.42,5.85,6.03,2.93,5.39,10.57
+"Fuld v. PLO","24-20",1.97,1.89,4.97,7.99,4.15,8.39,3.32,6.34,7.48
+"FCC v. Consumers' Research","24-354",2.03,2.35,6.55,10.95,11.19,10.46,6.48,5.22,9.99

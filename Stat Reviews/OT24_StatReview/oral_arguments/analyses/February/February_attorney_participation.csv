@@ -1,10 +1,22 @@
-"Case","Docket","Attorney","ALITO","BARRETT","GORSUCH","JACKSON","ROBERTS","THOMAS","KAGAN","KAVANAUGH","SOTOMAYOR"
-"Marlean A. Ames v. Ohio Department Of Youth Services","23-1039","Ashley Robertson",572,432,55,386,300,260,NA,NA,NA
-"Marlean A. Ames v. Ohio Department Of Youth Services","23-1039","T. Elliot Gaiser",NA,361,240,245,314,131,293,448,265
-"Marlean A. Ames v. Ohio Department Of Youth Services","23-1039","Xiao Wang",NA,161,383,349,873,106,192,127,66
-"Thomas Perttu v. Kyle Brandon Richards","23-1324","Ann M. Sherman",144,58,617,813,694,282,372,NA,758
-"Thomas Perttu v. Kyle Brandon Richards","23-1324","Lori Alvino McGill",567,541,62,47,621,97,188,224,214
-"Edgardo Esteras v. United States","23-7483","Christian J. Grostic",592,278,515,498,857,261,318,315,453
-"Edgardo Esteras v. United States","23-7483","Masha G. Hansford",NA,478,215,652,906,268,578,384,282
-"Ruben Gutierrez v. Luis Saenz, Et Al.","23-7809","Anne E. Fisher",950,276,388,382,928,507,47,741,354
-"Ruben Gutierrez v. Luis Saenz, Et Al.","23-7809","William F. Cole",89,356,206,586,323,216,547,383,543
+"Case","Docket","Attorney","ROBERTS","THOMAS","ALITO","SOTOMAYOR","KAGAN","GORSUCH","KAVANAUGH","BARRETT","JACKSON"
+"Ames v. OH Dept. of Youth Services","23-1039","Ashley Robertson",300,260,572,0,0,55,0,432,386
+"Ames v. OH Dept. of Youth Services","23-1039","T. Elliot Gaiser",314,131,0,265,293,240,448,361,245
+"Ames v. OH Dept. of Youth Services","23-1039","Xiao Wang",873,106,0,66,192,383,127,161,349
+"Smith and Wesson v. Estados Unidos Mexicanos","23-1141","Catherine E. Stetson",1030,966,553,162,177,258,588,305,667
+"Smith and Wesson v. Estados Unidos Mexicanos","23-1141","Noel J. Francisco",1662,653,0,217,1067,620,0,321,627
+"CC/Devas v. Antrix Corp.","23-1201","Aaron M. Streett",180,424,0,333,0,0,0,0,416
+"CC/Devas v. Antrix Corp.","23-1201","Carter G. Phillips",446,0,0,127,246,358,0,0,921
+"CC/Devas v. Antrix Corp.","23-1201","Matthew D. McGill",533,658,0,157,0,0,0,0,122
+"CC/Devas v. Antrix Corp.","23-1201","Sarah M. Harris",113,605,269,0,0,171,0,0,0
+"BLOM Bank SAL v. Honickman","23-1259","Michael H. McGinley",965,657,0,241,402,530,43,145,1097
+"BLOM Bank SAL v. Honickman","23-1259","Michael J. Radine",353,163,210,342,164,215,347,185,578
+"NRC v. Texas","23-1300","Aaron L. Nielson",188,117,0,318,517,418,366,0,374
+"NRC v. Texas","23-1300","Brad Fagg",472,200,542,293,0,152,157,0,393
+"NRC v. Texas","23-1300","David C. Frederick",250,173,0,284,456,169,487,0,623
+"NRC v. Texas","23-1300","Malcolm L. Stewart",899,768,543,350,412,862,372,0,372
+"Perttu v. Richards","23-1324","Ann M. Sherman",694,282,144,758,372,617,0,58,813
+"Perttu v. Richards","23-1324","Lori Alvino McGill",621,97,567,214,188,62,224,541,47
+"Esteras v. United States","23-7483","Christian J. Grostic",857,261,592,453,318,515,315,278,498
+"Esteras v. United States","23-7483","Masha G. Hansford",906,268,0,282,578,215,384,478,652
+"Gutierrez v. Saenz","23-7809","Anne E. Fisher",928,507,950,354,47,388,741,276,382
+"Gutierrez v. Saenz","23-7809","William F. Cole",323,216,89,543,547,206,383,356,586

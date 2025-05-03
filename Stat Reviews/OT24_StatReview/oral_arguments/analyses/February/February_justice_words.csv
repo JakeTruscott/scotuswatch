@@ -1,5 +1,9 @@
-"case_name","docket","ALITO","BARRETT","GORSUCH","JACKSON","KAGAN","KAVANAUGH","ROBERTS","SOTOMAYOR","THOMAS"
-"Marlean A. Ames v. Ohio Department Of Youth Services","23-1039",308,486,761,525,474,417,324,256,114
-"Thomas Perttu v. Kyle Brandon Richards","23-1324",991,796,913,1263,801,172,146,1217,98
-"Edgardo Esteras v. United States","23-7483",704,333,847,1564,796,503,282,752,54
-"Ruben Gutierrez v. Luis Saenz, Et Al.","23-7809",1127,1084,808,1603,1089,1518,233,1410,273
+"case_name","docket","ROBERTS","THOMAS","ALITO","SOTOMAYOR","KAGAN","GORSUCH","KAVANAUGH","BARRETT","JACKSON"
+"Ames v. OH Dept. of Youth Services","23-1039",324,114,308,256,474,761,417,486,525
+"Smith and Wesson v. Estados Unidos Mexicanos","23-1141",597,413,348,720,769,482,453,440,1696
+"CC/Devas v. Antrix Corp.","23-1201",87,83,38,367,247,446,0,0,606
+"BLOM Bank SAL v. Honickman","23-1259",50,99,93,377,639,631,129,199,1273
+"NRC v. Texas","23-1300",262,312,339,865,829,1088,507,0,1170
+"Perttu v. Richards","23-1324",146,98,991,1217,801,913,172,796,1263
+"Esteras v. United States","23-7483",282,54,704,752,796,847,503,333,1564
+"Gutierrez v. Saenz","23-7809",233,273,1127,1410,1089,808,1518,1084,1603

@@ -1,9 +1,9 @@
-"case_name","docket","ALITO","BARRETT","GORSUCH","JACKSON","KAGAN","KAVANAUGH","ROBERTS","SOTOMAYOR","THOMAS"
-"Food And Drug Administration v. Wages And White Lion Investments, L.l.c., D/B/A Triton Distribution, Et Al.","23-1038",3.13,1.97,4.41,6.74,4.89,4.96,1.93,2.97,0.77
-"United States v. Jonathan Skrmetti, Attorney General And Reporter For Tennessee, Et Al.","23-477",12.05,6.62,0,13.87,4.98,10.24,6.31,9.77,2.79
-"United States v. David L. Miller","23-824",0,3.9,3.26,6.5,1.93,0.37,0.52,1.43,0.24
-"Nick Feliciano v. Department Of Transportation","23-861",2.3,2.02,3.76,2.83,2.17,3.6,3.27,5.25,0.63
-"Republic Of Hungary, Et Al. v. Rosalie Simon, Et Al.","23-867",3.13,3.62,3.92,6.84,4.3,2.86,5.03,5.12,1.89
-"Dewberry Group, Inc., F/K/A Dewberry Capital Corporation v. Dewberry Engineers Inc.","23-900",1.5,1.7,1.83,4.88,2.61,0,2.72,3.54,2.36
-"Stamatios Kousisis And Alpha Painting And Construction Co., Inc. v. United States","23-909",4.33,2.48,4.85,6.48,3.46,1.45,2.52,2.73,1.47
-"Seven County Infrastructure Coalition, Et Al. Eagle County, Colorado, Et Al..","23-975",0.68,3.33,0,10.28,5.33,3.58,3.39,9.13,0.75
+"case_name","docket","ROBERTS","THOMAS","ALITO","SOTOMAYOR","KAGAN","GORSUCH","KAVANAUGH","BARRETT","JACKSON"
+"FDA v. Wages and White Lion Investments","23-1038",1.93,0.77,3.13,2.97,4.89,4.41,4.96,1.97,6.74
+"United States v. Skrmetti","23-477",6.31,2.79,12.05,9.77,4.98,0,10.24,6.62,13.87
+"United States v. Miller","23-824",0.52,0.24,0,1.43,1.93,3.26,0.37,3.9,6.5
+"Feliciano v. Department of Transportation.","23-861",3.27,0.63,2.3,5.25,2.17,3.76,3.6,2.02,2.83
+"Hungary v. Simon","23-867",5.03,1.89,3.13,5.12,4.3,3.92,2.86,3.62,6.84
+"Dewberry Group, Inc. v. Dewberry Engineers Inc.","23-900",2.72,2.36,1.5,3.54,2.61,1.83,0,1.7,4.88
+"Kousisis v. United States","23-909",2.52,1.47,4.33,2.73,3.46,4.85,1.45,2.48,6.48
+"Seven County Infrastructure Coalition v. Eagle County","23-975",3.39,0.75,0.68,9.13,5.33,0,3.58,3.33,10.28

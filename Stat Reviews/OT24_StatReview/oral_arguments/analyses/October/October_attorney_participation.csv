@@ -1,18 +1,21 @@
-"Case","Docket","Attorney","ALITO","BARRETT","GORSUCH","JACKSON","KAGAN","KAVANAUGH","ROBERTS","SOTOMAYOR","THOMAS"
-"Nancy Williams, Et Al. v. Fitzgerald Washington, Alabama Secretary Of Labor","23-191","Adam G. Unikowsky",676,748,595,302,608,612,1442,255,150
-"Nancy Williams, Et Al. v. Fitzgerald Washington, Alabama Secretary Of Labor","23-191","Edmund G. LaCour, Jr.",239,385,234,546,416,707,301,259,154
-"Medical Marijuana, Inc., Et Al. v. Douglas J. Horn","23-365","Easha Anand",613,254,531,338,NA,1160,1078,NA,273
-"Medical Marijuana, Inc., Et Al. v. Douglas J. Horn","23-365","Lisa S. Blatt",130,204,155,1010,637,357,947,351,255
-"Amina Bouarfa v. Alejandro Mayorkas, Secretary Of Homeland Security, Et Al.","23-583","Colleen E. Roh Sinzdak",NA,NA,553,195,444,28,362,67,118
-"Amina Bouarfa v. Alejandro Mayorkas, Secretary Of Homeland Security, Et Al.","23-583","Samir Deger-Sen",507,473,NA,352,582,NA,1762,319,692
-"Gerald F. Lackey, In His Official Capacity As The Commissioner Of The Virginia  Department Of Motor Vehicles v. Damian Stinnie, Et Al.","23-621","Anthony A. Yang",279,NA,327,197,251,238,297,392,194
-"Gerald F. Lackey, In His Official Capacity As The Commissioner Of The Virginia  Department Of Motor Vehicles v. Damian Stinnie, Et Al.","23-621","Brian D. Schmalzbach",120,213,570,175,159,460,1063,204,199
-"Gerald F. Lackey, In His Official Capacity As The Commissioner Of The Virginia  Department Of Motor Vehicles v. Damian Stinnie, Et Al.","23-621","Erika L. Maley",351,54,NA,370,264,NA,835,286,132
-"Royal Canin U.s.a., Inc., Et Al. v. Anastasia Wullschleger, Et Al.","23-677","Ashley C. Keller",124,313,327,19,444,220,380,NA,139
-"Royal Canin U.s.a., Inc., Et Al. v. Anastasia Wullschleger, Et Al.","23-677","Katherine B. Wellington",762,173,159,642,273,680,1273,274,539
-"Joshua E. Bufkin, Et Al. v. Denis R. Mcdonough, Secretary Of Veterans Affairs","23-713","Melanie L. Bostwick",430,240,439,489,440,179,1647,266,212
-"Joshua E. Bufkin, Et Al. v. Denis R. Mcdonough, Secretary Of Veterans Affairs","23-713","Sopan Joshi",NA,NA,791,1184,208,126,695,293,79
-"City And County Of San Francisco, California v. Environmental Protection Agency","23-753","Frederick Liu",455,321,475,211,397,841,753,553,267
-"City And County Of San Francisco, California v. Environmental Protection Agency","23-753","Tara M. Steeley",147,NA,85,735,520,307,784,875,407
-"Merrick B. Garland, Attorney General, Et Al. v. Jennifer Vanderstok, Et Al.","23-852","Elizabeth B. Prelogar",1069,657,974,346,898,602,1433,699,381
-"Merrick B. Garland, Attorney General, Et Al. v. Jennifer Vanderstok, Et Al.","23-852","Peter A. Patterson",318,226,336,504,NA,NA,846,355,421
+"Case","Docket","Attorney","ROBERTS","THOMAS","ALITO","SOTOMAYOR","KAGAN","GORSUCH","KAVANAUGH","BARRETT","JACKSON"
+"Glossip v. Oklahoma","22-7466","Christopher G. Michel",740,81,0,257,858,0,393,362,794
+"Glossip v. Oklahoma","22-7466","Paul D. Clement",161,772,208,533,776,0,349,720,379
+"Glossip v. Oklahoma","22-7466","Seth P. Waxman",981,372,856,711,0,0,0,0,77
+"Williams v. Washington","23-191","Adam G. Unikowsky",1442,150,676,255,608,595,612,748,302
+"Williams v. Washington","23-191","Edmund G. LaCour, Jr.",301,154,239,259,416,234,707,385,546
+"Medical Marijuana Inc. v. Horn","23-365","Easha Anand",1078,273,613,0,0,531,1160,254,338
+"Medical Marijuana Inc. v. Horn","23-365","Lisa S. Blatt",947,255,130,351,637,155,357,204,1010
+"Bouarafa v. Mayorkas","23-583","Colleen E. Roh Sinzdak",362,118,0,67,444,553,28,0,195
+"Bouarafa v. Mayorkas","23-583","Samir Deger-Sen",1762,692,507,319,582,0,0,473,352
+"Lackey v. Stinnie","23-621","Anthony A. Yang",297,194,279,392,251,327,238,0,197
+"Lackey v. Stinnie","23-621","Brian D. Schmalzbach",1063,199,120,204,159,570,460,213,175
+"Lackey v. Stinnie","23-621","Erika L. Maley",835,132,351,286,264,0,0,54,370
+"Royal Canin v. Wullschleger","23-677","Ashley C. Keller",380,139,124,0,444,327,220,313,19
+"Royal Canin v. Wullschleger","23-677","Katherine B. Wellington",1273,539,762,274,273,159,680,173,642
+"Bufkin v. McDonough","23-713","Melanie L. Bostwick",1647,212,430,266,440,439,179,240,489
+"Bufkin v. McDonough","23-713","Sopan Joshi",695,79,0,293,208,791,126,0,1184
+"San Francisco v. EPA","23-753","Frederick Liu",753,267,455,553,397,475,841,321,211
+"San Francisco v. EPA","23-753","Tara M. Steeley",784,407,147,875,520,85,307,0,735
+"Garland v. Vanderstok","23-852","Elizabeth B. Prelogar",1433,381,1069,699,898,974,602,657,346
+"Garland v. Vanderstok","23-852","Peter A. Patterson",846,421,318,355,0,336,0,226,504

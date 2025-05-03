@@ -1,11 +1,11 @@
-"case_name","docket","ALITO","BARRETT","GORSUCH","JACKSON","KAGAN","KAVANAUGH","ROBERTS","SOTOMAYOR","THOMAS"
-"Tony R. Hewitt v. United States. Corey Deyon Duffey And Jarvis Dupree Ross v.  )  No. 23-1150 United States","23-1002",865,293,791,1342,811,1343,213,1164,105
-"Casey Cunningham, Et Al. v. Cornell University, Et Al.","23-1007",1160,33,581,1117,571,1071,224,1084,57
-"Patrick D. Thompson v. United States","23-1095",803,773,1080,1273,1039,345,632,812,91
-"Free Speech Coalition, Inc., Et Al. v. Ken Paxton, Attorney General Of Texas","23-1122",1394,1154,959,2080,999,1301,422,1443,317
-"Food And Drug Administration, Et Al. v. R.j.  Reynolds Vapor Co., Et Al.","23-1187",168,553,414,1425,830,395,312,792,113
-"Mclaughlin Chiropractic Associates, Inc. v. Mckesson Corporation, Et Al.","23-1226",320,5,1182,836,809,89,99,771,222
-"Janice Hughes Barnes, Individually And As Representative Of The Estate Of Ashtian Barnes, Deceased v. Roberto Felix, Jr., Et Al.","23-1239",612,405,489,1143,564,721,275,994,231
-"Karyn D. Stanley v. City Of Sanford, Florida","23-997",1458,0,0,1022,744,237,204,978,100
-"Tiktok, Inc., Et Al. v. Merrick B. Garland, Attorney General. Brian Firebaugh, Et Al. v.  )  No. 24-657 Merrick B. Garland, Attorney General","24-656",1642,1217,1419,1104,1518,511,973,1623,209
-"Gary Waetzig v. Halliburton Energy Services, Inc.","23-971",0,0,761,754,373,0,385,528,45
+"case_name","docket","ROBERTS","THOMAS","ALITO","SOTOMAYOR","KAGAN","GORSUCH","KAVANAUGH","BARRETT","JACKSON"
+"Hewitt v. United States","23-1002",213,105,865,1164,811,791,1343,293,1342
+"Cunningham v. Cornell University","23-1007",224,57,1160,1084,571,581,1071,33,1117
+"Thompson v. United States.","23-1095",632,91,803,812,1039,1080,345,773,1273
+"Free Speech Coalition v. Paxton","23-1122",422,317,1394,1443,999,959,1301,1154,2080
+"FDA v. R.J. Reynolds Vapor Co.","23-1187",312,113,168,792,830,414,395,553,1425
+"McLaughlin Chiropractic v. McKesson Corp","23-1226",99,222,320,771,809,1182,89,5,836
+"Barnes v. Felix","23-1239",275,231,612,994,564,489,721,405,1143
+"Stanley v. City of Sanford","23-997",204,100,1458,978,744,0,237,0,1022
+"TikTok, Inc. v. Garland","24-656",973,209,1642,1623,1518,1419,511,1217,1104
+"Waetzig v. Halliburton Energy Services","23-971",385,45,0,528,373,761,0,0,754

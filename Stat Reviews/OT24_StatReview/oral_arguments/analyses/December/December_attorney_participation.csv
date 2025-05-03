@@ -1,21 +1,21 @@
-"Case","Docket","Attorney","ALITO","BARRETT","GORSUCH","JACKSON","KAGAN","KAVANAUGH","ROBERTS","SOTOMAYOR","THOMAS"
-"Food And Drug Administration v. Wages And White Lion Investments, L.l.c., D/B/A Triton Distribution, Et Al.","23-1038","Curtis E. Gannon",1207,514,666,678,577,700,1376,264,259
-"Food And Drug Administration v. Wages And White Lion Investments, L.l.c., D/B/A Triton Distribution, Et Al.","23-1038","Eric N. Heyer",79,172,290,575,620,504,501,197,436
-"United States v. Jonathan Skrmetti, Attorney General And Reporter For Tennessee, Et Al.","23-477","Chase B. Strangio",703,389,NA,144,NA,581,778,444,356
-"United States v. Jonathan Skrmetti, Attorney General And Reporter For Tennessee, Et Al.","23-477","Elizabeth B. Prelogar",1282,992,NA,715,797,1788,1527,484,420
-"United States v. Jonathan Skrmetti, Attorney General And Reporter For Tennessee, Et Al.","23-477","J. Matthew Rice",NA,409,NA,1112,500,185,247,294,415
-"United States v. David L. Miller","23-824","Lisa S. Blatt",NA,710,79,656,147,302,322,165,436
-"United States v. David L. Miller","23-824","Yaira Dubin",NA,944,920,431,582,231,1146,67,186
-"Nick Feliciano v. Department Of Transportation","23-861","Andrew T. Tutt",733,520,293,1041,216,623,1290,322,422
-"Nick Feliciano v. Department Of Transportation","23-861","Nicole F. Reaves",NA,427,726,125,273,387,1048,427,364
-"Republic Of Hungary, Et Al. v. Rosalie Simon, Et Al.","23-867","Joshua S. Glasgow",297,454,174,131,287,NA,420,326,170
-"Republic Of Hungary, Et Al. v. Rosalie Simon, Et Al.","23-867","Shay Dvoretzky",77,374,96,532,209,502,726,389,420
-"Republic Of Hungary, Et Al. v. Rosalie Simon, Et Al.","23-867","Sopan Joshi",194,454,329,276,425,812,248,141,192
-"Dewberry Group, Inc., F/K/A Dewberry Capital Corporation v. Dewberry Engineers Inc.","23-900","Elbert Lin",273,289,420,546,90,NA,355,584,483
-"Dewberry Group, Inc., F/K/A Dewberry Capital Corporation v. Dewberry Engineers Inc.","23-900","Nicholas S. Crown",425,66,NA,350,334,NA,750,NA,414
-"Dewberry Group, Inc., F/K/A Dewberry Capital Corporation v. Dewberry Engineers Inc.","23-900","Thomas G. Hungar",NA,NA,225,860,759,NA,1542,666,377
-"Stamatios Kousisis And Alpha Painting And Construction Co., Inc. v. United States","23-909","Eric J. Feigin",615,658,640,158,496,884,968,269,190
-"Stamatios Kousisis And Alpha Painting And Construction Co., Inc. v. United States","23-909","Jeffrey L. Fisher",211,575,643,1490,616,284,1666,273,524
-"Seven County Infrastructure Coalition, Et Al. Eagle County, Colorado, Et Al..","23-975","Edwin S. Kneedler",84,321,NA,253,576,689,1025,290,173
-"Seven County Infrastructure Coalition, Et Al. Eagle County, Colorado, Et Al..","23-975","Paul D. Clement",178,700,NA,809,1023,645,1215,610,552
-"Seven County Infrastructure Coalition, Et Al. Eagle County, Colorado, Et Al..","23-975","William M. Jay",NA,NA,NA,2289,1276,275,417,249,185
+"Case","Docket","Attorney","ROBERTS","THOMAS","ALITO","SOTOMAYOR","KAGAN","GORSUCH","KAVANAUGH","BARRETT","JACKSON"
+"FDA v. Wages and White Lion Investments","23-1038","Curtis E. Gannon",1376,259,1207,264,577,666,700,514,678
+"FDA v. Wages and White Lion Investments","23-1038","Eric N. Heyer",501,436,79,197,620,290,504,172,575
+"United States v. Skrmetti","23-477","Chase B. Strangio",778,356,703,444,0,0,581,389,144
+"United States v. Skrmetti","23-477","Elizabeth B. Prelogar",1527,420,1282,484,797,0,1788,992,715
+"United States v. Skrmetti","23-477","J. Matthew Rice",247,415,0,294,500,0,185,409,1112
+"United States v. Miller","23-824","Lisa S. Blatt",322,436,0,165,147,79,302,710,656
+"United States v. Miller","23-824","Yaira Dubin",1146,186,0,67,582,920,231,944,431
+"Feliciano v. Department of Transportation.","23-861","Andrew T. Tutt",1290,422,733,322,216,293,623,520,1041
+"Feliciano v. Department of Transportation.","23-861","Nicole F. Reaves",1048,364,0,427,273,726,387,427,125
+"Hungary v. Simon","23-867","Joshua S. Glasgow",420,170,297,326,287,174,0,454,131
+"Hungary v. Simon","23-867","Shay Dvoretzky",726,420,77,389,209,96,502,374,532
+"Hungary v. Simon","23-867","Sopan Joshi",248,192,194,141,425,329,812,454,276
+"Dewberry Group, Inc. v. Dewberry Engineers Inc.","23-900","Elbert Lin",355,483,273,584,90,420,0,289,546
+"Dewberry Group, Inc. v. Dewberry Engineers Inc.","23-900","Nicholas S. Crown",750,414,425,0,334,0,0,66,350
+"Dewberry Group, Inc. v. Dewberry Engineers Inc.","23-900","Thomas G. Hungar",1542,377,0,666,759,225,0,0,860
+"Kousisis v. United States","23-909","Eric J. Feigin",968,190,615,269,496,640,884,658,158
+"Kousisis v. United States","23-909","Jeffrey L. Fisher",1666,524,211,273,616,643,284,575,1490
+"Seven County Infrastructure Coalition v. Eagle County","23-975","Edwin S. Kneedler",1025,173,84,290,576,0,689,321,253
+"Seven County Infrastructure Coalition v. Eagle County","23-975","Paul D. Clement",1215,552,178,610,1023,0,645,700,809
+"Seven County Infrastructure Coalition v. Eagle County","23-975","William M. Jay",417,185,0,249,1276,0,275,0,2289
