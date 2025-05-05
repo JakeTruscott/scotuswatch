@@ -1,21 +1,21 @@
-"Case","Attorney","Docket","total_words"
-"Feliciano v. Department of Transportation.","Andrew T. Tutt","23-861",5460
-"United States v. Skrmetti","Chase B. Strangio","23-477",3515
-"FDA v. Wages and White Lion Investments","Curtis E. Gannon","23-1038",6241
-"Seven County Infrastructure Coalition v. Eagle County","Edwin S. Kneedler","23-975",3417
-"Dewberry Group, Inc. v. Dewberry Engineers Inc.","Elbert Lin","23-900",3040
-"United States v. Skrmetti","Elizabeth B. Prelogar","23-477",8005
-"Kousisis v. United States","Eric J. Feigin","23-909",4928
-"FDA v. Wages and White Lion Investments","Eric N. Heyer","23-1038",3374
-"United States v. Skrmetti","J. Matthew Rice","23-477",3162
-"Kousisis v. United States","Jeffrey L. Fisher","23-909",6282
-"Hungary v. Simon","Joshua S. Glasgow","23-867",2259
-"United States v. Miller","Lisa S. Blatt","23-824",2817
-"Dewberry Group, Inc. v. Dewberry Engineers Inc.","Nicholas S. Crown","23-900",2339
-"Feliciano v. Department of Transportation.","Nicole F. Reaves","23-861",3777
-"Seven County Infrastructure Coalition v. Eagle County","Paul D. Clement","23-975",5742
-"Hungary v. Simon","Shay Dvoretzky","23-867",3325
-"Hungary v. Simon","Sopan Joshi","23-867",3071
-"Dewberry Group, Inc. v. Dewberry Engineers Inc.","Thomas G. Hungar","23-900",4429
-"Seven County Infrastructure Coalition v. Eagle County","William M. Jay","23-975",4691
-"United States v. Miller","Yaira Dubin","23-824",4507
+Case,Attorney,Docket,total_words
+FDA v. Wages and White Lion Investments,Curtis E. Gannon,23-1038,6241
+FDA v. Wages and White Lion Investments,Eric N. Heyer,23-1038,3374
+United States v. Skrmetti,Chase B. Strangio,23-477,3515
+United States v. Skrmetti,Elizabeth B. Prelogar,23-477,8005
+United States v. Skrmetti,J. Matthew Rice,23-477,3162
+United States v. Miller,Lisa S. Blatt,23-824,2817
+United States v. Miller,Yaira Dubin,23-824,4507
+Feliciano v. Department of Transportation.,Andrew T. Tutt,23-861,5460
+Feliciano v. Department of Transportation.,Nicole F. Reaves,23-861,3777
+Hungary v. Simon,Joshua S. Glasgow,23-867,2259
+Hungary v. Simon,Shay Dvoretzky,23-867,3325
+Hungary v. Simon,Sopan Joshi,23-867,3071
+Dewberry Group, Inc. v. Dewberry Engineers Inc.,Elbert Lin,23-900,3040
+Dewberry Group, Inc. v. Dewberry Engineers Inc.,Nicholas S. Crown,23-900,2339
+Dewberry Group, Inc. v. Dewberry Engineers Inc.,Thomas G. Hungar,23-900,4429
+Kousisis v. United States,Eric J. Feigin,23-909,4928
+Kousisis v. United States,Jeffrey L. Fisher,23-909,6282
+Seven County Infrastructure Coalition v. Eagle County,Edwin S. Kneedler,23-975,3417
+Seven County Infrastructure Coalition v. Eagle County,Paul D. Clement,23-975,5742
+Seven County Infrastructure Coalition v. Eagle County,William M. Jay,23-975,4691

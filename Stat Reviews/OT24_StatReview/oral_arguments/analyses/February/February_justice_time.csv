@@ -1,9 +1,9 @@
-"case_name","docket","ROBERTS","THOMAS","ALITO","SOTOMAYOR","KAGAN","GORSUCH","KAVANAUGH","BARRETT","JACKSON"
-"Ames v. OH Dept. of Youth Services","23-1039",2.2,0.78,2.28,1.7,2.53,4.31,2.15,2.25,2.78
-"Smith and Wesson v. Estados Unidos Mexicanos","23-1141",3.52,3.09,2.33,5.28,4.48,2.47,2.58,2.26,9.82
-"CC/Devas v. Antrix Corp.","23-1201",1,0.71,0.2,2.34,1.22,2.09,0,0,3.63
-"BLOM Bank SAL v. Honickman","23-1259",0.48,0.65,0.73,2.52,3.78,3.37,0.72,0.97,6.8
-"NRC v. Texas","23-1300",2.06,2.4,2.3,5.39,4.33,6.29,3.35,0,6.65
-"Perttu v. Richards","23-1324",1.16,0.91,5.99,8.41,4.79,4.96,1.01,3.81,7.28
-"Esteras v. United States","23-7483",1.95,0.39,4.09,5.03,4.32,4.62,2.93,1.6,9.33
-"Gutierrez v. Saenz","23-7809",1.63,1.98,7.32,9.22,6.23,4.7,8,5.65,9.58
+case_name,docket,ROBERTS,THOMAS,ALITO,SOTOMAYOR,KAGAN,GORSUCH,KAVANAUGH,BARRETT,JACKSON
+Ames v. OH Dept. of Youth Services,23-1039,2.2,0.78,2.28,1.7,2.53,4.31,2.15,2.25,2.78
+Smith and Wesson v. Estados Unidos Mexicanos,23-1141,3.52,3.09,2.33,5.28,4.48,2.47,2.58,2.26,9.82
+CC/Devas v. Antrix Corp.,23-1201,1,0.71,0.2,2.34,1.22,2.09,0,0,3.63
+BLOM Bank SAL v. Honickman,23-1259,0.48,0.65,0.73,2.52,3.78,3.37,0.72,0.97,6.8
+NRC v. Texas,23-1300,2.06,2.4,2.3,5.39,4.33,6.29,3.35,0,6.65
+Perttu v. Richards,23-1324,1.16,0.91,5.99,8.41,4.79,4.96,1.01,3.81,7.28
+Esteras v. United States,23-7483,1.95,0.39,4.09,5.03,4.32,4.62,2.93,1.6,9.33
+Gutierrez v. Saenz,23-7809,1.63,1.98,7.32,9.22,6.23,4.7,8,5.65,9.58

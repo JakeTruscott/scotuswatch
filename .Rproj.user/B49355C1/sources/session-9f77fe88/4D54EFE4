@@ -3,25 +3,25 @@
     "path": "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/compilation/compilation_main_StatReview_OT24.Rnw",
     "project_path": "Stat Reviews/OT24_StatReview/compilation/compilation_main_StatReview_OT24.Rnw",
     "type": "sweave",
-    "hash": "0",
+    "hash": "1627456573",
     "contents": "",
     "dirty": false,
     "created": 1746218020796.0,
     "source_on_save": false,
-    "relative_order": 3,
+    "relative_order": 4,
     "properties": {
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "43,108",
-        "scrollLine": "14"
+        "cursorPosition": "37,31",
+        "scrollLine": "37"
     },
     "folds": "",
-    "lastKnownWriteTime": 1746273974,
+    "lastKnownWriteTime": 1746407816,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1746273974680,
+    "last_content_update": 1746407816258,
     "read_only": false,
     "read_only_alternatives": []
 }

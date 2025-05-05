@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.5.2)  3 MAY 2025 08:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.5.2)  4 MAY 2025 21:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -701,7 +701,11 @@ Package: lastpagemodern 2025-01-27 v2.1e Refers to last page's name (HMM; JPG)
 ))) (c:/Users/jaketruscott/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-04-14 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count365
-) (./compilation_main_StatReview_OT24.aux)
+) (./compilation_main_StatReview_OT24.aux
+
+LaTeX Warning: Label `tab:oa_intro' multiply defined.
+
+)
 \openout1 = `compilation_main_StatReview_OT24.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
@@ -793,7 +797,7 @@ Package hyperref Info: Link coloring OFF on input line 4.
 \openout6 = `compilation_main_StatReview_OT24.out'.
 
  (./compilation_main_StatReview_OT24-concordance.tex) (./sections/header/title_page.tex
-<images/empirical_scotus_logo.png, id=24, 803.0pt x 803.0pt>
+<images/empirical_scotus_logo.png, id=60, 803.0pt x 803.0pt>
 File: images/empirical_scotus_logo.png Graphic file (type png)
 <use images/empirical_scotus_logo.png>
 Package pdftex.def Info: images/empirical_scotus_logo.png  used on input line 10.
@@ -873,7 +877,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--14
 ) (./sections/oral_arguments/introduction.tex
 
 [3]
-<images/oa_intro.png, id=70, 702.625pt x 468.75125pt>
+<images/oa_intro.png, id=115, 702.625pt x 468.75125pt>
 File: images/oa_intro.png Graphic file (type png)
 <use images/oa_intro.png>
 Package pdftex.def Info: images/oa_intro.png  used on input line 6.
@@ -881,7 +885,7 @@ Package pdftex.def Info: images/oa_intro.png  used on input line 6.
 ) (./sections/oral_arguments/justice_aggregate_words_time.tex
 
 [4 <./images/oa_intro.png>]
-<../oral_arguments/analyses/Combined/justice_words_combined.png, id=76, 578.16pt x 578.16pt>
+<../oral_arguments/analyses/Combined/justice_words_combined.png, id=121, 578.16pt x 578.16pt>
 File: ../oral_arguments/analyses/Combined/justice_words_combined.png Graphic file (type png)
 <use ../oral_arguments/analyses/Combined/justice_words_combined.png>
 Package pdftex.def Info: ../oral_arguments/analyses/Combined/justice_words_combined.png  used on input line 12.
@@ -894,13 +898,13 @@ Overfull \hbox (28.1873pt too wide) in paragraph at lines 12--14
  [][] 
  []
 
-<../oral_arguments/analyses/Combined/justice_time_combined.png, id=78, 578.16pt x 578.16pt>
+<../oral_arguments/analyses/Combined/justice_time_combined.png, id=123, 578.16pt x 578.16pt>
 File: ../oral_arguments/analyses/Combined/justice_time_combined.png Graphic file (type png)
 <use ../oral_arguments/analyses/Combined/justice_time_combined.png>
 Package pdftex.def Info: ../oral_arguments/analyses/Combined/justice_time_combined.png  used on input line 20.
 (pdftex.def)             Requested size: 310.04317pt x 310.04036pt.
 
-Overfull \hbox (28.1873pt too wide) in paragraph at lines 20--21
+Overfull \hbox (28.1873pt too wide) in paragraph at lines 20--22
  [][] 
  []
 
@@ -909,88 +913,47 @@ Overfull \hbox (28.1873pt too wide) in paragraph at lines 20--21
 [5
 
 {c:/Users/jaketruscott/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc} <../oral_arguments/analyses/Combined/justice_words_combined.png> <../oral_arguments/analyses/Combined/justice_time_combined.png>]) (./sections/oral_arguments/justice_sitting_words.tex
-<images/justice_images/Roberts.png, id=86, 301.125pt x 200.75pt>
-File: images/justice_images/Roberts.png Graphic file (type png)
-<use images/justice_images/Roberts.png>
-Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 4.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-<images/justice_images/Thomas.png, id=87, 301.125pt x 200.75pt>
-File: images/justice_images/Thomas.png Graphic file (type png)
-<use images/justice_images/Thomas.png>
-Package pdftex.def Info: images/justice_images/Thomas.png  used on input line 4.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-<images/justice_images/Alito.png, id=88, 301.125pt x 200.75pt>
-File: images/justice_images/Alito.png Graphic file (type png)
-<use images/justice_images/Alito.png>
-Package pdftex.def Info: images/justice_images/Alito.png  used on input line 4.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-<images/justice_images/Sotomayor.png, id=89, 301.125pt x 200.75pt>
-File: images/justice_images/Sotomayor.png Graphic file (type png)
-<use images/justice_images/Sotomayor.png>
-Package pdftex.def Info: images/justice_images/Sotomayor.png  used on input line 4.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-<images/justice_images/Kagan.png, id=90, 301.125pt x 200.75pt>
-File: images/justice_images/Kagan.png Graphic file (type png)
-<use images/justice_images/Kagan.png>
-Package pdftex.def Info: images/justice_images/Kagan.png  used on input line 4.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-<images/justice_images/Gorsuch.png, id=91, 301.125pt x 200.75pt>
-File: images/justice_images/Gorsuch.png Graphic file (type png)
-<use images/justice_images/Gorsuch.png>
-Package pdftex.def Info: images/justice_images/Gorsuch.png  used on input line 4.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-<images/justice_images/Kavanaugh.png, id=92, 301.125pt x 200.75pt>
-File: images/justice_images/Kavanaugh.png Graphic file (type png)
-<use images/justice_images/Kavanaugh.png>
-Package pdftex.def Info: images/justice_images/Kavanaugh.png  used on input line 4.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-<images/justice_images/Barrett.png, id=93, 301.125pt x 200.75pt>
-File: images/justice_images/Barrett.png Graphic file (type png)
-<use images/justice_images/Barrett.png>
-Package pdftex.def Info: images/justice_images/Barrett.png  used on input line 4.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-<images/justice_images/Jackson.png, id=94, 301.125pt x 200.75pt>
-File: images/justice_images/Jackson.png Graphic file (type png)
-<use images/justice_images/Jackson.png>
-Package pdftex.def Info: images/justice_images/Jackson.png  used on input line 4.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-
-Overfull \hbox (37.63956pt too wide) in paragraph at lines 4--4
- [][] 
- []
-
+<images/justice_images/Roberts.png, id=131, 301.125pt x 200.75pt>
 File: images/justice_images/Roberts.png Graphic file (type png)
 <use images/justice_images/Roberts.png>
 Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 5.
 (pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+<images/justice_images/Thomas.png, id=132, 301.125pt x 200.75pt>
 File: images/justice_images/Thomas.png Graphic file (type png)
 <use images/justice_images/Thomas.png>
 Package pdftex.def Info: images/justice_images/Thomas.png  used on input line 5.
 (pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+<images/justice_images/Alito.png, id=133, 301.125pt x 200.75pt>
 File: images/justice_images/Alito.png Graphic file (type png)
 <use images/justice_images/Alito.png>
 Package pdftex.def Info: images/justice_images/Alito.png  used on input line 5.
 (pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+<images/justice_images/Sotomayor.png, id=134, 301.125pt x 200.75pt>
 File: images/justice_images/Sotomayor.png Graphic file (type png)
 <use images/justice_images/Sotomayor.png>
 Package pdftex.def Info: images/justice_images/Sotomayor.png  used on input line 5.
 (pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+<images/justice_images/Kagan.png, id=135, 301.125pt x 200.75pt>
 File: images/justice_images/Kagan.png Graphic file (type png)
 <use images/justice_images/Kagan.png>
 Package pdftex.def Info: images/justice_images/Kagan.png  used on input line 5.
 (pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+<images/justice_images/Gorsuch.png, id=136, 301.125pt x 200.75pt>
 File: images/justice_images/Gorsuch.png Graphic file (type png)
 <use images/justice_images/Gorsuch.png>
 Package pdftex.def Info: images/justice_images/Gorsuch.png  used on input line 5.
 (pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+<images/justice_images/Kavanaugh.png, id=137, 301.125pt x 200.75pt>
 File: images/justice_images/Kavanaugh.png Graphic file (type png)
 <use images/justice_images/Kavanaugh.png>
 Package pdftex.def Info: images/justice_images/Kavanaugh.png  used on input line 5.
 (pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+<images/justice_images/Barrett.png, id=138, 301.125pt x 200.75pt>
 File: images/justice_images/Barrett.png Graphic file (type png)
 <use images/justice_images/Barrett.png>
 Package pdftex.def Info: images/justice_images/Barrett.png  used on input line 5.
 (pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+<images/justice_images/Jackson.png, id=139, 301.125pt x 200.75pt>
 File: images/justice_images/Jackson.png Graphic file (type png)
 <use images/justice_images/Jackson.png>
 Package pdftex.def Info: images/justice_images/Jackson.png  used on input line 5.
@@ -1000,53 +963,53 @@ Overfull \hbox (37.63956pt too wide) in paragraph at lines 5--5
  [][] 
  []
 
+File: images/justice_images/Roberts.png Graphic file (type png)
+<use images/justice_images/Roberts.png>
+Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 6.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Thomas.png Graphic file (type png)
+<use images/justice_images/Thomas.png>
+Package pdftex.def Info: images/justice_images/Thomas.png  used on input line 6.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Alito.png Graphic file (type png)
+<use images/justice_images/Alito.png>
+Package pdftex.def Info: images/justice_images/Alito.png  used on input line 6.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Sotomayor.png Graphic file (type png)
+<use images/justice_images/Sotomayor.png>
+Package pdftex.def Info: images/justice_images/Sotomayor.png  used on input line 6.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Kagan.png Graphic file (type png)
+<use images/justice_images/Kagan.png>
+Package pdftex.def Info: images/justice_images/Kagan.png  used on input line 6.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Gorsuch.png Graphic file (type png)
+<use images/justice_images/Gorsuch.png>
+Package pdftex.def Info: images/justice_images/Gorsuch.png  used on input line 6.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Kavanaugh.png Graphic file (type png)
+<use images/justice_images/Kavanaugh.png>
+Package pdftex.def Info: images/justice_images/Kavanaugh.png  used on input line 6.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Barrett.png Graphic file (type png)
+<use images/justice_images/Barrett.png>
+Package pdftex.def Info: images/justice_images/Barrett.png  used on input line 6.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Jackson.png Graphic file (type png)
+<use images/justice_images/Jackson.png>
+Package pdftex.def Info: images/justice_images/Jackson.png  used on input line 6.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (37.63956pt too wide) in paragraph at lines 6--6
+ [][] 
+ []
+
 
 
 [6
 
 
  <./images/justice_images/Roberts.png> <./images/justice_images/Thomas.png> <./images/justice_images/Alito.png> <./images/justice_images/Sotomayor.png> <./images/justice_images/Kagan.png> <./images/justice_images/Gorsuch.png> <./images/justice_images/Kavanaugh.png> <./images/justice_images/Barrett.png> <./images/justice_images/Jackson.png>]
-File: images/justice_images/Roberts.png Graphic file (type png)
-<use images/justice_images/Roberts.png>
-Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 7.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Thomas.png Graphic file (type png)
-<use images/justice_images/Thomas.png>
-Package pdftex.def Info: images/justice_images/Thomas.png  used on input line 7.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Alito.png Graphic file (type png)
-<use images/justice_images/Alito.png>
-Package pdftex.def Info: images/justice_images/Alito.png  used on input line 7.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Sotomayor.png Graphic file (type png)
-<use images/justice_images/Sotomayor.png>
-Package pdftex.def Info: images/justice_images/Sotomayor.png  used on input line 7.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Kagan.png Graphic file (type png)
-<use images/justice_images/Kagan.png>
-Package pdftex.def Info: images/justice_images/Kagan.png  used on input line 7.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Gorsuch.png Graphic file (type png)
-<use images/justice_images/Gorsuch.png>
-Package pdftex.def Info: images/justice_images/Gorsuch.png  used on input line 7.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Kavanaugh.png Graphic file (type png)
-<use images/justice_images/Kavanaugh.png>
-Package pdftex.def Info: images/justice_images/Kavanaugh.png  used on input line 7.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Barrett.png Graphic file (type png)
-<use images/justice_images/Barrett.png>
-Package pdftex.def Info: images/justice_images/Barrett.png  used on input line 7.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Jackson.png Graphic file (type png)
-<use images/justice_images/Jackson.png>
-Package pdftex.def Info: images/justice_images/Jackson.png  used on input line 7.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-
-Overfull \hbox (37.63956pt too wide) in paragraph at lines 7--7
- [][] 
- []
-
 File: images/justice_images/Roberts.png Graphic file (type png)
 <use images/justice_images/Roberts.png>
 Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 8.
@@ -1088,52 +1051,52 @@ Overfull \hbox (37.63956pt too wide) in paragraph at lines 8--8
  [][] 
  []
 
+File: images/justice_images/Roberts.png Graphic file (type png)
+<use images/justice_images/Roberts.png>
+Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 9.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Thomas.png Graphic file (type png)
+<use images/justice_images/Thomas.png>
+Package pdftex.def Info: images/justice_images/Thomas.png  used on input line 9.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Alito.png Graphic file (type png)
+<use images/justice_images/Alito.png>
+Package pdftex.def Info: images/justice_images/Alito.png  used on input line 9.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Sotomayor.png Graphic file (type png)
+<use images/justice_images/Sotomayor.png>
+Package pdftex.def Info: images/justice_images/Sotomayor.png  used on input line 9.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Kagan.png Graphic file (type png)
+<use images/justice_images/Kagan.png>
+Package pdftex.def Info: images/justice_images/Kagan.png  used on input line 9.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Gorsuch.png Graphic file (type png)
+<use images/justice_images/Gorsuch.png>
+Package pdftex.def Info: images/justice_images/Gorsuch.png  used on input line 9.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Kavanaugh.png Graphic file (type png)
+<use images/justice_images/Kavanaugh.png>
+Package pdftex.def Info: images/justice_images/Kavanaugh.png  used on input line 9.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Barrett.png Graphic file (type png)
+<use images/justice_images/Barrett.png>
+Package pdftex.def Info: images/justice_images/Barrett.png  used on input line 9.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Jackson.png Graphic file (type png)
+<use images/justice_images/Jackson.png>
+Package pdftex.def Info: images/justice_images/Jackson.png  used on input line 9.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (37.63956pt too wide) in paragraph at lines 9--9
+ [][] 
+ []
+
 
 
 [7]
 
 [8]
-File: images/justice_images/Roberts.png Graphic file (type png)
-<use images/justice_images/Roberts.png>
-Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 10.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Thomas.png Graphic file (type png)
-<use images/justice_images/Thomas.png>
-Package pdftex.def Info: images/justice_images/Thomas.png  used on input line 10.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Alito.png Graphic file (type png)
-<use images/justice_images/Alito.png>
-Package pdftex.def Info: images/justice_images/Alito.png  used on input line 10.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Sotomayor.png Graphic file (type png)
-<use images/justice_images/Sotomayor.png>
-Package pdftex.def Info: images/justice_images/Sotomayor.png  used on input line 10.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Kagan.png Graphic file (type png)
-<use images/justice_images/Kagan.png>
-Package pdftex.def Info: images/justice_images/Kagan.png  used on input line 10.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Gorsuch.png Graphic file (type png)
-<use images/justice_images/Gorsuch.png>
-Package pdftex.def Info: images/justice_images/Gorsuch.png  used on input line 10.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Kavanaugh.png Graphic file (type png)
-<use images/justice_images/Kavanaugh.png>
-Package pdftex.def Info: images/justice_images/Kavanaugh.png  used on input line 10.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Barrett.png Graphic file (type png)
-<use images/justice_images/Barrett.png>
-Package pdftex.def Info: images/justice_images/Barrett.png  used on input line 10.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Jackson.png Graphic file (type png)
-<use images/justice_images/Jackson.png>
-Package pdftex.def Info: images/justice_images/Jackson.png  used on input line 10.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-
-Overfull \hbox (37.63956pt too wide) in paragraph at lines 10--10
- [][] 
- []
-
 File: images/justice_images/Roberts.png Graphic file (type png)
 <use images/justice_images/Roberts.png>
 Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 11.
@@ -1175,52 +1138,52 @@ Overfull \hbox (37.63956pt too wide) in paragraph at lines 11--11
  [][] 
  []
 
+File: images/justice_images/Roberts.png Graphic file (type png)
+<use images/justice_images/Roberts.png>
+Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 12.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Thomas.png Graphic file (type png)
+<use images/justice_images/Thomas.png>
+Package pdftex.def Info: images/justice_images/Thomas.png  used on input line 12.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Alito.png Graphic file (type png)
+<use images/justice_images/Alito.png>
+Package pdftex.def Info: images/justice_images/Alito.png  used on input line 12.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Sotomayor.png Graphic file (type png)
+<use images/justice_images/Sotomayor.png>
+Package pdftex.def Info: images/justice_images/Sotomayor.png  used on input line 12.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Kagan.png Graphic file (type png)
+<use images/justice_images/Kagan.png>
+Package pdftex.def Info: images/justice_images/Kagan.png  used on input line 12.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Gorsuch.png Graphic file (type png)
+<use images/justice_images/Gorsuch.png>
+Package pdftex.def Info: images/justice_images/Gorsuch.png  used on input line 12.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Kavanaugh.png Graphic file (type png)
+<use images/justice_images/Kavanaugh.png>
+Package pdftex.def Info: images/justice_images/Kavanaugh.png  used on input line 12.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Barrett.png Graphic file (type png)
+<use images/justice_images/Barrett.png>
+Package pdftex.def Info: images/justice_images/Barrett.png  used on input line 12.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Jackson.png Graphic file (type png)
+<use images/justice_images/Jackson.png>
+Package pdftex.def Info: images/justice_images/Jackson.png  used on input line 12.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (37.63956pt too wide) in paragraph at lines 12--12
+ [][] 
+ []
+
 
 
 [9]
 
 [10]
-File: images/justice_images/Roberts.png Graphic file (type png)
-<use images/justice_images/Roberts.png>
-Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 13.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Thomas.png Graphic file (type png)
-<use images/justice_images/Thomas.png>
-Package pdftex.def Info: images/justice_images/Thomas.png  used on input line 13.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Alito.png Graphic file (type png)
-<use images/justice_images/Alito.png>
-Package pdftex.def Info: images/justice_images/Alito.png  used on input line 13.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Sotomayor.png Graphic file (type png)
-<use images/justice_images/Sotomayor.png>
-Package pdftex.def Info: images/justice_images/Sotomayor.png  used on input line 13.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Kagan.png Graphic file (type png)
-<use images/justice_images/Kagan.png>
-Package pdftex.def Info: images/justice_images/Kagan.png  used on input line 13.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Gorsuch.png Graphic file (type png)
-<use images/justice_images/Gorsuch.png>
-Package pdftex.def Info: images/justice_images/Gorsuch.png  used on input line 13.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Kavanaugh.png Graphic file (type png)
-<use images/justice_images/Kavanaugh.png>
-Package pdftex.def Info: images/justice_images/Kavanaugh.png  used on input line 13.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Barrett.png Graphic file (type png)
-<use images/justice_images/Barrett.png>
-Package pdftex.def Info: images/justice_images/Barrett.png  used on input line 13.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Jackson.png Graphic file (type png)
-<use images/justice_images/Jackson.png>
-Package pdftex.def Info: images/justice_images/Jackson.png  used on input line 13.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-
-Overfull \hbox (37.63956pt too wide) in paragraph at lines 13--13
- [][] 
- []
-
 File: images/justice_images/Roberts.png Graphic file (type png)
 <use images/justice_images/Roberts.png>
 Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 14.
@@ -1262,52 +1225,52 @@ Overfull \hbox (37.63956pt too wide) in paragraph at lines 14--14
  [][] 
  []
 
+File: images/justice_images/Roberts.png Graphic file (type png)
+<use images/justice_images/Roberts.png>
+Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 15.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Thomas.png Graphic file (type png)
+<use images/justice_images/Thomas.png>
+Package pdftex.def Info: images/justice_images/Thomas.png  used on input line 15.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Alito.png Graphic file (type png)
+<use images/justice_images/Alito.png>
+Package pdftex.def Info: images/justice_images/Alito.png  used on input line 15.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Sotomayor.png Graphic file (type png)
+<use images/justice_images/Sotomayor.png>
+Package pdftex.def Info: images/justice_images/Sotomayor.png  used on input line 15.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Kagan.png Graphic file (type png)
+<use images/justice_images/Kagan.png>
+Package pdftex.def Info: images/justice_images/Kagan.png  used on input line 15.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Gorsuch.png Graphic file (type png)
+<use images/justice_images/Gorsuch.png>
+Package pdftex.def Info: images/justice_images/Gorsuch.png  used on input line 15.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Kavanaugh.png Graphic file (type png)
+<use images/justice_images/Kavanaugh.png>
+Package pdftex.def Info: images/justice_images/Kavanaugh.png  used on input line 15.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Barrett.png Graphic file (type png)
+<use images/justice_images/Barrett.png>
+Package pdftex.def Info: images/justice_images/Barrett.png  used on input line 15.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Jackson.png Graphic file (type png)
+<use images/justice_images/Jackson.png>
+Package pdftex.def Info: images/justice_images/Jackson.png  used on input line 15.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (37.63956pt too wide) in paragraph at lines 15--15
+ [][] 
+ []
+
 
 
 [11]
 
 [12]
-File: images/justice_images/Roberts.png Graphic file (type png)
-<use images/justice_images/Roberts.png>
-Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 16.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Thomas.png Graphic file (type png)
-<use images/justice_images/Thomas.png>
-Package pdftex.def Info: images/justice_images/Thomas.png  used on input line 16.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Alito.png Graphic file (type png)
-<use images/justice_images/Alito.png>
-Package pdftex.def Info: images/justice_images/Alito.png  used on input line 16.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Sotomayor.png Graphic file (type png)
-<use images/justice_images/Sotomayor.png>
-Package pdftex.def Info: images/justice_images/Sotomayor.png  used on input line 16.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Kagan.png Graphic file (type png)
-<use images/justice_images/Kagan.png>
-Package pdftex.def Info: images/justice_images/Kagan.png  used on input line 16.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Gorsuch.png Graphic file (type png)
-<use images/justice_images/Gorsuch.png>
-Package pdftex.def Info: images/justice_images/Gorsuch.png  used on input line 16.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Kavanaugh.png Graphic file (type png)
-<use images/justice_images/Kavanaugh.png>
-Package pdftex.def Info: images/justice_images/Kavanaugh.png  used on input line 16.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Barrett.png Graphic file (type png)
-<use images/justice_images/Barrett.png>
-Package pdftex.def Info: images/justice_images/Barrett.png  used on input line 16.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Jackson.png Graphic file (type png)
-<use images/justice_images/Jackson.png>
-Package pdftex.def Info: images/justice_images/Jackson.png  used on input line 16.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-
-Overfull \hbox (37.63956pt too wide) in paragraph at lines 16--16
- [][] 
- []
-
 File: images/justice_images/Roberts.png Graphic file (type png)
 <use images/justice_images/Roberts.png>
 Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 17.
@@ -1349,52 +1312,52 @@ Overfull \hbox (37.63956pt too wide) in paragraph at lines 17--17
  [][] 
  []
 
+File: images/justice_images/Roberts.png Graphic file (type png)
+<use images/justice_images/Roberts.png>
+Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 18.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Thomas.png Graphic file (type png)
+<use images/justice_images/Thomas.png>
+Package pdftex.def Info: images/justice_images/Thomas.png  used on input line 18.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Alito.png Graphic file (type png)
+<use images/justice_images/Alito.png>
+Package pdftex.def Info: images/justice_images/Alito.png  used on input line 18.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Sotomayor.png Graphic file (type png)
+<use images/justice_images/Sotomayor.png>
+Package pdftex.def Info: images/justice_images/Sotomayor.png  used on input line 18.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Kagan.png Graphic file (type png)
+<use images/justice_images/Kagan.png>
+Package pdftex.def Info: images/justice_images/Kagan.png  used on input line 18.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Gorsuch.png Graphic file (type png)
+<use images/justice_images/Gorsuch.png>
+Package pdftex.def Info: images/justice_images/Gorsuch.png  used on input line 18.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Kavanaugh.png Graphic file (type png)
+<use images/justice_images/Kavanaugh.png>
+Package pdftex.def Info: images/justice_images/Kavanaugh.png  used on input line 18.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Barrett.png Graphic file (type png)
+<use images/justice_images/Barrett.png>
+Package pdftex.def Info: images/justice_images/Barrett.png  used on input line 18.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Jackson.png Graphic file (type png)
+<use images/justice_images/Jackson.png>
+Package pdftex.def Info: images/justice_images/Jackson.png  used on input line 18.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (37.63956pt too wide) in paragraph at lines 18--18
+ [][] 
+ []
+
 
 
 [13]
 
 [14]
-File: images/justice_images/Roberts.png Graphic file (type png)
-<use images/justice_images/Roberts.png>
-Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 19.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Thomas.png Graphic file (type png)
-<use images/justice_images/Thomas.png>
-Package pdftex.def Info: images/justice_images/Thomas.png  used on input line 19.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Alito.png Graphic file (type png)
-<use images/justice_images/Alito.png>
-Package pdftex.def Info: images/justice_images/Alito.png  used on input line 19.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Sotomayor.png Graphic file (type png)
-<use images/justice_images/Sotomayor.png>
-Package pdftex.def Info: images/justice_images/Sotomayor.png  used on input line 19.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Kagan.png Graphic file (type png)
-<use images/justice_images/Kagan.png>
-Package pdftex.def Info: images/justice_images/Kagan.png  used on input line 19.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Gorsuch.png Graphic file (type png)
-<use images/justice_images/Gorsuch.png>
-Package pdftex.def Info: images/justice_images/Gorsuch.png  used on input line 19.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Kavanaugh.png Graphic file (type png)
-<use images/justice_images/Kavanaugh.png>
-Package pdftex.def Info: images/justice_images/Kavanaugh.png  used on input line 19.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Barrett.png Graphic file (type png)
-<use images/justice_images/Barrett.png>
-Package pdftex.def Info: images/justice_images/Barrett.png  used on input line 19.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-File: images/justice_images/Jackson.png Graphic file (type png)
-<use images/justice_images/Jackson.png>
-Package pdftex.def Info: images/justice_images/Jackson.png  used on input line 19.
-(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
-
-Overfull \hbox (37.63956pt too wide) in paragraph at lines 19--19
- [][] 
- []
-
 File: images/justice_images/Roberts.png Graphic file (type png)
 <use images/justice_images/Roberts.png>
 Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 20.
@@ -1436,35 +1399,1099 @@ Overfull \hbox (37.63956pt too wide) in paragraph at lines 20--20
  [][] 
  []
 
+File: images/justice_images/Roberts.png Graphic file (type png)
+<use images/justice_images/Roberts.png>
+Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 21.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Thomas.png Graphic file (type png)
+<use images/justice_images/Thomas.png>
+Package pdftex.def Info: images/justice_images/Thomas.png  used on input line 21.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Alito.png Graphic file (type png)
+<use images/justice_images/Alito.png>
+Package pdftex.def Info: images/justice_images/Alito.png  used on input line 21.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Sotomayor.png Graphic file (type png)
+<use images/justice_images/Sotomayor.png>
+Package pdftex.def Info: images/justice_images/Sotomayor.png  used on input line 21.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Kagan.png Graphic file (type png)
+<use images/justice_images/Kagan.png>
+Package pdftex.def Info: images/justice_images/Kagan.png  used on input line 21.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Gorsuch.png Graphic file (type png)
+<use images/justice_images/Gorsuch.png>
+Package pdftex.def Info: images/justice_images/Gorsuch.png  used on input line 21.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Kavanaugh.png Graphic file (type png)
+<use images/justice_images/Kavanaugh.png>
+Package pdftex.def Info: images/justice_images/Kavanaugh.png  used on input line 21.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Barrett.png Graphic file (type png)
+<use images/justice_images/Barrett.png>
+Package pdftex.def Info: images/justice_images/Barrett.png  used on input line 21.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+File: images/justice_images/Jackson.png Graphic file (type png)
+<use images/justice_images/Jackson.png>
+Package pdftex.def Info: images/justice_images/Jackson.png  used on input line 21.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (37.63956pt too wide) in paragraph at lines 21--21
+ [][] 
+ []
+
 
 
 [15]
 
 [16]
 
-[17]) 
+[17]) (./sections/oral_arguments/attorney_words_time.tex
+Overfull \hbox (36.5036pt too wide) in paragraph at lines 3--3
+ [][] 
+ []
+
+
+Overfull \hbox (36.5036pt too wide) in paragraph at lines 4--4
+ [][] 
+ []
+
+
+Overfull \hbox (36.5036pt too wide) in paragraph at lines 5--5
+ [][] 
+ []
+
+
+
+[18
+
+]
+Overfull \hbox (36.5036pt too wide) in paragraph at lines 6--6
+ [][] 
+ []
+
+
+
+[19]
+Overfull \hbox (36.5036pt too wide) in paragraph at lines 7--7
+ [][] 
+ []
+
+
+
+[20]
+Overfull \hbox (36.5036pt too wide) in paragraph at lines 8--8
+ [][] 
+ []
+
+
+
+[21])
+
+[22] (./sections/oral_arguments/attorney_engagement.tex
+
+[23]
+File: images/justice_images/Roberts.png Graphic file (type png)
+<use images/justice_images/Roberts.png>
+Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 5.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 5--5
+ []|[]| 
+ []
+
+File: images/justice_images/Thomas.png Graphic file (type png)
+<use images/justice_images/Thomas.png>
+Package pdftex.def Info: images/justice_images/Thomas.png  used on input line 5.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 5--5
+ []|[]| 
+ []
+
+File: images/justice_images/Alito.png Graphic file (type png)
+<use images/justice_images/Alito.png>
+Package pdftex.def Info: images/justice_images/Alito.png  used on input line 5.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 5--5
+ []|[]| 
+ []
+
+File: images/justice_images/Sotomayor.png Graphic file (type png)
+<use images/justice_images/Sotomayor.png>
+Package pdftex.def Info: images/justice_images/Sotomayor.png  used on input line 5.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 5--5
+ []|[]| 
+ []
+
+File: images/justice_images/Kagan.png Graphic file (type png)
+<use images/justice_images/Kagan.png>
+Package pdftex.def Info: images/justice_images/Kagan.png  used on input line 5.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 5--5
+ []|[]| 
+ []
+
+File: images/justice_images/Gorsuch.png Graphic file (type png)
+<use images/justice_images/Gorsuch.png>
+Package pdftex.def Info: images/justice_images/Gorsuch.png  used on input line 5.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 5--5
+ []|[]| 
+ []
+
+File: images/justice_images/Kavanaugh.png Graphic file (type png)
+<use images/justice_images/Kavanaugh.png>
+Package pdftex.def Info: images/justice_images/Kavanaugh.png  used on input line 5.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 5--5
+ []|[]| 
+ []
+
+File: images/justice_images/Barrett.png Graphic file (type png)
+<use images/justice_images/Barrett.png>
+Package pdftex.def Info: images/justice_images/Barrett.png  used on input line 5.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 5--5
+ []|[]| 
+ []
+
+File: images/justice_images/Jackson.png Graphic file (type png)
+<use images/justice_images/Jackson.png>
+Package pdftex.def Info: images/justice_images/Jackson.png  used on input line 5.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 5--5
+ []|[] 
+ []
+
+
+Overfull \hbox (4.13356pt too wide) in paragraph at lines 5--5
+ []|\T1/ptm/b/n/10 Sotomayor| 
+ []
+
+
+Overfull \hbox (6.83348pt too wide) in paragraph at lines 5--5
+ []|\T1/ptm/b/n/10 Kavanaugh| 
+ []
+
+
+Overfull \hbox (38.21417pt too wide) in paragraph at lines 5--5
+ [][] 
+ []
+
+File: images/justice_images/Roberts.png Graphic file (type png)
+<use images/justice_images/Roberts.png>
+Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 6.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 6--6
+ []|[]| 
+ []
+
+File: images/justice_images/Thomas.png Graphic file (type png)
+<use images/justice_images/Thomas.png>
+Package pdftex.def Info: images/justice_images/Thomas.png  used on input line 6.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 6--6
+ []|[]| 
+ []
+
+File: images/justice_images/Alito.png Graphic file (type png)
+<use images/justice_images/Alito.png>
+Package pdftex.def Info: images/justice_images/Alito.png  used on input line 6.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 6--6
+ []|[]| 
+ []
+
+File: images/justice_images/Sotomayor.png Graphic file (type png)
+<use images/justice_images/Sotomayor.png>
+Package pdftex.def Info: images/justice_images/Sotomayor.png  used on input line 6.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 6--6
+ []|[]| 
+ []
+
+File: images/justice_images/Kagan.png Graphic file (type png)
+<use images/justice_images/Kagan.png>
+Package pdftex.def Info: images/justice_images/Kagan.png  used on input line 6.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 6--6
+ []|[]| 
+ []
+
+File: images/justice_images/Gorsuch.png Graphic file (type png)
+<use images/justice_images/Gorsuch.png>
+Package pdftex.def Info: images/justice_images/Gorsuch.png  used on input line 6.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 6--6
+ []|[]| 
+ []
+
+File: images/justice_images/Kavanaugh.png Graphic file (type png)
+<use images/justice_images/Kavanaugh.png>
+Package pdftex.def Info: images/justice_images/Kavanaugh.png  used on input line 6.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 6--6
+ []|[]| 
+ []
+
+File: images/justice_images/Barrett.png Graphic file (type png)
+<use images/justice_images/Barrett.png>
+Package pdftex.def Info: images/justice_images/Barrett.png  used on input line 6.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 6--6
+ []|[]| 
+ []
+
+File: images/justice_images/Jackson.png Graphic file (type png)
+<use images/justice_images/Jackson.png>
+Package pdftex.def Info: images/justice_images/Jackson.png  used on input line 6.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 6--6
+ []|[] 
+ []
+
+
+Overfull \hbox (4.13356pt too wide) in paragraph at lines 6--6
+ []|\T1/ptm/b/n/10 Sotomayor| 
+ []
+
+
+Overfull \hbox (6.83348pt too wide) in paragraph at lines 6--6
+ []|\T1/ptm/b/n/10 Kavanaugh| 
+ []
+
+
+Overfull \hbox (38.21417pt too wide) in paragraph at lines 6--6
+ [][] 
+ []
+
+File: images/justice_images/Roberts.png Graphic file (type png)
+<use images/justice_images/Roberts.png>
+Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 7.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 7--7
+ []|[]| 
+ []
+
+File: images/justice_images/Thomas.png Graphic file (type png)
+<use images/justice_images/Thomas.png>
+Package pdftex.def Info: images/justice_images/Thomas.png  used on input line 7.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 7--7
+ []|[]| 
+ []
+
+File: images/justice_images/Alito.png Graphic file (type png)
+<use images/justice_images/Alito.png>
+Package pdftex.def Info: images/justice_images/Alito.png  used on input line 7.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 7--7
+ []|[]| 
+ []
+
+File: images/justice_images/Sotomayor.png Graphic file (type png)
+<use images/justice_images/Sotomayor.png>
+Package pdftex.def Info: images/justice_images/Sotomayor.png  used on input line 7.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 7--7
+ []|[]| 
+ []
+
+File: images/justice_images/Kagan.png Graphic file (type png)
+<use images/justice_images/Kagan.png>
+Package pdftex.def Info: images/justice_images/Kagan.png  used on input line 7.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 7--7
+ []|[]| 
+ []
+
+File: images/justice_images/Gorsuch.png Graphic file (type png)
+<use images/justice_images/Gorsuch.png>
+Package pdftex.def Info: images/justice_images/Gorsuch.png  used on input line 7.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 7--7
+ []|[]| 
+ []
+
+File: images/justice_images/Kavanaugh.png Graphic file (type png)
+<use images/justice_images/Kavanaugh.png>
+Package pdftex.def Info: images/justice_images/Kavanaugh.png  used on input line 7.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 7--7
+ []|[]| 
+ []
+
+File: images/justice_images/Barrett.png Graphic file (type png)
+<use images/justice_images/Barrett.png>
+Package pdftex.def Info: images/justice_images/Barrett.png  used on input line 7.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 7--7
+ []|[]| 
+ []
+
+File: images/justice_images/Jackson.png Graphic file (type png)
+<use images/justice_images/Jackson.png>
+Package pdftex.def Info: images/justice_images/Jackson.png  used on input line 7.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 7--7
+ []|[] 
+ []
+
+
+Overfull \hbox (4.13356pt too wide) in paragraph at lines 7--7
+ []|\T1/ptm/b/n/10 Sotomayor| 
+ []
+
+
+Overfull \hbox (6.83348pt too wide) in paragraph at lines 7--7
+ []|\T1/ptm/b/n/10 Kavanaugh| 
+ []
+
+
+Overfull \hbox (38.21417pt too wide) in paragraph at lines 7--7
+ [][] 
+ []
+
+
+
+[24
+
+]
+File: images/justice_images/Roberts.png Graphic file (type png)
+<use images/justice_images/Roberts.png>
+Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 8.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 8--8
+ []|[]| 
+ []
+
+File: images/justice_images/Thomas.png Graphic file (type png)
+<use images/justice_images/Thomas.png>
+Package pdftex.def Info: images/justice_images/Thomas.png  used on input line 8.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 8--8
+ []|[]| 
+ []
+
+File: images/justice_images/Alito.png Graphic file (type png)
+<use images/justice_images/Alito.png>
+Package pdftex.def Info: images/justice_images/Alito.png  used on input line 8.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 8--8
+ []|[]| 
+ []
+
+File: images/justice_images/Sotomayor.png Graphic file (type png)
+<use images/justice_images/Sotomayor.png>
+Package pdftex.def Info: images/justice_images/Sotomayor.png  used on input line 8.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 8--8
+ []|[]| 
+ []
+
+File: images/justice_images/Kagan.png Graphic file (type png)
+<use images/justice_images/Kagan.png>
+Package pdftex.def Info: images/justice_images/Kagan.png  used on input line 8.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 8--8
+ []|[]| 
+ []
+
+File: images/justice_images/Gorsuch.png Graphic file (type png)
+<use images/justice_images/Gorsuch.png>
+Package pdftex.def Info: images/justice_images/Gorsuch.png  used on input line 8.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 8--8
+ []|[]| 
+ []
+
+File: images/justice_images/Kavanaugh.png Graphic file (type png)
+<use images/justice_images/Kavanaugh.png>
+Package pdftex.def Info: images/justice_images/Kavanaugh.png  used on input line 8.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 8--8
+ []|[]| 
+ []
+
+File: images/justice_images/Barrett.png Graphic file (type png)
+<use images/justice_images/Barrett.png>
+Package pdftex.def Info: images/justice_images/Barrett.png  used on input line 8.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 8--8
+ []|[]| 
+ []
+
+File: images/justice_images/Jackson.png Graphic file (type png)
+<use images/justice_images/Jackson.png>
+Package pdftex.def Info: images/justice_images/Jackson.png  used on input line 8.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 8--8
+ []|[] 
+ []
+
+
+Overfull \hbox (4.13356pt too wide) in paragraph at lines 8--8
+ []|\T1/ptm/b/n/10 Sotomayor| 
+ []
+
+
+Overfull \hbox (6.83348pt too wide) in paragraph at lines 8--8
+ []|\T1/ptm/b/n/10 Kavanaugh| 
+ []
+
+
+Overfull \hbox (38.21417pt too wide) in paragraph at lines 8--8
+ [][] 
+ []
+
+
+
+[25]
+File: images/justice_images/Roberts.png Graphic file (type png)
+<use images/justice_images/Roberts.png>
+Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 9.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 9--9
+ []|[]| 
+ []
+
+File: images/justice_images/Thomas.png Graphic file (type png)
+<use images/justice_images/Thomas.png>
+Package pdftex.def Info: images/justice_images/Thomas.png  used on input line 9.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 9--9
+ []|[]| 
+ []
+
+File: images/justice_images/Alito.png Graphic file (type png)
+<use images/justice_images/Alito.png>
+Package pdftex.def Info: images/justice_images/Alito.png  used on input line 9.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 9--9
+ []|[]| 
+ []
+
+File: images/justice_images/Sotomayor.png Graphic file (type png)
+<use images/justice_images/Sotomayor.png>
+Package pdftex.def Info: images/justice_images/Sotomayor.png  used on input line 9.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 9--9
+ []|[]| 
+ []
+
+File: images/justice_images/Kagan.png Graphic file (type png)
+<use images/justice_images/Kagan.png>
+Package pdftex.def Info: images/justice_images/Kagan.png  used on input line 9.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 9--9
+ []|[]| 
+ []
+
+File: images/justice_images/Gorsuch.png Graphic file (type png)
+<use images/justice_images/Gorsuch.png>
+Package pdftex.def Info: images/justice_images/Gorsuch.png  used on input line 9.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 9--9
+ []|[]| 
+ []
+
+File: images/justice_images/Kavanaugh.png Graphic file (type png)
+<use images/justice_images/Kavanaugh.png>
+Package pdftex.def Info: images/justice_images/Kavanaugh.png  used on input line 9.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 9--9
+ []|[]| 
+ []
+
+File: images/justice_images/Barrett.png Graphic file (type png)
+<use images/justice_images/Barrett.png>
+Package pdftex.def Info: images/justice_images/Barrett.png  used on input line 9.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 9--9
+ []|[]| 
+ []
+
+File: images/justice_images/Jackson.png Graphic file (type png)
+<use images/justice_images/Jackson.png>
+Package pdftex.def Info: images/justice_images/Jackson.png  used on input line 9.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 9--9
+ []|[] 
+ []
+
+
+Overfull \hbox (4.13356pt too wide) in paragraph at lines 9--9
+ []|\T1/ptm/b/n/10 Sotomayor| 
+ []
+
+
+Overfull \hbox (6.83348pt too wide) in paragraph at lines 9--9
+ []|\T1/ptm/b/n/10 Kavanaugh| 
+ []
+
+
+Overfull \hbox (38.21417pt too wide) in paragraph at lines 9--9
+ [][] 
+ []
+
+
+
+[26]
+File: images/justice_images/Roberts.png Graphic file (type png)
+<use images/justice_images/Roberts.png>
+Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 10.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 10--10
+ []|[]| 
+ []
+
+File: images/justice_images/Thomas.png Graphic file (type png)
+<use images/justice_images/Thomas.png>
+Package pdftex.def Info: images/justice_images/Thomas.png  used on input line 10.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 10--10
+ []|[]| 
+ []
+
+File: images/justice_images/Alito.png Graphic file (type png)
+<use images/justice_images/Alito.png>
+Package pdftex.def Info: images/justice_images/Alito.png  used on input line 10.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 10--10
+ []|[]| 
+ []
+
+File: images/justice_images/Sotomayor.png Graphic file (type png)
+<use images/justice_images/Sotomayor.png>
+Package pdftex.def Info: images/justice_images/Sotomayor.png  used on input line 10.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 10--10
+ []|[]| 
+ []
+
+File: images/justice_images/Kagan.png Graphic file (type png)
+<use images/justice_images/Kagan.png>
+Package pdftex.def Info: images/justice_images/Kagan.png  used on input line 10.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 10--10
+ []|[]| 
+ []
+
+File: images/justice_images/Gorsuch.png Graphic file (type png)
+<use images/justice_images/Gorsuch.png>
+Package pdftex.def Info: images/justice_images/Gorsuch.png  used on input line 10.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 10--10
+ []|[]| 
+ []
+
+File: images/justice_images/Kavanaugh.png Graphic file (type png)
+<use images/justice_images/Kavanaugh.png>
+Package pdftex.def Info: images/justice_images/Kavanaugh.png  used on input line 10.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 10--10
+ []|[]| 
+ []
+
+File: images/justice_images/Barrett.png Graphic file (type png)
+<use images/justice_images/Barrett.png>
+Package pdftex.def Info: images/justice_images/Barrett.png  used on input line 10.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 10--10
+ []|[]| 
+ []
+
+File: images/justice_images/Jackson.png Graphic file (type png)
+<use images/justice_images/Jackson.png>
+Package pdftex.def Info: images/justice_images/Jackson.png  used on input line 10.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 10--10
+ []|[] 
+ []
+
+
+Overfull \hbox (4.13356pt too wide) in paragraph at lines 10--10
+ []|\T1/ptm/b/n/10 Sotomayor| 
+ []
+
+
+Overfull \hbox (6.83348pt too wide) in paragraph at lines 10--10
+ []|\T1/ptm/b/n/10 Kavanaugh| 
+ []
+
+
+Overfull \hbox (38.21417pt too wide) in paragraph at lines 10--10
+ [][] 
+ []
+
+
+
+[27]
+
+[28]
+
+[29]) (./sections/decisions/introduction.tex
+<images/decisions_introduction.png, id=274, 803.0pt x 534.99875pt>
+File: images/decisions_introduction.png Graphic file (type png)
+<use images/decisions_introduction.png>
+Package pdftex.def Info: images/decisions_introduction.png  used on input line 6.
+(pdftex.def)             Requested size: 351.31378pt x 234.06953pt.
+) (./sections/decisions/decision_information.tex
+
+[30
+
+ <./images/decisions_introduction.png>]
+
+[31
+
+]
+
+[32]
+
+[33]) (./sections/decisions/decision_vote_matrix.tex
+File: images/justice_images/Roberts.png Graphic file (type png)
+<use images/justice_images/Roberts.png>
+Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 7.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (2.81395pt too wide) in paragraph at lines 7--7
+ []|[]| 
+ []
+
+File: images/justice_images/Thomas.png Graphic file (type png)
+<use images/justice_images/Thomas.png>
+Package pdftex.def Info: images/justice_images/Thomas.png  used on input line 7.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 7--7
+ []|[]| 
+ []
+
+File: images/justice_images/Alito.png Graphic file (type png)
+<use images/justice_images/Alito.png>
+Package pdftex.def Info: images/justice_images/Alito.png  used on input line 7.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 7--7
+ []|[]| 
+ []
+
+File: images/justice_images/Sotomayor.png Graphic file (type png)
+<use images/justice_images/Sotomayor.png>
+Package pdftex.def Info: images/justice_images/Sotomayor.png  used on input line 7.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 7--7
+ []|[]| 
+ []
+
+File: images/justice_images/Kagan.png Graphic file (type png)
+<use images/justice_images/Kagan.png>
+Package pdftex.def Info: images/justice_images/Kagan.png  used on input line 7.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 7--7
+ []|[]| 
+ []
+
+File: images/justice_images/Gorsuch.png Graphic file (type png)
+<use images/justice_images/Gorsuch.png>
+Package pdftex.def Info: images/justice_images/Gorsuch.png  used on input line 7.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 7--7
+ []|[]| 
+ []
+
+File: images/justice_images/Kavanaugh.png Graphic file (type png)
+<use images/justice_images/Kavanaugh.png>
+Package pdftex.def Info: images/justice_images/Kavanaugh.png  used on input line 7.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 7--7
+ []|[]| 
+ []
+
+File: images/justice_images/Barrett.png Graphic file (type png)
+<use images/justice_images/Barrett.png>
+Package pdftex.def Info: images/justice_images/Barrett.png  used on input line 7.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 7--7
+ []|[]| 
+ []
+
+File: images/justice_images/Jackson.png Graphic file (type png)
+<use images/justice_images/Jackson.png>
+Package pdftex.def Info: images/justice_images/Jackson.png  used on input line 7.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 7--7
+ []|[] 
+ []
+
+
+Overfull \hbox (4.13356pt too wide) in paragraph at lines 7--7
+ []|\T1/ptm/b/n/10 Sotomayor| 
+ []
+
+
+Overfull \hbox (6.83348pt too wide) in paragraph at lines 7--7
+ []|\T1/ptm/b/n/10 Kavanaugh| 
+ []
+
+
+Overfull \hbox (19.17531pt too wide) in paragraph at lines 7--7
+ [][] 
+ []
+
+
+
+[34
+
+
+]
+File: images/justice_images/Roberts.png Graphic file (type png)
+<use images/justice_images/Roberts.png>
+Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 11.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (2.81395pt too wide) in paragraph at lines 11--11
+ []|[]| 
+ []
+
+File: images/justice_images/Thomas.png Graphic file (type png)
+<use images/justice_images/Thomas.png>
+Package pdftex.def Info: images/justice_images/Thomas.png  used on input line 11.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 11--11
+ []|[]| 
+ []
+
+File: images/justice_images/Alito.png Graphic file (type png)
+<use images/justice_images/Alito.png>
+Package pdftex.def Info: images/justice_images/Alito.png  used on input line 11.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 11--11
+ []|[]| 
+ []
+
+File: images/justice_images/Sotomayor.png Graphic file (type png)
+<use images/justice_images/Sotomayor.png>
+Package pdftex.def Info: images/justice_images/Sotomayor.png  used on input line 11.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 11--11
+ []|[]| 
+ []
+
+File: images/justice_images/Kagan.png Graphic file (type png)
+<use images/justice_images/Kagan.png>
+Package pdftex.def Info: images/justice_images/Kagan.png  used on input line 11.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 11--11
+ []|[]| 
+ []
+
+File: images/justice_images/Gorsuch.png Graphic file (type png)
+<use images/justice_images/Gorsuch.png>
+Package pdftex.def Info: images/justice_images/Gorsuch.png  used on input line 11.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 11--11
+ []|[]| 
+ []
+
+File: images/justice_images/Kavanaugh.png Graphic file (type png)
+<use images/justice_images/Kavanaugh.png>
+Package pdftex.def Info: images/justice_images/Kavanaugh.png  used on input line 11.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 11--11
+ []|[]| 
+ []
+
+File: images/justice_images/Barrett.png Graphic file (type png)
+<use images/justice_images/Barrett.png>
+Package pdftex.def Info: images/justice_images/Barrett.png  used on input line 11.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 11--11
+ []|[]| 
+ []
+
+File: images/justice_images/Jackson.png Graphic file (type png)
+<use images/justice_images/Jackson.png>
+Package pdftex.def Info: images/justice_images/Jackson.png  used on input line 11.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 11--11
+ []|[] 
+ []
+
+
+Overfull \hbox (4.13356pt too wide) in paragraph at lines 11--11
+ []|\T1/ptm/b/n/10 Sotomayor| 
+ []
+
+
+Overfull \hbox (6.83348pt too wide) in paragraph at lines 11--11
+ []|\T1/ptm/b/n/10 Kavanaugh| 
+ []
+
+
+Overfull \hbox (19.17531pt too wide) in paragraph at lines 11--11
+ [][] 
+ []
+
+
+
+[35]
+File: images/justice_images/Roberts.png Graphic file (type png)
+<use images/justice_images/Roberts.png>
+Package pdftex.def Info: images/justice_images/Roberts.png  used on input line 15.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (2.81395pt too wide) in paragraph at lines 15--15
+ []|[]| 
+ []
+
+File: images/justice_images/Thomas.png Graphic file (type png)
+<use images/justice_images/Thomas.png>
+Package pdftex.def Info: images/justice_images/Thomas.png  used on input line 15.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 15--15
+ []|[]| 
+ []
+
+File: images/justice_images/Alito.png Graphic file (type png)
+<use images/justice_images/Alito.png>
+Package pdftex.def Info: images/justice_images/Alito.png  used on input line 15.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 15--15
+ []|[]| 
+ []
+
+File: images/justice_images/Sotomayor.png Graphic file (type png)
+<use images/justice_images/Sotomayor.png>
+Package pdftex.def Info: images/justice_images/Sotomayor.png  used on input line 15.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 15--15
+ []|[]| 
+ []
+
+File: images/justice_images/Kagan.png Graphic file (type png)
+<use images/justice_images/Kagan.png>
+Package pdftex.def Info: images/justice_images/Kagan.png  used on input line 15.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 15--15
+ []|[]| 
+ []
+
+File: images/justice_images/Gorsuch.png Graphic file (type png)
+<use images/justice_images/Gorsuch.png>
+Package pdftex.def Info: images/justice_images/Gorsuch.png  used on input line 15.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 15--15
+ []|[]| 
+ []
+
+File: images/justice_images/Kavanaugh.png Graphic file (type png)
+<use images/justice_images/Kavanaugh.png>
+Package pdftex.def Info: images/justice_images/Kavanaugh.png  used on input line 15.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 15--15
+ []|[]| 
+ []
+
+File: images/justice_images/Barrett.png Graphic file (type png)
+<use images/justice_images/Barrett.png>
+Package pdftex.def Info: images/justice_images/Barrett.png  used on input line 15.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 15--15
+ []|[]| 
+ []
+
+File: images/justice_images/Jackson.png Graphic file (type png)
+<use images/justice_images/Jackson.png>
+Package pdftex.def Info: images/justice_images/Jackson.png  used on input line 15.
+(pdftex.def)             Requested size: 49.79231pt x 33.19276pt.
+
+Overfull \hbox (7.51608pt too wide) in paragraph at lines 15--15
+ []|[] 
+ []
+
+
+Overfull \hbox (4.13356pt too wide) in paragraph at lines 15--15
+ []|\T1/ptm/b/n/10 Sotomayor| 
+ []
+
+
+Overfull \hbox (6.83348pt too wide) in paragraph at lines 15--15
+ []|\T1/ptm/b/n/10 Kavanaugh| 
+ []
+
+
+Overfull \hbox (19.17531pt too wide) in paragraph at lines 15--15
+ [][] 
+ []
+
+
+
+[36]) (./sections/decisions/coalitions.tex
+<../decisions/figures/coalitions_current_term.png, id=313, 578.16pt x 578.16pt>
+File: ../decisions/figures/coalitions_current_term.png Graphic file (type png)
+<use ../decisions/figures/coalitions_current_term.png>
+Package pdftex.def Info: ../decisions/figures/coalitions_current_term.png  used on input line 9.
+(pdftex.def)             Requested size: 422.77664pt x 422.77669pt.
+
+
+[37
+
+ <../decisions/figures/coalitions_current_term.png>]
+<../decisions/figures/coalitions_longitudinal_figure.png, id=319, 578.16pt x 722.7pt>
+File: ../decisions/figures/coalitions_longitudinal_figure.png Graphic file (type png)
+<use ../decisions/figures/coalitions_longitudinal_figure.png>
+Package pdftex.def Info: ../decisions/figures/coalitions_longitudinal_figure.png  used on input line 17.
+(pdftex.def)             Requested size: 422.77664pt x 528.47087pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) (./sections/decisions/unanimity.tex
+<../decisions/figures/unanimity_figure.png, id=320, 578.16pt x 722.7pt>
+File: ../decisions/figures/unanimity_figure.png Graphic file (type png)
+<use ../decisions/figures/unanimity_figure.png>
+Package pdftex.def Info: ../decisions/figures/unanimity_figure.png  used on input line 6.
+(pdftex.def)             Requested size: 352.31625pt x 440.39423pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) (./sections/decisions/circuit_scorecard.tex
+
+[38 <../decisions/figures/coalitions_longitudinal_figure.png>]
+
+[39 <../decisions/figures/unanimity_figure.png>]
+
+[40
+
+]
+
+[41]) (./sections/decisions/opinion_authorship.tex
+Overfull \hbox (24.5036pt too wide) in paragraph at lines 7--7
+ [][] 
+ []
+
+
+Overfull \hbox (24.5036pt too wide) in paragraph at lines 11--11
+ [][] 
+ []
+
+
+
+[42
+
+]
+Overfull \hbox (47.99998pt too wide) in paragraph at lines 33--33
+ [][] 
+ []
+
+)
+
+[43]
+
+[44] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 (./compilation_main_StatReview_OT24.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-04-14>
  ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `compilation_main_StatReview_OT24.out' has not changed.
-(rerunfilecheck)             Checksum: 8FAF668914FFD807F38CB6AA64292526;571.
+(rerunfilecheck)             Checksum: B693F312A0D3BCE8F0796DDE5063DB1E;2500.
  ) 
 Here is how much of TeX's memory you used:
- 26915 strings out of 471546
- 507115 string characters out of 5517256
- 886811 words of memory out of 5000000
- 52941 multiletter control sequences out of 15000+600000
- 678831 words of font info for 95 fonts, out of 8000000 for 9000
+ 27230 strings out of 471546
+ 517737 string characters out of 5517256
+ 989568 words of memory out of 5000000
+ 53140 multiletter control sequences out of 15000+600000
+ 681679 words of font info for 97 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 89i,13n,94p,780b,581s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 89i,15n,94p,780b,705s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/jaketruscott/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt9.pfb><c:/Users/jaketruscott/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Users/jaketruscott/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Users/jaketruscott/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on compilation_main_StatReview_OT24.pdf (18 pages, 3981299 bytes).
+Output written on compilation_main_StatReview_OT24.pdf (45 pages, 5167339 bytes).
 PDF statistics:
- 200 PDF objects out of 1000 (max. 8388607)
- 146 compressed objects within 2 object streams
- 39 named destinations out of 1000 (max. 500000)
- 114 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 406 PDF objects out of 1000 (max. 8388607)
+ 319 compressed objects within 4 object streams
+ 103 named destinations out of 1000 (max. 500000)
+ 206 words of extra memory for PDF output out of 10000 (max. 10000000)
 

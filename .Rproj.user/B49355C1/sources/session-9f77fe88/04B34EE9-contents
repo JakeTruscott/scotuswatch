@@ -1,0 +1,26 @@
+\begin{landscape}  % Rotate the entire page to landscape
+
+\subsection{Justice Participation (Words \& Time Combined)}
+
+
+\begin{figure}[!htb]
+\centering  % Center the figure horizontally on the page
+\begin{minipage}{0.6\textwidth}  % Increase the width to 60% of the page
+    \centering
+    \caption{Total Number of Words Uttered by Each Justice During Oral Arguments (October Term 2024)}
+    \vspace{2mm}
+    \includegraphics[width=1.1\textwidth]{../oral_arguments/analyses/Combined/justice_words_combined.png}
+    \small{Compiled using \texttt{scotustext (R)} and data from \textcolor{blue}{\href{https://www.oyez.org/}{Oyez.com}}}
+\end{minipage}
+\hspace{10mm}  % Horizontal space between figures
+\begin{minipage}{0.6\textwidth}  % Increase the width to 60% of the page
+    \centering
+    \caption{Total Elapsed Time Speaking by Each Justice During Oral Arguments (October Term 2024)}
+    \vspace{2mm}
+    \includegraphics[width=1.1\textwidth]{../oral_arguments/analyses/Combined/justice_time_combined.png}
+
+    \small{Compiled using \texttt{scotustext (R)} and data from \textcolor{blue}{\href{https://www.oyez.org/}{Oyez.com}}}
+\end{minipage}
+\end{figure}
+
+\end{landscape}  % End of the landscape page

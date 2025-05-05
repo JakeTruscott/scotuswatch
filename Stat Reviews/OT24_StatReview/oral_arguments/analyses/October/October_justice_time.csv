@@ -1,10 +1,10 @@
-"case_name","docket","ROBERTS","THOMAS","ALITO","SOTOMAYOR","KAGAN","GORSUCH","KAVANAUGH","BARRETT","JACKSON"
-"Glossip v. Oklahoma","22-7466",2.24,4.17,4.85,11.17,8.27,0,1.1,1.88,10.29
-"Williams v. Washington","23-191",2.57,0.8,3.96,6.47,5.36,4.05,3.84,3.23,6.5
-"Medical Marijuana Inc. v. Horn","23-365",2.26,0.61,2.71,3.86,4.4,2.67,4.82,1.18,6.09
-"Bouarafa v. Mayorkas","23-583",1.74,0.57,1.54,2.01,3.12,3.39,0.11,0.4,5.56
-"Lackey v. Stinnie","23-621",4.55,0.93,2.24,5.64,5.64,5.74,1.4,1.68,7.85
-"Royal Canin v. Wullschleger","23-677",2.17,1.29,2.96,3.14,5.86,2.05,3.52,2.72,6.27
-"Bufkin v. McDonough","23-713",2.31,0.3,4.33,5.19,4.05,6.59,1.5,0.51,7.92
-"San Francisco v. EPA","23-753",3.43,1.76,2.8,10.42,9.08,4.72,7.46,0.67,8.8
-"Garland v. Vanderstok","23-852",1.29,1.23,3.93,5.18,1.93,4.46,1.4,2.12,5.43
+case_name,docket,ROBERTS,THOMAS,ALITO,SOTOMAYOR,KAGAN,GORSUCH,KAVANAUGH,BARRETT,JACKSON
+Glossip v. Oklahoma,22-7466,2.24,4.17,4.85,11.17,8.27,0,1.1,1.88,10.29
+Williams v. Washington,23-191,2.57,0.8,3.96,6.47,5.36,4.05,3.84,3.23,6.5
+Medical Marijuana Inc. v. Horn,23-365,2.26,0.61,2.71,3.86,4.4,2.67,4.82,1.18,6.09
+Bouarafa v. Mayorkas,23-583,1.74,0.57,1.54,2.01,3.12,3.39,0.11,0.4,5.56
+Lackey v. Stinnie,23-621,4.55,0.93,2.24,5.64,5.64,5.74,1.4,1.68,7.85
+Royal Canin v. Wullschleger,23-677,2.17,1.29,2.96,3.14,5.86,2.05,3.52,2.72,6.27
+Bufkin v. McDonough,23-713,2.31,0.3,4.33,5.19,4.05,6.59,1.5,0.51,7.92
+San Francisco v. EPA,23-753,3.43,1.76,2.8,10.42,9.08,4.72,7.46,0.67,8.8
+Garland v. Vanderstok,23-852,1.29,1.23,3.93,5.18,1.93,4.46,1.4,2.12,5.43

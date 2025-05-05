@@ -1,29 +1,29 @@
-"Case","Docket","Attorney","ROBERTS","THOMAS","ALITO","SOTOMAYOR","KAGAN","GORSUCH","KAVANAUGH","BARRETT","JACKSON"
-"Hewitt v. United States","23-1002","Masha G. Hansford",204,34,527,526,501,184,558,0,0
-"Hewitt v. United States","23-1002","Michael B. Kimberly",1113,215,372,52,260,0,507,207,270
-"Hewitt v. United States","23-1002","Michael H. McGinley",375,85,106,543,380,520,301,0,1246
-"Cunningham v. Cornell University","23-1007","Nicole A. Saharsky",334,204,1349,298,1201,0,368,0,984
-"Cunningham v. Cornell University","23-1007","Xiao Wang",1298,141,416,420,0,25,643,79,396
-"Cunningham v. Cornell University","23-1007","Yaira Dubin",386,194,331,530,771,256,319,0,447
-"Thompson v. United States.","23-1095","Caroline A. Flynn",744,186,343,324,328,435,56,187,248
-"Thompson v. United States.","23-1095","Chris C. Gair",806,288,482,167,465,278,184,306,498
-"Free Speech Coalition v. Paxton","23-1122","Aaron L. Nielson",264,196,68,391,622,196,264,458,493
-"Free Speech Coalition v. Paxton","23-1122","Brian H. Fletcher",532,512,622,275,1100,636,337,228,358
-"Free Speech Coalition v. Paxton","23-1122","Derek L. Shaffer",1462,278,1148,342,301,726,764,539,221
-"FDA v. R.J. Reynolds Vapor Co.","23-1187","Ryan J. Watson",320,181,0,495,481,389,561,286,914
-"FDA v. R.J. Reynolds Vapor Co.","23-1187","Vivek Suri",1145,340,322,543,569,282,645,230,328
-"McLaughlin Chiropractic v. McKesson Corp","23-1226","Joseph R. Palmore",318,236,598,138,301,591,399,0,465
-"McLaughlin Chiropractic v. McKesson Corp","23-1226","Matthew Guarnieri",299,105,618,0,381,572,0,0,131
-"McLaughlin Chiropractic v. McKesson Corp","23-1226","Matthew W.H. Wessler",1088,85,0,893,538,335,0,0,905
-"Barnes v. Felix","23-1239","Charles L. McCloud",528,294,0,457,423,350,0,71,410
-"Barnes v. Felix","23-1239","Lanora C. Pettit",191,96,0,0,0,389,0,0,413
-"Barnes v. Felix","23-1239","Nathaniel A.G. Zelinsky",578,135,397,452,0,0,907,307,140
-"Barnes v. Felix","23-1239","Zoe A. Jacoby",709,70,350,144,157,167,437,548,164
-"Waetzig v. Halliburton Energy Services","23-971","Matthew D. McGill",392,157,0,133,454,803,0,0,363
-"Waetzig v. Halliburton Energy Services","23-971","Vincent Levy",1233,201,0,316,197,273,0,0,558
-"Stanley v. City of Sanford","23-997","Deepak Gupta",1064,324,821,617,0,0,0,0,666
-"Stanley v. City of Sanford","23-997","Frederick Liu",253,355,602,156,296,0,52,0,84
-"Stanley v. City of Sanford","23-997","Jessica C. Conner",579,205,170,258,546,0,159,0,1243
-"TikTok, Inc. v. Garland","24-656","Elizabeth B. Prelogar",656,148,1745,677,591,906,772,574,273
-"TikTok, Inc. v. Garland","24-656","Jeffrey L. Fisher",722,313,320,338,314,490,123,952,863
-"TikTok, Inc. v. Garland","24-656","Noel J. Francisco",1891,281,752,498,516,580,825,963,669
+Case,Docket,Attorney,ROBERTS,THOMAS,ALITO,SOTOMAYOR,KAGAN,GORSUCH,KAVANAUGH,BARRETT,JACKSON
+Hewitt v. United States,23-1002,Masha G. Hansford,204,34,527,526,501,184,558,0,0
+Hewitt v. United States,23-1002,Michael B. Kimberly,1113,215,372,52,260,0,507,207,270
+Hewitt v. United States,23-1002,Michael H. McGinley,375,85,106,543,380,520,301,0,1246
+Cunningham v. Cornell University,23-1007,Nicole A. Saharsky,334,204,1349,298,1201,0,368,0,984
+Cunningham v. Cornell University,23-1007,Xiao Wang,1298,141,416,420,0,25,643,79,396
+Cunningham v. Cornell University,23-1007,Yaira Dubin,386,194,331,530,771,256,319,0,447
+Thompson v. United States.,23-1095,Caroline A. Flynn,744,186,343,324,328,435,56,187,248
+Thompson v. United States.,23-1095,Chris C. Gair,806,288,482,167,465,278,184,306,498
+Free Speech Coalition v. Paxton,23-1122,Aaron L. Nielson,264,196,68,391,622,196,264,458,493
+Free Speech Coalition v. Paxton,23-1122,Brian H. Fletcher,532,512,622,275,1100,636,337,228,358
+Free Speech Coalition v. Paxton,23-1122,Derek L. Shaffer,1462,278,1148,342,301,726,764,539,221
+FDA v. R.J. Reynolds Vapor Co.,23-1187,Ryan J. Watson,320,181,0,495,481,389,561,286,914
+FDA v. R.J. Reynolds Vapor Co.,23-1187,Vivek Suri,1145,340,322,543,569,282,645,230,328
+McLaughlin Chiropractic v. McKesson Corp,23-1226,Joseph R. Palmore,318,236,598,138,301,591,399,0,465
+McLaughlin Chiropractic v. McKesson Corp,23-1226,Matthew Guarnieri,299,105,618,0,381,572,0,0,131
+McLaughlin Chiropractic v. McKesson Corp,23-1226,Matthew W.H. Wessler,1088,85,0,893,538,335,0,0,905
+Barnes v. Felix,23-1239,Charles L. McCloud,528,294,0,457,423,350,0,71,410
+Barnes v. Felix,23-1239,Lanora C. Pettit,191,96,0,0,0,389,0,0,413
+Barnes v. Felix,23-1239,Nathaniel A.G. Zelinsky,578,135,397,452,0,0,907,307,140
+Barnes v. Felix,23-1239,Zoe A. Jacoby,709,70,350,144,157,167,437,548,164
+Waetzig v. Halliburton Energy Services,23-971,Matthew D. McGill,392,157,0,133,454,803,0,0,363
+Waetzig v. Halliburton Energy Services,23-971,Vincent Levy,1233,201,0,316,197,273,0,0,558
+Stanley v. City of Sanford,23-997,Deepak Gupta,1064,324,821,617,0,0,0,0,666
+Stanley v. City of Sanford,23-997,Frederick Liu,253,355,602,156,296,0,52,0,84
+Stanley v. City of Sanford,23-997,Jessica C. Conner,579,205,170,258,546,0,159,0,1243
+TikTok, Inc. v. Garland,24-656,Elizabeth B. Prelogar,656,148,1745,677,591,906,772,574,273
+TikTok, Inc. v. Garland,24-656,Jeffrey L. Fisher,722,313,320,338,314,490,123,952,863
+TikTok, Inc. v. Garland,24-656,Noel J. Francisco,1891,281,752,498,516,580,825,963,669

@@ -1,19 +1,19 @@
-"Case","Attorney","Docket","total_words"
-"E.M.D. Sales, Inc v. Carrera","Aimee W. Brown","23-217",1855
-"Delligatti v. United States.","Allon Kedem","23-825",3894
-"Wisconsin Bell  v. United States, ex rel. Heath","Allyson N. Ho","23-1127",4070
-"Velazquez v. Garland","Anthony A. Yang","23-929",3875
-"NVIDIA Corp.  v. E. Ohman J:or Fonder AB","Colleen E. Roh Sinzdak","23-970",1294
-"NVIDIA Corp.  v. E. Ohman J:or Fonder AB","Deepak Gupta","23-970",3688
-"Advocate Christ Medical Center v. Becerra","Ephraim McDowell","23-715",3100
-"Delligatti v. United States.","Eric J. Feigin","23-825",3271
-"Velazquez v. Garland","Gerard J. Cedrone","23-929",3487
-"Facebook v. Amalgamated Bank","Kannon K. Shanmugam","23-980",5614
-"Facebook v. Amalgamated Bank","Kevin J. Barber","23-980",2544
-"Facebook v. Amalgamated Bank","Kevin K. Russell","23-980",2753
-"E.M.D. Sales, Inc v. Carrera","Lauren E. Bateman","23-217",1630
-"E.M.D. Sales, Inc v. Carrera","Lisa S. Blatt","23-217",2388
-"Advocate Christ Medical Center v. Becerra","Melissa Arbus Sherry","23-715",5267
-"NVIDIA Corp.  v. E. Ohman J:or Fonder AB","Neal Kumar Katyal","23-970",5217
-"Wisconsin Bell  v. United States, ex rel. Heath","Tejinder Singh","23-1127",4357
-"Wisconsin Bell  v. United States, ex rel. Heath","Vivek Suri","23-1127",1478
+Case,Attorney,Docket,total_words
+Wisconsin Bell  v. United States, ex rel. Heath,Allyson N. Ho,23-1127,4070
+Wisconsin Bell  v. United States, ex rel. Heath,Tejinder Singh,23-1127,4357
+Wisconsin Bell  v. United States, ex rel. Heath,Vivek Suri,23-1127,1478
+E.M.D. Sales, Inc v. Carrera,Aimee W. Brown,23-217,1855
+E.M.D. Sales, Inc v. Carrera,Lauren E. Bateman,23-217,1630
+E.M.D. Sales, Inc v. Carrera,Lisa S. Blatt,23-217,2388
+Advocate Christ Medical Center v. Becerra,Ephraim McDowell,23-715,3100
+Advocate Christ Medical Center v. Becerra,Melissa Arbus Sherry,23-715,5267
+Delligatti v. United States.,Allon Kedem,23-825,3894
+Delligatti v. United States.,Eric J. Feigin,23-825,3271
+Velazquez v. Garland,Anthony A. Yang,23-929,3875
+Velazquez v. Garland,Gerard J. Cedrone,23-929,3487
+NVIDIA Corp.  v. E. Ohman J:or Fonder AB,Colleen E. Roh Sinzdak,23-970,1294
+NVIDIA Corp.  v. E. Ohman J:or Fonder AB,Deepak Gupta,23-970,3688
+NVIDIA Corp.  v. E. Ohman J:or Fonder AB,Neal Kumar Katyal,23-970,5217
+Facebook v. Amalgamated Bank,Kannon K. Shanmugam,23-980,5614
+Facebook v. Amalgamated Bank,Kevin J. Barber,23-980,2544
+Facebook v. Amalgamated Bank,Kevin K. Russell,23-980,2753

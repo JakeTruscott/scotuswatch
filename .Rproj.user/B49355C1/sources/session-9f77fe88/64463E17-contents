@@ -1,0 +1,112 @@
+
+
+{
+  
+  agreement_binary <- decisions_original %>%
+    select(all_of(c('ROBERTS', 'THOMAS', 'ALITO', 'SOTOMAYOR', 'KAGAN', 'GORSUCH', 'KAVANAUGH', 'BARRETT', 'JACKSON'))) %>%
+    mutate(across(everything(), ~ifelse(.x > 0, 1, 0)))
+  
+  justice_pairs <- expand.grid(names(agreement_binary), names(agreement_binary), stringsAsFactors = FALSE)
+  
+  agreement_df <- justice_pairs %>%
+    rename(j1 = Var1, j2 = Var2) %>%
+    mutate(agreement = map2_dbl(j1, j2, ~{
+      v1 <- agreement_binary[[.x]]
+      v2 <- agreement_binary[[.y]]
+      valid <- !is.na(v1) & !is.na(v2)
+      mean(v1[valid] == v2[valid], na.rm = TRUE)
+    })) %>%
+    mutate(agreement = round(agreement, 2))
+  
+  agreement_matrix <- agreement_df %>%
+    pivot_wider(names_from = j2, values_from = agreement) %>%
+    column_to_rownames("j1")  # Compute agreement for each pair
+  
+  agreement_matrix[upper.tri(agreement_matrix, diag = TRUE)] <- ' '
+  agreement_matrix <- agreement_matrix[c(-1),]
+  
+  agreement_long <- agreement_matrix %>%
+    as.data.frame() %>%
+    rownames_to_column("Justice1") %>%
+    pivot_longer(cols = -Justice1, names_to = "Justice2", values_to = "Agreement") %>%
+    mutate(Agreement = as.numeric(Agreement))
+  
+  
+  agreement_long <- agreement_long %>%
+    filter(!Justice == 'JACKSON' & !Justice2 == 'JACKSON') %>%
+    mutate(Justice1 = factor(Justice1, levels = c('ROBERTS', 'THOMAS', 'ALITO', 'SOTOMAYOR', 'KAGAN', 'GORSUCH', 'KAVANAUGH', 'BARRETT', 'JACKSON')), 
+           Justice2 = factor(Justice2, levels = c('ROBERTS', 'THOMAS', 'ALITO', 'SOTOMAYOR', 'KAGAN', 'GORSUCH', 'KAVANAUGH', 'BARRETT', 'JACKSON'))) %>%
+    mutate(Justice1_label = justice_image_labels[Justice1], 
+           Justice2_label = justice_image_labels[Justice2]) 
+    
+  
+} # Construct Agreement Matrix (Regular & Colored)
+
+{
+  
+  Justice2_labels <- agreement_long %>%
+    select(Justice2) %>%
+    rename(justice = Justice2) %>%
+    mutate(image_labels = justice_image_labels[match(justice, names(justice_image_labels))],
+           image_labels = gsub(' style\\=.*', '', image_labels),
+           image_labels = paste0(image_labels, " width='100' /><br><strong>", justice, "</strong>")) %>%
+    unique() %>%
+    mutate(image_labels = gsub('75px', '50px', image_labels)) %>%
+    pull(image_labels)
+  
+  Justice1_labels <- agreement_long %>%
+    select(Justice1) %>%
+    rename(justice = Justice1) %>%
+    mutate(image_labels = justice_image_labels[match(justice, names(justice_image_labels))],
+           image_labels = gsub(' style\\=.*', '', image_labels),
+           image_labels = paste0(image_labels, " width='100' /><br><strong>", justice, "</strong>")) %>%
+    unique() %>%
+    mutate(image_labels = gsub('75px', '50px', image_labels)) %>%
+    pull(image_labels)
+  
+} # Justice Image Labels
+
+{
+  
+  suppressWarnings(justice_agreement_matrix_figure <- ggplot(data = agreement_long, aes(x = Justice1, y = Justice2)) +
+                     geom_tile(color = "white", size = 0.5, aes(fill = Agreement)) +
+                     geom_label(aes(label = Agreement), fill = 'white', size = 5) + 
+                     scale_fill_gradient(low = "coral4", high = "deepskyblue3", na.value = "white") +  # Adjust colors
+                     theme_minimal() +
+                     scale_x_discrete(labels = Justice1_labels) +  # Use the labels with images for the x-axis
+                     scale_y_discrete(labels = Justice2_labels) +  # Use the labels with images for the y-axis
+                     labs(x = '', 
+                          y = '', 
+                          fill = '') + 
+                     theme(
+                       axis.text.x = ggtext::element_markdown(),  # This allows HTML rendering (for image tags) on the x-axis
+                       axis.text.y = ggtext::element_markdown(hjust = 0.5),  # Center the y-axis text under the images
+                       panel.grid = element_blank(),
+                       axis.ticks.x = element_blank(),
+                       axis.ticks.y = element_blank(),
+                       legend.background = element_rect(linewidth = 1, fill = "NA", colour = "black"),
+                       legend.box.background = element_rect(fill = NA, colour = "black"),
+                       legend.position = "none",
+                       legend.title = element_blank(),
+                       legend.title.align = 0.5,
+                       legend.text = element_text(size = 12),
+                       plot.caption = element_text(hjust = 0.5, size = 12),
+                       plot.title = element_text(size = 18, face = "bold", hjust = 0.5),
+                       plot.subtitle = element_text(size = 15, hjust = 0.5)
+                     ))
+  
+} # Render Figure
+
+{
+  
+  temp_output_path <- file.path(output_path, 'figures', 'justice_agreement_matrix.png')
+  suppressWarnings(ggsave(filename = temp_output_path, 
+                          justice_agreement_matrix_figure, 
+                          width = 8, 
+                          height = 10, 
+                          units = 'in', 
+                          bg = 'white'))
+  
+} # Export
+
+agreement_matrix

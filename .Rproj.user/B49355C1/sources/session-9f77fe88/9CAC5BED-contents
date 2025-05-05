@@ -98,8 +98,30 @@
 }
 
 
-
-
-
+\newcommand{\attorneyWordsTime}[2]{ % #1 = CSV file path, #2 = Caption
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5} % Add space between data rows
+    \caption{#2}
+    \vspace{2mm}
+    \csvreader[
+        tabular= {
+            >{\centering\arraybackslash}p{0.25\textwidth}  % Case
+            >{\centering\arraybackslash}p{0.15\textwidth}  % Docket
+            >{\centering\arraybackslash}p{0.25\textwidth}  % Attorney
+            >{\centering\arraybackslash}p{0.15\textwidth}  % Time
+            >{\centering\arraybackslash}p{0.15\textwidth}  % Words
+        },
+        table head = {
+            \toprule
+            \textbf{Case} & \textbf{Docket} & \textbf{Attorney} & \textbf{Time} & \textbf{Words} \\
+            \cmidrule{1-5}
+        },
+        table foot = \bottomrule \\
+    ]{#1}{}{
+        \csvcoli & \csvcolii & \csvcoliii & \csvcoliv & \csvcolv
+    }
+\end{table}
+}
 
 

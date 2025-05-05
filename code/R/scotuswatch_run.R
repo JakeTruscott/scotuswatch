@@ -79,19 +79,77 @@ oa_analysis(transcript = combined_transcript,
             master_file = cases_master,
             output_path = 'Stat Reviews/OT24_StatReview/oral_arguments/analyses')
 
-transcript = combined_transcript
-check_folder_status = T
-master_file = cases_master
-output_path = 'Stat Reviews/OT24_StatReview/oral_arguments/analyses'
+
+
+################################################################################
+# Attorney Information Template & Analysis
+################################################################################
+
+combined_transcript <- get(load('data/term_level_combined_transcripts/scotus_OT24.rdata'))
+
+attorney_information_template(transcript = combined_transcript,
+                              master_file = cases_master,
+                              output_path = 'Stat Reviews/OT24_StatReview/oral_arguments/attorney_information')
+
+
 
 ################################################################################
 # Decisions Tables
 ################################################################################
+source('code/R/scotuswatch_source.R') # Load Source & Functions (Load Packages Too)
 
 
-decisions_table(input_path = "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions/data/OT_24_Decisions.csv",
-                output_path = "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions/tables",
+decisions_analysis(input_path = "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions/data/OT_24_Decisions.csv",
+                output_path = "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions",
                 output_type = 'html',
-                cases_break = 15,
-                remove_existing_files = T)
+                cases_break = 12,
+                master_file = cases_master,
+                remove_existing_files = T,
+                current_term = '2024')
+
+
+################################################################################
+# Recover Justia Opinions
+################################################################################
+
+justia_opinion_recovery(opinions_path = "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions",
+                        current_term = 2024,
+                        master_file = cases_master)
+
+
+################################################################################
+# Docket Search
+################################################################################
+
+petitions <- c(1:1129, 5000:7125)
+applications <- c(1:1050)
+motions <- c(1:188)
+dockets <- c(paste0('24-', petitions), paste0('24a', applications), paste0('24m', motions))
+
+
+for (docket in 1:length(dockets)){
+
+  temp_docket <- dockets[docket]
+  temp_output_path <- 'Stat Reviews/OT24_StatReview/dockets/processed_dockets'
+  completed_dockets <- gsub('\\.rdata', '', list.files(temp_output_path))
+
+  if (temp_docket %in% completed_dockets){
+    next
+  } else {
+    docket_search(docket_id = temp_docket,
+                  output_path = temp_output_path) # Search for Docket
+  } # If Not Already Collected -- Grab it
+
+  if (docket %% 25 == 0){
+    message('Completed ', docket, ' of ', length(dockets))
+  }
+
+  Sys.sleep(5)
+
+
+} # Collect Dockets
+
+
+
+
 

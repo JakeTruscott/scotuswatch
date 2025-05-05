@@ -1,5 +1,14 @@
 \contentsline {section}{Preface}{2}{section*.1}%
 \contentsline {section}{Data Availability \& Disclosure}{3}{section*.2}%
 \contentsline {section}{Oral Arguments}{4}{section*.3}%
-\contentsline {subsection}{Justice Words \& Time}{5}{subsection*.5}%
+\contentsline {subsection}{Justice Participation (Words \& Time Combined)}{5}{subsection*.5}%
+\contentsline {subsection}{Justice Participation (Words \& Time by Sitting)}{6}{subsection*.7}%
+\contentsline {subsection}{Attorney Participation (Words \& Time by Sitting)}{18}{subsection*.20}%
+\contentsline {subsection}{Attorney Engagement (By Sitting)}{24}{subsection*.27}%
+\contentsline {section}{Decisions}{30}{section*.34}%
+\contentsline {subsection}{Decision Information}{31}{subsection*.36}%
+\contentsline {subsection}{Decision Vote Matrices}{34}{subsection*.40}%
+\contentsline {subsection}{Coalitions and Unanimity}{37}{subsection*.44}%
+\contentsline {subsection}{Circuit Scorecard}{40}{subsection*.48}%
+\contentsline {subsection}{Opinion Authorship}{42}{subsection*.51}%
 \contentsfinish 

@@ -1,28 +1,28 @@
-"Case","Attorney","Docket","total_words"
-"Rivers v. Guerrero","Aaron L. Nielson","23-1345",1665
-"Catholic Charities Bureau v. WI Labor and Industry Review","Colin T. Roth","24-154",4179
-"Catholic Charities Bureau v. WI Labor and Industry Review","Curtis E. Gannon","24-154",2504
-"Lousiana v. Callais","Edward D. Greim","24-109",2502
-"Fuld v. PLO","Edwin S. Kneedler","24-20",4083
-"Riley v. Bondi","Ephraim McDowell","23-1270",2280
-"Catholic Charities Bureau v. WI Labor and Industry Review","Eric C. Rassbach","24-154",4190
-"Lousiana v. Callais","J. Benjamin Aguinaga","24-109",3008
-"Medina v. Planned Parenthood South Atlantic","John J. Bursch","23-1275",4306
-"Riley v. Bondi","Keith Bradley","23-1270",1777
-"Fuld v. PLO","Kent A. Yalowitz","24-20",2680
-"Medina v. Planned Parenthood South Atlantic","Kyle D. Hawkins","23-1275",1750
-"Oklahoma v. EPA","Malcolm L. Stewart","23-1067",1737
-"EPA v. Calumet Shreveport Refining","Malcolm L. Stewart","23-1229",4565
-"Rivers v. Guerrero","Matthew Guarnieri","23-1345",1029
-"EPA v. Calumet Shreveport Refining","Michael R. Huston","23-1229",3425
-"Oklahoma v. EPA","Misha Tseytlin","23-1067",1859
-"Fuld v. PLO","Mitchell R. Berger","24-20",3937
-"Oklahoma v. EPA","Mithun Mansinghani","23-1067",2394
-"Medina v. Planned Parenthood South Atlantic","Nicole A. Saharsky","23-1275",5761
-"FCC v. Consumers' Research","Paul D. Clement","24-354",5427
-"Rivers v. Guerrero","Peter A. Bruland","23-1345",4802
-"FCC v. Consumers' Research","R. Trent McCotter","24-354",5518
-"FCC v. Consumers' Research","Sarah M. Harris","24-354",7609
-"EPA v. Calumet Shreveport Refining","Seth P. Waxman","23-1229",2555
-"Riley v. Bondi","Stephen J. Hammer","23-1270",3190
-"Lousiana v. Callais","Stuart C. Naifeh","24-109",2761
+Case,Attorney,Docket,total_words
+Oklahoma v. EPA,Malcolm L. Stewart,23-1067,1737
+Oklahoma v. EPA,Misha Tseytlin,23-1067,1859
+Oklahoma v. EPA,Mithun Mansinghani,23-1067,2394
+EPA v. Calumet Shreveport Refining,Malcolm L. Stewart,23-1229,4565
+EPA v. Calumet Shreveport Refining,Michael R. Huston,23-1229,3425
+EPA v. Calumet Shreveport Refining,Seth P. Waxman,23-1229,2555
+Riley v. Bondi,Ephraim McDowell,23-1270,2280
+Riley v. Bondi,Keith Bradley,23-1270,1777
+Riley v. Bondi,Stephen J. Hammer,23-1270,3190
+Medina v. Planned Parenthood South Atlantic,John J. Bursch,23-1275,4306
+Medina v. Planned Parenthood South Atlantic,Kyle D. Hawkins,23-1275,1750
+Medina v. Planned Parenthood South Atlantic,Nicole A. Saharsky,23-1275,5761
+Rivers v. Guerrero,Aaron L. Nielson,23-1345,1665
+Rivers v. Guerrero,Matthew Guarnieri,23-1345,1029
+Rivers v. Guerrero,Peter A. Bruland,23-1345,4802
+Lousiana v. Callais,Edward D. Greim,24-109,2502
+Lousiana v. Callais,J. Benjamin Aguinaga,24-109,3008
+Lousiana v. Callais,Stuart C. Naifeh,24-109,2761
+Catholic Charities Bureau v. WI Labor and Industry Review,Colin T. Roth,24-154,4179
+Catholic Charities Bureau v. WI Labor and Industry Review,Curtis E. Gannon,24-154,2504
+Catholic Charities Bureau v. WI Labor and Industry Review,Eric C. Rassbach,24-154,4190
+Fuld v. PLO,Edwin S. Kneedler,24-20,4083
+Fuld v. PLO,Kent A. Yalowitz,24-20,2680
+Fuld v. PLO,Mitchell R. Berger,24-20,3937
+FCC v. Consumers' Research,Paul D. Clement,24-354,5427
+FCC v. Consumers' Research,R. Trent McCotter,24-354,5518
+FCC v. Consumers' Research,Sarah M. Harris,24-354,7609

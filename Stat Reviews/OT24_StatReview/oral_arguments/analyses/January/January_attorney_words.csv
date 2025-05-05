@@ -1,29 +1,29 @@
-"Case","Attorney","Docket","total_words"
-"Free Speech Coalition v. Paxton","Aaron L. Nielson","23-1122",2952
-"Free Speech Coalition v. Paxton","Brian H. Fletcher","23-1122",4600
-"Thompson v. United States.","Caroline A. Flynn","23-1095",2851
-"Barnes v. Felix","Charles L. McCloud","23-1239",2533
-"Thompson v. United States.","Chris C. Gair","23-1095",3474
-"Stanley v. City of Sanford","Deepak Gupta","23-997",3492
-"Free Speech Coalition v. Paxton","Derek L. Shaffer","23-1122",5781
-"TikTok, Inc. v. Garland","Elizabeth B. Prelogar","24-656",6342
-"Stanley v. City of Sanford","Frederick Liu","23-997",1798
-"TikTok, Inc. v. Garland","Jeffrey L. Fisher","24-656",4437
-"Stanley v. City of Sanford","Jessica C. Conner","23-997",3160
-"McLaughlin Chiropractic v. McKesson Corp","Joseph R. Palmore","23-1226",3046
-"Barnes v. Felix","Lanora C. Pettit","23-1239",1089
-"Hewitt v. United States","Masha G. Hansford","23-1002",2728
-"Waetzig v. Halliburton Energy Services","Matthew D. McGill","23-971",2448
-"McLaughlin Chiropractic v. McKesson Corp","Matthew Guarnieri","23-1226",2106
-"McLaughlin Chiropractic v. McKesson Corp","Matthew W.H. Wessler","23-1226",3844
-"Hewitt v. United States","Michael B. Kimberly","23-1002",2996
-"Hewitt v. United States","Michael H. McGinley","23-1002",3564
-"Barnes v. Felix","Nathaniel A.G. Zelinsky","23-1239",2916
-"Cunningham v. Cornell University","Nicole A. Saharsky","23-1007",4794
-"TikTok, Inc. v. Garland","Noel J. Francisco","24-656",6975
-"FDA v. R.J. Reynolds Vapor Co.","Ryan J. Watson","23-1187",3627
-"Waetzig v. Halliburton Energy Services","Vincent Levy","23-971",2778
-"FDA v. R.J. Reynolds Vapor Co.","Vivek Suri","23-1187",4404
-"Cunningham v. Cornell University","Xiao Wang","23-1007",3418
-"Cunningham v. Cornell University","Yaira Dubin","23-1007",3234
-"Barnes v. Felix","Zoe A. Jacoby","23-1239",2746
+Case,Attorney,Docket,total_words
+Hewitt v. United States,Masha G. Hansford,23-1002,2728
+Hewitt v. United States,Michael B. Kimberly,23-1002,2996
+Hewitt v. United States,Michael H. McGinley,23-1002,3564
+Cunningham v. Cornell University,Nicole A. Saharsky,23-1007,4794
+Cunningham v. Cornell University,Xiao Wang,23-1007,3418
+Cunningham v. Cornell University,Yaira Dubin,23-1007,3234
+Thompson v. United States.,Caroline A. Flynn,23-1095,2851
+Thompson v. United States.,Chris C. Gair,23-1095,3474
+Free Speech Coalition v. Paxton,Aaron L. Nielson,23-1122,2952
+Free Speech Coalition v. Paxton,Brian H. Fletcher,23-1122,4600
+Free Speech Coalition v. Paxton,Derek L. Shaffer,23-1122,5781
+FDA v. R.J. Reynolds Vapor Co.,Ryan J. Watson,23-1187,3627
+FDA v. R.J. Reynolds Vapor Co.,Vivek Suri,23-1187,4404
+McLaughlin Chiropractic v. McKesson Corp,Joseph R. Palmore,23-1226,3046
+McLaughlin Chiropractic v. McKesson Corp,Matthew Guarnieri,23-1226,2106
+McLaughlin Chiropractic v. McKesson Corp,Matthew W.H. Wessler,23-1226,3844
+Barnes v. Felix,Charles L. McCloud,23-1239,2533
+Barnes v. Felix,Lanora C. Pettit,23-1239,1089
+Barnes v. Felix,Nathaniel A.G. Zelinsky,23-1239,2916
+Barnes v. Felix,Zoe A. Jacoby,23-1239,2746
+Waetzig v. Halliburton Energy Services,Matthew D. McGill,23-971,2448
+Waetzig v. Halliburton Energy Services,Vincent Levy,23-971,2778
+Stanley v. City of Sanford,Deepak Gupta,23-997,3492
+Stanley v. City of Sanford,Frederick Liu,23-997,1798
+Stanley v. City of Sanford,Jessica C. Conner,23-997,3160
+TikTok, Inc. v. Garland,Elizabeth B. Prelogar,24-656,6342
+TikTok, Inc. v. Garland,Jeffrey L. Fisher,24-656,4437
+TikTok, Inc. v. Garland,Noel J. Francisco,24-656,6975

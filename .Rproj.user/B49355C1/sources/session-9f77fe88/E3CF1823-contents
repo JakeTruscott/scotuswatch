@@ -32,7 +32,7 @@ check_and_install_packages <- function(){
   packages <- c('anytime', 'dplyr', 'ggplot2', 'ggpattern', 'ggtext', 'ggthemes',
                 'grid', 'htmltools', 'httr', 'jsonlite', 'kableExtra', 'png',
                 'readxl', 'reticulate', 'rvest', 'scotustext', 'stringi',
-                'stringr', 'tidyr', 'tm', 'webshot2')
+                'stringr', 'tidyr', 'tm', 'webshot2', 'purrr', 'tibble', 'httr', 'httr2', 'tokenizers')
 
   missing_packages <- packages[!packages %in% installed.packages()[, "Package"]]
 
@@ -88,20 +88,32 @@ check_and_install_packages() # Deploy
 {
   cases_master <- read.csv('Stat Reviews/OT24_StatReview/cases_master/cases_master_file_OT24.csv', as.is = T)
 } # Cases Master File
+{
 
+  scdb_cases <- get(load('Stat Reviews/OT24_StatReview/decisions/data/scdb_cases_2024.rdata'))
+  scdb_justices <- get(load('Stat Reviews/OT24_StatReview/decisions/data/scdb_justices_2024.rdata'))
+  rm(list = ls(pattern = "^SCDB"))
+
+} # SCDB Data
 
 ###############################################################################
 # Decisions Table (HTML/CSV Output)
 ###############################################################################
 
 
-decisions_table <- function(input_path, output_path, output_type = 'html', cases_break = 15, remove_existing_files = T){
+decisions_analysis <- function(input_path,
+                            output_path,
+                            output_type = 'html',
+                            cases_break = 15,
+                            master_file = cases_master,
+                            remove_existing_files = T,
+                            current_term = '2024'){
 
   decisions_file_path = input_path
 
   {
 
-'100 = Wrote Majority
+    '100 = Wrote Majority
 1 = Joined Majority
 2 = Wrote Regular Concurrence
 3 = Joined Regular Concurrence
@@ -127,7 +139,7 @@ decisions_table <- function(input_path, output_path, output_type = 'html', cases
         return('#66B2FF')
       } else if (value == 'JRC'){
         return('#3399FF')
-      } else if (value == 'RC & JRC'){
+      } else if (value == 'RC-JRC'){
         return('#3399FF')
       } else if (value == 'CJ'){
         return('#FF9933')
@@ -141,7 +153,7 @@ decisions_table <- function(input_path, output_path, output_type = 'html', cases
         return('#FF3333')
       } else if (value == 'JD'){
         return('#CC0000')
-      } else if (value == 'D & JD'){
+      } else if (value == 'D-JD'){
         return('#990000')
       } else if (value == 'DNP'){
         return('#FFFFFF')
@@ -160,11 +172,17 @@ decisions_table <- function(input_path, output_path, output_type = 'html', cases
   } # Load File -- If Not CSV or Rdata -- STOP
 
   if (remove_existing_files == T){
-    invisible(do.call(file.remove, list(list.files(output_path, full.names = TRUE))))
+    invisible(do.call(file.remove, list(list.files(paste0(output_path, 'tables'), full.names = TRUE))))
+    invisible(do.call(file.remove, list(list.files(paste0(output_path, 'figures'), full.names = TRUE))))
+
   } # Delete Existing Files
 
   decisions <- decisions %>%
-    relocate(Docket, .after = 'Case')
+    relocate(Docket, .after = 'Case') %>%
+    mutate(Author = stringr::str_to_title(Author))
+
+  decisions_figure_data <- decisions
+  decisions_coalitions <- decisions
 
   {
 
@@ -179,23 +197,25 @@ decisions_table <- function(input_path, output_path, output_type = 'html', cases
         . == 1 ~ 'M',
         . == 2 ~ 'RC',
         . == 3 ~ 'JRC',
-        . == 4 ~ 'RC & JCR',
+        . == 4 ~ 'RC-JRC',
         . == 5 ~ 'CJ',
         . == 6 ~ 'JCJ',
         . == 7 ~ 'SC',
         . == 8 ~ 'JSC',
         . == -1 ~ 'D',
         . == -2 ~ 'JD',
-        . == -3 ~ 'D & JD',
+        . == -3 ~ 'D-JD',
         is.na(.) ~ 'DNP',
         TRUE ~ as.character(.)
       )))
 
-
     decisions$`Date Argued` <- format(decisions$`Date Argued`, "%m/%d/%y")
     decisions$`Date Decided` <- format(decisions$`Date Decided`, "%m/%d/%y")
 
-  } # Convert Values to DF
+    decisions <- decisions %>%
+      mutate(across(everything(), ~str_replace_all(.x, " & ", "-")))
+
+    } # Convert Values to DF
 
   {
 
@@ -226,6 +246,13 @@ decisions_table <- function(input_path, output_path, output_type = 'html', cases
     n_chunks <- ceiling(nrow(decisions_data) / cases_break)
     decision_partitions <- split(decisions_data, ceiling(seq_len(nrow(decisions_data)) / cases_break)) # Split the dataframe into chunks of 10 rows
 
+    decisions_original <- decisions %>%
+      ungroup() %>%
+      mutate(case_id = row_number())
+
+    decision_original_partitions <- split(decisions_original, ceiling(seq_len(nrow(decisions_original)) / cases_break)) # Split the dataframe into chunks of 10 rows
+
+
   } # Partition Into Smaller Files
 
   {
@@ -235,7 +262,7 @@ decisions_table <- function(input_path, output_path, output_type = 'html', cases
       temp_decisions <- decision_partitions[[i]]
       min_case_id <- min(temp_decisions$case_id)
       max_case_id <- max(temp_decisions$case_id)
-      temp_output_file_name <- file.path(output_path, paste0('decision_info_', min_case_id, '_', max_case_id))
+      temp_output_file_name <- file.path(output_path, 'tables', paste0('decision_info_', i))
       temp_decisions <- temp_decisions %>%
         dplyr::select(-c(case_id))
 
@@ -285,7 +312,7 @@ decisions_table <- function(input_path, output_path, output_type = 'html', cases
       temp_decisions <- decision_partitions[[i]]
       min_case_id <- min(temp_decisions$case_id)
       max_case_id <- max(temp_decisions$case_id)
-      temp_vote_matrix_path <- file.path(output_path, paste0('decisions_vote_matrix_', min_case_id, '_', max_case_id))
+      temp_vote_matrix_path <- file.path(output_path, 'tables', paste0('decisions_vote_matrix_', i))
       original_column_names <- names(decisions)
       original_column_names = original_column_names[!original_column_names %in% c('Case', 'Date Argued', 'Date Decided', 'Lower Court', 'Decision', 'Docket', 'Coalition', 'Author')]
       original_column_names <- c(rep('', length = 2), original_column_names)
@@ -303,7 +330,6 @@ decisions_table <- function(input_path, output_path, output_type = 'html', cases
           add_header_above(c(original_column_names)) %>%
           column_spec(1, width = "3cm", bold = TRUE, border_right = TRUE) %>%
           column_spec(2, width = '2cm', bold = TRUE, border_right = TRUE) %>%
-          #column_spec(c(2:11), width = "1.25cm", border_right = TRUE) %>%
           column_spec(2:ncol(temp_decisions), width = "1.25cm", border_right = TRUE, extra_css = "vertical-align: middle; font-size: 18px;") %>%
           row_spec(0, bold = TRUE, color = 'white', background = '#080808', align = 'center') %>%
           row_spec(seq(1, nrow(temp_decisions), 1), align = 'center') %>%
@@ -323,7 +349,7 @@ decisions_table <- function(input_path, output_path, output_type = 'html', cases
          <span style=\"margin-left: 10px;\"></span>
          <span style=\"border-radius: 1px; padding: 1px; background-color: #3399FF !important; color: white;\">JRC</span> = Joined Concurrence
          <span style=\"margin-left: 10px;\"></span>
-         <span style=\"border-radius: 1px; padding: 1px; background-color: #66B2FF !important; color: white;\">RC & JRC</span> = Wrote & Joined Concurrence",
+         <span style=\"border-radius: 1px; padding: 1px; background-color: #66B2FF !important; color: white;\">RC-JRC</span> = Wrote & Joined Concurrence",
 
               "<span style=\"border-radius: 3px; padding: 1px; background-color: white !important; color: white;\"> </span>",
 
@@ -344,7 +370,7 @@ decisions_table <- function(input_path, output_path, output_type = 'html', cases
          <span style=\"margin-left: 10px;\"></span>
         <span style=\"border-radius: 1px; padding: 1px; background-color: #CC0000 !important; color: white;\">JD</span> = Joined Dissent
          <span style=\"margin-left: 10px;\"></span>
-        <span style=\"border-radius: 1px; padding: 1px; background-color: #990000 !important; color: white;\">D & JD</span> = Wrote & Joined Dissent
+        <span style=\"border-radius: 1px; padding: 1px; background-color: #990000 !important; color: white;\">D-JD</span> = Wrote & Joined Dissent
          <span style=\"margin-left: 10px;\"></span>"
 
 
@@ -371,8 +397,955 @@ decisions_table <- function(input_path, output_path, output_type = 'html', cases
 
   } #Compile Vote Matrix Table
 
+  {
 
-} # Decisions Table
+    for (i in 1:length(decision_original_partitions)){
+
+      temp_decisions <- decision_original_partitions[[i]]
+      temp_information_path <- file.path(output_path, 'tables', paste0('decisions_information_', i, '.csv'))
+
+      temp_decisions <- temp_decisions %>%
+        dplyr::select(Case, Docket, 'Date Argued', 'Date Decided', 'Lower Court', Decision, Author, Coalition) %>%
+        left_join(master_file %>%
+                    select(case, docket) %>%
+                    rename(case_short = case,
+                           Docket = docket), by = 'Docket') %>%
+        left_join(master_file %>%
+                    select(docket, consolidated_case_1, consolidated_docket_1, consolidated_lower_court_1) %>%
+                    mutate(across(everything(), ~replace_na(.x, ' '))) %>%
+                    rename(Docket = docket), by = 'Docket') %>%
+        mutate(Case = ifelse(is.na(case_short), Case, case_short)) %>%
+        select(-c(case_short)) %>%
+        unique() %>%
+        mutate(Case = gsub('\\&', 'and', Case),
+               Case = gsub('\\,', '', Case)) %>%
+        relocate(Case) %>%
+        arrange(`Date Decided`) %>%
+        mutate(across(everything(), ~replace_na(.x, ' '))) %>%
+        mutate(Docket = ifelse(!consolidated_docket_1 %in% c('', ' '), paste0(Docket, ' (', consolidated_docket_1, ')'), Docket),
+               'Lower Court' = ifelse(!`Lower Court` %in% c('', ' '), paste0(`Lower Court`, ' (', consolidated_lower_court_1, ')'), `Lower Court`),
+               'Lower Court' = gsub(' \\(\\)', '', `Lower Court`),
+               'Lower Court' = gsub(' \\( \\)', '', `Lower Court`)) %>%
+        select(-c(tidyr::starts_with('consolidated_')))
+
+
+      {
+
+        write.csv(temp_decisions, file = temp_information_path, row.names = FALSE, quote = FALSE)
+
+
+        } # Export
+
+    }
+
+    message('Completed Decision Info Summary CSV Export')
+
+
+  } #Compile Decisions Info Table Summary CSV
+
+  {
+
+    for (i in 1:length(decision_original_partitions)){
+
+      temp_decisions <- decision_original_partitions[[i]]
+      temp_decision_path <- file.path(output_path, 'tables', paste0('decisions_vote_matrix_', i, '.csv'))
+
+      temp_decisions <- temp_decisions %>%
+        dplyr::select(-c('Date Argued', 'Lower Court', 'Decision', 'Coalition')) %>%
+        left_join(master_file %>%
+                    select(case, docket) %>%
+                    rename(case_short = case,
+                           Docket = docket), by = 'Docket', relationship = 'many-to-many') %>%
+        mutate(Case = ifelse(is.na(case_short), Case, case_short)) %>%
+        select(-c(case_short)) %>%
+        unique() %>%
+        mutate(Case = gsub('\\&', 'and', Case),
+               Case = gsub('\\,', '', Case)) %>%
+        relocate(Case) %>%
+        arrange(`Date Decided`) %>%
+        mutate(across(everything(), ~replace_na(.x, ' '))) %>%
+        select(-c('Date Decided', case_id))
+
+
+      {
+
+        write.csv(temp_decisions, file = temp_decision_path, row.names = FALSE, quote = FALSE)
+
+
+        } # Export
+
+    }
+
+    message('Completed Decision Vote Matrix CSV Export')
+
+
+  } #Compile Decisions Vote Matrix Summary CSV
+
+  {
+
+    {
+
+      agreement_binary <- decisions_figure_data %>%
+        select(all_of(c('ROBERTS', 'THOMAS', 'ALITO', 'SOTOMAYOR', 'KAGAN', 'GORSUCH', 'KAVANAUGH', 'BARRETT', 'JACKSON'))) %>%
+        mutate(across(everything(), ~ifelse(.x > 0, 1, 0)))
+
+      justice_pairs <- expand.grid(names(agreement_binary), names(agreement_binary), stringsAsFactors = FALSE)
+
+      agreement_df <- justice_pairs %>%
+        rename(j1 = Var1, j2 = Var2) %>%
+        mutate(agreement = map2_dbl(j1, j2, ~{
+          v1 <- agreement_binary[[.x]]
+          v2 <- agreement_binary[[.y]]
+          valid <- !is.na(v1) & !is.na(v2)
+          mean(v1[valid] == v2[valid], na.rm = TRUE)
+        })) %>%
+        mutate(agreement = round(agreement, 2))
+
+      agreement_matrix <- agreement_df %>%
+        pivot_wider(names_from = j2, values_from = agreement) %>%
+        column_to_rownames("j1")  # Compute agreement for each pair
+
+      agreement_matrix[upper.tri(agreement_matrix, diag = TRUE)] <- ' '
+      agreement_matrix <- agreement_matrix[c(-1),c(-ncol(agreement_matrix))]
+
+      agreement_long <- agreement_matrix %>%
+        as.data.frame() %>%
+        rownames_to_column("Justice1") %>%
+        pivot_longer(cols = -Justice1, names_to = "Justice2", values_to = "Agreement") %>%
+        mutate(Agreement = as.numeric(Agreement))
+
+
+      suppressWarnings(agreement_long <- agreement_long %>%
+        mutate(Justice1 = factor(Justice1, levels = c('ROBERTS', 'THOMAS', 'ALITO', 'SOTOMAYOR', 'KAGAN', 'GORSUCH', 'KAVANAUGH', 'BARRETT', 'JACKSON')),
+               Justice2 = factor(Justice2, levels = c('ROBERTS', 'THOMAS', 'ALITO', 'SOTOMAYOR', 'KAGAN', 'GORSUCH', 'KAVANAUGH', 'BARRETT', 'JACKSON'))) %>%
+        mutate(Justice1_label = justice_image_labels[Justice1],
+               Justice2_label = justice_image_labels[Justice2]) %>%
+          filter(!is.na(Agreement))
+
+        )
+
+
+    } # Construct Agreement Matrix (Regular & Colored)
+
+    {
+
+      Justice2_labels <- agreement_long %>%
+        select(Justice2) %>%
+        rename(justice = Justice2) %>%
+        mutate(image_labels = justice_image_labels[match(justice, names(justice_image_labels))],
+               image_labels = gsub(' style\\=.*', '', image_labels),
+               image_labels = paste0(image_labels, " width='100' /><br><strong>", justice, "</strong>")) %>%
+        unique() %>%
+        mutate(image_labels = gsub('75px', '50px', image_labels)) %>%
+        pull(image_labels)
+
+      Justice1_labels <- agreement_long %>%
+        select(Justice1) %>%
+        rename(justice = Justice1) %>%
+        mutate(image_labels = justice_image_labels[match(justice, names(justice_image_labels))],
+               image_labels = gsub(' style\\=.*', '', image_labels),
+               image_labels = paste0(image_labels, " width='100' /><br><strong>", justice, "</strong>")) %>%
+        unique() %>%
+        mutate(image_labels = gsub('75px', '50px', image_labels)) %>%
+        pull(image_labels)
+
+    } # Justice Image Labels
+
+    {
+
+      suppressWarnings(justice_agreement_matrix_figure <- ggplot(data = agreement_long, aes(x = Justice1, y = Justice2)) +
+                         geom_tile(color = "white", size = 0.5, aes(fill = Agreement)) +
+                         geom_label(aes(label = Agreement), fill = 'white', size = 5) +
+                         scale_fill_gradient(low = "coral4", high = "deepskyblue3", na.value = "white") +  # Adjust colors
+                         theme_minimal() +
+                         scale_x_discrete(labels = Justice1_labels) +  # Use the labels with images for the x-axis
+                         scale_y_discrete(labels = Justice2_labels) +  # Use the labels with images for the y-axis
+                         labs(x = '',
+                              y = '',
+                              fill = '') +
+                         theme(
+                           axis.text.x = ggtext::element_markdown(),  # This allows HTML rendering (for image tags) on the x-axis
+                           axis.text.y = ggtext::element_markdown(hjust = 0.5),  # Center the y-axis text under the images
+                           panel.grid = element_blank(),
+                           axis.ticks.x = element_blank(),
+                           axis.ticks.y = element_blank(),
+                           legend.background = element_rect(linewidth = 1, fill = "NA", colour = "black"),
+                           legend.box.background = element_rect(fill = NA, colour = "black"),
+                           legend.position = "none",
+                           legend.title = element_blank(),
+                           legend.title.align = 0.5,
+                           legend.text = element_text(size = 12),
+                           plot.caption = element_text(hjust = 0.5, size = 12),
+                           plot.title = element_text(size = 18, face = "bold", hjust = 0.5),
+                           plot.subtitle = element_text(size = 15, hjust = 0.5)
+                         ))
+
+    } # Render Figure
+
+    {
+
+      temp_output_path <- file.path(output_path, 'figures', 'justice_agreement_matrix.png')
+      suppressWarnings(ggsave(filename = temp_output_path,
+                              justice_agreement_matrix_figure,
+                              width = 8,
+                              height = 10,
+                              units = 'in',
+                              bg = 'white'))
+
+    } # Export
+
+    message('Completed Agreement Matrix Figure Export')
+
+
+  } # Vote Agreement Matrix Figure
+
+  {
+
+    {
+
+      coalitions <- decisions_coalitions %>%
+        select(Docket, Coalition) %>%
+        mutate(Coalition = gsub('Per Curiam', '(9-0)', Coalition),
+               Coalition = gsub('\\(', '', Coalition),
+               Coalition = gsub('\\).*', '', Coalition)) %>%
+        rowwise() %>%
+        mutate(maj_votes = unlist(stringr::str_split(Coalition, pattern = '-'))[1],
+               min_votes = unlist(stringr::str_split(Coalition, pattern = '-'))[2])
+
+
+      coalitions_current_term <- coalitions %>%
+        group_by(Coalition) %>%
+        summarise(count = n(), .groups = 'drop') %>%
+        mutate(Coalition = paste0('(', Coalition, ')')) %>%
+        ggplot(aes(x = Coalition, y = count)) +
+        geom_col(colour = 'black', fill = 'gray50') +
+        scale_y_continuous(breaks = seq(5, 30, 5)) +
+        geom_hline(yintercept = 0) +
+        labs(x = '\nCoalition',
+             y = 'Number of Decisions\n') +
+        geom_label(aes(label = count), size = 6, vjust = 1) +
+        theme_minimal() +
+        theme(panel.border = element_rect(size = 1, colour = 'black', fill = NA),
+              axis.text = element_text(size = 14, colour = 'black'),
+              axis.title = element_text(size = 16, colour = 'black'))
+
+    } # Configure Figure
+
+    {
+
+      temp_export_path <- file.path(output_path, 'figures', 'coalitions_current_term.png')
+      ggsave(temp_export_path,
+             coalitions_current_term,
+             width = 8,
+             height = 8,
+             units = 'in',
+             bg = 'white')
+
+    } # Export
+
+    message('Completed Coalitions (Current Term) Figure')
+
+  } # Coalitions Current Term
+
+  {
+
+    {
+
+      coalitions_current_term <- decisions_coalitions %>%
+        select(Docket, Coalition) %>%
+        mutate(Coalition = gsub('Per Curiam', '(9-0)', Coalition),
+               Coalition = gsub('\\(', '', Coalition),
+               Coalition = gsub('\\).*', '', Coalition)) %>%
+        rowwise() %>%
+        mutate(maj_votes = unlist(stringr::str_split(Coalition, pattern = '-'))[1],
+               min_votes = unlist(stringr::str_split(Coalition, pattern = '-'))[2]) %>%
+        ungroup() %>%
+        mutate(term = as.integer('2024'),
+               Coalition = paste0('(', Coalition, ')')) %>%
+        select(Coalition, term)
+
+      coalitions_longitudinal_figure <- scdb_cases %>%
+        filter(term >= 2021) %>%
+        select(majVotes, minVotes, term, docket) %>%
+        rename(min_votes = minVotes,
+               maj_votes = majVotes) %>%
+        mutate(Coalition = paste0('(', maj_votes, '-', min_votes, ')')) %>%
+        select(Coalition, term) %>%
+        bind_rows(coalitions_current_term) %>%
+        ungroup() %>%
+        mutate(Coalition =  case_when(
+          .default = Coalition,
+          Coalition %in% c('(4-4') ~ '(4-4)',
+          Coalition %in% c('(5-4)') ~ '(5-4)',
+          Coalition %in% c('(6-2)', '(6-3)') ~ '(6-3)\n(6-2)',
+          Coalition %in% c('(7-2)') ~ '(7-2)',
+          Coalition %in% c('(8-0)', '(8-1)') ~ '(8-1)\n(8-0)',
+          Coalition %in% c('(9-0)') ~ '(9-0)'
+        )) %>%
+        group_by(term, Coalition) %>%
+        summarise(count = n(), .groups = "drop") %>%
+        ungroup() %>%
+        mutate(term = paste0(term, ' Term')) %>%
+        ggplot(aes(x = Coalition, y = count)) +
+        facet_wrap(~term, nrow = 4) +
+        geom_col(colour = 'black', fill = 'gray45') +
+        scale_y_continuous(breaks = seq(10, 30, 10), lim = c(0, 40)) +
+        geom_hline(yintercept = 0) +
+        labs(x = '\nCoalition',
+             y = 'Number of Decisions\n') +
+        geom_label(aes(label = count), size = 4, vjust = -0.5) +
+        theme_minimal() +
+        theme(panel.border = element_rect(size = 1, colour = 'black', fill = NA),
+              axis.text = element_text(size = 14, colour = 'black'),
+              axis.title = element_text(size = 16, colour = 'black'),
+              strip.text = element_text(size = 14, colour = 'black'),
+              strip.background = element_rect(size = 1, colour = 'black', fill = 'gray75'))
+
+    } # Coalitions (Comparison) Figure
+
+    {
+
+      temp_export_path <- file.path(output_path, 'figures', 'coalitions_longitudinal_figure.png')
+      ggsave(temp_export_path,
+             coalitions_longitudinal_figure,
+             height = 10,
+             width = 8,
+             units = 'in',
+             bg = 'white')
+
+      } # Export
+
+    message('Completed Coalitions (Longitudinal Comparison) Figure')
+
+
+  } # Coalitions (Versus Previous 5 Terms)
+
+  {
+
+    {
+
+      unanimity_figure <- scdb_cases %>%
+        filter(term >= 2021) %>%
+        select(majVotes, minVotes, term, docket) %>%
+        rename(min_votes = minVotes,
+               maj_votes = majVotes) %>%
+        select(min_votes, term) %>%
+        bind_rows(decisions_coalitions %>%
+                    select(Docket, Coalition) %>%
+                    mutate(Coalition = gsub('Per Curiam', '(9-0)', Coalition),
+                           Coalition = gsub('\\(', '', Coalition),
+                           Coalition = gsub('\\).*', '', Coalition)) %>%
+                    rowwise() %>%
+                    mutate(maj_votes = unlist(stringr::str_split(Coalition, pattern = '-'))[1],
+                           min_votes = unlist(stringr::str_split(Coalition, pattern = '-'))[2]) %>%
+                    mutate(term = as.integer('2024'),
+                           Coalition = paste0('(', Coalition, ')'),
+                           min_votes = as.numeric(min_votes)) %>%
+                    select(term, min_votes)) %>%
+        group_by(min_votes, term) %>%
+        summarise(count = n(), .groups = 'drop') %>%
+        ungroup() %>%
+        group_by(term) %>%
+        mutate(total_term_cases = sum(count)) %>%
+        ungroup() %>%
+        filter(min_votes == 0) %>%
+        rowwise() %>%
+        mutate(count_non = total_term_cases - count) %>%
+        select(term, count, count_non, total_term_cases) %>%
+        pivot_longer(cols = c(count, count_non),
+                     names_to = "decision_type",
+                     values_to = "n_cases") %>%
+        mutate(decision_type = recode(decision_type,
+                                      count = "Unanimous",
+                                      count_non = "Non-unanimous"),
+               term = paste0(term, " Term (", total_term_cases, ' Cases)')) %>%
+        group_by(term) %>%
+        mutate(
+          total_cases = sum(n_cases),
+          percent = (n_cases / total_cases) * 100,
+          ypos = cumsum(percent) - 0.5 * percent,
+          label = paste0("(", round(percent), "%)")
+        ) %>%
+        ungroup() %>%
+        ggplot(aes(x = "", y = percent, fill = decision_type)) +
+        geom_col(width = 2, color = "black", size = 1) +
+        coord_polar(theta = "y") +
+        facet_wrap(~ term, nrow = 3) +
+        scale_fill_manual(values = c('coral2', 'deepskyblue3')) +
+        geom_label(aes(y = ypos, label = label), fill = 'white', size = 5, show.legend = FALSE) +
+        labs(fill = "") +
+        theme_void() +
+        theme(
+          panel.border = element_rect(size = 1, colour = 'black', fill = NA),
+          legend.position = 'bottom',
+          legend.text = element_text(size = 14, colour = 'black'),
+          legend.box.background = element_rect(size = 1, colour = 'black'),
+          legend.box.margin = margin(t = 10, r = 10, b = 10, l = 10),
+          strip.text = element_text(size = 14, color = 'black', margin = margin(t = 6, b = 6)),
+          strip.background = element_rect(size = 1, colour = 'black', fill = 'gray75')
+        )
+
+
+
+    } # Unanimity Pie Charts
+
+    {
+
+      temp_export_path <- file.path(output_path, 'figures', 'unanimity_figure.png')
+      ggsave(temp_export_path,
+             unanimity_figure,
+             height = 10,
+             width = 8,
+             units = 'in',
+             bg = 'white')
+
+    } # Export
+
+    message('Completed Unanimity Comparison Figure')
+
+  } # Unanimity over Time
+
+  {
+
+    {
+
+      lower_courts <- decisions_coalitions %>%
+        select(Lower_Court, Decision, Docket) %>%
+        rename(lower_court = Lower_Court,
+               decision = Decision,
+               docket = Docket) %>%
+        left_join(cases_master %>%
+                    select(docket, starts_with('consolidated')), by = 'docket')
+
+
+      combined_lower_courts <- lower_courts %>%
+        select(lower_court, decision) %>%
+        mutate(type = 'main') %>%
+        bind_rows(data.frame(lower_court = lower_courts$consolidated_lower_court_1,
+                             decision = lower_courts$decision,
+                             type = 'consolidated')) %>%
+        filter(!is.na(lower_court)) %>%
+        filter(!lower_court == '') %>%
+        filter(grepl('^CA', lower_court)) %>%
+        mutate(lower_court = factor(lower_court, levels = c('CA1', 'CA2', 'CA3', 'CA4', 'CA5', 'CA6', 'CA7', 'CA8', 'CA9', 'CA10', 'CA11', 'CADC', 'CAFC')))
+
+    } # Recover Data
+
+    {
+
+      circuit_scorecard_main <- combined_lower_courts %>%
+        filter(type == 'main') %>%
+        group_by(lower_court, decision) %>%
+        summarise(count = n(), .groups = "drop") %>%
+        pivot_wider(names_from = decision, values_from = count, values_fill = 0) %>%
+        mutate(across(-lower_court, ~ ifelse(. == 0, "", .)))
+
+      circuit_scorecard_with_consolidated <- combined_lower_courts %>%
+        group_by(lower_court, decision) %>%
+        summarise(count = n(), .groups = "drop") %>%
+        pivot_wider(names_from = decision, values_from = count, values_fill = 0) %>%
+        mutate(across(-lower_court, ~ ifelse(. == 0, "", .)))
+
+
+    } # 2 Tables -- One w/ & w/out Consolidated
+
+    {
+
+      temp_export_path <- file.path(output_path, 'tables', 'circuit_scorecard_main.csv')
+      write.csv(circuit_scorecard_main, file = temp_export_path, row.names = F, quote = F)
+
+      temp_export_path <- file.path(output_path, 'tables', 'circuit_scorecard_with_consolidated.csv')
+      write.csv(circuit_scorecard_with_consolidated, file = temp_export_path, row.names = F, quote = T)
+
+
+    } # Export
+
+    message('Completed Circuit Scorecards')
+
+  } # Circuit Scorecard
+
+} # Decisions Tables (Info + Vote Matrix)
+
+
+###############################################################################
+# Justia Opinions Recovery
+###############################################################################
+
+justia_opinion_recovery <- function(opinions_path,
+                                    current_term,
+                                    master_file){
+
+  {
+
+    terms = c(current_term, current_term + 1) # Justia Indexes by Year
+    term_cases_combined <- data.frame() # Empty DF
+
+    for (term in 1:length(terms)) {
+
+      tryCatch({
+
+        url <- paste0('https://supreme.justia.com/cases/federal/us/year/', terms[term], '.html') # Create Term-Level Link
+        source <- tryCatch(
+          read_html(url),
+          error = function(e) return(NULL)
+        )
+
+        if (is.null(source)) next # Skip to next term if read_html failed
+
+        elements <- source %>%
+          html_elements("div.has-padding-content-block-30.-zb.search-result") # Retrieve Case Entries
+
+        term_cases <- data.frame() # Empty DF to Store Case-Level Entries for Term[Term]
+
+        for (element in 1:length(elements)) {
+
+          page <- elements[element] # Get Case Entry
+
+          case_name <- page %>%
+            html_nodes(".case-name strong") %>%
+            html_text(trim = TRUE) # Case Name
+
+          embedded_link <- page %>%
+            html_nodes(".color-green a") %>%
+            html_attr("href") # Link to Justia Entry
+
+          key_value_pairs <- page %>%
+            html_nodes("strong") %>%
+            html_text(trim = TRUE) # US Report Citation, Docket Number, Court, Date, etc.
+          key_value_pairs <- key_value_pairs[!key_value_pairs %in% case_name] # Remove Case Name (Duplicate)
+
+          values <- page %>%
+            html_nodes("strong") %>%
+            html_nodes(xpath = "following-sibling::text()[normalize-space()]") %>%
+            html_text(trim = TRUE) # Associated Values to Keys
+
+          case_info <- data.frame(key = key_value_pairs, value = values) %>%
+            add_row(key = 'Link', value = embedded_link) %>%
+            add_row(key = 'Case_Name', value = case_name) %>%
+            mutate(
+              key = gsub('\\:', '', key),
+              key = gsub(' ', '_', key),
+              key = tolower(key)
+            ) %>%
+            tidyr::pivot_wider(names_from = 'key') # Pivot Wider So Keys Become Columns
+
+          term_cases <- bind_rows(term_cases, case_info)
+        }
+
+        term_cases_combined <- bind_rows(term_cases_combined, term_cases)
+
+      }, error = function(e) {
+        # silently skip this term on error
+        next
+      })
+    } # Recover Justia Links for Term
+
+    {
+
+      term_year <- terms[1]  # Set Current Term
+      cutoff_date <- as.Date(paste0(term_year, "-10-01"))
+      term_cases_combined <- term_cases_combined %>%
+        mutate(date = as.Date(date, format = '%B %d, %Y')) %>%
+        filter(date > cutoff_date)
+
+      completed_dockets <- list.files(file.path(opinions_path, 'opinions', 'opinions_processed')) # Dockets Already Completed
+      completed_dockets <- gsub('\\.rdata', '', completed_dockets)
+
+      term_cases_combined <- term_cases_combined %>%
+        filter(!docket_number %in% c(completed_dockets)) # Filter Out
+
+    } # Filter to Current Term
+
+    if (nrow(term_cases_combined) == 0){
+      message('Every Opinion Already Processed')
+
+    } else {
+
+      message('Located ', nrow(term_cases_combined), ' Decisions to Process...')
+
+      {
+
+        justices <- scdb_justices %>%
+          mutate(justice = sub(".*([A-Z][a-zA-Z]*).*$", "\\1", justiceName)) %>%
+          select(justice) %>%
+          unique() %>%
+          pull(justice)
+
+      } # Unique Justices
+
+      for (case in 1:nrow(term_cases_combined)){
+
+        temp_case <- term_cases_combined[case,]
+        temp_case_link <- paste0('https://supreme.justia.com/', temp_case$link) # Compile Justia Link
+        case_source_temp <- read_html(temp_case_link) #Retrieve Case Source
+
+        {
+
+          opinions_list <- case_source_temp %>%
+            html_nodes("#opinions-list") %>%
+            html_nodes("li") # List of Opinions for Case
+
+          href_values <- opinions_list %>%
+            html_nodes("a") %>%
+            html_attr("href")  # Retrieve Justia ID #'s
+
+          title_values <- opinions_list %>%
+            html_nodes("a") %>%
+            html_text() %>%
+            gsub("\\t+", " ", .) # Retrieve Opinion Type (Author)
+
+          temp_opinions <- data.frame(opinion = title_values,
+                                      justice = gsub('.*\\(', '', gsub('\\)', '',  title_values)),
+                                      opinion_type = trimws(gsub('\\(.*', '', title_values)),
+                                      justia_id = href_values,
+                                      updated_justia_link = paste0( temp_case_link, href_values)) # Combine Into DF
+
+          temp_opinions <- temp_opinions %>%
+            group_by(opinion_type) %>%
+            mutate(opinion_count = row_number()) %>%
+            mutate(opinion_type = ifelse(opinion_type == 'Opinion' & opinion_count >= 2, 'Special Concurrence', opinion_type)) %>%
+            select(-c(opinion_count)) # Fix -- Justia Counts In Part Concurrences as Opinions
+
+        } # Get Opinions List - Href Values - Title Values -- Recover Temp Opinions Before Processing
+
+        unique_justices <- if (any(temp_opinions$justice == "Per Curiam")) {
+          justices
+        } else {
+          unique(temp_opinions$justice)
+        }
+
+
+        combined_opinions <- data.frame()
+
+        {
+
+          for (opinion in 1:nrow(temp_opinions)){
+
+            temp_opinion <- temp_opinions[opinion,] # Get Temp Opinion
+            temp_opinion_link <- temp_opinion$updated_justia_link # Opinion-Level Link
+            response <- GET(temp_case_link) # Get Full Source
+
+            {
+
+              raw_html <- tryCatch({
+                # First attempt using httr's content()
+                response <- GET(temp_case_link)
+                content(response, as = "text", encoding = "UTF-8")
+              }, error = function(e) {
+                # If the first method fails, fall back to httr2
+                response2 <- request(temp_case_link) |> req_perform()
+                resp_body_string(response2)
+              }) # content() fails -- try httr2 request & resp_body_string
+
+
+              parsed_html <- read_html(raw_html) # Parse to R
+              opinion_element_temp <- html_nodes(parsed_html, paste0('#tab-opinion ', temp_opinion$justia_id)) # Reduce to Opinion Element (Justia ID)
+              opinion_element_temp <- html_text(opinion_element_temp)
+
+              blocks <- strsplit(as.character(opinion_element_temp), split = '(\\t{5}|\\n\\n)') # Split by &nbsp line break notation
+              html_elements_to_toss <- c('<em>', '</em>', '<p>', '</p>', '<a>', '</a>', '</font>', '(<div|<div>)', '</div>', '<br>', '<span>', '</span>', '<strong>', '</strong>') # Regex for Tossing HTML Encoding
+
+            } # Process Raw HTML
+
+            {
+
+              oar_1 <- paste0(
+                "JUSTICE ", toupper(unique_justices), " ",
+                rep(c(", dissent", ", concur", "delivered", ", in which", " would ", ' dissents', ", with whom"), each = length(unique_justices)))
+              oar_2 <- paste0(
+                "MR. JUSTICE ", toupper(unique_justices), ".$")
+              oar_3 <- paste0(
+                "MS. JUSTICE ", toupper(unique_justices), ".$")
+              oar_4 <- paste0(
+                "MS. CHIEF JUSTICE ", toupper(unique_justices), ".$")
+              oar_5 <- paste0(
+                "MS. CHIEF JUSTICE ", toupper(unique_justices), ".$")
+              oar_6 <- paste0('^PER CURIAM.$')
+              oar_7 <- paste0(
+                "MR. JUSTICE ", toupper(unique_justices), " ",
+                rep(c(", dissent", ", concur", "delivered", ", in which", " would ", ' dissents'), each = length(unique_justices)))
+              oar_8 <- paste0(
+                "MS. JUSTICE ", toupper(unique_justices), " ",
+                rep(c(", dissent", ", concur", "delivered", ", in which", " would ", ' dissents'), each = length(unique_justices)))
+              oar_9 <- paste0("MR. JUSTICE ", toupper(unique_justices), ".*? delivered")
+              oar_10 <- paste0("MS. JUSTICE ", toupper(unique_justices), ".*? delivered")
+              oar_11 <- paste0("MR. CHIEF JUSTICE ", toupper(unique_justices), ".*? delivered")
+
+              opinion_authors_regex <- c(oar_1, oar_2, oar_3, oar_4, oar_5, oar_6, oar_7, oar_8, oar_9, oar_10, oar_11)
+              opinion_authors_regex <- gsub(' \\,', ',', opinion_authors_regex)
+              opinion_authors_regex <- gsub('  ', ' ', opinion_authors_regex)
+
+            } # Regex to Identify Opinions w/out Justia Demarcation
+
+            {
+
+              if (any(grepl('court\\:', unlist(blocks)))){
+                opinion_text_temp <- data.frame(text = unlist(blocks)) %>%
+                  mutate(
+                    text_split = str_split(text, "(?<=court:)", n = 2)
+                  ) %>%
+                  select(-text) %>%  # Remove original text column to avoid name collision
+                  tidyr::unnest_wider(text_split, names_sep = "_") %>%
+                  rename(text_1 = text_split_1, text_2 = text_split_2) %>%
+                  tidyr::pivot_longer(cols = starts_with("text_"), names_to = NULL, values_to = "text") %>%
+                  filter(!is.na(text))
+              } else {
+                opinion_text_temp <- data.frame(text = unlist(blocks))
+              }
+
+              opinion_text_temp <- opinion_text_temp %>%
+                mutate(text = gsub('\\s{2,}', ' ', trimws(text)))  %>%
+                filter(!text == '') %>%
+                filter(!text == ' ') %>% # Remove Blank Rows
+                mutate(text = gsub(paste(html_elements_to_toss, collapse = '|'), '', text)) %>%
+                mutate(text = trimws(text)) %>%  # Trim WS
+                mutate(total_letters = str_count(text, '[a-zA-Z]')) %>% # Get Count of Letters in Row Strings
+                filter(total_letters > 1) %>%  # Toss Where Letters <= 1 (Usually * * * to denote footnotes)
+                mutate(text = ifelse(!is.na(text), gsub('^[^a-zA-Z]*', '', text), text),
+                       text = gsub('\\n', ' ', text)) %>%
+                mutate(toss = case_when(
+                  .default = 0,
+                  grepl(paste0('(I$|II$|III$|IV$|V$|VI$|VII$|VIII$)'), text, ignore.case = T) ~ 1,
+                  text == c('^</div>') ~ 1,
+                  grepl('^<a name=', text) ~ 1,
+                  grepl('^class=', text) ~ 1,
+                  grepl('^id=', text) ~ 1,
+                  row_number() == 1 ~ 1)) %>% # Remove Section Indicators & Div Element Encodings # Replace 2+ Spaces W/ One
+                filter(!toss == 1) %>%  # Toss Where Toss = 1
+                mutate(
+                  test = ifelse(
+                    grepl(paste0("(?s)", paste(opinion_authors_regex, collapse = '|')),
+                          text,
+                          ignore.case = TRUE,
+                          perl = TRUE),
+                    1, 0
+                  ),
+                  tokenized = tokenizers::tokenize_words(text),
+                  opinion_author = ifelse(
+                    test == 1,
+                    sapply(tokenized, function(tokens) {
+                      match <- intersect(toupper(tokens), toupper(unique_justices))
+                      if (length(match) > 0) match[1] else NA
+                    }),
+                    NA
+                  )
+                ) %>%
+                relocate(opinion_author) %>%
+                mutate(opinion_author = ifelse(grepl('^Per Curiam', text, ignore.case = T), 'Per Curiam', opinion_author)) %>%
+                tidyr::fill(opinion_author, .direction = 'down') %>%
+                filter(!grepl("Page .*? U\\. S\\.", text, ignore.case = T))
+
+              if (all(is.na(opinion_text_temp$opinion_author))){
+                opinion_text_temp$opinion_author <- 'Unknown'
+              } else {
+                opinion_text_temp <- opinion_text_temp %>%
+                  filter(!is.na(opinion_author)) %>%
+                  mutate(opinion_author = stringr::str_to_title(opinion_author))
+                opinion_text_temp <- opinion_text_temp[-1,]
+              } # IF All NA (Indicating Per Curiam or Something?) -- Replace
+
+
+            } # Process Text & Identify Author
+
+            {
+
+              individual_opinions <- list()
+              individual_authors <- unique(opinion_text_temp$opinion_author)
+
+              for (individual_author in 1:length(individual_authors)){
+
+                temp_author_opinion <- opinion_text_temp %>%
+                  filter(opinion_author == individual_authors[individual_author]) %>%
+                  select(-c(opinion_author))
+
+                individual_opinions[[as.character(individual_authors[individual_author])]] <- temp_author_opinion
+
+
+              }
+
+            } # Demarcate and Separate -- Return as 'individual_opinions'
+
+            {
+
+              for (author in 1:length(individual_opinions)){
+
+                temp_authored_opinion <- individual_opinions[[author]] %>%
+                  mutate(text =  gsub("\\[\\s*Footnote\\s*\\d+(/\\d+)?\\s*\\]", "", text))
+                temp_authorship_retrieval <- names(individual_opinions)[author]
+
+                opinion_text_cleaned <- paste(trimws(gsub('\\n', ' ', temp_authored_opinion$text)), collapse = ' ') # Retrieve Cleaned Opinion
+
+                combined_opinions <- bind_rows(combined_opinions, data.frame(authorship = temp_opinion$justice,
+                                                                             opinion_type = temp_opinion$opinion_type,
+                                                                             opinion_text = opinion_text_cleaned, # Use I() to ensure list storage
+                                                                             stringsAsFactors = FALSE))
+
+              }
+
+
+            } # Separate Individual Opinions & Recombine as DF
+
+          }
+
+
+        } # For Each Opinion -- Recover & Append
+
+        {
+
+          combined_opinions <- combined_opinions %>%
+            mutate(docket = term_cases_combined[case,]$docket_number,
+                   date = term_cases_combined[case,]$date,
+                   case = term_cases_combined[case,]$case_name,
+                   justia_summary = term_cases_combined[case,]$justia_opinion_summary)
+
+        } # Assign Meta
+
+        {
+
+          temp_export_path = file.path(opinions_path, 'opinions', 'opinions_processed', paste0(term_cases_combined[case,]$docket_number, '.rdata'))
+          save(combined_opinions, file = temp_export_path)
+
+
+        } # Export
+
+        message(' ---- Completed ', term_cases_combined[case,]$docket_number)
+
+      } # For Each Case
+
+    }
+
+  } # Individually Recover
+
+  {
+
+    completed_opinions <- list.files(file.path(opinions_path, 'opinions', 'opinions_processed'), full.names = T)
+    term_opinions <- data.frame()
+
+    for (i in 1:length(completed_opinions)){
+      temp_opinion <- get(load(completed_opinions[i]))
+      term_opinions <- bind_rows(term_opinions, temp_opinion)
+    }
+
+    temp_export_path <- file.path(opinions_path, 'opinions', 'combined_opinions_processed', paste0('combined_opinions_OT', as.character(current_term), '.rdata'))
+    save(term_opinions, file = temp_export_path)
+
+  } # Combine All on Backend
+
+  {
+
+    justice_term_opinion_counts <- term_opinions %>%
+      filter(!authorship == 'Per Curiam') %>%
+      group_by(authorship, opinion_type) %>%
+      summarise(count = n(), .groups = 'drop') %>%
+      mutate(opinion_type = ifelse(opinion_type == 'Opinion', 'Majority', opinion_type),
+             opinion_type = ifelse(opinion_type == 'Special Concurrence', 'Concurrence', opinion_type)) %>%
+      pivot_wider(names_from = opinion_type, values_from = count, values_fill = 0) %>%
+      mutate(Majority = as.numeric(Majority),
+             Concurrence = as.numeric(Concurrence),
+             Dissent = as.numeric(Dissent)) %>%
+      rename(Justice = authorship) %>%
+      dplyr::select(Justice, Majority, Concurrence, Dissent)
+
+    temp_export_path = file.path(opinions_path, 'tables', 'justice_term_opinion_counts.csv')
+    write.csv(justice_term_opinion_counts, file = temp_export_path, row.names = F, quote = F)
+
+    message('Completed Term-Level Authorship Counts')
+
+
+  } # Term-Level Opinion Authorship Counts
+
+  {
+
+    justice_comparison_opinion_counts <- scdb_justices %>%
+      filter(term >= 2021) %>%
+      filter(opinion %in% c(2, 3)) %>%
+      mutate(justice = sub(".*([A-Z][a-zA-Z]*).*$", "\\1", justiceName)) %>%
+      select(justice, vote, docket, term) %>%
+      mutate(vote = case_when(
+        .default = 'Majority',
+        vote %in% c(3, 4, 5) ~ 'Concurrence',
+        vote %in% c(2, 6, 7) ~ 'Dissent',
+        vote == 8 ~ 'Divided Court')) %>%
+      rename(opinion_type = vote) %>%
+      group_by(term, justice, opinion_type) %>%
+      summarise(count = n(), .groups = 'drop') %>%
+      bind_rows(term_opinions %>%
+                  filter(!authorship == 'Per Curiam') %>%
+                  group_by(authorship, opinion_type) %>%
+                  summarise(count = n(), .groups = 'drop') %>%
+                  mutate(opinion_type = ifelse(opinion_type == 'Opinion', 'Majority', opinion_type),
+                         opinion_type = ifelse(opinion_type == 'Special Concurrence', 'Concurrence', opinion_type),
+                         term = 2024) %>%
+                  rename(justice = authorship)) %>%
+      pivot_wider(names_from = opinion_type, values_from = count, values_fill = 0) %>%
+      mutate(Majority = as.numeric(Majority),
+             Concurrence = as.numeric(Concurrence),
+             Dissent = as.numeric(Dissent)) %>%
+      select(term, justice, Majority, Concurrence, Dissent) %>%
+      arrange(justice, term)
+
+    temp_export_path = file.path(opinions_path, 'tables', 'justice_comparison_opinion_counts.csv')
+    write.csv(justice_comparison_opinion_counts, file = temp_export_path, row.names = F, quote = F)
+
+    message('Completed Comparison of Authorship Counts')
+
+  } # Comparison Opinion Authorship Counts
+
+  {
+
+    opinion_lengths_term <- term_opinions %>%
+      filter(!authorship == 'Per Curiam') %>%
+      left_join(master_file %>%
+                  select(case, docket) %>%
+                  rename(case_short = case), by = 'docket', relationship = 'many-to-many') %>%
+      mutate(case = ifelse(!is.na(case_short), case_short, case)) %>%
+      select(-c(case_short)) %>%
+      rowwise() %>%
+      mutate(word_count = lengths(gregexpr("\\W+", opinion_text)) + 1) %>%
+      select(case, authorship, opinion_type, word_count) %>%
+      mutate(case = gsub('\\,', '', case))
+
+    opinion_partitions <- split(opinion_lengths_term, ceiling(seq_len(nrow(opinion_lengths_term)) / 30)) # Split the dataframe into chunks of 10 rows
+
+    for (opinion in 1:length(opinion_partitions)){
+
+      temp_opinion_rows <- opinion_partitions[[opinion]]
+      temp_output_path <- file.path(opinions_path, 'tables', paste0('term_opinion_lengths_', opinion, '.csv'))
+      write.csv(temp_opinion_rows, file = temp_output_path, row.names = F, quote = F)
+    }
+
+    message('Completed Term-Level Opinion Lengths -- ', length(opinion_partitions), ' Total')
+
+  } # Opinion Lengths (Current Term)
+
+  {
+
+    average_opinion_lengths_term <- term_opinions %>%
+      filter(!authorship == 'Per Curiam') %>%
+      rowwise() %>%
+      mutate(word_count = lengths(gregexpr("\\W+", opinion_text)) + 1) %>%
+      select(opinion_type, authorship, word_count) %>%
+      mutate(opinion_type = ifelse(opinion_type == 'Opinion', 'Majority', opinion_type)) %>%
+      group_by(authorship, opinion_type) %>%
+      summarise(average_length = mean(word_count), .groups = 'drop') %>%
+      pivot_wider(names_from = opinion_type, values_from = average_length, values_fill = 0) %>%
+      mutate(Majority = round(Majority, 2),
+             Concurrence = round(Concurrence, 2),
+             Dissent = round(Dissent, 2)) %>%
+      rename(Justice = authorship) %>%
+      select(Justice, Majority, Concurrence, Dissent) %>%
+      mutate(Majority = ifelse(Majority == 0, '', Majority),
+             Concurrence = ifelse(Concurrence == 0, '', Concurrence),
+             Dissent = ifelse(Dissent == 0, '', Dissent))
+
+    temp_output_path <- file.path(opinions_path, 'tables', paste0('average_opinion_lengths_term .csv'))
+    write.csv(average_opinion_lengths_term , file = temp_output_path, row.names = F, quote = F)
+
+    message('Completed Average Opinion Lengths by Type (Current Term)')
+
+  } # Average Lengths by Opinion Type (Current Term)
+
+} # Recover Decisions from Justia
 
 
 ###############################################################################
@@ -908,7 +1881,8 @@ oa_analysis <- function(transcript,
   } # Color Cells Function (HTML)
 
   {
-    temp_data <- transcript
+    temp_data <- transcript %>%
+      mutate(speaker = gsub('\\,.*', '', speaker))
 
     if (!is.null(master_file)){
       temp_data <- temp_data %>%
@@ -994,7 +1968,7 @@ oa_analysis <- function(transcript,
       {
 
         temp_csv_output_path <- file.path(output_path, unique_sittings[i], paste0(unique_sittings[i], '_justice_words.csv'))
-        write.csv(temp_justice_words_sitting, file = temp_csv_output_path, row.names = F)
+        write.csv(temp_justice_words_sitting, file = temp_csv_output_path, row.names = F, quote = F)
 
       } # CSV Output
 
@@ -1060,7 +2034,7 @@ oa_analysis <- function(transcript,
       {
 
         temp_csv_output_path <- file.path(output_path, unique_sittings[i], paste0(unique_sittings[i], '_justice_time.csv'))
-        write.csv(temp_justice_sitting_time, file = temp_csv_output_path, row.names = F)
+        write.csv(temp_justice_sitting_time, file = temp_csv_output_path, row.names = F, quote = F)
 
       } # CSV Output
 
@@ -1090,7 +2064,8 @@ oa_analysis <- function(transcript,
         mutate(across(everything(), ~replace_na(.x, 0))) %>%
         rename(Case = case_name,
                Attorney = speaker,
-               Docket = docket)
+               Docket = docket) %>%
+        arrange(Docket)
 
 
       {
@@ -1122,7 +2097,7 @@ oa_analysis <- function(transcript,
       {
 
         temp_csv_output_path <- file.path(output_path, unique_sittings[i], paste0(unique_sittings[i], '_attorney_words.csv'))
-        write.csv(temp_attorney_sitting_words, file = temp_csv_output_path, row.names = F)
+        write.csv(temp_attorney_sitting_words, file = temp_csv_output_path, row.names = F, quote = F)
 
       } # CSV Output
 
@@ -1153,7 +2128,8 @@ oa_analysis <- function(transcript,
         rename(Case = case_name,
                Docket = docket,
                Attorney = speaker,
-               `Time Speaking` = total_elapsed)
+               `Time Speaking` = total_elapsed) %>%
+        arrange(Docket)
 
 
       {
@@ -1185,7 +2161,7 @@ oa_analysis <- function(transcript,
       {
 
         temp_csv_output_path <- file.path(output_path, unique_sittings[i], paste0(unique_sittings[i], '_attorney_time.csv'))
-        write.csv(temp_attorney_sitting_time, file = temp_csv_output_path, row.names = F)
+        write.csv(temp_attorney_sitting_time, file = temp_csv_output_path, row.names = F, quote = F)
 
       } # CSV Output
 
@@ -1195,6 +2171,67 @@ oa_analysis <- function(transcript,
   } # Attorney Time
 
   message('Completed Attorney Speaking Times')
+
+  {
+
+    for (i in 1:length(unique_sittings)){
+
+      temp_attorney_sitting_time <- temp_data %>%
+        filter(speaker_type == 'Attorney') %>%
+        filter(sitting == unique_sittings[i]) %>%
+        mutate(elapsed = text_stop - text_start) %>%
+        group_by(docket, speaker) %>%
+        summarise(total_elapsed = sum(elapsed), .groups = 'drop') %>%
+        mutate(total_elapsed = round(total_elapsed/60, 2)) %>%
+        left_join(master_file %>%
+                    select(docket, case) %>%
+                    rename(case_name = case), by = 'docket', relationship = 'many-to-many') %>%
+        unique() %>%
+        relocate(case_name) %>%
+        mutate(total_elapsed = ifelse(is.na(total_elapsed), 0, total_elapsed)) %>%
+        mutate(case_name = gsub('\\&', 'and', case_name)) %>%
+        rename(Case = case_name,
+               Docket = docket,
+               Attorney = speaker,
+               `Time Speaking` = total_elapsed) %>%
+        arrange(Docket)
+
+      temp_attorney_sitting_words <- temp_data %>%
+        filter(speaker_type == 'Attorney') %>%
+        filter(sitting == unique_sittings[i]) %>%
+        group_by(speaker, docket) %>%
+        summarise(total_words = sum(word_count), .groups = 'drop') %>%
+        ungroup() %>%
+        unique() %>%
+        left_join(master_file %>%
+                    select(docket, case) %>%
+                    rename(case_name = case), by = 'docket', relationship = 'many-to-many') %>%
+        unique() %>%
+        relocate(case_name) %>%
+        mutate(case_name = gsub('\\&', 'and', case_name)) %>%
+        mutate(across(everything(), ~replace_na(.x, 0))) %>%
+        rename(Case = case_name,
+               Attorney = speaker,
+               Docket = docket) %>%
+        arrange(Docket)
+
+      temp_attorney_sitting_words_time_combined <- temp_attorney_sitting_time %>%
+        mutate(`Total Words` = temp_attorney_sitting_words$total_words) %>%
+        mutate(Attorney = gsub('\\, Jr.*', '', Attorney))
+
+      {
+
+        temp_csv_output_path <- file.path(output_path, unique_sittings[i], paste0(unique_sittings[i], '_attorney_time_words_combined.csv'))
+        write.csv(temp_attorney_sitting_words_time_combined, file = temp_csv_output_path, row.names = F, quote = F)
+
+        } # CSV Export
+
+
+    }
+
+  } # Attorney Time + Words Combined
+
+  message('Completed Attorney Word Counts + Speaking Time (Combined)')
 
   {
 
@@ -1221,7 +2258,8 @@ oa_analysis <- function(transcript,
         rename(Case = case_name,
                Docket = docket,
                Attorney = speaker) %>%
-        select(Case, Docket, Attorney, ROBERTS, THOMAS, ALITO, SOTOMAYOR, KAGAN, GORSUCH, KAVANAUGH, BARRETT, JACKSON)
+        select(Case, Docket, Attorney, ROBERTS, THOMAS, ALITO, SOTOMAYOR, KAGAN, GORSUCH, KAVANAUGH, BARRETT, JACKSON) %>%
+        arrange(Docket)
 
 
       {
@@ -1253,7 +2291,7 @@ oa_analysis <- function(transcript,
       {
 
         temp_csv_output_path <- file.path(output_path, unique_sittings[i], paste0(unique_sittings[i], '_attorney_participation.csv'))
-        write.csv(temp_sitting_attorney_participation, file = temp_csv_output_path, row.names = F)
+        write.csv(temp_sitting_attorney_participation, file = temp_csv_output_path, row.names = F, quote = F)
 
       } # CSV Output
 
@@ -1363,6 +2401,85 @@ oa_analysis <- function(transcript,
 
     } # Justice Time Combined (Figure)
 
+    {
+
+      justice_words_combined <- temp_data %>%
+        filter(speaker_type == 'Justice') %>%
+        group_by(speaker, sitting) %>%
+        summarise(total_words = sum(word_count), .groups = 'drop') %>%
+        select(speaker, total_words, sitting) %>%
+        mutate(sitting = factor(sitting, levels = c(
+          'October','November','December','January','February',
+          'March','April','May','June','July'
+        ))) %>%
+        pivot_wider(names_from = speaker, values_from = total_words) %>%
+        arrange(sitting) %>%
+        {
+          total_row <- summarise(
+            .,
+            across(
+              where(is.numeric),
+              ~ sum(.x, na.rm = TRUE)
+            )
+          ) %>%
+            mutate(sitting = "TOTAL") %>%
+            select(names(.))
+          bind_rows(., total_row)
+        }
+
+
+      {
+
+        temp_csv_output_path = file.path(output_path, 'Combined', 'justice_words_combined.csv')
+        write.csv(justice_words_combined, file = temp_csv_output_path, row.names = F, quote = F)
+
+      } # CSV Output
+
+
+
+    } # Justice Words Combined (Table)
+
+    {
+
+      justice_time_combined <- temp_data %>%
+        filter(speaker_type == 'Justice') %>%
+        mutate(elapsed = text_stop - text_start,
+               elapsed = round(elapsed / 60, 2)) %>%
+        select(speaker, elapsed, sitting) %>%
+        group_by(speaker, sitting) %>%
+        summarise(total_time = sum(elapsed), .groups = 'drop') %>%
+        mutate(sitting = factor(sitting, levels = c(
+          'October','November','December','January','February',
+          'March','April','May','June','July'
+        ))) %>%
+        pivot_wider(names_from = speaker, values_from = total_time) %>%
+        arrange(sitting) %>%
+        {
+          total_row <- summarise(
+            .,
+            across(
+              where(is.numeric),
+              ~ sum(.x, na.rm = TRUE)
+            )
+          ) %>%
+            mutate(sitting = "TOTAL") %>%
+            select(names(.))
+          bind_rows(., total_row)
+        }
+
+
+      {
+
+        temp_csv_output_path = file.path(output_path, 'Combined', 'justice_time_combined.csv')
+        write.csv(justice_words_combined, file = temp_csv_output_path, row.names = F, quote = F)
+
+      } # CSV Output
+
+
+
+    } # Justice Time Combined (Table)
+
+
 
   } # Combined Analyses
 
@@ -1371,4 +2488,217 @@ oa_analysis <- function(transcript,
 
 }
 
+
+###############################################################################
+# Attorney Information
+###############################################################################
+
+attorney_information_template <- function(transcript,
+                                 master_file,
+                                 output_path){
+
+
+  temp_data <- transcript %>%
+    filter(speaker_type == 'Attorney') %>%
+    select(docket, sitting, speaker) %>%
+    left_join(cases_master %>%
+                select(docket, case) %>%
+                rename(case_name = case), by = 'docket', relationship = 'many-to-many') %>%
+    unique() %>%
+    rename(attorney = speaker) %>%
+    relocate(case_name) %>%
+    arrange(attorney) %>%
+    group_by(attorney) %>%
+    mutate(argument_number = row_number(),
+           total_arguments = max(argument_number)) %>%
+    ungroup() %>%
+    select(attorney, total_arguments) %>%
+    unique() %>%
+    mutate(gender = '',
+           repeat_attorney = '',
+           law_school = '',
+           ivy = '',
+           scotus_clerk = '',
+           firm = '',
+           SG_experience = '')
+
+  temp_output_path = file.path(output_path, 'attorney_information_base.csv')
+  write.csv(temp_data, file = temp_output_path)
+
+
+}
+
+
+
+###############################################################################
+# Docket Recovery
+###############################################################################
+
+docket_search <- function(docket_id, output_path){
+
+  process_docket_id <- function(docket_id) {
+    docket_url_newer <- "https://www.supremecourt.gov/search.aspx?filename=/docket/docketfiles/html/public/"
+    docket_url_older <- "https://www.supremecourt.gov/search.aspx?filename=/docketfiles/"
+    term <- as.data.frame(docket_id)
+    term <- term %>%
+      mutate(type = 3) %>%
+      mutate(type = ifelse(grepl("m", docket_id, ignore.case = T), 2, type)) %>%
+      mutate(type = ifelse(grepl("a", docket_id, ignore.case = T), 1, type)) %>%
+      mutate(type = ifelse(grepl("o", docket_id, ignore.case = T), 4, type)) %>%
+      mutate(year = as.numeric(gsub("\\-.*|a.*|A.*|m.*|M.*|Original.*|original.*|o.*|O.*|Orig.*|orig.*", "", docket_id))) %>%
+      mutate(year = ifelse(as.numeric(year) %in% 0:9, as.character(paste0(sprintf("%02d", year))), as.character(year))) %>%
+      mutate(docket_number = gsub(".*\\-|.*a|.*A|.*m|.*M|.*Original|.*original|.*o|.*O|.*Orig|.*orig", "", docket_id)) %>%
+      mutate(year = gsub("[^0-9]", "", year),
+             docket_number = gsub("[^0-9]", "", docket_number)) %>% #Delete Non-Numbers
+      mutate(html = ifelse(as.numeric(year) > 50, "HTM",
+                           ifelse(as.numeric(year) < 17, "HTM",
+                                  ifelse(as.numeric(year) >= 17 & as.numeric(year) < 30, "HTML", "HTM")))) %>%
+      mutate(url = case_when(
+        type == 1 & html == "HTM" ~ paste0(docket_url_older, year, "a", docket_number, ".htm"),
+        type == 1 & html == "HTML" ~ paste0(docket_url_newer, year, "a", docket_number, ".html"),
+
+        type == 2 & html == "HTM" ~ paste0(docket_url_older, year, "m", docket_number, ".htm"),
+        type == 2 & html == "HTML" ~ paste0(docket_url_newer, year, "m", docket_number, ".html"),
+
+        type == 3 & html == "HTM" ~ paste0(docket_url_older, year, "-", docket_number, ".htm"),
+        type == 3 & html == "HTML" ~ paste0(docket_url_newer, year, "-", docket_number, ".html"),
+
+        type == 4 & html == "HTM" ~ paste0(docket_url_older, year, "o", docket_number, ".htm"),
+        type == 4 & html == "HTML" ~ paste0(docket_url_newer, year, "o", docket_number, ".html")
+      ))
+    urls <- term$url
+    return(urls)
+  } #Translate Docket IDs to URLs
+
+  docket_info <- function(response, docket){
+
+    html_content <- httr::content(response, as = 'text')
+    parsed_html <- rvest::read_html(html_content)
+
+    info_meta <- parsed_html %>%
+      rvest::html_element('#docketinfo') %>%
+      rvest::html_table(fill = T) %>%
+      dplyr::select(X1, X2) %>%
+      dplyr::rename(information = X1,
+                    entry = X2) %>%
+      dplyr::mutate(information = ifelse(grepl('Linked with', information, ignore.case = T), gsub('Linked with', 'Linked with:', information, ignore.case = T), information),
+                    entry = ifelse(grepl('Linked with\\:', information, ignore.case = T), gsub('.*with\\:', '', trimws(information)), entry),
+                    information = ifelse(grepl('Linked with\\:', information), gsub('with\\:.*', 'with:', information), information),
+                    entry = trimws(entry)) %>%
+      dplyr::filter(grepl('\\:', information)) %>%
+      dplyr::mutate(information = gsub('\\:', '', information),
+                    entry = ifelse(entry == '', NA, entry)) %>%
+      tidyr::pivot_wider(names_from = information,
+                         values_from = entry) %>%
+      dplyr::rename_with(~ gsub(' ', '_', tolower(.x))) %>%
+      dplyr::mutate(petitioner = trimws(gsub(' v\\..*', '', title)),
+                    petitioner = trimws(gsub(' Petitioner.*', '', petitioner)),
+                    petitioner = trimws(gsub('\\, et al\\.\\,$', ', et al.', petitioner)),
+                    respondent = trimws(gsub('.* v\\.', '', title)),
+                    docket = docket) %>%
+      dplyr::relocate(petitioner, respondent, .after = title) %>%
+      dplyr::relocate(docket, .after = title)
+
+    if (!'linked_with' %in% names(info_meta)){
+      info_meta <- info_meta %>%
+        dplyr::mutate(linked_with = NA) %>%
+        dplyr::relocate(linked_with, .after = docketed)
+    }
+
+    return(info_meta)
+
+  } # Docket Info Table
+
+  docket_entries <- function(response){
+
+    temp_docket_entries <- httr::content(response, as = 'text') %>%
+      rvest::read_html(html_content) %>%
+      rvest::html_element('#proceedings')  %>%
+      rvest::html_table(fill = T) %>%
+      select(X1, X2) %>%
+      rename(date = X1,
+             entry = X2) %>%
+      mutate(date = ifelse(date == '', NA, date),
+             date = ifelse(date == 'Date', NA, date)) %>%
+      filter(!is.na(date)) %>%
+      mutate(date = lubridate::mdy(date))
+
+    return(temp_docket_entries)
+
+  } # Docket Entries
+
+  counsel <- function(response){
+
+    html_content <- httr::content(response, as = 'text')
+
+    counsel_temp <- gsub("(<br>|<br/>|<br />|\\n)", "\n", html_content) %>%
+      rvest::read_html(.) %>%
+      rvest::html_element("#Contacts") %>%
+      rvest::html_table(fill = TRUE) %>%
+      dplyr::mutate(across(everything(), ~ gsub("\\n", " ", .))) %>%
+      dplyr::select(X1, X2, X3) %>%
+      dplyr::rename(name = X1,
+                    address = X2,
+                    contact = X3) %>%
+      dplyr::filter(!grepl('NAME', name, ignore.case = T)) %>%
+      dplyr::filter(!grepl('Party name\\:', name, ignore.case = T)) %>%
+      dplyr::mutate(counsel_of_record = ifelse(grepl('Counsel of Record', name, ignore.case = T), 'Yes', 'No'),
+                    name = gsub('Counsel of Record', '', name, ignore.case = T),
+                    name = trimws(name),
+                    party = case_when(
+                      grepl('(Petitioner|Applicant|Appellant)', name, ignore.case = T) ~ 'Petitioner',
+                      grepl('(Respondent|Appellee)', name, ignore.case = T) ~ 'Respondent',
+                      name %in% c('Other', 'other') ~ 'Other')) %>%
+      tidyr::fill(party, .direction = 'down') %>%
+      dplyr::filter(!grepl('Attorneys for ', name)) %>%
+      dplyr::filter(!name %in% c('Other', 'other')) %>%
+      filter(!name == '')
+
+    return(counsel_temp)
+
+  } # Return Counsel
+
+  check_package_install <- function(){
+
+    check_and_load_packages <- function(packages) {
+      for (pkg in packages) {
+        if (!requireNamespace(pkg, quietly = TRUE)) {
+          cat(sprintf("Package '%s' is not installed. Do you want to install it? (Y/N): ", pkg))
+          response <- tolower(readline())
+          if (response == "y") {
+            install.packages(pkg)
+          } else if (response == "n") {
+            stop(sprintf("Cannot proceed without '%s' installed. Exiting.", pkg))
+          } else {
+            stop("Invalid input. Please enter Y or N. Exiting.")
+          }
+        }
+        # Load the library after installation or if already installed
+        library(pkg, character.only = TRUE)
+      }
+    }
+
+    required_packages <- c('dplyr', 'rvest', 'reticulate', 'httr', 'tm', 'stringr', 'tm', 'tidyr', 'graphics', 'utils', 'htm2txt', 'zoo', 'pdftools')
+    check_and_load_packages(required_packages)
+    library(dplyr); library(rvest); library(reticulate); library(httr); library(tm); library(stringr); library(tm); library(tidyr); library(graphics); library(utils); library(htm2txt); library(zoo); library(pdftools)
+
+  } # Check if dplyr, rvest, reticulate, and httr are installed
+
+  check_package_install() # Check If Necessary Packages are Installed
+
+  temp_docket_url <- process_docket_id(docket_id)
+  response <- httr::GET(temp_docket_url) # Retrieve HTML
+  temp_docket_info <- docket_info(response, docket_id) # Get Docket Meta Info
+  temp_docket_entries <- docket_entries(response) # Get Docket Entries
+  temp_counsel <- counsel(response) # Get Counsel (Full)
+
+
+  combined_temp <- temp_docket_info %>%
+    dplyr::mutate(docket_entries = list(temp_docket_entries),
+                  counsel = list(temp_counsel))
+
+  temp_output_path <- file.path(output_path, paste0(docket_id, '.rdata'))
+  save(combined_temp, file = temp_output_path)
+
+} # Docket Search
 

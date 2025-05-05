@@ -1,22 +1,22 @@
-"Case","Attorney","Docket","total_words"
-"NRC v. Texas","Aaron L. Nielson","23-1300",2302
-"CC/Devas v. Antrix Corp.","Aaron M. Streett","23-1201",1353
-"Perttu v. Richards","Ann M. Sherman","23-1324",3738
-"Gutierrez v. Saenz","Anne E. Fisher","23-7809",4573
-"Ames v. OH Dept. of Youth Services","Ashley Robertson","23-1039",2005
-"NRC v. Texas","Brad Fagg","23-1300",2209
-"CC/Devas v. Antrix Corp.","Carter G. Phillips","23-1201",2406
-"Smith and Wesson v. Estados Unidos Mexicanos","Catherine E. Stetson","23-1141",4706
-"Esteras v. United States","Christian J. Grostic","23-7483",4087
-"NRC v. Texas","David C. Frederick","23-1300",2442
-"Perttu v. Richards","Lori Alvino McGill","23-1324",2561
-"NRC v. Texas","Malcolm L. Stewart","23-1300",4578
-"Esteras v. United States","Masha G. Hansford","23-7483",3763
-"CC/Devas v. Antrix Corp.","Matthew D. McGill","23-1201",1470
-"BLOM Bank SAL v. Honickman","Michael H. McGinley","23-1259",4080
-"BLOM Bank SAL v. Honickman","Michael J. Radine","23-1259",2557
-"Smith and Wesson v. Estados Unidos Mexicanos","Noel J. Francisco","23-1141",5175
-"CC/Devas v. Antrix Corp.","Sarah M. Harris","23-1201",1158
-"Ames v. OH Dept. of Youth Services","T. Elliot Gaiser","23-1039",2297
-"Gutierrez v. Saenz","William F. Cole","23-7809",3249
-"Ames v. OH Dept. of Youth Services","Xiao Wang","23-1039",2329
+Case,Attorney,Docket,total_words
+Ames v. OH Dept. of Youth Services,Ashley Robertson,23-1039,2005
+Ames v. OH Dept. of Youth Services,T. Elliot Gaiser,23-1039,2297
+Ames v. OH Dept. of Youth Services,Xiao Wang,23-1039,2329
+Smith and Wesson v. Estados Unidos Mexicanos,Catherine E. Stetson,23-1141,4706
+Smith and Wesson v. Estados Unidos Mexicanos,Noel J. Francisco,23-1141,5175
+CC/Devas v. Antrix Corp.,Aaron M. Streett,23-1201,1353
+CC/Devas v. Antrix Corp.,Carter G. Phillips,23-1201,2406
+CC/Devas v. Antrix Corp.,Matthew D. McGill,23-1201,1470
+CC/Devas v. Antrix Corp.,Sarah M. Harris,23-1201,1158
+BLOM Bank SAL v. Honickman,Michael H. McGinley,23-1259,4080
+BLOM Bank SAL v. Honickman,Michael J. Radine,23-1259,2557
+NRC v. Texas,Aaron L. Nielson,23-1300,2302
+NRC v. Texas,Brad Fagg,23-1300,2209
+NRC v. Texas,David C. Frederick,23-1300,2442
+NRC v. Texas,Malcolm L. Stewart,23-1300,4578
+Perttu v. Richards,Ann M. Sherman,23-1324,3738
+Perttu v. Richards,Lori Alvino McGill,23-1324,2561
+Esteras v. United States,Christian J. Grostic,23-7483,4087
+Esteras v. United States,Masha G. Hansford,23-7483,3763
+Gutierrez v. Saenz,Anne E. Fisher,23-7809,4573
+Gutierrez v. Saenz,William F. Cole,23-7809,3249

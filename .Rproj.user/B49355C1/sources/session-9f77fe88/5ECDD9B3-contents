@@ -1,0 +1,460 @@
+opinions_path = "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions"
+current_term = 2024
+
+
+justia_opinion_recovery <- function(opinions_path, 
+                                    current_term){
+  
+  {
+    
+    terms = c(current_term, current_term + 1) # Justia Indexes by Year
+    term_cases_combined <- data.frame() # Empty DF
+    
+    for (term in 1:length(terms)) {
+      
+      tryCatch({
+        
+        url <- paste0('https://supreme.justia.com/cases/federal/us/year/', terms[term], '.html') # Create Term-Level Link
+        source <- tryCatch(
+          read_html(url),
+          error = function(e) return(NULL)
+        )
+        
+        if (is.null(source)) next # Skip to next term if read_html failed
+        
+        elements <- source %>%
+          html_elements("div.has-padding-content-block-30.-zb.search-result") # Retrieve Case Entries
+        
+        term_cases <- data.frame() # Empty DF to Store Case-Level Entries for Term[Term]
+        
+        for (element in 1:length(elements)) {
+          
+          page <- elements[element] # Get Case Entry
+          
+          case_name <- page %>%
+            html_nodes(".case-name strong") %>%
+            html_text(trim = TRUE) # Case Name
+          
+          embedded_link <- page %>%
+            html_nodes(".color-green a") %>%
+            html_attr("href") # Link to Justia Entry
+          
+          key_value_pairs <- page %>%
+            html_nodes("strong") %>%
+            html_text(trim = TRUE) # US Report Citation, Docket Number, Court, Date, etc.
+          key_value_pairs <- key_value_pairs[!key_value_pairs %in% case_name] # Remove Case Name (Duplicate)
+          
+          values <- page %>%
+            html_nodes("strong") %>%
+            html_nodes(xpath = "following-sibling::text()[normalize-space()]") %>%
+            html_text(trim = TRUE) # Associated Values to Keys
+          
+          case_info <- data.frame(key = key_value_pairs, value = values) %>%
+            add_row(key = 'Link', value = embedded_link) %>%
+            add_row(key = 'Case_Name', value = case_name) %>%
+            mutate(
+              key = gsub('\\:', '', key),
+              key = gsub(' ', '_', key),
+              key = tolower(key)
+            ) %>%
+            tidyr::pivot_wider(names_from = 'key') # Pivot Wider So Keys Become Columns
+          
+          term_cases <- bind_rows(term_cases, case_info)
+        }
+        
+        term_cases_combined <- bind_rows(term_cases_combined, term_cases)
+        
+      }, error = function(e) {
+        # silently skip this term on error
+        next
+      })
+    } # Recover Justia Links for Term
+    
+    {
+      
+      term_year <- terms[1]  # Set Current Term
+      cutoff_date <- as.Date(paste0(term_year, "-10-01"))
+      term_cases_combined <- term_cases_combined %>%
+        mutate(date = as.Date(date, format = '%B %d, %Y')) %>%
+        filter(date > cutoff_date)
+      
+      completed_dockets <- list.files(file.path(opinions_path, 'opinions', 'opinions_processed')) # Dockets Already Completed
+      completed_dockets <- gsub('\\.rdata', '', completed_dockets)
+      
+      term_cases_combined <- term_cases_combined %>%
+        filter(!docket_number %in% c(completed_dockets)) # Filter Out
+      
+    } # Filter to Current Term 
+    
+    if (nrow(term_cases_combined) == 0){
+      message('Every Opinion Already Processed')
+      
+      } else {
+      
+      message('Located ', nrow(term_cases_combined), ' Decisions to Process...')
+      
+      {
+        
+        unique_justices <- scdb_justices %>%
+          mutate(justice = sub(".*([A-Z][a-zA-Z]*).*$", "\\1", justiceName)) %>%
+          select(justice) %>%
+          unique() %>%
+          pull(justice)
+        
+      } # Unique Justices
+      
+      for (case in 1:nrow(term_cases_combined)){
+        
+        temp_case <- term_cases_combined[case,]
+        temp_case_link <- paste0('https://supreme.justia.com/', temp_case$link) # Compile Justia Link
+        case_source_temp <- read_html(temp_case_link) #Retrieve Case Source
+        
+        {
+          
+          opinions_list <- case_source_temp %>%
+            html_nodes("#opinions-list") %>%
+            html_nodes("li") # List of Opinions for Case
+          
+          href_values <- opinions_list %>%
+            html_nodes("a") %>%
+            html_attr("href")  # Retrieve Justia ID #'s
+          
+          title_values <- opinions_list %>%
+            html_nodes("a") %>%
+            html_text() %>%
+            gsub("\\t+", " ", .) # Retrieve Opinion Type (Author)
+          
+          temp_opinions <- data.frame(opinion = title_values,
+                                      justice = gsub('.*\\(', '', gsub('\\)', '',  title_values)),
+                                      opinion_type = trimws(gsub('\\(.*', '', title_values)),
+                                      justia_id = href_values,
+                                      updated_justia_link = paste0( temp_case_link, href_values)) # Combine Into DF
+          
+        } # Get Opinions List - Href Values - Title Values -- Recover Temp Opinions Before Processing
+        
+        combined_opinions <- data.frame()
+        
+        for (opinion in 1:nrow(temp_opinions)){
+          
+          temp_opinion <- temp_opinions[opinion,] # Get Temp Opinion
+          temp_opinion_link <- temp_opinion$updated_justia_link # Opinion-Level Link
+          response <- GET(temp_case_link) # Get Full Source
+          
+          {
+            
+            raw_html <- tryCatch({
+              # First attempt using httr's content()
+              response <- GET(temp_case_link)
+              content(response, as = "text", encoding = "UTF-8")
+            }, error = function(e) {
+              # If the first method fails, fall back to httr2
+              response2 <- request(temp_case_link) |> req_perform()
+              resp_body_string(response2)
+            }) # content() fails -- try httr2 request & resp_body_string
+            
+            
+            parsed_html <- read_html(raw_html) # Parse to R
+            opinion_element_temp <- html_nodes(parsed_html, paste0('#tab-opinion ', temp_opinion$justia_id)) # Reduce to Opinion Element (Justia ID)
+            opinion_element_temp <- html_text(opinion_element_temp)
+            
+            blocks <- strsplit(as.character(opinion_element_temp), split = '(\\t{5}|\\n\\n)') # Split by &nbsp line break notation
+            html_elements_to_toss <- c('<em>', '</em>', '<p>', '</p>', '<a>', '</a>', '</font>', '(<div|<div>)', '</div>', '<br>', '<span>', '</span>', '<strong>', '</strong>') # Regex for Tossing HTML Encoding
+            
+          } # Process Raw HTML
+          
+          {
+            
+            oar_1 <- paste0(
+              "JUSTICE ", toupper(unique_justices), " ",
+              rep(c(", dissent", ", concur", "delivered", ", in which", " would ", ' dissents', ", with whom"), each = length(unique_justices)))
+            oar_2 <- paste0(
+              "MR. JUSTICE ", toupper(unique_justices), ".$")
+            oar_3 <- paste0(
+              "MS. JUSTICE ", toupper(unique_justices), ".$")
+            oar_4 <- paste0(
+              "MS. CHIEF JUSTICE ", toupper(unique_justices), ".$")
+            oar_5 <- paste0(
+              "MS. CHIEF JUSTICE ", toupper(unique_justices), ".$")
+            oar_6 <- paste0('^PER CURIAM.$')
+            oar_7 <- paste0(
+              "MR. JUSTICE ", toupper(unique_justices), " ",
+              rep(c(", dissent", ", concur", "delivered", ", in which", " would ", ' dissents'), each = length(unique_justices)))
+            oar_8 <- paste0(
+              "MS. JUSTICE ", toupper(unique_justices), " ",
+              rep(c(", dissent", ", concur", "delivered", ", in which", " would ", ' dissents'), each = length(unique_justices)))
+            oar_9 <- paste0("MR. JUSTICE ", toupper(unique_justices), ".*? delivered")
+            oar_10 <- paste0("MS. JUSTICE ", toupper(unique_justices), ".*? delivered")
+            oar_11 <- paste0("MR. CHIEF JUSTICE ", toupper(unique_justices), ".*? delivered")
+            
+            opinion_authors_regex <- c(oar_1, oar_2, oar_3, oar_4, oar_5, oar_6, oar_7, oar_8, oar_9, oar_10, oar_11)
+            opinion_authors_regex <- gsub(' \\,', ',', opinion_authors_regex)
+            opinion_authors_regex <- gsub('  ', ' ', opinion_authors_regex)
+            
+          } # Regex to Identify Opinions w/out Justia Demarcation
+          
+          {
+            
+            if (any(grepl('court\\:', unlist(blocks)))){
+              opinion_text_temp <- data.frame(text = unlist(blocks)) %>%
+                mutate(
+                  text_split = str_split(text, "(?<=court:)", n = 2)
+                ) %>%
+                select(-text) %>%  # Remove original text column to avoid name collision
+                tidyr::unnest_wider(text_split, names_sep = "_") %>%
+                rename(text_1 = text_split_1, text_2 = text_split_2) %>%
+                tidyr::pivot_longer(cols = starts_with("text_"), names_to = NULL, values_to = "text") %>%
+                filter(!is.na(text))
+            } else {
+              opinion_text_temp <- data.frame(text = unlist(blocks))
+            }
+            
+            opinion_text_temp <- opinion_text_temp %>%
+              mutate(text = gsub('\\s{2,}', ' ', trimws(text)))  %>%
+              filter(!text == '') %>%
+              filter(!text == ' ') %>% # Remove Blank Rows
+              mutate(text = gsub(paste(html_elements_to_toss, collapse = '|'), '', text)) %>%
+              mutate(text = trimws(text)) %>%  # Trim WS
+              mutate(total_letters = str_count(text, '[a-zA-Z]')) %>% # Get Count of Letters in Row Strings
+              filter(total_letters > 1) %>%  # Toss Where Letters <= 1 (Usually * * * to denote footnotes)
+              mutate(text = ifelse(!is.na(text), gsub('^[^a-zA-Z]*', '', text), text),
+                     text = gsub('\\n', ' ', text)) %>%
+              mutate(toss = case_when(
+                .default = 0,
+                grepl(paste0('(I$|II$|III$|IV$|V$|VI$|VII$|VIII$)'), text, ignore.case = T) ~ 1,
+                text == c('^</div>') ~ 1,
+                grepl('^<a name=', text) ~ 1,
+                grepl('^class=', text) ~ 1,
+                grepl('^id=', text) ~ 1,
+                row_number() == 1 ~ 1)) %>% # Remove Section Indicators & Div Element Encodings # Replace 2+ Spaces W/ One
+              filter(!toss == 1) %>%  # Toss Where Toss = 1
+              mutate(
+                test = ifelse(
+                  grepl(paste0("(?s)", paste(opinion_authors_regex, collapse = '|')),
+                        text,
+                        ignore.case = TRUE,
+                        perl = TRUE),
+                  1, 0
+                ),
+                tokenized = tokenizers::tokenize_words(text),
+                opinion_author = ifelse(
+                  test == 1,
+                  sapply(tokenized, function(tokens) {
+                    match <- intersect(toupper(tokens), toupper(unique_justices))
+                    if (length(match) > 0) match[1] else NA
+                  }),
+                  NA
+                )
+              ) %>%
+              relocate(opinion_author) %>%
+              mutate(opinion_author = ifelse(grepl('^Per Curiam', text, ignore.case = T), 'Per Curiam', opinion_author)) %>%
+              tidyr::fill(opinion_author, .direction = 'down') %>%
+              filter(!grepl("Page .*? U\\. S\\.", text, ignore.case = T))
+            
+            if (all(is.na(opinion_text_temp$opinion_author))){
+              opinion_text_temp$opinion_author <- 'Unknown'
+            } else {
+              opinion_text_temp <- opinion_text_temp %>%
+                filter(!is.na(opinion_author)) %>%
+                mutate(opinion_author = stringr::str_to_title(opinion_author))
+              opinion_text_temp <- opinion_text_temp[-1,]
+            } # IF All NA (Indicating Per Curiam or Something?) -- Replace
+            
+            
+          } # Process Text & Identify Author
+          
+          {
+            
+            individual_opinions <- list()
+            individual_authors <- unique(opinion_text_temp$opinion_author)
+            
+            for (individual_author in 1:length(individual_authors)){
+              
+              temp_author_opinion <- opinion_text_temp %>%
+                filter(opinion_author == individual_authors[individual_author]) %>%
+                select(-c(opinion_author))
+              
+              individual_opinions[[as.character(individual_authors[individual_author])]] <- temp_author_opinion
+              
+              
+            }
+            
+          } # Demarcate and Separate -- Return as 'individual_opinions'
+          
+          {
+            
+            for (author in 1:length(individual_opinions)){
+              
+              temp_authored_opinion <- individual_opinions[[author]] %>%
+                mutate(text =  gsub("\\[\\s*Footnote\\s*\\d+(/\\d+)?\\s*\\]", "", text))
+              temp_authorship_retrieval <- names(individual_opinions)[author]
+              
+              opinion_text_cleaned <- paste(trimws(gsub('\\n', ' ', temp_authored_opinion$text)), collapse = ' ') # Retrieve Cleaned Opinion
+              
+              combined_opinions <- bind_rows(combined_opinions, data.frame(authorship = temp_opinion$justice, 
+                                                                           opinion_type = temp_opinion$opinion_type,
+                                                                           opinion_text = opinion_text_cleaned, # Use I() to ensure list storage
+                                                                           stringsAsFactors = FALSE))
+              
+            }
+            
+            
+          } # Separate Individual Opinions & Recombine as DF
+          
+          
+        } # For Each Opinion -- Recover & Append
+        
+        {
+          
+          combined_opinions <- combined_opinions %>%
+            mutate(docket = term_cases_combined[case,]$docket_number, 
+                   date = term_cases_combined[case,]$date, 
+                   case = term_cases_combined[case,]$case_name, 
+                   justia_summary = term_cases_combined[case,]$justia_opinion_summary)
+          
+        } # Assign Meta
+        
+        {
+          
+          temp_export_path = file.path(opinions_path, 'opinions', 'opinions_processed', paste0(term_cases_combined[case,]$docket_number, '.rdata'))
+          save(combined_opinions, file = temp_export_path)
+          
+          
+        } # Export
+        
+        message(' ---- Completed ', term_cases_combined[case,]$docket_number)
+        
+      } # For Each Case
+      
+    }
+    
+  } # Individually Recover
+  
+  {
+    
+    completed_opinions <- list.files(file.path(opinions_path, 'opinions', 'opinions_processed'), full.names = T)
+    term_opinions <- data.frame()
+    
+    for (i in 1:length(completed_opinions)){
+      temp_opinion <- get(load(completed_opinions[i]))
+      term_opinions <- bind_rows(term_opinions, temp_opinion)
+    }
+    
+    temp_export_path <- file.path(opinions_path, 'opinions', 'combined_opinions_processed', paste0('combined_opinions_OT', as.character(current_term), '.rdata'))
+    save(term_opinions, file = temp_export_path)
+    
+  } # Combine All on Backend
+  
+  {
+    
+    justice_term_opinion_counts <- term_opinions %>%
+      filter(!authorship == 'Per Curiam') %>%
+      group_by(authorship, opinion_type) %>%
+      summarise(count = n(), .groups = 'drop') %>%
+      mutate(opinion_type = ifelse(opinion_type == 'Opinion', 'Majority', opinion_type)) %>%
+      pivot_wider(names_from = opinion_type, values_from = count, values_fill = 0) %>%
+      mutate(Majority = as.numeric(Majority), 
+             Concurrence = as.numeric(Concurrence), 
+             Dissent = as.numeric(Dissent)) %>%
+      rename(Justice = authorship) %>%
+      dplyr::select(Justice, Majority, Concurrence, Dissent)
+    
+    temp_export_path = file.path(opinions_path, 'tables', 'justice_term_opinion_counts.csv')
+    write.csv(justice_term_opinion_counts, file = temp_export_path, row.names = F)
+    
+    message('Completed Term-Level Authorship Counts')
+    
+    
+  } # Term-Level Opinion Authorship Counts
+  
+  {
+    
+    justice_comparison_opinion_counts <- scdb_justices %>%
+      filter(term >= 2021) %>%
+      filter(opinion %in% c(2, 3)) %>%
+      mutate(justice = sub(".*([A-Z][a-zA-Z]*).*$", "\\1", justiceName)) %>%
+      select(justice, vote, docket, term) %>%
+      mutate(vote = case_when(
+        .default = 'Majority', 
+        vote %in% c(3, 4, 5) ~ 'Concurrence', 
+        vote %in% c(2, 6, 7) ~ 'Dissent', 
+        vote == 8 ~ 'Divided Court')) %>%
+      rename(opinion_type = vote) %>%
+      group_by(term, justice, opinion_type) %>%
+      summarise(count = n(), .groups = 'drop') %>%
+      bind_rows(term_opinions %>%
+                  filter(!authorship == 'Per Curiam') %>%
+                  group_by(authorship, opinion_type) %>%
+                  summarise(count = n(), .groups = 'drop') %>%
+                  mutate(opinion_type = ifelse(opinion_type == 'Opinion', 'Majority', opinion_type), 
+                         term = 2024) %>%
+                  rename(justice = authorship)) %>%
+      pivot_wider(names_from = opinion_type, values_from = count, values_fill = 0) %>%
+      mutate(Majority = as.numeric(Majority), 
+             Concurrence = as.numeric(Concurrence), 
+             Dissent = as.numeric(Dissent)) %>%
+      select(term, justice, Majority, Concurrence, Dissent)
+    
+    temp_export_path = file.path(opinions_path, 'tables', 'justice_comparison_opinion_counts.csv')
+    write.csv(justice_comparison_opinion_counts, file = temp_export_path, row.names = F)
+    
+    message('Completed Comparison of Authorship Counts')
+    
+  } # Comparison Opinion Authorship Counts
+  
+  {
+    
+    opinion_lengths_term <- term_opinions %>%
+      rowwise() %>%
+      mutate(word_count = lengths(gregexpr("\\W+", opinion_text)) + 1) %>%
+      select(case, authorship,  word_count) %>%
+      mutate(word_count = scales::comma(word_count))
+  
+    opinion_partitions <- split(opinion_lengths_term, ceiling(seq_len(nrow(opinion_lengths_term)) / 30)) # Split the dataframe into chunks of 10 rows
+    
+    for (opinion in 1:length(opinion_partitions)){
+      
+      temp_opinion_rows <- opinion_partitions[[opinion]]
+      temp_output_path <- file.path(opinions_path, 'tables', paste0('term_opinion_lengths_', opinion, '.csv'))
+      write.csv(temp_opinion_rows, file = temp_output_path, row.names = F, quote = F)
+    }
+    
+    message('Completed Term-Level Opinion Lengths -- ', length(opinion_partitions), ' Total')
+    
+  } # Opinion Lengths (Current Term)
+  
+  {
+    
+    average_opinion_lengths_term <- term_opinions %>%
+      filter(!authorship == 'Per Curiam') %>%
+      rowwise() %>%
+      mutate(word_count = lengths(gregexpr("\\W+", opinion_text)) + 1) %>%
+      select(opinion_type, authorship, word_count) %>%
+      mutate(opinion_type = ifelse(opinion_type == 'Opinion', 'Majority', opinion_type)) %>%
+      group_by(authorship, opinion_type) %>%
+      summarise(average_length = mean(word_count), .groups = 'drop') %>%
+      pivot_wider(names_from = opinion_type, values_from = average_length, values_fill = 0) %>%
+      mutate(Majority = scales::comma(Majority), 
+             Concurrence = scales::comma(Concurrence), 
+             Dissent = scales::comma(Dissent)) %>%
+      rename(Justice = authorship) %>%
+      select(Justice, Majority, Concurrence, Dissent) %>%
+      mutate(Majority = ifelse(Majority == 0, '', Majority), 
+             Concurrence = ifelse(Concurrence == 0, '', Concurrence), 
+             Dissent = ifelse(Dissent == 0, '', Dissent))
+    
+    temp_output_path <- file.path(opinions_path, 'tables', paste0('average_opinion_lengths_term .csv'))
+    write.csv(average_opinion_lengths_term , file = temp_output_path, row.names = F, quote = F)
+    
+    message('Completed Average Opinion Lengths by Type (Current Term)')
+    
+  } # Average Lengths by Opinion Type (Current Term)
+  
+} # Recover Decisions from Justia
+
+
+justia_opinion_recovery(opinions_path = "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions",
+                        current_term = 2024)
+
+
+term_opinions <- get(load(temp_export_path))
+

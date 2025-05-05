@@ -1,8 +1,8 @@
-"case_name","docket","ROBERTS","THOMAS","ALITO","SOTOMAYOR","KAGAN","GORSUCH","KAVANAUGH","BARRETT","JACKSON"
-"Wisconsin Bell  v. United States, ex rel. Heath","23-1127",589,446,158,717,788,827,707,1060,1300
-"E.M.D. Sales, Inc v. Carrera","23-217",418,94,218,191,227,0,123,0,685
-"Advocate Christ Medical Center v. Becerra","23-715",75,103,183,499,1037,353,1127,243,1512
-"Delligatti v. United States.","23-825",257,195,104,213,566,1372,100,279,1299
-"Velazquez v. Garland","23-929",291,128,399,774,888,652,246,302,1090
-"NVIDIA Corp.  v. E. Ohman J:or Fonder AB","23-970",664,111,611,843,858,728,365,193,1198
-"Facebook v. Amalgamated Bank","23-980",533,397,1213,628,1103,882,950,761,1211
+case_name,docket,ROBERTS,THOMAS,ALITO,SOTOMAYOR,KAGAN,GORSUCH,KAVANAUGH,BARRETT,JACKSON
+Wisconsin Bell  v. United States, ex rel. Heath,23-1127,589,446,158,717,788,827,707,1060,1300
+E.M.D. Sales, Inc v. Carrera,23-217,418,94,218,191,227,0,123,0,685
+Advocate Christ Medical Center v. Becerra,23-715,75,103,183,499,1037,353,1127,243,1512
+Delligatti v. United States.,23-825,257,195,104,213,566,1372,100,279,1299
+Velazquez v. Garland,23-929,291,128,399,774,888,652,246,302,1090
+NVIDIA Corp.  v. E. Ohman J:or Fonder AB,23-970,664,111,611,843,858,728,365,193,1198
+Facebook v. Amalgamated Bank,23-980,533,397,1213,628,1103,882,950,761,1211
