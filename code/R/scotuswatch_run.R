@@ -10,6 +10,12 @@
 
 source('code/R/scotuswatch_source.R') # Load Source & Functions (Load Packages Too)
 
+################################################################################
+# Move Copy of Statpack to 'releases' folder
+################################################################################
+
+file.copy(from = 'Stat Reviews/OT24_StatReview/compilation/compilation_main_StatReview_OT24.pdf', to = 'Stat Reviews/OT24_StatReview/releases/OT24_extended.pdf', overwrite = TRUE) # Copy Extended Release to Releases
+
 
 ###############################################################################
 # Oral Argument Sittings
@@ -162,4 +168,3 @@ dockets_combine(dockets_path = 'Stat Reviews/OT24_StatReview/dockets/processed_d
 
 dockets_analysis(combined_dockets <- 'Stat Reviews/OT24_StatReview/dockets/combined_dockets/combined_dockets_OT24.rdata',
                 output_path = 'Stat Reviews/OT24_StatReview/dockets/analysis')
-
