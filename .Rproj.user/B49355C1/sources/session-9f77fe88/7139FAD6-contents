@@ -1,0 +1,15 @@
+\begin{landscape}
+
+\subsection{Variance in Filings}
+
+\IfFileExists{../dockets/analysis/tables/cumulative_docket_count.csv}{
+  \docketFilings{../dockets/analysis/tables/cumulative_docket_count.csv}{Cumulative Filings by Month (OT24)}
+}{}
+
+\IfFileExists{../dockets/analysis/tables/docket_trends.csv}{
+  \docketFilings{../dockets/analysis/tables/docket_trends.csv}{Month-Level Filings by Month (OT24)}
+}{}
+
+
+
+\end{landscape}

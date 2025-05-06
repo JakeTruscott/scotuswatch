@@ -32,7 +32,7 @@ check_and_install_packages <- function(){
   packages <- c('anytime', 'dplyr', 'ggplot2', 'ggpattern', 'ggtext', 'ggthemes',
                 'grid', 'htmltools', 'httr', 'jsonlite', 'kableExtra', 'png',
                 'readxl', 'reticulate', 'rvest', 'scotustext', 'stringi',
-                'stringr', 'tidyr', 'tm', 'webshot2', 'purrr', 'tibble', 'httr', 'httr2', 'tokenizers')
+                'stringr', 'tidyr', 'tm', 'webshot2', 'purrr', 'tibble', 'httr', 'httr2', 'tokenizers', 'lubridate', 'scales')
 
   missing_packages <- packages[!packages %in% installed.packages()[, "Package"]]
 
@@ -2520,7 +2520,8 @@ attorney_information_template <- function(transcript,
            ivy = '',
            scotus_clerk = '',
            firm = '',
-           SG_experience = '')
+           SG_experience = '',
+           oyez_link = '')
 
   temp_output_path = file.path(output_path, 'attorney_information_base.csv')
   write.csv(temp_data, file = temp_output_path)
@@ -2701,4 +2702,347 @@ docket_search <- function(docket_id, output_path){
   save(combined_temp, file = temp_output_path)
 
 } # Docket Search
+
+
+###############################################################################
+# Docket Analysis
+###############################################################################
+
+dockets_combine <- function(dockets_path, output_path){
+
+  combined_dockets <- data.frame() # Empty DF to Combine
+  files <- list.files(dockets_path, full.names = T) # Link to Processed Dockets
+
+  for (i in 1:length(files)){
+
+    temp_docket <- get(load(files[i]))
+    combined_dockets <- bind_rows(combined_dockets, temp_docket)
+
+    if (i %% 100 == 0){
+      message('Combined Docket ', i, ' of ', length(files))
+    }
+
+  } # Append to Combined Dockets
+
+  save(combined_dockets, file = output_path)
+
+
+} # Combine Dockets Into Single DF
+
+dockets_analysis <- function(combined_dockets, output_path){
+
+  dockets <- get(load(combined_dockets))
+
+  {
+
+    filing_types_distribution <- dockets %>%
+      select(docket) %>%
+      mutate(type = case_when(
+        .default = 'Certiorari_Petition',
+        grepl('a', docket, ignore.case = T) ~ 'Application',
+        grepl('m', docket, ignore.case = T) ~ 'Motion'
+      )) %>%
+      group_by(type) %>%
+      summarise(count = n(), .groups = 'drop') %>%
+      pivot_wider(names_from = type, values_from = count, values_fill = 0) %>%
+      select('Certiorari_Petition', 'Application', 'Motion')
+
+
+    temp_output_path <- file.path(output_path, 'tables', 'filing_types_distribution.csv')
+    write.csv(filing_types_distribution, file = temp_output_path, row.names = F, quote = F)
+
+    message('Completed Distribution of Filings by Type')
+
+  } # Distribution of Filings Type (CSV)
+
+  {
+
+    {
+
+      docketed_data <- dockets %>%
+        select(docket, docketed) %>%
+        mutate(
+          type = case_when(
+            grepl('a', docket, ignore.case = TRUE) ~ 'Application',
+            grepl('m', docket, ignore.case = TRUE) ~ 'Motion',
+            .default = 'Certiorari_Petition'
+          ),
+          docketed_date = as.Date(docketed, format = "%B %d, %Y"),
+          docketed_month_year = lubridate::floor_date(docketed_date, "month")  # Proper Date object
+        )
+
+    } # Docketed Data
+
+    {
+
+      {
+
+        cumulative_docket_count_data <- docketed_data %>%
+          mutate(docketed_month_year = floor_date(as.Date(docketed, format = "%B %d, %Y"), "month"),
+                 docketed_month_year_label = format(as.Date(docketed, format = "%B %d, %Y"), "%B %Y")) %>%
+          group_by(type, docketed_month_year) %>%
+          reframe(n = n(),
+                  docketed_month_year_label) %>%
+          ungroup() %>%
+          unique() %>%
+          filter(!is.na(docketed_month_year)) %>%
+          complete(
+            type,
+            docketed_month_year = seq(
+              min(docketed_month_year),
+              max(docketed_month_year),
+              by = "month"),  fill = list(n = 0)) %>%
+          group_by(type) %>%
+          mutate(
+            cumulative_n = cumsum(n),
+            cumulative_n = zoo::na.locf(cumulative_n, na.rm = FALSE)) %>%
+          mutate(type = factor(type, levels = c('Certiorari_Petition', 'Application', 'Motion')))
+
+        temp_export_path <- file.path(output_path, 'tables', 'cumulative_docket_count.csv')
+        write.csv(cumulative_docket_count_data %>%
+                    arrange(docketed_month_year) %>%
+                    filter(!is.na(docketed_month_year_label)) %>%
+                    select(type, docketed_month_year_label, cumulative_n) %>%
+                    pivot_wider(names_from = type, values_from = cumulative_n, values_fill = 0) %>%
+                    rename(month_year = docketed_month_year_label) %>%
+                    select(month_year, Certiorari_Petition, Application, Motion), file = temp_export_path, row.names = F, quote = F)
+
+      } # Recover Data & Export
+
+      {
+
+        cumulative_docket_count <- ggplot(data = cumulative_docket_count_data, aes(x = docketed_month_year, y = cumulative_n)) +
+          geom_col(colour = 'black', fill ='gray50') +
+          geom_hline(yintercept = 0) +
+          facet_wrap(~type, nrow = 3, scales = 'free_y') +
+          labs(x = ' ',
+               y = '\nCumulative Count\n') +
+          scale_x_date(
+            date_breaks = "1 month",
+            date_labels = "%b\n%Y",
+            expand = expansion(mult = c(0.025, 0.025))) +
+          scale_y_continuous(labels = function(l) {
+            labels <- label_comma()(l)
+            labels[l == 0] <- ''
+            labels},
+            expand = expansion(mult = c(0, 0.5))) +
+          geom_label(aes(label = cumulative_n), vjust = -0.5, size = 5) +
+          theme_minimal() +
+          theme(
+            panel.border = element_rect(size = 1, colour = 'black', fill = NA),
+            axis.text = element_text(size = 14, colour = 'black'),
+            axis.title = element_text(size = 16, colour = 'black'),
+            legend.background = element_rect(linewidth = 1, fill = NA, colour = "black"),
+            legend.box.background = element_rect(fill = NA, colour = "black"),
+            legend.position = "none",
+            legend.title = element_blank(),
+            legend.title.align = 0.5,
+            legend.text = element_text(size = 12),
+            strip.text = element_text(size = 14, colour = 'black'),
+            strip.background = element_rect(size = 1, colour = 'black', fill = 'gray75'))
+
+        temp_export_path <- file.path(output_path, 'figures', 'cumulative_docket_count.png')
+        ggsave(temp_export_path,
+               cumulative_docket_count,
+               height = 10,
+               width = 10,
+               units = 'in',
+               bg = 'white')
+
+      } # Compile Figure & Export
+
+      message('Completed Cumulative Filing Types')
+
+
+    } # Cumulative Count by Month
+
+    {
+
+      {
+
+        docket_trends_count_data <- docketed_data %>%
+          mutate(docketed_month_year = floor_date(as.Date(docketed, format = "%B %d, %Y"), "month"),
+                 docketed_month_year_label = format(as.Date(docketed, format = "%B %d, %Y"), "%B %Y")) %>%
+          group_by(type, docketed_month_year) %>%
+          reframe(count = n(),
+                  docketed_month_year_label) %>%
+          unique() %>%
+          mutate(type = factor(type, levels = c('Certiorari_Petition', 'Application', 'Motion')))
+
+        temp_export_path <- file.path(output_path, 'tables', 'docket_trends.csv')
+        write.csv(docket_trends_count_data %>%
+                    arrange(docketed_month_year) %>%
+                    filter(!is.na(docketed_month_year_label)) %>%
+                    select(type, docketed_month_year_label, count) %>%
+                    pivot_wider(names_from = type, values_from = count, values_fill = 0) %>%
+                    rename(month_year = docketed_month_year_label) %>%
+                    select(month_year, Certiorari_Petition, Application, Motion), file = temp_export_path, row.names = F, quote = F)
+
+      } # Recover Data & Export
+
+      {
+
+        docket_trends <- docketed_data %>%
+          mutate(type = ifelse(type == 'Certiorari_Petition', 'Certiorari Petition', type),
+                 docketed_month_year = floor_date(as.Date(docketed, format = "%B %d, %Y"), "month")) %>%
+          group_by(type, docketed_month_year) %>%
+          summarise(count = n(), .groups = "drop") %>%
+          mutate(type = factor(type, levels = c('Certiorari Petition', 'Application', 'Motion'))) %>%
+          ggplot(aes(x = docketed_month_year, y = count)) +
+          geom_col(colour = 'black', fill ='gray50') +
+          geom_hline(yintercept = 0) +
+          facet_wrap(~type, nrow = 3, scales = 'free_y') +
+          labs(x = ' ',
+               y = '\nCount by Month\n') +
+          scale_x_date(
+            date_breaks = "1 month",
+            date_labels = "%b\n%Y",
+            expand = expansion(mult = c(0.025, 0.025))) +
+          scale_y_continuous(labels = function(l) {
+            labels <- label_comma()(l)
+            labels[l == 0] <- ''
+            labels},
+            expand = expansion(mult = c(0, 0.5))) +
+          geom_label(aes(label = count), vjust = -0.5, size = 5) +
+          theme_minimal() +
+          theme(
+            panel.border = element_rect(size = 1, colour = 'black', fill = NA),
+            axis.text = element_text(size = 14, colour = 'black'),
+            axis.title = element_text(size = 16, colour = 'black'),
+            legend.background = element_rect(linewidth = 1, fill = NA, colour = "black"),
+            legend.box.background = element_rect(fill = NA, colour = "black"),
+            legend.position = "none",
+            legend.title = element_blank(),
+            legend.title.align = 0.5,
+            legend.text = element_text(size = 12),
+            strip.text = element_text(size = 14, colour = 'black'),
+            strip.background = element_rect(size = 1, colour = 'black', fill = 'gray75'))
+
+        temp_export_path <- file.path(output_path, 'figures', 'docket_trends.png')
+        ggsave(temp_export_path,
+               docket_trends,
+               height = 10,
+               width = 10,
+               units = 'in',
+               bg = 'white')
+
+      } # Compile Figure & Export
+
+
+    } # Individual Count by Month
+
+
+  } # Distribution of When Things Were Filed by Date & Month/Year (Figure & CSV)
+
+  {
+
+    {
+
+      origins <- dockets %>%
+        filter(grepl('-', docket)) %>%
+        select(lower_ct) %>%
+        filter(!is.na(lower_ct)) %>%
+        group_by(lower_ct) %>%
+        summarise(count = n(), .groups = 'drop') %>%
+        ungroup() %>%
+        mutate(lower_ct = gsub('United States Court of Appeals for the ', '', lower_ct),
+               lower_ct = gsub('\\,', '', lower_ct)) %>%
+        arrange(desc(count))
+
+      origins_partitions <- split(origins, ceiling(seq_len(nrow(origins)) / 25)) # Split the dataframe into chunks of 10 rows
+
+      for (i in 1:length(origins_partitions)){
+
+        temp_partition <- origins_partitions[[i]]
+        temp_export_path <- file.path(output_path, 'tables', paste0('petition_origins_', i, '.csv'))
+        write.csv(temp_partition, file = temp_export_path, row.names = F, quote = F)
+
+      }
+
+    } # All Courts
+
+    {
+
+      origins_circuits <- dockets %>%
+        mutate(type = case_when(
+          .default = 'Cert_Petition',
+          grepl('a', docket, ignore.case = T) ~ 'Application',
+          grepl('m', docket, ignore.case = T) ~ 'Motion')) %>%
+        select(lower_ct, type) %>%
+        filter(!is.na(lower_ct)) %>%
+        filter(grepl('United States Court of Appeals for the ', lower_ct, ignore.case = T)) %>%
+        group_by(lower_ct, type) %>%
+        summarise(count = n(), .groups= 'drop') %>%
+        mutate(lower_ct = gsub('United States Court of Appeals for the ', '', lower_ct),
+               lower_ct = gsub('\\,', '', lower_ct),
+               lower_ct = gsub('Federal Circuit', 'Federal', lower_ct),
+               lower_ct = gsub('District of Columbia Circuit', 'District of Columbia', lower_ct),
+               lower_ct = factor(lower_ct, levels = c('First Circuit', 'Second Circuit', 'Third Circuit', 'Fourth Circuit', 'Fifth Circuit', 'Sixth Circuit', 'Seventh Circuit', 'Eighth Circuit', 'Ninth Circuit', 'Tenth Circuit', 'Eleventh Circuit', 'District of Columbia', 'Federal', 'Armed Forces'))) %>%
+        pivot_wider(names_from = type, values_from = count) %>%
+        arrange(lower_ct) %>%
+        select(lower_ct, Cert_Petition, Application, Motion)
+
+      temp_export_path <- file.path(output_path, 'tables', paste0('circuit_origins.csv'))
+      write.csv(origins_circuits, file = temp_export_path, row.names = F, quote = F)
+
+    } # Just Circuits
+
+    message('Completed Source Origins of Filings')
+
+
+  } # Source of Filings (CSV)
+
+  {
+
+    ifp_paid <- dockets %>%
+      filter(grepl('-', docket)) %>%
+      mutate(number = as.numeric(gsub('.*\\-', '', docket)),
+             type = ifelse(number >= 5000, 'IFP', 'Paid')) %>%
+      group_by(type) %>%
+      summarise(count = n())
+
+    temp_export_path <- file.path(output_path, 'tables', 'ifp_paid.csv')
+    write.csv(ifp_paid, file = temp_export_path, row.names = F, quote = F)
+
+    message('Completed IFP v. Paid Filings')
+
+
+  } # Paid v. IFP
+
+  {
+
+    amici_combined <- data.frame()
+
+    for (i in 1:nrow(dockets)){
+
+      temp_docket <- dockets[i,] # Gather Temp Docket
+      temp_docket_sheet <- temp_docket$docket_entries[[1]] %>%
+        filter(grepl('(Amicus|Amici)', entry, ignore.case = T)) %>%
+        filter(grepl('Filed', entry, ignore.case = T)) %>%
+        filter(grepl('Distributed', entry, ignore.case = T))
+
+
+      number_amici <- nrow(temp_docket_sheet)
+
+      amici_combined <- bind_rows(amici_combined, data.frame(docket = temp_docket$docket,
+                                                             amici = number_amici))
+
+    }
+
+    amici_filings_variance <- amici_combined %>%
+      filter(grepl('\\-', docket)) %>%
+      group_by(amici) %>%
+      summarise(count = n())
+
+    temp_export_path <- file.path(output_path, 'tables', 'amici_variance.csv')
+    write.csv(amici_filings_variance, file = temp_export_path, row.names = F, quote = F)
+
+    message('Completed Amici Analyses')
+
+
+  } # Amicus
+
+} # Docket Analysis
+
+
 

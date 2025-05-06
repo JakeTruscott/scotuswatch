@@ -315,3 +315,118 @@
     }
 \end{table}
 } % Comparison Term Opinion Counts
+
+
+\newcommand{\docketFilings}[2]{ % #1 = CSV file path, #2 = Caption
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1} % Add space between data rows
+    \caption{#2}
+    \vspace{2mm}
+    \csvreader[
+        tabular= {>{\centering\arraybackslash}p{0.25\textwidth} *{3}{>{\centering\arraybackslash}p{0.15\textwidth}}},
+        table head = {
+            \toprule
+            \textbf{Period} & \textbf{Certiorari} & \textbf{Application} & \textbf{Motion}   \\
+            \cmidrule{1-4}
+        },
+        table foot = {
+            \bottomrule
+        },
+    ]{#1}{}{
+        \normalsize \csvcoli & \csvcolii & \csvcoliii & \csvcoliv
+    }
+\end{table}
+} % Cumulative & Monthly Variance in Docket Filings
+
+\newcommand{\docketOrigins}[2]{ % #1 = CSV file path, #2 = Caption
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1} % Add space between data rows
+    \caption{#2}
+    \vspace{2mm}
+    \csvreader[
+        tabular= {>{\centering\arraybackslash}p{0.75\textwidth} *{1}{>{\centering\arraybackslash}p{0.25\textwidth}}},
+        table head = {
+            \toprule
+            \textbf{Court} & \textbf{All Filings}    \\
+            \cmidrule{1-2}
+        },
+        table foot = {
+            \bottomrule
+        },
+    ]{#1}{}{
+        \normalsize \RaggedRight \csvcoli & \csvcolii
+    }
+\end{table}
+} % Docket Filings Origins
+
+
+\newcommand{\circuitOrigins}[2]{ % #1 = CSV file path, #2 = Caption
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1} % Add space between data rows
+    \caption{#2}
+    \vspace{2mm}
+    \csvreader[
+        tabular= {>{\centering\arraybackslash}p{0.25\textwidth} *{3}{>{\centering\arraybackslash}p{0.15\textwidth}}},
+        table head = {
+            \toprule
+            \textbf{Circuit} & \textbf{Certiorari} & \textbf{Application} & \textbf{Motion}   \\
+            \cmidrule{1-4}
+        },
+        table foot = {
+            \bottomrule
+        },
+    ]{#1}{}{
+        \normalsize \csvcoli & \csvcolii & \csvcoliii & \csvcoliv
+    }
+\end{table}
+} % Circuit Origins
+
+
+\newcommand{\ifpPaid}[2]{ % #1 = CSV file path, #2 = Caption
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1} % Add space between data rows
+    \caption{#2}
+    \vspace{2mm}
+    \csvreader[
+        tabular= {>{\centering\arraybackslash}p{0.35\textwidth} *{1}{>{\centering\arraybackslash}p{0.35\textwidth}}},
+        table head = {
+            \toprule
+            \textbf{Type} & \textbf{Count}  \\
+            \cmidrule{1-2}
+        },
+        table foot = {
+            \bottomrule
+        },
+    ]{#1}{}{
+        \normalsize \csvcoli & \csvcolii
+    }
+\end{table}
+} % IFP/PAID
+
+
+
+\newcommand{\amiciVariance}[2]{ % #1 = CSV file path, #2 = Caption
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1} % Add space between data rows
+    \caption{#2}
+    \vspace{2mm}
+    \csvreader[
+        tabular= {>{\centering\arraybackslash}p{0.35\textwidth} *{1}{>{\centering\arraybackslash}p{0.35\textwidth}}},
+        table head = {
+            \toprule
+            \textbf{No. Amici} & \textbf{Count}  \\
+            \cmidrule{1-2}
+        },
+        table foot = {
+            \bottomrule
+        },
+    ]{#1}{}{
+        \normalsize \csvcoli & \csvcolii
+    }
+\end{table}
+} % Amici Variance

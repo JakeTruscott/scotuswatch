@@ -3,12 +3,18 @@
 \contentsline {section}{Oral Arguments}{4}{section*.3}%
 \contentsline {subsection}{Justice Participation (Words \& Time Combined)}{5}{subsection*.5}%
 \contentsline {subsection}{Justice Participation (Words \& Time by Sitting)}{6}{subsection*.7}%
-\contentsline {subsection}{Attorney Participation (Words \& Time by Sitting)}{18}{subsection*.20}%
-\contentsline {subsection}{Attorney Engagement (By Sitting)}{24}{subsection*.27}%
-\contentsline {section}{Decisions}{30}{section*.34}%
-\contentsline {subsection}{Decision Information}{31}{subsection*.36}%
-\contentsline {subsection}{Decision Vote Matrices}{34}{subsection*.40}%
-\contentsline {subsection}{Coalitions and Unanimity}{37}{subsection*.44}%
-\contentsline {subsection}{Circuit Scorecard}{40}{subsection*.48}%
-\contentsline {subsection}{Opinion Authorship}{42}{subsection*.51}%
+\contentsline {subsection}{Attorney Participation (Words \& Time by Sitting)}{20}{subsection*.22}%
+\contentsline {subsection}{Attorney Engagement (By Sitting)}{27}{subsection*.30}%
+\contentsline {section}{Decisions}{34}{section*.38}%
+\contentsline {subsection}{\underline {Note on Decision Coding}}{35}{subsection*.40}%
+\contentsline {subsection}{\underline {Additional Notes: Opinion Consolidations}}{35}{subsection*.41}%
+\contentsline {subsection}{Decision Information}{36}{subsection*.42}%
+\contentsline {subsection}{Decision Vote Matrices}{39}{subsection*.46}%
+\contentsline {subsection}{Coalitions and Unanimity}{42}{subsection*.50}%
+\contentsline {subsection}{Circuit Scorecard}{45}{subsection*.54}%
+\contentsline {subsection}{Opinion Authorship}{47}{subsection*.57}%
+\contentsline {section}{Dockets}{50}{section*.62}%
+\contentsline {subsection}{Variance in Filings}{51}{subsection*.64}%
+\contentsline {subsection}{Filings Origins}{53}{subsection*.68}%
+\contentsline {subsection}{Amici Variance}{58}{subsection*.78}%
 \contentsfinish 

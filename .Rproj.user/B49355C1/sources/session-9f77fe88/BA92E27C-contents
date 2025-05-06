@@ -30,7 +30,6 @@ for (i in 1:length(sittings_files)){
 
 
 
-
 ###############################################################################
 # Oyez Scraper
 ###############################################################################
@@ -96,8 +95,6 @@ attorney_information_template(transcript = combined_transcript,
 ################################################################################
 # Decisions Tables
 ################################################################################
-source('code/R/scotuswatch_source.R') # Load Source & Functions (Load Packages Too)
-
 
 decisions_analysis(input_path = "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions/data/OT_24_Decisions.csv",
                 output_path = "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions",
@@ -118,14 +115,16 @@ justia_opinion_recovery(opinions_path = "C:/Users/jaketruscott/Github/scotuswatc
 
 
 ################################################################################
-# Docket Search
+# Docket Recovery
 ################################################################################
 
-petitions <- c(1:1129, 5000:7125)
+petitions <- c(1:1129, 5001:7125)
 applications <- c(1:1050)
-motions <- c(1:188)
+motions <- c(1:88)
 dockets <- c(paste0('24-', petitions), paste0('24a', applications), paste0('24m', motions))
-
+temp_output_path <- 'Stat Reviews/OT24_StatReview/dockets/processed_dockets'
+completed_dockets <- gsub('\\.rdata', '', list.files(temp_output_path))
+dockets <- dockets[!dockets %in% completed_dockets]
 
 for (docket in 1:length(dockets)){
 
@@ -147,9 +146,20 @@ for (docket in 1:length(dockets)){
   Sys.sleep(5)
 
 
+
+
 } # Collect Dockets
 
 
+################################################################################
+# Docket Analysis (Combine & Analyze)
+################################################################################
 
+source('code/R/scotuswatch_source.R') # Load Source & Functions (Load Packages Too)
 
+dockets_combine(dockets_path = 'Stat Reviews/OT24_StatReview/dockets/processed_dockets',
+                output_path = 'Stat Reviews/OT24_StatReview/dockets/combined_dockets/combined_dockets_OT24.rdata') # Combine Dockets to Single Frame
+
+dockets_analysis(combined_dockets <- 'Stat Reviews/OT24_StatReview/dockets/combined_dockets/combined_dockets_OT24.rdata',
+                output_path = 'Stat Reviews/OT24_StatReview/dockets/analysis')
 

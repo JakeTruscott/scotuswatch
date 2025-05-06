@@ -3,25 +3,25 @@
     "path": "C:/Users/jaketruscott/Github/scotuswatch/code/R/scotuswatch_run.R",
     "project_path": "code/R/scotuswatch_run.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "2006625674",
     "contents": "",
     "dirty": false,
     "created": 1745930632598.0,
     "source_on_save": false,
-    "relative_order": 2,
+    "relative_order": 3,
     "properties": {
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "147,0",
-        "scrollLine": "123"
+        "cursorPosition": "98,20",
+        "scrollLine": "84"
     },
-    "folds": "20|36|28|0|\n40|37|55|0|\n",
-    "lastKnownWriteTime": 1746448557,
+    "folds": "20|36|28|0|\n39|37|54|0|\n128|34|150|0|\n",
+    "lastKnownWriteTime": 1746547502,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1746448557502,
+    "last_content_update": 1746547502702,
     "read_only": false,
     "read_only_alternatives": []
 }

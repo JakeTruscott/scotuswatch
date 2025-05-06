@@ -9,40 +9,172 @@
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Fuld v. PLO </td>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> A.J.T. v. Osseo Area Schools </td>
+   <td style="text-align:center;text-align: center;"> Lisa S. Blatt </td>
+   <td style="text-align:center;text-align: center;"> 24-249 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">4304</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> A.J.T. v. Osseo Area Schools </td>
+   <td style="text-align:center;text-align: center;"> Nicole F. Reaves </td>
+   <td style="text-align:center;text-align: center;"> 24-249 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">2735</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> A.J.T. v. Osseo Area Schools </td>
+   <td style="text-align:center;text-align: center;"> Roman Martinez </td>
+   <td style="text-align:center;text-align: center;"> 24-249 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">3755</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Parrish v. United States </td>
+   <td style="text-align:center;text-align: center;"> Aimee W. Brown </td>
+   <td style="text-align:center;text-align: center;"> 24-275 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">2025</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Parrish v. United States </td>
+   <td style="text-align:center;text-align: center;"> Amanda Rice </td>
+   <td style="text-align:center;text-align: center;"> 24-275 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">1930</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Parrish v. United States </td>
+   <td style="text-align:center;text-align: center;"> Michael R. Huston </td>
+   <td style="text-align:center;text-align: center;"> 24-275 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">3341</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Mahmoud v. Taylor </td>
+   <td style="text-align:center;text-align: center;"> Alan E. Schoenfeld </td>
+   <td style="text-align:center;text-align: center;"> 24-297 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">6584</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Mahmoud v. Taylor </td>
+   <td style="text-align:center;text-align: center;"> Eric S. Baxter </td>
+   <td style="text-align:center;text-align: center;"> 24-297 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">5570</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Mahmoud v. Taylor </td>
+   <td style="text-align:center;text-align: center;"> Sarah M. Harris </td>
+   <td style="text-align:center;text-align: center;"> 24-297 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">3672</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Laboratory Corp. of America v. Davis </td>
+   <td style="text-align:center;text-align: center;"> Deepak Gupta </td>
+   <td style="text-align:center;text-align: center;"> 24-304 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">4953</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Laboratory Corp. of America v. Davis </td>
+   <td style="text-align:center;text-align: center;"> Noel J. Francisco </td>
+   <td style="text-align:center;text-align: center;"> 24-304 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">7723</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Laboratory Corp. of America v. Davis </td>
+   <td style="text-align:center;text-align: center;"> Sopan Joshi </td>
+   <td style="text-align:center;text-align: center;"> 24-304 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">2964</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Kennedy v. Braidwood MGMT </td>
+   <td style="text-align:center;text-align: center;"> Hashim M. Mooppan </td>
+   <td style="text-align:center;text-align: center;"> 24-316 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">5163</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Kennedy v. Braidwood MGMT </td>
+   <td style="text-align:center;text-align: center;"> Jonathan F. Mitchell </td>
+   <td style="text-align:center;text-align: center;"> 24-316 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">5704</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Soto v. United States </td>
+   <td style="text-align:center;text-align: center;"> Caroline A. Flynn </td>
+   <td style="text-align:center;text-align: center;"> 24-320 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">3520</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Soto v. United States </td>
+   <td style="text-align:center;text-align: center;"> Tacy F. Flint </td>
+   <td style="text-align:center;text-align: center;"> 24-320 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">3914</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Martin v. United States </td>
+   <td style="text-align:center;text-align: center;"> Christopher E. Mills </td>
+   <td style="text-align:center;text-align: center;"> 24-362 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">985</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Martin v. United States </td>
+   <td style="text-align:center;text-align: center;"> Frederick Liu </td>
+   <td style="text-align:center;text-align: center;"> 24-362 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">1607</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Martin v. United States </td>
+   <td style="text-align:center;text-align: center;"> Patrick M. Jaicomo </td>
+   <td style="text-align:center;text-align: center;"> 24-362 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">3567</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> OK Charter School Board v. Drummond </td>
+   <td style="text-align:center;text-align: center;"> D. John Sauer </td>
+   <td style="text-align:center;text-align: center;"> 24-394 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">2047</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> OK Charter School Board v. Drummond </td>
+   <td style="text-align:center;text-align: center;"> Gregory G. Garre </td>
+   <td style="text-align:center;text-align: center;"> 24-394 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">6003</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> OK Charter School Board v. Drummond </td>
+   <td style="text-align:center;text-align: center;"> James A. Campbell </td>
+   <td style="text-align:center;text-align: center;"> 24-394 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">3030</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> OK Charter School Board v. Drummond </td>
+   <td style="text-align:center;text-align: center;"> Michael H. McGinley </td>
+   <td style="text-align:center;text-align: center;"> 24-394 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">2321</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Cir v. Zuch </td>
+   <td style="text-align:center;text-align: center;"> Erica L. Ross </td>
+   <td style="text-align:center;text-align: center;"> 24-416 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(112, 138, 58, 255) !important;font-size: large;">4573</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Cir v. Zuch </td>
+   <td style="text-align:center;text-align: center;"> Shay Dvoretzky </td>
+   <td style="text-align:center;text-align: center;"> 24-416 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">2155</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Diamond Alternative Energy v. EPA </td>
    <td style="text-align:center;text-align: center;"> Edwin S. Kneedler </td>
-   <td style="text-align:center;text-align: center;"> 24-20 </td>
-   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">4083</span> </td>
+   <td style="text-align:center;text-align: center;"> 24-7 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">1933</span> </td>
   </tr>
   <tr>
-   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Medina v. Planned Parenthood South Atlantic </td>
-   <td style="text-align:center;text-align: center;"> John J. Bursch </td>
-   <td style="text-align:center;text-align: center;"> 23-1275 </td>
-   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">4306</span> </td>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Diamond Alternative Energy v. EPA </td>
+   <td style="text-align:center;text-align: center;"> Jeffrey B. Wall </td>
+   <td style="text-align:center;text-align: center;"> 24-7 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(112, 138, 58, 255) !important;font-size: large;">4366</span> </td>
   </tr>
   <tr>
-   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Fuld v. PLO </td>
-   <td style="text-align:center;text-align: center;"> Kent A. Yalowitz </td>
-   <td style="text-align:center;text-align: center;"> 24-20 </td>
-   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">2680</span> </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Medina v. Planned Parenthood South Atlantic </td>
-   <td style="text-align:center;text-align: center;"> Kyle D. Hawkins </td>
-   <td style="text-align:center;text-align: center;"> 23-1275 </td>
-   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">1750</span> </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Fuld v. PLO </td>
-   <td style="text-align:center;text-align: center;"> Mitchell R. Berger </td>
-   <td style="text-align:center;text-align: center;"> 24-20 </td>
-   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">3937</span> </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Medina v. Planned Parenthood South Atlantic </td>
-   <td style="text-align:center;text-align: center;"> Nicole A. Saharsky </td>
-   <td style="text-align:center;text-align: center;"> 23-1275 </td>
-   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">5761</span> </td>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Diamond Alternative Energy v. EPA </td>
+   <td style="text-align:center;text-align: center;"> Joshua A. Klein </td>
+   <td style="text-align:center;text-align: center;"> 24-7 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">1767</span> </td>
   </tr>
 </tbody>
 </table>
