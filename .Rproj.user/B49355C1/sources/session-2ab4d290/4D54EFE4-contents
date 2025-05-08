@@ -1,0 +1,83 @@
+\documentclass{article}
+\input{sections/style/statpack_style}
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+\pagestyle{plain}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title Page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{sections/header/title_page} % Title Page
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Table of Contents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{sections/header/table_of_contents}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Preface
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{sections/header/preface_statpack}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Data Disclosure
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{sections/header/data_disclosure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Oral Arguments
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{sections/oral_arguments/introduction} % Introduction
+
+\input{sections/oral_arguments/justice_aggregate_words_time} % Combined Justice Words % Time
+
+\input{sections/oral_arguments/justice_sitting_words} % By Sitting Justice-Level Word Counts & Time Speaking
+
+\input{sections/oral_arguments/attorney_words_time} % By Sitting Attorney-Level Word Counts & Time Speaking
+
+\input{sections/oral_arguments/attorney_engagement} % By Sitting Attorney Engagement w/ Justices
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Decisions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{sections/decisions/introduction} % Introduction
+
+\input{sections/decisions/decision_information} % Decision Info
+
+\input{sections/decisions/decision_vote_matrix} % Vote Matrices
+
+\input{sections/decisions/coalitions} % Coalitions
+
+\input{sections/decisions/unanimity} % Unanimity
+
+\input{sections/decisions/circuit_scorecard} % Circuit Scorecard
+
+\input{sections/decisions/opinion_authorship} % Opinion Authorship
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Dockets
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{sections/dockets/introduction} % Dockets Introduction
+
+\input{sections/dockets/filings_variance} % Variance in Docket Filings
+
+\input{sections/dockets/petition_origins} % Petition Origins
+
+\input{sections/dockets/amici_variance} % Amici Variance
+
+
+\end{document}
