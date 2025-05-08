@@ -1,8 +1,0 @@
-\begin{landscape}
-
-\subsection{Amici Variance}
-
-\amiciVariance{../dockets/analysis/tables/amici_variance.csv}{Variance in No. Amici Filed for Certiorari Petitions (OT24 Filings)}
-
-
-\end{landscape}

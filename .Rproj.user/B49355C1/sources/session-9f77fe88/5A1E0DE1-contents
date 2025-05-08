@@ -1,8 +1,0 @@
-
-\subsection{Attorney Participation (Words \& Time by Sitting)}
-\attorneyWordsTime{../oral_arguments/analyses/October/October_attorney_time_words_combined.csv}{October Sitting Attorney Participation}
-\attorneyWordsTime{../oral_arguments/analyses/November/November_attorney_time_words_combined.csv}{November Sitting Attorney Participation}
-\attorneyWordsTime{../oral_arguments/analyses/December/December_attorney_time_words_combined.csv}{December Sitting Attorney Participation}
-\attorneyWordsTime{../oral_arguments/analyses/January/January_attorney_time_words_combined.csv}{January Sitting Attorney Participation}
-\attorneyWordsTime{../oral_arguments/analyses/February/February_attorney_time_words_combined.csv}{February Sitting Attorney Participation}
-\attorneyWordsTime{../oral_arguments/analyses/March/March_attorney_time_words_combined.csv}{March Sitting Attorney Participation}
