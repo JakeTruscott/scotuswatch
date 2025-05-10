@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.5.2)  8 MAY 2025 15:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.5.2)  8 MAY 2025 16:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -792,17 +792,81 @@ Package hyperref Info: Link coloring OFF on input line 4.
 \@outlinefile=\write6
 \openout6 = `statpack_extended_OT24.out'.
 
- (./statpack_extended_OT24-concordance.tex) (./sections/header/title_page.tex
-<../images/empirical_scotus_logo.png, id=8, 803.0pt x 803.0pt>
-File: ../images/empirical_scotus_logo.png Graphic file (type png)
-<use ../images/empirical_scotus_logo.png>
-Package pdftex.def Info: ../images/empirical_scotus_logo.png  used on input line 10.
-(pdftex.def)             Requested size: 301.1261pt x 301.1365pt.
-)
+ (./statpack_extended_OT24-concordance.tex) (./sections/header/title_page.tex) (./sections/header/table_of_contents.tex
 
 [1
 
-{c:/Users/jaketruscott/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Users/jaketruscott/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc} <../images/empirical_scotus_logo.png>] 
+{c:/Users/jaketruscott/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Users/jaketruscott/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}] (./statpack_extended_OT24.toc)
+\tf@toc=\write7
+\openout7 = `statpack_extended_OT24.toc'.
+
+) (./sections/header/preface_statpack.tex
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1 \newpage
+             [1]
+Underfull \hbox (badness 10000) in paragraph at lines 5--6
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--8
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--10
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--12
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--14
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--16
+
+ []
+
+) (./sections/header/data_disclosure.tex
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 5--6
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--8
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--10
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--12
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--14
+
+ []
+
+)
+
+[3] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 (./statpack_extended_OT24.aux)
  ***********
@@ -810,21 +874,21 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-04-14>
  ***********
 Package rerunfilecheck Info: File `statpack_extended_OT24.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+(rerunfilecheck)             Checksum: BA08D651374C88ACADD35B688AF3D27C;285.
  ) 
 Here is how much of TeX's memory you used:
- 26547 strings out of 471546
- 496471 string characters out of 5517256
- 860404 words of memory out of 5000000
- 52676 multiletter control sequences out of 15000+600000
- 648458 words of font info for 55 fonts, out of 8000000 for 9000
+ 26633 strings out of 471546
+ 497995 string characters out of 5517256
+ 865434 words of memory out of 5000000
+ 52726 multiletter control sequences out of 15000+600000
+ 671217 words of font info for 89 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 89i,5n,94p,460b,440s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 89i,8n,94p,770b,446s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/jaketruscott/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Users/jaketruscott/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Users/jaketruscott/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on statpack_extended_OT24.pdf (1 page, 1118117 bytes).
+Output written on statpack_extended_OT24.pdf (4 pages, 48773 bytes).
 PDF statistics:
- 38 PDF objects out of 1000 (max. 8388607)
- 25 compressed objects within 1 object stream
- 2 named destinations out of 1000 (max. 500000)
- 22 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 77 PDF objects out of 1000 (max. 8388607)
+ 63 compressed objects within 1 object stream
+ 9 named destinations out of 1000 (max. 500000)
+ 33 words of extra memory for PDF output out of 10000 (max. 10000000)
 

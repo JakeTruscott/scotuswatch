@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+<script src="lib/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="lib/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="lib/kePrint-0.0.1/kePrint.js"></script>
+<link href="lib/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+</head>
+<body>
+<table class="table table-striped table-hover table-responsive" style="font-size: 14px; color: black; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:center;">  </th>
+   <th style="text-align:center;">  </th>
+   <th style="text-align:center;">  </th>
+   <th style="text-align:center;">  </th>
+   <th style="text-align:center;">  </th>
+   <th style="text-align:center;">  </th>
+   <th style="text-align:center;">  </th>
+   <th style="text-align:center;">  </th>
+   <th style="text-align:center;">  </th>
+   <th style="text-align:center;">  </th>
+   <th style="text-align:center;">  </th>
+   <th style="text-align:center;">  </th>
+   <th style="text-align:center;">  </th>
+   <th style="text-align:center;">  </th>
+   <th style="text-align:center;">  </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;"> October (9) </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;"> Author </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;"> Vote </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;"> Result </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;"> Court Below </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;"> January (10) </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;"> Author </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;"> Vote </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;"> Result </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;"> Court Below </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;"> <span style="     width: 8cm;">April-May (11)</span> </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;"> Author </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;"> Vote </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;"> Result </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;"> Court Below </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> Willaims </td>
+   <td style="text-align:center;width: 3cm; "> Kavanaugh </td>
+   <td style="text-align:center;width: 3cm; "> (5-4) </td>
+   <td style="text-align:center;width: 3cm; "> R </td>
+   <td style="text-align:center;width: 3cm; "> SCAL </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> Hewitt </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA5 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm;">Kennedy</span> </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> Royal Canin </td>
+   <td style="text-align:center;width: 3cm; "> Kagan </td>
+   <td style="text-align:center;width: 3cm; "> (9-0) </td>
+   <td style="text-align:center;width: 3cm; "> A </td>
+   <td style="text-align:center;width: 3cm; "> CA8 </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> Stanley </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA11 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm;">Parrish</span> </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> Vanderstok </td>
+   <td style="text-align:center;width: 3cm; "> Gorsuch </td>
+   <td style="text-align:center;width: 3cm; "> (7-2) </td>
+   <td style="text-align:center;width: 3cm; "> R </td>
+   <td style="text-align:center;width: 3cm; "> CA5 </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> Thompson </td>
+   <td style="text-align:center;width: 3cm; "> Roberts </td>
+   <td style="text-align:center;width: 3cm; "> (9-0) </td>
+   <td style="text-align:center;width: 3cm; "> R </td>
+   <td style="text-align:center;width: 3cm; "> CA7 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm;">Mahmoud</span> </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> Lackey </td>
+   <td style="text-align:center;width: 3cm; "> Roberts </td>
+   <td style="text-align:center;width: 3cm; "> (7-2) </td>
+   <td style="text-align:center;width: 3cm; "> R </td>
+   <td style="text-align:center;width: 3cm; "> CA4 </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> Waetzig </td>
+   <td style="text-align:center;width: 3cm; "> Alito </td>
+   <td style="text-align:center;width: 3cm; "> (9-0) </td>
+   <td style="text-align:center;width: 3cm; "> R </td>
+   <td style="text-align:center;width: 3cm; "> CA10 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm;">Cir</span> </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA3 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> Glossip </td>
+   <td style="text-align:center;width: 3cm; "> Sotomayor </td>
+   <td style="text-align:center;width: 3cm; "> (6-2) </td>
+   <td style="text-align:center;width: 3cm; "> R </td>
+   <td style="text-align:center;width: 3cm; "> CCAOK </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> Free Speech </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA5 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm;">Diamond</span> </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CADC </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> Medical Marijuana </td>
+   <td style="text-align:center;width: 3cm; "> Barrett </td>
+   <td style="text-align:center;width: 3cm; "> (5-4) </td>
+   <td style="text-align:center;width: 3cm; "> A </td>
+   <td style="text-align:center;width: 3cm; "> CA2 </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> R.J. Reynolds </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA5 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm;">A.J.T.</span> </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> Bouarafa </td>
+   <td style="text-align:center;width: 3cm; "> Jackson </td>
+   <td style="text-align:center;width: 3cm; "> (9-0) </td>
+   <td style="text-align:center;width: 3cm; "> A </td>
+   <td style="text-align:center;width: 3cm; "> CA11 </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> McLaughlin </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA9 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm;">Soto</span> </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CAFED </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> Bufkin </td>
+   <td style="text-align:center;width: 3cm; "> Thomas </td>
+   <td style="text-align:center;width: 3cm; "> (7-2) </td>
+   <td style="text-align:center;width: 3cm; "> A </td>
+   <td style="text-align:center;width: 3cm; "> CAFC </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> Barnes </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA5 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm;">Martin</span> </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> SF v. EPA </td>
+   <td style="text-align:center;width: 3cm; "> Alito </td>
+   <td style="text-align:center;width: 3cm; "> (9-0) </td>
+   <td style="text-align:center;width: 3cm; "> R </td>
+   <td style="text-align:center;width: 3cm; "> CA9 </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> Cunningham </td>
+   <td style="text-align:center;width: 3cm; "> Sotomayor </td>
+   <td style="text-align:center;width: 3cm; "> (9-0) </td>
+   <td style="text-align:center;width: 3cm; "> R </td>
+   <td style="text-align:center;width: 3cm; "> CA2 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm;">Laboratory Corp.</span> </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> TikTok </td>
+   <td style="text-align:center;width: 3cm; "> PC </td>
+   <td style="text-align:center;width: 3cm; "> (9-0) </td>
+   <td style="text-align:center;width: 3cm; "> A </td>
+   <td style="text-align:center;width: 3cm; "> CADC </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm;">Drummond</span> </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> SCOK </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm;">Trump v. CASA</span> </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm;"></span> </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;"> November (7) </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;"> February (8) </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;"> <span style="     width: 8cm;">No Argument (4)</span> </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> Wisconsin Bell </td>
+   <td style="text-align:center;width: 3cm; "> Kagan </td>
+   <td style="text-align:center;width: 3cm; "> (9-0) </td>
+   <td style="text-align:center;width: 3cm; "> A </td>
+   <td style="text-align:center;width: 3cm; "> CA7 </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> Guitierrez </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA5 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm;">Hamm</span> </td>
+   <td style="text-align:center;width: 3cm; "> PC </td>
+   <td style="text-align:center;width: 3cm; "> PC </td>
+   <td style="text-align:center;width: 3cm; "> R </td>
+   <td style="text-align:center;width: 3cm; "> CA11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> Advocate Christ Medical </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CADC </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> Esteras </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA6 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm;">Andrew</span> </td>
+   <td style="text-align:center;width: 3cm; "> PC </td>
+   <td style="text-align:center;width: 3cm; "> PC </td>
+   <td style="text-align:center;width: 3cm; "> R </td>
+   <td style="text-align:center;width: 3cm; "> CA10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> E.M.D. Sales </td>
+   <td style="text-align:center;width: 3cm; "> Kavanaugh </td>
+   <td style="text-align:center;width: 3cm; "> (9-0) </td>
+   <td style="text-align:center;width: 3cm; "> R </td>
+   <td style="text-align:center;width: 3cm; "> CA4 </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> Perttu </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA6 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm;">DOE v. CA</span> </td>
+   <td style="text-align:center;width: 3cm; "> PC </td>
+   <td style="text-align:center;width: 3cm; "> (5-4) </td>
+   <td style="text-align:center;width: 3cm; "> G </td>
+   <td style="text-align:center;width: 3cm; "> DCMA </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> Facebook </td>
+   <td style="text-align:center;width: 3cm; "> PC </td>
+   <td style="text-align:center;width: 3cm; "> PC </td>
+   <td style="text-align:center;width: 3cm; "> DIG </td>
+   <td style="text-align:center;width: 3cm; "> CA9 </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> Ames </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA6 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm;">Trump v. J.G.G.</span> </td>
+   <td style="text-align:center;width: 3cm; "> PC </td>
+   <td style="text-align:center;width: 3cm; "> (5-4)* </td>
+   <td style="text-align:center;width: 3cm; "> G </td>
+   <td style="text-align:center;width: 3cm; "> DCDC </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> Velazquez </td>
+   <td style="text-align:center;width: 3cm; "> Gorusch </td>
+   <td style="text-align:center;width: 3cm; "> (6-3) </td>
+   <td style="text-align:center;width: 3cm; "> R </td>
+   <td style="text-align:center;width: 3cm; "> CA2 </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> CC/Devas </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA9 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm;"></span> </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> Delligatti </td>
+   <td style="text-align:center;width: 3cm; "> Thomas </td>
+   <td style="text-align:center;width: 3cm; "> (7-2) </td>
+   <td style="text-align:center;width: 3cm; "> A </td>
+   <td style="text-align:center;width: 3cm; "> CA2 </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> BLOM Bank </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA2 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm;"></span> </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> NVIDIA </td>
+   <td style="text-align:center;width: 3cm; "> PC </td>
+   <td style="text-align:center;width: 3cm; "> PC </td>
+   <td style="text-align:center;width: 3cm; "> DIG </td>
+   <td style="text-align:center;width: 3cm; "> CA9 </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> Smith and Wesson </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA1 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm;"></span> </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> NRC </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA5 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm;"></span> </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm;"></span> </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;"> December (8) </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;"> March (9) </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;"> <span style="     width: 15cm;">Totals</span> </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> Wages and White Lion </td>
+   <td style="text-align:center;width: 3cm; "> Alito </td>
+   <td style="text-align:center;width: 3cm; "> (9-0) </td>
+   <td style="text-align:center;width: 3cm; "> R </td>
+   <td style="text-align:center;width: 3cm; "> CA5 </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> Lousiana </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> WDLA </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 15cm;">Cases Heard for Oral Argument</span> </td>
+   <td style="text-align:center;width: 3cm; "> 62 </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> Miller </td>
+   <td style="text-align:center;width: 3cm; "> Jackson </td>
+   <td style="text-align:center;width: 3cm; "> (8-1) </td>
+   <td style="text-align:center;width: 3cm; "> R </td>
+   <td style="text-align:center;width: 3cm; "> CA10 </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> Riley </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA4 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 15cm;">Cases Summarily Decided (No Arg.)</span> </td>
+   <td style="text-align:center;width: 3cm; "> 4 </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> Hungary </td>
+   <td style="text-align:center;width: 3cm; "> Sotomayor </td>
+   <td style="text-align:center;width: 3cm; "> (9-0) </td>
+   <td style="text-align:center;width: 3cm; "> R </td>
+   <td style="text-align:center;width: 3cm; "> CADC </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> Calumet </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA5 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 15cm;">Total Cases</span> </td>
+   <td style="text-align:center;width: 3cm; "> 66 </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> Skrmetti </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA6 </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> Oklahoma </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA10 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 15cm;"> </span> </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> Kouisisis </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA3 </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> Consumers' Research </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA5 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 15cm;">Signed Opinions of the Court</span> </td>
+   <td style="text-align:center;width: 3cm; "> 59 </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> Feliciano </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CAFC </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> Catholic Charities </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> SCWI </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 15cm;">Unsigned Opinions (i.e., Per Curiam)</span> </td>
+   <td style="text-align:center;width: 3cm; "> 7 </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> Seven County </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CADC </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> Rivers </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA5 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 15cm;">Cases Dismissed as Improvidently Granted</span> </td>
+   <td style="text-align:center;width: 3cm; "> 2 </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;"> Dewberry </td>
+   <td style="text-align:center;width: 3cm; "> Kagan </td>
+   <td style="text-align:center;width: 3cm; "> (9-0) </td>
+   <td style="text-align:center;width: 3cm; "> R </td>
+   <td style="text-align:center;width: 3cm; "> CA4 </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> Fuld </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA2 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm"></span> </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;"> Medina </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; "> CA4 </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm"></span> </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;"> <span style="     width: 8cm"></span> </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+   <td style="text-align:center;width: 3cm; ">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 5cm; font-weight: bold;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;border-bottom: 2px solid;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;border-bottom: 2px solid;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;border-bottom: 2px solid;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;border-bottom: 2px solid;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;border-bottom: 2px solid;">  </td>
+   <td style="text-align:center;width: 5cm; font-weight: bold;border-left:1px solid;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;border-bottom: 2px solid;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;border-bottom: 2px solid;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;border-bottom: 2px solid;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;border-bottom: 2px solid;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;border-bottom: 2px solid;">  </td>
+   <td style="text-align:center;font-weight: bold;border-left:1px solid;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;border-bottom: 2px solid;"> <span style="     width: 8cm"></span> </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;border-bottom: 2px solid;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;border-bottom: 2px solid;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;border-bottom: 2px solid;">  </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;font-size: 16px;border-bottom: 2px solid;">  </td>
+  </tr>
+</tbody>
+</table> <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [["$","$"]]}})</script><script async src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
