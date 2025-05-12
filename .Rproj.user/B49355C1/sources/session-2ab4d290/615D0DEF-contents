@@ -964,8 +964,8 @@ scotusblog_stats <- function(decisions_path,
 
       ggsave(opinion_lengths_by_term,
              filename = file.path(output_folder, 'opinion_lengths_by_term.png'),
-             width = 8,
-             height = 8,
+             width = 10,
+             height = 6,
              units = 'in',
              bg = 'white')
 
@@ -980,8 +980,13 @@ scotusblog_stats <- function(decisions_path,
 
 
 
+
 decisions_path <- "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions/data/OT_24_Decisions.csv"
 oral_arguments <- get(load('data/term_level_combined_transcripts/scotus_OT24.rdata'))
 output_folder = file.path('Stat Reviews', 'OT24_StatReview', 'scotusblog_figures')
 opinions_processed = file.path('Stat Reviews', 'OT24_StatReview', 'decisions', 'opinions', 'combined_opinions_processed', 'combined_opinions_OT2024.rdata')
 older_opinions_processed <- "C:/Users/jaketruscott/Github/scotuswatch/data/decisions/earlier_decisions_processed.rdata"
+
+combined_list$circuit_scorecard
+
+combined_list$days_elapsed$longest

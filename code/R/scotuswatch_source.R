@@ -32,7 +32,7 @@ check_and_install_packages <- function(){
   packages <- c('anytime', 'dplyr', 'ggplot2', 'ggpattern', 'ggtext', 'ggthemes',
                 'grid', 'htmltools', 'httr', 'jsonlite', 'kableExtra', 'png',
                 'readxl', 'reticulate', 'rvest', 'scotustext', 'stringi',
-                'stringr', 'tidyr', 'tm', 'webshot2', 'purrr', 'tibble', 'httr', 'httr2', 'tokenizers', 'lubridate', 'scales')
+                'stringr', 'tidyr', 'tm', 'webshot2', 'purrr', 'tibble', 'httr', 'httr2', 'tokenizers', 'lubridate', 'scales', 'forcats')
 
   missing_packages <- packages[!packages %in% installed.packages()[, "Package"]]
 
