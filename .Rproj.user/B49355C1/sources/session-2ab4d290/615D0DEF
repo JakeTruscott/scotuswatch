@@ -3,9 +3,9 @@
     "path": "C:/Users/jaketruscott/Github/scotuswatch/code/R/scotusblog_scratch.R",
     "project_path": "code/R/scotusblog_scratch.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "454198317",
     "contents": "",
-    "dirty": true,
+    "dirty": false,
     "created": 1747055443922.0,
     "source_on_save": false,
     "relative_order": 3,
@@ -13,15 +13,15 @@
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "918,6",
-        "scrollLine": "898"
+        "cursorPosition": "506,5",
+        "scrollLine": "44"
     },
-    "folds": "13|3|41|2|\n43|3|94|2|\n96|3|208|2|\n210|3|398|2|\n400|3|620|2|\n622|3|865|2|\n873|5|886|4|\n928|42|934|6|\n",
-    "lastKnownWriteTime": 1747082226,
+    "folds": "13|3|41|2|\n43|3|94|2|\n96|3|208|2|\n210|3|398|2|\n404|5|452|4|\n454|5|504|4|\n462|41|473|6|\n558|5|592|4|\n594|5|616|4|\n622|3|1048|2|\n626|5|684|4|\n686|5|746|4|\n748|5|887|4|\n891|7|955|6|\n957|7|1030|6|\n1050|3|1293|2|\n1295|3|1417|2|\n",
+    "lastKnownWriteTime": 1747146844,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1747084334787,
+    "last_content_update": 1747147780245,
     "read_only": false,
     "read_only_alternatives": []
 }

@@ -496,7 +496,7 @@ scotusblog_stats <- function(decisions_path,
       combined_list[['frequency_in_majority']][['percent_in_majority_divided_cases']] <- percent_in_majority_divided_cases
 
       ggsave(percent_in_majority_divided_cases,
-             filename = file.path(output_folder, 'percent_in_majority_divided_cases.png'),
+             filename = file.path(output_folder, 'percent_in_majority_non_unanimous_cases.png'),
              width = 10,
              height = 6,
              units = 'in',
@@ -619,6 +619,434 @@ scotusblog_stats <- function(decisions_path,
 
 
   } # Frequency in Majority (And Strength of Majority)
+
+  {
+
+    combined_list[['coalitions']] <- list()
+
+    {
+
+      unanimity_over_time <- scdb_cases %>%
+        filter(term >= 2005) %>%
+        select(term, minVotes, docket) %>%
+        group_by(term) %>%
+        mutate(total_cases = n()) %>%
+        ungroup() %>%
+        filter(minVotes == 0) %>%
+        group_by(term) %>%
+        mutate(unanimous_cases = n()) %>%
+        reframe(unanimous_percentage = round(unanimous_cases/total_cases, 2)*100) %>%
+        ungroup() %>%
+        unique() %>%
+        bind_rows(decisions %>%
+                    select(Coalition) %>%
+                    rename(coalition = Coalition) %>%
+                    mutate(total_cases = n()) %>%
+                    filter(grepl('(Per Curiam|(9-0))', coalition, ignore.case = T)) %>%
+                    mutate(unanimous_cases = n()) %>%
+                    mutate(unanimous_percentage = round(unanimous_cases/total_cases, 2)*100) %>%
+                    unique() %>%
+                    mutate(term = 2024) %>%
+                    select(term, unanimous_percentage)) %>%
+        ggplot(aes(x = term, y = unanimous_percentage)) +
+        geom_point(size = 3) +
+        geom_line(linewidth = 1) +
+        scale_y_continuous(
+          limits = c(25, 70),
+          breaks = seq(25, 70, 5),
+          labels = function(x) paste0(x, "%")) +
+        scale_x_continuous(breaks = seq(2006, 2024, 2)) +
+        geom_hline(aes(yintercept = mean(unanimous_percentage)), linetype = 2, colour = 'red') +
+        geom_label(aes(x = 2019, y = mean(unanimous_percentage) + 3), label = 'Mean = 46.2%', inherit.aes = FALSE, size = 5, colour = 'red') +
+        geom_label(aes(label = paste0(unanimous_percentage, '%')), size = 4) +
+        theme_minimal() +
+        labs(x = '\nTerm',
+             y = 'Cases Decided Unanimously\n') +
+        theme(
+          panel.border = element_rect(size = 1, colour = 'black', fill = NA),
+          axis.text = element_text(size = 14, colour = 'black'),
+          axis.title = element_text(size = 16, colour = 'black'),
+          legend.text = element_text(size = 14, colour = 'black'),
+          legend.position = 'none',
+          legend.title = element_blank(),
+          legend.box.background = element_rect(size = 1, colour = 'black', fill = NA)
+        )
+
+      combined_list[['coalitions']][['unanimity_over_time']] <- unanimity_over_time
+
+      ggsave(unanimity_over_time,
+             filename = file.path(output_folder, 'unanimity_over_time.png'),
+             width = 10,
+             height = 6,
+             units = 'in',
+             bg = 'white')
+
+
+    } # Unanimity Current v/ Over Time (2 Lines -- One as percentage other as normalized docket)
+
+    {
+
+      unanimity_binomial_proportion <- scdb_cases %>%
+        filter(term >= 2005) %>%
+        select(term, minVotes, docket) %>%
+        group_by(term) %>%
+        mutate(total_cases = n()) %>%
+        ungroup() %>%
+        filter(minVotes == 0) %>%
+        group_by(term) %>%
+        mutate(unanimous_cases = n()) %>%
+        reframe(unanimous_percentage = round(unanimous_cases/total_cases, 2)*100,
+                total_cases = total_cases,
+                unanimous_cases = unanimous_cases) %>%
+        ungroup() %>%
+        unique() %>%
+        bind_rows(decisions %>%
+                    select(Coalition) %>%
+                    rename(coalition = Coalition) %>%
+                    mutate(total_cases = n()) %>%
+                    filter(grepl('(Per Curiam|(9-0))', coalition, ignore.case = T)) %>%
+                    mutate(unanimous_cases = n()) %>%
+                    mutate(unanimous_percentage = round(unanimous_cases/total_cases, 2)*100) %>%
+                    unique() %>%
+                    mutate(term = 2024) %>%
+                    select(term, unanimous_percentage, total_cases, unanimous_cases)) %>%
+        unique() %>%
+        mutate(
+          mean_rate = mean(unanimous_cases / total_cases),
+          expected = total_cases * mean_rate,
+          se = sqrt(total_cases * mean_rate * (1 - mean_rate)),
+          z_score = (unanimous_cases - expected) / se) %>%
+        ggplot(aes(x = term, y = z_score)) +
+        geom_col(colour = 'black', fill = 'gray75') +
+        geom_smooth(colour = 'black', linetype = 2) +
+        scale_x_continuous(breaks = seq(2006, 2024, 2)) +
+        geom_hline(aes(yintercept = 0)) +
+        scale_y_continuous(lim = c(-3.5, 3.5), breaks = seq(-3, 3, 1)) +
+        theme_minimal() +
+        labs(x = '\nTerm',
+             y = 'Standard Deviation in Unanimous Decisions\n(Relative to Expected re: Caseload)\n') +
+        theme(
+          panel.border = element_rect(size = 1, colour = 'black', fill = NA),
+          axis.text = element_text(size = 14, colour = 'black'),
+          axis.title = element_text(size = 16, colour = 'black'),
+          legend.text = element_text(size = 14, colour = 'black'),
+          legend.position = 'none',
+          legend.title = element_blank(),
+          legend.box.background = element_rect(size = 1, colour = 'black', fill = NA)
+        )
+
+      combined_list[['coalitions']][['unanimity_binomial_proportion']] <- unanimity_binomial_proportion
+
+      ggsave(unanimity_binomial_proportion,
+             filename = file.path(output_folder, 'unanimity_binomial_proportion.png'),
+             width = 10,
+             height = 6,
+             units = 'in',
+             bg = 'white')
+
+    } # Unanimity (Binomial Proportion) Z = (Unanimous Cases - Total_Cases*MeanUnanimityRate)/squareroot[total_cases*mean_rate_across_all_terms*(1-p)]: This gives you a z-score that adjusts for caseload: how surprising was the number of unanimous decisions given how many cases there were?
+
+    {
+
+      {
+
+        coalitions_ot24 <- decisions %>%
+          select(Coalition) %>%
+          rename(coalition = Coalition) %>%
+          mutate(coalition = case_when(
+            .default = '(9-0)',
+            grepl('(8-1)', coalition) ~ '(8-1)',
+            grepl('(7-2)', coalition) ~ '(7-2)',
+            grepl('(6-3)', coalition) ~ '(6-3)',
+            grepl('(5-4)', coalition) ~ '(5-4)')) %>%
+          group_by(coalition) %>%
+          summarise(count = n(), .groups = 'drop') %>%
+          mutate(term = 2024)
+
+        ot05_ot24 <- scdb_cases %>%
+          filter(term >= 2005) %>%
+          select(minVotes) %>%
+          mutate(total_cases = n()) %>%
+          ungroup() %>%
+          group_by(minVotes) %>%
+          reframe(coalition_count = n(),
+                  total_cases = total_cases) %>%
+          unique() %>%
+          mutate(coalition_percentage = coalition_count/total_cases,
+                 minVotes = case_when(
+                   minVotes == 0 ~ '(9-0)',
+                   minVotes == 1 ~ '(8-1)',
+                   minVotes == 2 ~ '(7-2)',
+                   minVotes == 3 ~ '(6-3)',
+                   minVotes == 4 ~ '(5-4)'
+                 )) %>%
+          bind_rows(coalitions_ot24 %>%
+                      select(-c(term)) %>%
+                      rename(minVotes = coalition,
+                             coalition_count = count)) %>%
+          group_by(minVotes) %>%
+          reframe(coalition_count = sum(coalition_count),
+                  total_cases = sum(coalitions_ot24$count) + total_cases,
+                  coalition_percentage = coalition_count/total_cases) %>%
+          unique() %>%
+          filter(!is.na(total_cases)) %>%
+          mutate(minVotes = factor(minVotes, levels = c("(5-4)", "(6-3)", "(7-2)", "(8-1)", "(9-0)"))) %>%
+          mutate(label_text = paste0(minVotes, "\n", round(coalition_percentage * 100, 1), "%"),
+                 label_pos = cumsum(coalition_percentage) - coalition_percentage / 2) %>%
+          ggplot(aes(x = "", y = coalition_percentage, fill = minVotes)) +
+          geom_bar(stat = "identity", width = 1, color = "black") +
+          coord_polar(theta = "y") +
+          scale_fill_brewer(palette = "RdBu") +
+          theme_void() +
+          labs(title = '2005-2024 Terms') +
+          theme(legend.title = element_blank(),
+                plot.title = element_markdown(hjust = 0.5, size = 18, face = 'bold'),
+                legend.position = 'none') +
+          geom_text(aes(x = 1.7, label = paste0(minVotes, '\n', scales::percent(coalition_percentage, accuracy = .1))),
+                    position = position_stack(vjust = .5), size = 4)
+
+
+        ot20_ot24 <- scdb_cases %>%
+          filter(term >= 2020) %>%
+          select(minVotes) %>%
+          mutate(total_cases = n()) %>%
+          ungroup() %>%
+          group_by(minVotes) %>%
+          reframe(coalition_count = n(),
+                  total_cases = total_cases) %>%
+          unique() %>%
+          mutate(coalition_percentage = coalition_count/total_cases,
+                 minVotes = case_when(
+                   minVotes == 0 ~ '(9-0)',
+                   minVotes == 1 ~ '(8-1)',
+                   minVotes == 2 ~ '(7-2)',
+                   minVotes == 3 ~ '(6-3)',
+                   minVotes == 4 ~ '(5-4)'
+                 )) %>%
+          bind_rows(coalitions_ot24 %>%
+                      select(-c(term)) %>%
+                      rename(minVotes = coalition,
+                             coalition_count = count)) %>%
+          group_by(minVotes) %>%
+          reframe(coalition_count = sum(coalition_count),
+                  total_cases = sum(coalitions_ot24$count) + total_cases,
+                  coalition_percentage = coalition_count/total_cases) %>%
+          unique() %>%
+          filter(!is.na(total_cases)) %>%
+          mutate(minVotes = factor(minVotes, levels = c("(5-4)", "(6-3)", "(7-2)", "(8-1)", "(9-0)"))) %>%
+          mutate(label_text = paste0(minVotes, "\n", round(coalition_percentage * 100, 1), "%"),
+                 label_pos = cumsum(coalition_percentage) - coalition_percentage / 2) %>%
+          ggplot(aes(x = "", y = coalition_percentage, fill = minVotes)) +
+          geom_bar(stat = "identity", width = 1, color = "black") +
+          coord_polar(theta = "y") +
+          scale_fill_brewer(palette = "RdBu") +
+          theme_void() +
+          labs(title = '2020-2024 Terms') +
+          theme(legend.title = element_blank(),
+                plot.title = element_markdown(hjust = 0.5, size = 18, face = 'bold'),
+                legend.position = 'none') +
+          geom_text(aes(x = 1.7, label = paste0(minVotes, '\n', scales::percent(coalition_percentage, accuracy = .1))),
+                    position = position_stack(vjust = .5), size = 4)
+
+        ot24 <- coalitions_ot24 %>%
+          select(-c(term)) %>%
+          rename(minVotes = coalition,
+                 coalition_count = count) %>%
+          group_by(minVotes) %>%
+          reframe(coalition_count = sum(coalition_count),
+                  total_cases = sum(coalitions_ot24$count) + total_cases,
+                  coalition_percentage = coalition_count/total_cases) %>%
+          unique() %>%
+          ggplot(aes(x = "", y = coalition_percentage, fill = minVotes)) +
+          geom_bar(stat = "identity", width = 1, color = "black") +
+          coord_polar(theta = "y") +
+          scale_fill_brewer(palette = "RdBu") +
+          theme_void() +
+          labs(title = '2024 Term') +
+          theme(legend.title = element_blank(),
+                plot.title = element_markdown(hjust = 0.5, size = 18, face = 'bold'),
+                legend.position = 'none') +
+          geom_text(aes(x = 1.7, label = paste0(minVotes, '\n', scales::percent(coalition_percentage, accuracy = .1))),
+                    position = position_stack(vjust = .5), size = 4)
+
+
+      } # 3 Indiviudal Figures
+
+     combined_coalitions <-  (ot05_ot24 + ot20_ot24 + ot24) +
+        plot_layout(guides = 'collect') &
+        theme(legend.position = "none")
+
+     combined_list[['coalitions']][['combined_coalitions']] <- combined_coalitions
+
+
+     ggsave(combined_coalitions,
+            filename = file.path(output_folder, 'combined_coalitions.png'),
+            width = 12,
+            height = 8,
+            units = 'in')
+
+    } # Coalition Split Pie Charts (O5-24, 20-24, 24)
+
+    {
+
+      {
+
+        justice_ideologies <- scdb_justices %>%
+          filter(term >= 2005) %>%
+          select(justiceName) %>%
+          mutate(justice = sub(".*([A-Z][a-zA-Z]*).*$", "\\1", justiceName),
+                 justice = ifelse(justice == 'Connor', "O'Connor", justice)) %>%
+          select(justice) %>%
+          unique() %>%
+          mutate(ideology = ifelse(justice %in% c('Stevens', 'Ginsburg', 'Breyer', 'Sotomayor', 'Kagan', 'Jackson', 'Souter'), 'Liberal', 'Conservative'))
+
+        libs <- justice_ideologies$justice[justice_ideologies$ideology == 'Liberal']
+
+        ideologically_split <- c()
+        unique_dockets <- scdb_justices %>%
+          filter(term >= 2005) %>%
+          filter(minVotes %in% c(3, 4)) %>%
+          select(docket) %>%
+          unique() %>%
+          pull(docket)
+
+        for (i in 1:length(unique_dockets)){
+
+          temp_case <- scdb_justices %>%
+            filter(term >= 2005) %>%
+            filter(docket == unique_dockets[i]) %>%
+            mutate(justice = sub(".*([A-Z][a-zA-Z]*).*$", "\\1", justiceName),
+                   justice = ifelse(justice == 'Connor', "O'Connor", justice)) %>%
+            select(justice, majority, docket)
+
+          maj <- temp_case$justice[temp_case$majority == 2]
+          min <- temp_case$justice[!temp_case$majority == 2]
+
+          if (all(min %in% libs) & all(!(maj %in% libs))) {
+            ideologically_split <- c(ideologically_split, temp_case$docket[1])
+          }
+
+        }
+
+        ot24_decisions <- decisions[,c(8:17)] %>%
+           pivot_longer(cols = -Docket,
+                        names_to = "justice",
+                        values_to = "vote") %>%
+           rename(docket = Docket) %>%
+           mutate(majority = ifelse(vote >= 1, 2, 1))
+
+        unique_dockets <- unique(ot24_decisions$docket)
+
+        for (i in 1:length(unique_dockets)){
+
+          temp_case <- ot24_decisions %>%
+            filter(docket == unique_dockets[i]) %>%
+            mutate(justice = str_to_title(justice))
+
+          maj <- temp_case$justice[temp_case$majority == 2]
+          min <- temp_case$justice[!temp_case$majority == 2]
+
+          if (all(min %in% libs) & all(!(maj %in% libs))) {
+            ideologically_split <- c(ideologically_split, temp_case$docket[1])
+          }
+
+        }
+
+
+      } # Get Ideologically Split Cases
+
+      {
+
+        total_cases_1 <- nrow(scdb_cases[scdb_cases$term >= 2005,]) + length(unique(ot24_decisions$docket))
+        total_cases_2 <- nrow(scdb_cases[scdb_cases$term >= 2020,]) + length(unique(ot24_decisions$docket))
+
+        splits_ot05_ot24 <- scdb_cases %>%
+          filter(term >= 2005) %>%
+          select(term, docket) %>%
+          bind_rows(ot24_decisions %>%
+                      select(docket) %>%
+                      unique() %>%
+                      mutate(term = 2024)) %>%
+          mutate(ideologically_split = ifelse(docket %in% ideologically_split, 1, 0)) %>%
+          group_by(ideologically_split) %>%
+          summarise(split_percentage = n() / total_cases_1 * 100) %>%
+          ungroup() %>%
+          mutate(ideologically_split = ifelse(ideologically_split == 1, 'Ideologically Split', 'No Split')) %>%
+          ggplot(aes(x = "", y = split_percentage, fill = ideologically_split)) +
+          geom_bar(stat = "identity", width = 1, color = "black") +
+          coord_polar(theta = "y") +
+          scale_fill_brewer(name = 'RdB') +
+          theme_void() +
+          labs(title = '2005-2024 Terms') +
+          theme(legend.title = element_blank(),
+                plot.title = element_markdown(hjust = 0.5, size = 18, face = 'bold'),
+                legend.position = 'none') +
+          geom_text(aes(x = 1.7, label = paste0(ideologically_split, '\n', round(split_percentage, 2), '%')),
+                    position = position_stack(vjust = .5), size = 4)
+
+        splits_ot20_ot24 <- scdb_cases %>%
+          filter(term >= 2020) %>%
+          select(term, docket) %>%
+          bind_rows(ot24_decisions %>%
+                      select(docket) %>%
+                      unique() %>%
+                      mutate(term = 2024)) %>%
+          mutate(ideologically_split = ifelse(docket %in% ideologically_split, 1, 0)) %>%
+          group_by(ideologically_split) %>%
+          summarise(split_percentage = n() / total_cases_2 * 100) %>%
+          ungroup() %>%
+          mutate(ideologically_split = ifelse(ideologically_split == 1, 'Ideologically Split', 'No Split')) %>%
+          ggplot(aes(x = "", y = split_percentage, fill = ideologically_split)) +
+          geom_bar(stat = "identity", width = 1, color = "black") +
+          coord_polar(theta = "y") +
+          scale_fill_brewer(name = 'RdB') +
+          theme_void() +
+          labs(title = '2020-2024 Terms') +
+          theme(legend.title = element_blank(),
+                plot.title = element_markdown(hjust = 0.5, size = 18, face = 'bold'),
+                legend.position = 'none') +
+          geom_text(aes(x = 1.7, label = paste0(ideologically_split, '\n', round(split_percentage, 2), '%')),
+                    position = position_stack(vjust = .5), size = 4)
+
+        splits_ot24 <- ot24_decisions %>%
+          select(docket) %>%
+          unique() %>%
+          mutate(ideologically_split = ifelse(docket %in% ideologically_split, 1, 0)) %>%
+          group_by(ideologically_split) %>%
+          summarise(split_percentage = n() / length(unique(ot24_decisions$docket)) * 100) %>%
+          ungroup() %>%
+          mutate(ideologically_split = ifelse(ideologically_split == 1, 'Ideologically Split', 'No Split')) %>%
+          ggplot(aes(x = "", y = split_percentage, fill = ideologically_split)) +
+          geom_bar(stat = "identity", width = 1, color = "black") +
+          coord_polar(theta = "y") +
+          scale_fill_brewer(name = 'RdB') +
+          theme_void() +
+          labs(title = '2020-2024 Terms') +
+          theme(legend.title = element_blank(),
+                plot.title = element_markdown(hjust = 0.5, size = 18, face = 'bold'),
+                legend.position = 'none') +
+          geom_text(aes(x = 1.7, label = paste0(ideologically_split, '\n', round(split_percentage, 2), '%')),
+                    position = position_stack(vjust = .5), size = 4)
+
+      } # Compile Figures
+
+      combined_splits <-  (splits_ot05_ot24 + splits_ot20_ot24 + splits_ot24) +
+        plot_layout(guides = 'collect') &
+        theme(legend.position = "none")
+
+      combined_list[['coalitions']][['ideologically_split_cases']] <- combined_splits
+
+
+      ggsave(combined_splits,
+             filename = file.path(output_folder, 'combined_splits.png'),
+             width = 12,
+             height = 8,
+             units = 'in')
+
+
+    } # Ideologically Split Cases (Pie Charts)
+
+  } # Coalitions & Unanimity
 
   {
 
@@ -894,10 +1322,10 @@ scotusblog_stats <- function(decisions_path,
                     select(docket, short_hand), by = 'docket') %>%
         left_join(decisions %>%
                     select(Coalition, Docket, Date_Argued, Date_Decided) %>%
-                    rename(coalition = Coalition, 
-                           docket = Docket, 
-                           date_argued = Date_Argued, 
-                           date_decided = Date_Decided), by = 'docket') %>% 
+                    rename(coalition = Coalition,
+                           docket = Docket,
+                           date_argued = Date_Argued,
+                           date_decided = Date_Decided), by = 'docket') %>%
         arrange(word_count) %>%
         slice_head(n = 5)
 
@@ -908,10 +1336,10 @@ scotusblog_stats <- function(decisions_path,
                     select(docket, short_hand), by = 'docket') %>%
         left_join(decisions %>%
                     select(Coalition, Docket, Date_Argued, Date_Decided) %>%
-                    rename(coalition = Coalition, 
-                           docket = Docket, 
-                           date_argued = Date_Argued, 
-                           date_decided = Date_Decided), by = 'docket') %>% 
+                    rename(coalition = Coalition,
+                           docket = Docket,
+                           date_argued = Date_Argued,
+                           date_decided = Date_Decided), by = 'docket') %>%
         arrange(desc(word_count)) %>%
         slice_head(n = 5)
 
