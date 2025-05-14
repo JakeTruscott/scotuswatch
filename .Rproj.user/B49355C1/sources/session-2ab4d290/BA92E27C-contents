@@ -168,3 +168,17 @@ dockets_combine(dockets_path = 'Stat Reviews/OT24_StatReview/dockets/processed_d
 
 dockets_analysis(combined_dockets <- 'Stat Reviews/OT24_StatReview/dockets/combined_dockets/combined_dockets_OT24.rdata',
                 output_path = 'Stat Reviews/OT24_StatReview/dockets/analysis')
+
+
+################################################################################
+# SCOTUSBLOG Stats
+################################################################################
+
+scotusblog_stats <- scotusblog_stats(decisions_path <- "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions/data/OT_24_Decisions.csv",
+                                     oral_arguments <- get(load('data/term_level_combined_transcripts/scotus_OT24.rdata')),
+                                     output_folder = file.path('Stat Reviews', 'OT24_StatReview', 'scotusblog_figures'),
+                                     opinions_processed = file.path('Stat Reviews', 'OT24_StatReview', 'decisions', 'opinions', 'combined_opinions_processed', 'combined_opinions_OT2024.rdata'),
+                                     older_opinions_processed <- "C:/Users/jaketruscott/Github/scotuswatch/data/decisions/earlier_decisions_processed.rdata")
+
+
+export_scotusblog_stats()

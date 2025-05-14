@@ -1,0 +1,28 @@
+{
+    "id": "2CAFF184",
+    "path": null,
+    "project_path": null,
+    "type": "object_explorer",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1747247408304.0,
+    "source_on_save": false,
+    "relative_order": 5,
+    "properties": {
+        "id": "fc826dc4835948c28adc8d8e7d842c56",
+        "name": "temp_topic",
+        "title": "temp_topic",
+        "language": "R",
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 2566928166657,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1747247408304,
+    "read_only": false,
+    "read_only_alternatives": []
+}

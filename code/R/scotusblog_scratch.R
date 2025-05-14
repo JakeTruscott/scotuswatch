@@ -1,11 +1,11 @@
 scotusblog_stats <- function(decisions_path,
                              oral_arguments,
-                             opinion_processed,
+                             opinions_processed,
                              older_opinions_processed,
                              output_folder,
                              master_file = cases_master,
-                             scdb_cases = scdb_cases,
-                             scdb_justices = scdb_justices){
+                             scdb_cases_data = scdb_cases,
+                             scdb_justices_data = scdb_justices){
 
   decisions <- read.csv(decisions_path, as.is = T)
 
@@ -40,6 +40,8 @@ scotusblog_stats <- function(decisions_path,
     combined_list[['term_index']] <- term_index
 
   } # Term Index
+
+  message('Completed Term Index')
 
   {
 
@@ -94,6 +96,8 @@ scotusblog_stats <- function(decisions_path,
 
   } # Circuit Scorecard
 
+  message('Completed Circuit Scorecard')
+
   {
 
     combined_list[['days_elapsed']] <- list()
@@ -128,7 +132,7 @@ scotusblog_stats <- function(decisions_path,
 
     {
 
-      days_elapsed_figure <- scdb_cases %>%
+      days_elapsed_figure <- scdb_cases_data %>%
         filter(term >= 2005) %>%
         select(dateArgument, dateDecision, dateRearg, term) %>%
         mutate(dateArgument = ifelse(!is.na(dateRearg), dateRearg, dateArgument)) %>%
@@ -145,30 +149,30 @@ scotusblog_stats <- function(decisions_path,
           mean_elapsed = mean(days_elapsed),
           se = sd(days_elapsed) / sqrt(n()),
           lower_ci = mean_elapsed - 1.96 * se,
-          upper_ci = mean_elapsed + 1.96 * se
-        ) %>%
-        bind_rows({
-          all_data <- scdb_cases %>%
-            mutate(dateArgument = ifelse(!is.na(dateRearg), dateRearg, dateArgument),
-                   date_argued = as.Date(dateArgument, format = "%m/%d/%Y"),
-                   date_decided = as.Date(dateDecision, format = "%m/%d/%Y"),
-                   days_elapsed = ifelse(!is.na(date_decided) & !is.na(date_argued),
-                                         as.numeric(date_decided - date_argued) + 1, NA)) %>%
-            filter(term >= 2005 & !is.na(days_elapsed))
+          upper_ci = mean_elapsed + 1.96 * se)
 
-          mean_all <- mean(all_data$days_elapsed)
-          se_all <- sd(all_data$days_elapsed) / sqrt(nrow(all_data))
+      all_data <- scdb_cases_data %>%
+        filter(term >= 2005) %>%
+        mutate(dateArgument = ifelse(!is.na(dateRearg), dateRearg, dateArgument),
+               date_argued = as.Date(dateArgument, format = "%m/%d/%Y"),
+               date_decided = as.Date(dateDecision, format = "%m/%d/%Y"),
+               days_elapsed = ifelse(!is.na(date_decided) & !is.na(date_argued),
+                                     as.numeric(date_decided - date_argued) + 1, NA)) %>%
+        filter(!is.na(days_elapsed))
 
-          data.frame(
-            term = 2024,
-            mean_elapsed = mean_all,
-            se = se_all,
-            lower_ci = mean_all - 1.96 * se_all,
-            upper_ci = mean_all + 1.96 * se_all
-          )
-        }) %>%
-        unique() %>%
-        ggplot(aes(x = term, y = mean_elapsed)) +
+      mean_all <- mean(all_data$days_elapsed)
+      se_all <- sd(all_data$days_elapsed) / sqrt(nrow(all_data))
+
+      days_elapsed_figure <- bind_rows(days_elapsed_figure, data.frame(
+        term = 2024,
+        mean_elapsed = mean_all,
+        se = se_all,
+        lower_ci = mean_all - 1.96 * se_all,
+        upper_ci = mean_all + 1.96 * se_all
+      )) %>%
+        unique()
+
+      days_elapsed_figure <- ggplot(data = days_elapsed_figure, aes(x = term, y = mean_elapsed)) +
         geom_point(size = 3) +
         geom_errorbar(aes(x = term, ymin = lower_ci, ymax = upper_ci)) +
         geom_line(linetype = 2) +
@@ -208,6 +212,8 @@ scotusblog_stats <- function(decisions_path,
 
   } # Days b/w Argument & Opinion (Elapsed)
 
+  message('Completed Days b/w Oral Arguments & Decision')
+
   {
 
     combined_list[['opinions']] <- list()
@@ -219,8 +225,8 @@ scotusblog_stats <- function(decisions_path,
         rowwise() %>%
         mutate(
           Majority = 1,
-          Concurrence = sum(c_across(1:10) %in% c(2:8), na.rm = TRUE),
-          Dissent = sum(c_across(1:10) %in% c(-1:-3), na.rm = TRUE)) %>%
+          Concurrence = sum(c_across(1:9) %in% c(2:8), na.rm = TRUE),
+          Dissent = sum(c_across(1:9) %in% c(-1:-3), na.rm = TRUE)) %>%
         ungroup() %>%
         select(Majority, Concurrence, Dissent) %>%
         mutate(Majority = sum(Majority),
@@ -235,7 +241,7 @@ scotusblog_stats <- function(decisions_path,
 
 
 
-      decisions_combined <- scdb_justices %>%
+      decisions_combined <- scdb_justices_data %>%
         filter(term >= 2005) %>%
         filter(opinion == 2) %>%
         group_by(term, vote, decisionType, docket) %>%
@@ -398,6 +404,8 @@ scotusblog_stats <- function(decisions_path,
 
   } # Opinion Authorship (By Justice, Type, Etc.)
 
+  message('Completed Opinion Authorship')
+
   {
 
     combined_list[['frequency_in_majority']] <- list()
@@ -496,7 +504,7 @@ scotusblog_stats <- function(decisions_path,
       combined_list[['frequency_in_majority']][['percent_in_majority_divided_cases']] <- percent_in_majority_divided_cases
 
       ggsave(percent_in_majority_divided_cases,
-             filename = file.path(output_folder, 'percent_in_majority_divided_cases.png'),
+             filename = file.path(output_folder, 'percent_in_majority_non_unanimous_cases.png'),
              width = 10,
              height = 6,
              units = 'in',
@@ -594,7 +602,7 @@ scotusblog_stats <- function(decisions_path,
 
     {
 
-      solo_dissents <- scdb_justices %>%
+      solo_dissents <- scdb_justices_data %>%
         filter(term >= 2005) %>%
         filter(minVotes == 1) %>%
         filter(vote %in% c(2, 6, 7) & opinion == 2) %>%
@@ -620,73 +628,77 @@ scotusblog_stats <- function(decisions_path,
 
   } # Frequency in Majority (And Strength of Majority)
 
+  message('Completed Frequency in Majority')
+
   {
 
     combined_list[['coalitions']] <- list()
 
     {
 
-      unanimity_over_time <- scdb_cases %>%
-        filter(term >= 2005) %>%
-        select(term, minVotes, docket) %>%
-        group_by(term) %>%
-        mutate(total_cases = n()) %>%
-        ungroup() %>%
-        filter(minVotes == 0) %>%
-        group_by(term) %>%
-        mutate(unanimous_cases = n()) %>%
-        reframe(unanimous_percentage = round(unanimous_cases/total_cases, 2)*100) %>%
-        ungroup() %>%
-        unique() %>%
-        bind_rows(decisions %>%
-                    select(Coalition) %>%
-                    rename(coalition = Coalition) %>%
-                    mutate(total_cases = n()) %>%
-                    filter(grepl('(Per Curiam|(9-0))', coalition, ignore.case = T)) %>%
-                    mutate(unanimous_cases = n()) %>%
-                    mutate(unanimous_percentage = round(unanimous_cases/total_cases, 2)*100) %>%
-                    unique() %>%
-                    mutate(term = 2024) %>%
-                    select(term, unanimous_percentage)) %>%
-        ggplot(aes(x = term, y = unanimous_percentage)) +
-        geom_point(size = 3) +
-        geom_line(linewidth = 1) +
-        scale_y_continuous(
-          limits = c(25, 70),
-          breaks = seq(25, 70, 5),
-          labels = function(x) paste0(x, "%")) +
-        scale_x_continuous(breaks = seq(2006, 2024, 2)) +
-        geom_hline(aes(yintercept = mean(unanimous_percentage)), linetype = 2, colour = 'red') +
-        geom_label(aes(x = 2019, y = mean(unanimous_percentage) + 3), label = 'Mean = 46.2%', inherit.aes = FALSE, size = 5, colour = 'red') +
-        geom_label(aes(label = paste0(unanimous_percentage, '%')), size = 4) +
-        theme_minimal() +
-        labs(x = '\nTerm',
-             y = 'Cases Decided Unanimously\n') +
-        theme(
-          panel.border = element_rect(size = 1, colour = 'black', fill = NA),
-          axis.text = element_text(size = 14, colour = 'black'),
-          axis.title = element_text(size = 16, colour = 'black'),
-          legend.text = element_text(size = 14, colour = 'black'),
-          legend.position = 'none',
-          legend.title = element_blank(),
-          legend.box.background = element_rect(size = 1, colour = 'black', fill = NA)
-        )
+      unanimity_over_time <- suppressMessages(suppressWarnings(
+        scdb_cases_data %>%
+          filter(term >= 2005) %>%
+          select(term, minVotes, docket) %>%
+          group_by(term) %>%
+          mutate(total_cases = n()) %>%
+          ungroup() %>%
+          filter(minVotes == 0) %>%
+          group_by(term) %>%
+          mutate(unanimous_cases = n()) %>%
+          reframe(unanimous_percentage = round(unanimous_cases/total_cases, 2)*100) %>%
+          ungroup() %>%
+          unique() %>%
+          bind_rows(decisions %>%
+                      select(Coalition) %>%
+                      rename(coalition = Coalition) %>%
+                      mutate(total_cases = n()) %>%
+                      filter(grepl('(Per Curiam|(9-0))', coalition, ignore.case = T)) %>%
+                      mutate(unanimous_cases = n()) %>%
+                      mutate(unanimous_percentage = round(unanimous_cases/total_cases, 2)*100) %>%
+                      unique() %>%
+                      mutate(term = 2024) %>%
+                      select(term, unanimous_percentage)) %>%
+          ggplot(aes(x = term, y = unanimous_percentage)) +
+          geom_point(size = 3) +
+          geom_line(linewidth = 1) +
+          scale_y_continuous(
+            limits = c(25, 70),
+            breaks = seq(25, 70, 5),
+            labels = function(x) paste0(x, "%")) +
+          scale_x_continuous(breaks = seq(2006, 2024, 2)) +
+          geom_hline(aes(yintercept = mean(unanimous_percentage)), linetype = 2, colour = 'red') +
+          geom_label(aes(x = 2019, y = mean(unanimous_percentage) + 3), label = 'Mean = 46.2%', inherit.aes = T, size = 5, colour = 'red') +
+          geom_label(aes(label = paste0(unanimous_percentage, '%')), size = 4) +
+          theme_minimal() +
+          labs(x = '\nTerm',
+               y = 'Cases Decided Unanimously\n') +
+          theme(
+            panel.border = element_rect(size = 1, colour = 'black', fill = NA),
+            axis.text = element_text(size = 14, colour = 'black'),
+            axis.title = element_text(size = 16, colour = 'black'),
+            legend.text = element_text(size = 14, colour = 'black'),
+            legend.position = 'none',
+            legend.title = element_blank(),
+            legend.box.background = element_rect(size = 1, colour = 'black', fill = NA)
+          )
+      ))
 
-      combined_list[['coalitions']][['unanimity_over_time']] <- unanimity_over_time
+      combined_list[['coalitions']][['unanimity_over_time']] <- suppressWarnings(unanimity_over_time)
 
-      ggsave(unanimity_over_time,
+      suppressWarnings(ggsave(unanimity_over_time,
              filename = file.path(output_folder, 'unanimity_over_time.png'),
              width = 10,
              height = 6,
              units = 'in',
-             bg = 'white')
+             bg = 'white'))
 
 
     } # Unanimity Current v/ Over Time (2 Lines -- One as percentage other as normalized docket)
 
     {
 
-      unanimity_binomial_proportion <- scdb_cases %>%
+      unanimity_binomial_proportion <- scdb_cases_data %>%
         filter(term >= 2005) %>%
         select(term, minVotes, docket) %>%
         group_by(term) %>%
@@ -718,7 +730,7 @@ scotusblog_stats <- function(decisions_path,
           z_score = (unanimous_cases - expected) / se) %>%
         ggplot(aes(x = term, y = z_score)) +
         geom_col(colour = 'black', fill = 'gray75') +
-        geom_smooth(colour = 'black', linetype = 2) +
+        geom_smooth(colour = 'black', linetype = 2, method = 'loess', formula = 'y~x') +
         scale_x_continuous(breaks = seq(2006, 2024, 2)) +
         geom_hline(aes(yintercept = 0)) +
         scale_y_continuous(lim = c(-3.5, 3.5), breaks = seq(-3, 3, 1)) +
@@ -763,7 +775,7 @@ scotusblog_stats <- function(decisions_path,
           summarise(count = n(), .groups = 'drop') %>%
           mutate(term = 2024)
 
-        ot05_ot24 <- scdb_cases %>%
+        ot05_ot24 <- scdb_cases_data %>%
           filter(term >= 2005) %>%
           select(minVotes) %>%
           mutate(total_cases = n()) %>%
@@ -806,7 +818,7 @@ scotusblog_stats <- function(decisions_path,
                     position = position_stack(vjust = .5), size = 4)
 
 
-        ot20_ot24 <- scdb_cases %>%
+        ot20_ot24 <- scdb_cases_data %>%
           filter(term >= 2020) %>%
           select(minVotes) %>%
           mutate(total_cases = n()) %>%
@@ -854,7 +866,7 @@ scotusblog_stats <- function(decisions_path,
                  coalition_count = count) %>%
           group_by(minVotes) %>%
           reframe(coalition_count = sum(coalition_count),
-                  total_cases = sum(coalitions_ot24$count) + total_cases,
+                  total_cases = sum(coalitions_ot24$count),
                   coalition_percentage = coalition_count/total_cases) %>%
           unique() %>%
           ggplot(aes(x = "", y = coalition_percentage, fill = minVotes)) +
@@ -872,7 +884,7 @@ scotusblog_stats <- function(decisions_path,
 
       } # 3 Indiviudal Figures
 
-     combined_coalitions <-  (ot05_ot24 + ot20_ot24 + ot24) +
+     combined_coalitions <- ot05_ot24 + ot20_ot24 + ot24 +
         plot_layout(guides = 'collect') &
         theme(legend.position = "none")
 
@@ -891,7 +903,7 @@ scotusblog_stats <- function(decisions_path,
 
       {
 
-        justice_ideologies <- scdb_justices %>%
+        justice_ideologies <- scdb_justices_data %>%
           filter(term >= 2005) %>%
           select(justiceName) %>%
           mutate(justice = sub(".*([A-Z][a-zA-Z]*).*$", "\\1", justiceName),
@@ -903,7 +915,7 @@ scotusblog_stats <- function(decisions_path,
         libs <- justice_ideologies$justice[justice_ideologies$ideology == 'Liberal']
 
         ideologically_split <- c()
-        unique_dockets <- scdb_justices %>%
+        unique_dockets <- scdb_justices_data %>%
           filter(term >= 2005) %>%
           filter(minVotes %in% c(3, 4)) %>%
           select(docket) %>%
@@ -912,7 +924,7 @@ scotusblog_stats <- function(decisions_path,
 
         for (i in 1:length(unique_dockets)){
 
-          temp_case <- scdb_justices %>%
+          temp_case <- scdb_justices_data %>%
             filter(term >= 2005) %>%
             filter(docket == unique_dockets[i]) %>%
             mutate(justice = sub(".*([A-Z][a-zA-Z]*).*$", "\\1", justiceName),
@@ -957,10 +969,10 @@ scotusblog_stats <- function(decisions_path,
 
       {
 
-        total_cases_1 <- nrow(scdb_cases[scdb_cases$term >= 2005,]) + length(unique(ot24_decisions$docket))
-        total_cases_2 <- nrow(scdb_cases[scdb_cases$term >= 2020,]) + length(unique(ot24_decisions$docket))
+        total_cases_1 <- nrow(scdb_cases_data[scdb_cases_data$term >= 2005,]) + length(unique(ot24_decisions$docket))
+        total_cases_2 <- nrow(scdb_cases_data[scdb_cases_data$term >= 2020,]) + length(unique(ot24_decisions$docket))
 
-        splits_ot05_ot24 <- scdb_cases %>%
+        splits_ot05_ot24 <- scdb_cases_data %>%
           filter(term >= 2005) %>%
           select(term, docket) %>%
           bind_rows(ot24_decisions %>%
@@ -984,7 +996,7 @@ scotusblog_stats <- function(decisions_path,
           geom_text(aes(x = 1.7, label = paste0(ideologically_split, '\n', round(split_percentage, 2), '%')),
                     position = position_stack(vjust = .5), size = 4)
 
-        splits_ot20_ot24 <- scdb_cases %>%
+        splits_ot20_ot24 <- scdb_cases_data %>%
           filter(term >= 2020) %>%
           select(term, docket) %>%
           bind_rows(ot24_decisions %>%
@@ -1046,7 +1058,251 @@ scotusblog_stats <- function(decisions_path,
 
     } # Ideologically Split Cases (Pie Charts)
 
+    {
+
+      custom_order <- c("ROBERTS", "ALITO", "THOMAS", "SOTOMAYOR", "KAGAN",
+                        "GORSUCH", "KAVANAUGH", "BARRETT", "JACKSON")
+
+
+      OT24_majority_coalitions <- decisions %>%
+        left_join(master_file %>%
+                    select(short_hand, docket) %>%
+                    rename(Docket = docket), by = "Docket") %>%
+        filter(!grepl('(9-0|Per Curiam)', Coalition, ignore.case = T)) %>%
+        rowwise() %>%
+        mutate(
+          majority = paste0(names(decisions)[8:16][c_across(8:16) >= 1], collapse = ", ")
+        ) %>%
+        ungroup() %>%
+        select(short_hand, majority) %>%
+        mutate(
+          majority_sorted = majority %>%
+            str_split(",\\s*") %>%
+            lapply(function(justices) {
+              ordered <- factor(justices, levels = custom_order)
+              sort(ordered)
+            }) %>%
+            sapply(paste, collapse = ", ")
+        ) %>%
+        group_by(majority_sorted) %>%
+        summarise(
+          count = n(),
+          case = paste(short_hand, collapse = '; '),
+          .groups = "drop"
+        ) %>%
+        arrange(desc(count)) %>%
+        mutate(majority_sorted = str_to_title(majority_sorted))
+
+      combined_list[['coalitions']][['ot24_coalitions']] <- OT24_majority_coalitions
+
+
+    } # Most Common Coalitions (OT24)
+
+    {
+
+      custom_order <- c('Roberts', 'Stevens', 'Scalia', 'Kennedy', 'Souter', 'Thomas', 'Ginsburg', 'Breyer', 'Alito', 'Sotomayor', 'Kagan', 'Gorsuch', 'Kavanaugh', 'Barrett', 'Jackson')
+      libs <- c('Stevens', 'Sotomayor', 'Kagan', 'Jackson', 'Ginsburg', 'Breyer')
+
+
+      majorities <- data.frame()
+      unique_dockets <- scdb_cases_data %>%
+        filter(term >= 2010) %>%
+        select(docket) %>%
+        pull(docket)
+
+      for (i in 1:length(unique_dockets)){
+
+        temp_case <- scdb_justices_data %>%
+          filter(docket == unique_dockets[i]) %>%
+          select(justiceName, majority, decisionType, docket, term, caseId)
+
+        if (temp_case$decisionType[1] %in% c(4, 5)){
+          next
+        }
+
+        if (nrow(temp_case) >= 10){
+          unique_case_ids <- unique(temp_case$caseId)
+          temp_case <- temp_case %>%
+            filter(caseId == unique_case_ids[1])
+        }
+
+        temp_justices <- temp_case %>%
+          mutate(justice = sub(".*([A-Z][a-zA-Z]*).*$", "\\1", justiceName)) %>%
+          pull(justice)
+
+        temp_majority <- temp_case %>%
+          filter(majority == 2) %>%
+          mutate(justice = sub(".*([A-Z][a-zA-Z]*).*$", "\\1", justiceName)) %>%
+          select(justice) %>%
+          mutate(
+            majority_sorted = justice %>%
+              str_split(",\\s*") %>%
+              lapply(function(justices) {
+                ordered <- factor(justices, levels = custom_order)
+                sort(ordered)
+              }) %>%
+              sapply(paste, collapse = ", ")
+          ) %>%
+          pull(majority_sorted)
+
+        temp_cons <- temp_justices[!temp_justices %in% libs]
+        temp_libs <- temp_justices[temp_justices %in% libs]
+        majority_size <- length(which(temp_case$majority == 2))
+        minority_size <- length(which(temp_case$majority == 1))
+        coalition_combined <- paste0('(', majority_size, '-', minority_size, ')')
+        ideological_split <- ifelse(any(temp_libs %in% temp_majority), 0, 1)
+        conservative_win <- ifelse(all(temp_libs %in% temp_majority), 0, 1)
+
+        temp_combined <- data.frame(
+          docket = temp_case$docket[1],
+          term = temp_case$term[1],
+          majority_size = majority_size,
+          minority_size = minority_size,
+          coalition_combined = coalition_combined,
+          ideological_split = ideological_split,
+          conservative_win = conservative_win,
+          stringsAsFactors = FALSE
+        )
+
+        temp_combined$majority_coalition <- list(temp_majority)
+        temp_combined$temp_justices <- list(temp_justices)
+
+        majorities <- bind_rows(majorities, temp_combined)
+
+        }
+
+      {
+
+        all_splits <- majorities %>%
+          filter(majority_size %in% c(5, 6)) %>%
+          bind_rows(decisions %>%
+                      filter(grepl('(5-4|5-3|6-3|6-2)', Coalition, ignore.case = T)) %>%
+                      rename(majority_size = Coalition) %>%
+                      mutate(majority_size = gsub('\\-.*', '', gsub('\\(', '', majority_size)),
+                             majority_size = as.numeric(majority_size)) %>%
+                      select(majority_size) %>%
+                      mutate(term = 2024)) %>%
+          group_by(term) %>%
+          summarise(count = n()) %>%
+          mutate(term = as.character(term))
+
+        all_splits <- all_splits %>%
+          add_row(term = 'Average',
+                  count = mean(all_splits$count))
+
+        combined_list[['coalitions']][['all_splits']] <- all_splits
+
+      } # All Splits
+
+      {
+
+        total_cases_term <- scdb_cases_data %>%
+          filter(term >= 2010) %>%
+          select(term) %>%
+          group_by(term) %>%
+          summarise(total_cases = n()) %>%
+          bind_rows(data.frame(term = 2024,
+                               total_cases = nrow(decisions)))
+
+        percent_split <- majorities %>%
+          mutate(split = ifelse(majority_size %in% c(5, 6), 1, 0)) %>%
+          bind_rows(decisions %>%
+                      mutate(split = grepl('(5-4|5-3|6-3|6-2)', Coalition, ignore.case = T),
+                             Coalition = ifelse(Coalition == 'Per Curiam', '(9-0)', Coalition)) %>%
+                      rename(majority_size = Coalition) %>%
+                      mutate(majority_size = gsub('\\-.*', '', gsub('\\(', '', majority_size)),
+                             majority_size = as.numeric(majority_size)) %>%
+                      select(majority_size, split) %>%
+                      mutate(term = 2024)) %>%
+          select(split, term) %>%
+          filter(split == 1) %>%
+          group_by(term) %>%
+          summarise(count = n(), .groups = 'drop') %>%
+          left_join(total_cases_term, by = 'term') %>%
+          mutate(percent_split = round(count/total_cases, 2)*100) %>%
+          select(term, percent_split) %>%
+          mutate(term = as.character(term))
+
+        percent_split <- percent_split %>%
+          add_row(term = 'Average',
+                  percent_split = mean(percent_split$percent_split))
+
+
+        combined_list[['coalitions']][['percent_split_of_total_cases']] <- percent_split
+
+      } # Splits As Percent of Total Cases
+
+      {
+
+        ot24_ideological_splits <- decisions[, c(7:16)] %>%
+          filter(grepl('-3', Coalition)) %>%
+          rowwise() %>%
+          mutate(ideological_split = ifelse(all(JACKSON, SOTOMAYOR, KAGAN) <= -1, 1, 0)) %>%
+          select(ideological_split) %>%
+          summarise(ideological_split = length(which(ideological_split == 1))) %>%
+          mutate(term = 2024,
+                 total_cases = nrow(decisions))
+
+
+        ideological_splits <- majorities %>%
+          group_by(term) %>%
+          mutate(total_cases = n()) %>%
+          filter(ideological_split == 1) %>%
+          group_by(term) %>%
+          reframe(total_cases = total_cases,
+                  ideological_split = n()) %>%
+          unique() %>%
+          bind_rows(ot24_ideological_splits) %>%
+          mutate(percent_ideological_split = round(ideological_split/total_cases, 2)*100) %>%
+          select(term, percent_ideological_split) %>%
+          mutate(term = as.character(term))
+
+
+        ideological_splits <- ideological_splits %>%
+          add_row(term = 'Average',
+                  percent_ideological_split = mean(ideological_splits$percent_ideological_split))
+
+        combined_list[['coalitions']][['percent_ideological_splits']] <- ideological_splits
+
+      } # Ideological Splits
+
+      {
+
+        unique_coalitions <- data.frame()
+        terms <- unique(majorities$term)
+
+        for (i in 1:length(unique(terms))){
+
+          temp_coalitions <- majorities %>%
+            filter(term == terms[i]) %>%
+            pull(majority_coalition)
+
+          temp_coalitions <- unique(lapply(temp_coalitions, function(x) sort(x)))
+          temp_coalitions <- length(temp_coalitions)
+          unique_coalitions <- bind_rows(unique_coalitions, data.frame(term = terms[i],
+                                                                       unique_coalitions = temp_coalitions))
+        }
+
+        unique_coalitions <- unique_coalitions %>%
+          add_row(data.frame(term = 2024,
+                           unique_coalitions = length(unique(OT24_majority_coalitions$majority_sorted)))) %>%
+          mutate(term = as.character(term)) %>%
+          add_row(term = 'Average',
+                  unique_coalitions = mean(unique_coalitions$unique_coalitions, length(unique(OT24_majority_coalitions$majority_sorted))))
+
+        combined_list[['coalitions']][['unique_coalitions']] <- unique_coalitions
+
+      } # Different Majority Coalitions
+
+
+
+
+    } # Most Common Coalitions (OT10-23)
+
+
   } # Coalitions & Unanimity
+
+  message('Completed Coalitions & Unanimity')
 
   {
 
@@ -1293,6 +1549,8 @@ scotusblog_stats <- function(decisions_path,
 
   } # Vote Agreement
 
+  message('Completed Vote Agreement')
+
   {
 
     combined_list[['opinion_lengths']] <- list()
@@ -1417,20 +1675,223 @@ scotusblog_stats <- function(decisions_path,
 
   } # Opinion Lengths
 
+  message('Completed Opinion Lengths')
+
+  {
+
+    combined_list[['precedent_unconstitutional']] <- list()
+
+
+    {
+
+    } # OT24 Declaration Unconstitutional/Precedent Alteration
+
+
+    {
+
+      precedent_unconstitutional <- scdb_cases_data %>%
+        filter(term >= 1986) %>%
+        group_by(term) %>%
+        summarise(
+          declarationUncon_count = sum(!declarationUncon == 1, na.rm = TRUE),
+          precedentAlteration_count = sum(precedentAlteration == 1, na.rm = TRUE),
+          total_cases = n())
+
+      precedents_altered <- precedent_unconstitutional %>%
+        mutate(chief = ifelse(term >= 2005, 'Roberts Court (2005-Present)', 'Rehnquist Court (1986-2004)'),
+               chief = factor(chief, levels = c('Rehnquist Court (1986-2004)', 'Roberts Court (2005-Present)'))) %>%
+        ggplot(aes(x = term, y = precedentAlteration_count)) +
+        geom_col(aes(fill = chief), colour = 'black') +
+        theme_minimal() +
+        labs(x = '\nTerm',
+             y = 'Precedents Altered\n',
+             fill = 'Chief Justice') +
+        scale_y_continuous(breaks = seq(1, 6, 1), lim = c(0, 6)) +
+        scale_x_continuous(breaks = seq(1986, 2024, 4)) +
+        geom_vline(xintercept = 2004.5, linetype = 2, size = 1.2) +
+        geom_hline(yintercept = 0) +
+        geom_label(aes(label = precedentAlteration_count), vjust = -1) +
+        scale_fill_manual(values = c('coral4', 'deepskyblue3')) +
+        theme(
+          panel.border = element_rect(size = 1, colour = 'black', fill = NA),
+          axis.text = element_text(size = 14, colour = 'black'),
+          axis.title = element_text(size = 16, colour = 'black'),
+          legend.text = element_text(size = 14, colour = 'black'),
+          legend.position = 'top',
+          legend.title = element_blank(),
+          legend.box.background = element_rect(size = 1, colour = 'black', fill = NA)
+        )
+
+      unconstitutional <- precedent_unconstitutional %>%
+        mutate(chief = ifelse(term >= 2005, 'Roberts Court (2005-Present)', 'Rehnquist Court (1986-2004)'),
+               chief = factor(chief, levels = c('Rehnquist Court (1986-2004)', 'Roberts Court (2005-Present)'))) %>%
+        ggplot(aes(x = term, y = declarationUncon_count)) +
+        geom_col(aes(fill = chief), colour = 'black') +
+        theme_minimal() +
+        labs(x = '\nTerm',
+             y = 'Federal, State, or Municipal Laws & Acts\nDeclared Unconstitutional\n',
+             fill = 'Chief Justice') +
+        scale_y_continuous(breaks = seq(2, 20, 2), lim = c(0, 20)) +
+        scale_x_continuous(breaks = seq(1986, 2024, 4)) +
+        geom_vline(xintercept = 2004.5, linetype = 2, size = 1.2) +
+        geom_hline(yintercept = 0) +
+        geom_label(aes(label = declarationUncon_count), vjust = -1) +
+        scale_fill_manual(values = c('coral4', 'deepskyblue3')) +
+        theme(
+          panel.border = element_rect(size = 1, colour = 'black', fill = NA),
+          axis.text = element_text(size = 14, colour = 'black'),
+          axis.title = element_text(size = 16, colour = 'black'),
+          legend.text = element_text(size = 14, colour = 'black'),
+          legend.position = 'top',
+          legend.title = element_blank(),
+          legend.box.background = element_rect(size = 1, colour = 'black', fill = NA)
+        )
+
+      total_cases <- precedent_unconstitutional %>%
+        mutate(chief = ifelse(term >= 2005, 'Roberts Court (2005-Present)', 'Rehnquist Court (1986-2004)'),
+               chief = factor(chief, levels = c('Rehnquist Court (1986-2004)', 'Roberts Court (2005-Present)'))) %>%
+        ggplot(aes(x = term, y = total_cases)) +
+        geom_col() +
+        geom_col(aes(fill = chief), colour = 'black') +
+        theme_minimal() +
+        labs(x = '\nTerm',
+             y = 'Total Cases Decided in Term\n',
+             fill = 'Chief Justice') +
+        scale_y_continuous(breaks = seq(25, 150, 25), lim = c(0, 165)) +
+        scale_x_continuous(breaks = seq(1986, 2024, 4)) +
+        geom_vline(xintercept = 2004.5, linetype = 2, size = 1.2) +
+        geom_hline(yintercept = 0) +
+        scale_fill_manual(values = c('coral4', 'deepskyblue3')) +
+        theme(
+          panel.border = element_rect(size = 1, colour = 'black', fill = NA),
+          axis.text = element_text(size = 14, colour = 'black'),
+          axis.title = element_text(size = 16, colour = 'black'),
+          legend.text = element_text(size = 14, colour = 'black'),
+          legend.position = 'top',
+          legend.title = element_blank(),
+          legend.box.background = element_rect(size = 1, colour = 'black', fill = NA)
+        )
+
+
+
+    } # OT1986-OT23
+
+    combined_list[['precedent_unconstitutional']][['precedent_unconstitutional']] <- precedent_unconstitutional
+
+    constitutional_precedents <- (precedents_altered + unconstitutional)/total_cases +
+      plot_layout(guides = 'collect') &
+      theme(legend.position = "bottom",
+            legend.background = element_rect(size = 1, colour = 'black', fill = NA))
+
+    ggsave(constitutional_precedents,
+           filename = file.path(output_folder, 'constitutional_precedents.png'),
+           width = 12,
+           height = 8,
+           units = 'in')
+
+  } # Precedent Alteration/Declaration Unconstitutional
+
   return(combined_list)
 
 
 }
 
+source('code/R/scotuswatch_source.R') # Load Source & Functions (Load Packages Too)
 
+
+scotusblog_stats <- scotusblog_stats(decisions_path <- "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions/data/OT_24_Decisions.csv",
+                                     oral_arguments <- get(load('data/term_level_combined_transcripts/scotus_OT24.rdata')),
+                                     output_folder = file.path('Stat Reviews', 'OT24_StatReview', 'scotusblog_replication', 'figures'),
+                                     opinions_processed = file.path('Stat Reviews', 'OT24_StatReview', 'decisions', 'opinions', 'combined_opinions_processed', 'combined_opinions_OT2024.rdata'),
+                                     older_opinions_processed <- "C:/Users/jaketruscott/Github/scotuswatch/data/decisions/earlier_decisions_processed.rdata")
 
 
 decisions_path <- "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions/data/OT_24_Decisions.csv"
+decisions <- read.csv(decisions_path, as.is = T)
+
 oral_arguments <- get(load('data/term_level_combined_transcripts/scotus_OT24.rdata'))
-output_folder = file.path('Stat Reviews', 'OT24_StatReview', 'scotusblog_figures')
+output_folder = file.path('Stat Reviews', 'OT24_StatReview', 'scotusblog_replication', 'figures')
 opinions_processed = file.path('Stat Reviews', 'OT24_StatReview', 'decisions', 'opinions', 'combined_opinions_processed', 'combined_opinions_OT2024.rdata')
 older_opinions_processed <- "C:/Users/jaketruscott/Github/scotuswatch/data/decisions/earlier_decisions_processed.rdata"
+scdb_cases_data = scdb_cases
+scdb_justices_data = scdb_justices
 
-combined_list$circuit_scorecard
 
-combined_list$days_elapsed$longest
+
+export_scotusblog_stats <- function(scotusblog_stats_object = scotusblog_stats,
+                                    output_path = file.path('Stat Reviews', 'OT24_StatReview', 'scotusblog_replication', 'data')){
+
+  for (i in 1:length(scotusblog_stats_object)){
+
+    temp_topic <- scotusblog_stats_object[[i]]
+    if ('list' %in% class(temp_topic)){
+      temp_topic <- Filter(function(x) any(class(x) == "data.frame"), temp_topic)
+    }
+
+    temp_topic_name <- names(scotusblog_stats_object[i])
+
+    {
+
+      if (temp_topic_name == 'opinions'){
+        temp_topic <- scotusblog_stats_object[[i]][['2024 Opinions by Justice']]
+        temp_item <- temp_topic %>%
+          purrr::imap_dfr(function(justice_data, justice_name) {
+            purrr::imap_dfr(justice_data, function(opinion_data, opinion_type) {
+              tibble(
+                Justice = str_to_title(justice_name),
+                Opinion_Type = opinion_type,
+                Case = opinion_data
+              )
+            })
+          })
+        temp_wb <- createWorkbook()
+        suppressWarnings(addWorksheet(temp_wb, as.character('opinions_by_justice')))
+        suppressWarnings(writeData(temp_wb, as.character('opinions_by_justice'), temp_item))
+        temp_export_path = file.path(output_path, paste0(as.character(temp_topic_name), '.xlsx')) # Temp Excel Output Path
+        suppressWarnings(saveWorkbook(temp_wb, temp_export_path, overwrite = T))
+        next
+      }
+
+    } # Special Run for 'opinions'
+
+    if (length(temp_topic) == 0){
+      next
+    }
+
+    temp_wb <- createWorkbook()
+
+    for (item in 1:length(temp_topic)){
+
+      temp_item <- temp_topic[[item]]
+      temp_item_class <- class(temp_item)
+
+      if (!'data.frame' %in% class(temp_item)){
+        next
+      } else {
+        temp_item_name <- gsub('\\_by\\_', '', gsub(' ', '_', names(temp_topic[item])))
+        temp_item_name <- gsub('percent', 'perc', temp_item_name)
+        suppressWarnings(addWorksheet(temp_wb, as.character(temp_item_name)))
+        suppressWarnings(suppressWarnings(writeData(temp_wb, as.character(temp_item_name), temp_item)))
+      }
+
+    } # For Each Dataframe -- Populate temp_wb
+
+    temp_export_path = file.path(output_path, paste0(as.character(temp_topic_name), '.xlsx')) # Temp Excel Output Path
+    suppressWarnings(saveWorkbook(temp_wb, temp_export_path, overwrite = T))
+
+    message('Exported ', temp_topic_name)
+
+  } # For Each Topic -- Export to Excel w/ Tabs by Area
+
+
+} # Export SCOTUSBLOG Stats to Excel by Topic
+
+
+
+
+
+
+
+
+
+
