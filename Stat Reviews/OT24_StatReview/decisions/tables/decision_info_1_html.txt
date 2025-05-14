@@ -45,7 +45,7 @@
   <tr>
    <td style="text-align:center;font-weight: bold;"> NVIDIA v. E. Ohman Jor Fonder </td>
    <td style="text-align:center;"> 23-970 </td>
-   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> 2024-11-13 </td>
    <td style="text-align:center;"> 2024-12-11 </td>
    <td style="text-align:center;"> CA9 </td>
    <td style="text-align:center;"> DIG </td>
@@ -90,7 +90,7 @@
    <td style="text-align:center;"> CA10 </td>
    <td style="text-align:center;"> Vacate and Remand </td>
    <td style="text-align:center;"> Per Curiam </td>
-   <td style="text-align:center;"> Per Curiam </td>
+   <td style="text-align:center;"> (7-2) </td>
   </tr>
   <tr>
    <td style="text-align:center;font-weight: bold;"> Hungary v. Simon </td>

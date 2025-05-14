@@ -57,7 +57,7 @@
    <td style="text-align:center;"> 23-713 </td>
    <td style="text-align:center;"> 2024-10-16 </td>
    <td style="text-align:center;"> 2025-03-05 </td>
-   <td style="text-align:center;"> CAFC </td>
+   <td style="text-align:center;"> CAFED </td>
    <td style="text-align:center;"> Affirm </td>
    <td style="text-align:center;"> Thomas </td>
    <td style="text-align:center;"> (7-2) </td>

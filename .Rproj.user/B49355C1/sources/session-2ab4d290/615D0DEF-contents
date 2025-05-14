@@ -736,7 +736,7 @@ scotusblog_stats <- function(decisions_path,
         scale_y_continuous(lim = c(-3.5, 3.5), breaks = seq(-3, 3, 1)) +
         theme_minimal() +
         labs(x = '\nTerm',
-             y = 'Standard Deviation in Unanimous Decisions\n(Relative to Expected re: Caseload)\n') +
+             y = 'How Unanimous Each Term Was\nCompared to Average\n') +
         theme(
           panel.border = element_rect(size = 1, colour = 'black', fill = NA),
           axis.text = element_text(size = 14, colour = 'black'),
