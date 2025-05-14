@@ -4853,7 +4853,7 @@ scotusblog_stats <- function(decisions_path,
 # Recover SCOTUSBLOG Stats --> Excel
 ###############################################################################
 
-export_scotusblog_stats <- function(scotusblog_stats_object = scotusblog_stats,
+export_scotusblog_stats <- function(scotusblog_stats_object,
                                     output_path){
 
   for (i in 1:length(scotusblog_stats_object)){

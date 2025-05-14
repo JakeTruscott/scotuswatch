@@ -1818,7 +1818,7 @@ scdb_justices_data = scdb_justices
 
 
 
-export_scotusblog_stats <- function(scotusblog_stats_object = scotusblog_stats,
+export_scotusblog_stats <- function(scotusblog_stats_object,
                                     output_path = file.path('Stat Reviews', 'OT24_StatReview', 'scotusblog_replication', 'data')){
 
   for (i in 1:length(scotusblog_stats_object)){
