@@ -1703,23 +1703,24 @@ scotusblog_stats <- function(decisions_path,
         ggplot(aes(x = term, y = precedentAlteration_count)) +
         geom_col(aes(fill = chief), colour = 'black') +
         theme_minimal() +
-        labs(x = '\nTerm',
-             y = 'Precedents Altered\n',
+        labs(x = '',
+             y = '',
+             title = 'Precedents Altered\n',
              fill = 'Chief Justice') +
         scale_y_continuous(breaks = seq(1, 6, 1), lim = c(0, 6)) +
         scale_x_continuous(breaks = seq(1986, 2024, 4)) +
         geom_vline(xintercept = 2004.5, linetype = 2, size = 1.2) +
         geom_hline(yintercept = 0) +
-        geom_label(aes(label = precedentAlteration_count), vjust = -1) +
         scale_fill_manual(values = c('coral4', 'deepskyblue3')) +
         theme(
           panel.border = element_rect(size = 1, colour = 'black', fill = NA),
-          axis.text = element_text(size = 14, colour = 'black'),
+          axis.text = element_text(size = 12, colour = 'black'),
           axis.title = element_text(size = 16, colour = 'black'),
           legend.text = element_text(size = 14, colour = 'black'),
           legend.position = 'top',
           legend.title = element_blank(),
-          legend.box.background = element_rect(size = 1, colour = 'black', fill = NA)
+          legend.box.background = element_rect(size = 1, colour = 'black', fill = NA),
+          plot.title = element_text(size = 16, colour = 'black', hjust = 0.5, face = 'bold')
         )
 
       unconstitutional <- precedent_unconstitutional %>%
@@ -1728,23 +1729,25 @@ scotusblog_stats <- function(decisions_path,
         ggplot(aes(x = term, y = declarationUncon_count)) +
         geom_col(aes(fill = chief), colour = 'black') +
         theme_minimal() +
-        labs(x = '\nTerm',
-             y = 'Federal, State, or Municipal Laws & Acts\nDeclared Unconstitutional\n',
+        labs(x = '',
+             y = '',
+             title = 'Federal, State, or Municipal Laws & Acts\nDeclared Unconstitutional\n',
              fill = 'Chief Justice') +
         scale_y_continuous(breaks = seq(2, 20, 2), lim = c(0, 20)) +
         scale_x_continuous(breaks = seq(1986, 2024, 4)) +
         geom_vline(xintercept = 2004.5, linetype = 2, size = 1.2) +
         geom_hline(yintercept = 0) +
-        geom_label(aes(label = declarationUncon_count), vjust = -1) +
         scale_fill_manual(values = c('coral4', 'deepskyblue3')) +
         theme(
           panel.border = element_rect(size = 1, colour = 'black', fill = NA),
-          axis.text = element_text(size = 14, colour = 'black'),
+          axis.text = element_text(size = 12, colour = 'black'),
           axis.title = element_text(size = 16, colour = 'black'),
           legend.text = element_text(size = 14, colour = 'black'),
           legend.position = 'top',
           legend.title = element_blank(),
-          legend.box.background = element_rect(size = 1, colour = 'black', fill = NA)
+          legend.box.background = element_rect(size = 1, colour = 'black', fill = NA),
+          plot.title = element_text(size = 16, colour = 'black', hjust = 0.5, face = 'bold')
+
         )
 
       total_cases <- precedent_unconstitutional %>%
@@ -1755,7 +1758,8 @@ scotusblog_stats <- function(decisions_path,
         geom_col(aes(fill = chief), colour = 'black') +
         theme_minimal() +
         labs(x = '\nTerm',
-             y = 'Total Cases Decided in Term\n',
+             y = '',
+             title = 'Total Cases Decided in Term\n',
              fill = 'Chief Justice') +
         scale_y_continuous(breaks = seq(25, 150, 25), lim = c(0, 165)) +
         scale_x_continuous(breaks = seq(1986, 2024, 4)) +
@@ -1769,7 +1773,9 @@ scotusblog_stats <- function(decisions_path,
           legend.text = element_text(size = 14, colour = 'black'),
           legend.position = 'top',
           legend.title = element_blank(),
-          legend.box.background = element_rect(size = 1, colour = 'black', fill = NA)
+          legend.box.background = element_rect(size = 1, colour = 'black', fill = NA),
+          plot.title = element_text(size = 16, colour = 'black', hjust = 0.5, face = 'bold')
+
         )
 
 
@@ -1818,7 +1824,7 @@ scdb_justices_data = scdb_justices
 
 
 
-export_scotusblog_stats <- function(scotusblog_stats_object = scotusblog_stats,
+export_scotusblog_stats <- function(scotusblog_stats_object,
                                     output_path = file.path('Stat Reviews', 'OT24_StatReview', 'scotusblog_replication', 'data')){
 
   for (i in 1:length(scotusblog_stats_object)){
