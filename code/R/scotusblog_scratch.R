@@ -224,9 +224,9 @@ scotusblog_stats <- function(decisions_path,
       ot24_decisions <- decisions[,c(8:16)] %>%
         rowwise() %>%
         mutate(
-          Majority = 1,
-          Concurrence = sum(c_across(1:9) %in% c(2:8), na.rm = TRUE),
-          Dissent = sum(c_across(1:9) %in% c(-1:-3), na.rm = TRUE)) %>%
+          Majority = sum(c_across(1:9) %in% c(100), na.rm = TRUE),
+          Concurrence = sum(c_across(1:9) %in% c(2, 4, 5, 7), na.rm = TRUE),
+          Dissent = sum(c_across(1:9) %in% c(-1, -3), na.rm = TRUE)) %>%
         ungroup() %>%
         select(Majority, Concurrence, Dissent) %>%
         mutate(Majority = sum(Majority),
