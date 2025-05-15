@@ -185,13 +185,13 @@ scotusblog_stats <- function(decisions_path,
               axis.text = element_text(size = 14, colour = 'black'),
               axis.title = element_text(size = 16, colour = 'black'))
 
-    ggsave(days_elapsed_figure,
-           filename = file.path(output_folder, 'days_elapsed_figure.png'),
-           width = 10,
-           height = 6,
-           bg = 'white')
+      ggsave(days_elapsed_figure,
+             filename = file.path(output_folder, 'days_elapsed_figure.png'),
+             width = 10,
+             height = 6,
+             bg = 'white')
 
-    combined_list[['days_elapsed']][['days_elapsed_figure']] <- days_elapsed_figure
+      combined_list[['days_elapsed']][['days_elapsed_figure']] <- days_elapsed_figure
 
 
     } # Longitudinal Days Elapsed Figure
@@ -291,11 +291,11 @@ scotusblog_stats <- function(decisions_path,
       combined_list[['opinions']][['opinions_over_time_figure']] <- decisions_over_time
 
       ggsave(decisions_over_time,
-            filename = file.path(output_folder, 'decisions_over_time.png'),
-            width = 10,
-            height = 6,
-            units = 'in',
-            bg = 'white')
+             filename = file.path(output_folder, 'decisions_over_time.png'),
+             width = 10,
+             height = 6,
+             units = 'in',
+             bg = 'white')
 
     } # Total Opinions by Term
 
@@ -602,6 +602,52 @@ scotusblog_stats <- function(decisions_path,
 
     {
 
+      coalition_sizes_by_justice <- decisions %>%
+        select(Author, Coalition) %>%
+        rename(justice = Author, coalition = Coalition) %>%
+        filter(justice != 'Per Curiam') %>%
+        mutate(majority_size = case_when(
+          grepl('(Per Curiam|\\-0)', coalition, ignore.case = TRUE) ~ 9,
+          grepl('-1', coalition) ~ 8,
+          grepl('-2', coalition) ~ 7,
+          grepl('-3', coalition) ~ 6,
+          grepl('-4', coalition) ~ 5
+        )) %>%
+        group_by(justice) %>%
+        mutate(mean_coalition = round(mean(majority_size), 2),
+               total_opinions = n()) %>%
+        ungroup() %>%
+        group_by(justice, majority_size) %>%
+        summarise(opinion_count = n(),
+                  mean_coalition = mean(mean_coalition),
+                  total_opinions = mean(total_opinions), .groups = "drop") %>%
+        pivot_wider(names_from = majority_size,
+                    values_from = opinion_count,
+                    names_prefix = "maj_") %>%
+        arrange(justice) %>%
+        select(justice, total_opinions, maj_9, maj_8, maj_7, maj_6, maj_5, mean_coalition) %>%
+        replace_na(list(maj_5 = 0, maj_6 = 0, maj_7 = 0, maj_8 = 0, maj_9 = 0)) %>%
+        mutate(justice = factor(justice, levels = c('Roberts', 'Alito', 'Thomas', 'Sotomayor', 'Kagan', 'Gorsuch', 'Kavanaugh', 'Barrett', 'Jackson'))) %>%
+        arrange(justice)
+
+
+      percent_opinions_unanimous <- coalition_sizes_by_justice %>%
+        select(justice, total_opinions, maj_9) %>%
+        mutate(percent_unanimous = round(maj_9/total_opinions, 2)*100) %>%
+        select(justice, percent_unanimous)
+
+      combined_list[['frequency_in_majority']][['coalition_sizes_by_justice']] <- coalition_sizes_by_justice
+      combined_list[['frequency_in_majority']][['percent_opinions_unanimous']] <- percent_opinions_unanimous
+
+
+      } # Opinion Sizes by Justice Author
+
+    {
+
+    } # Percent Decided Unanimously by Justice Author
+
+    {
+
       solo_dissents <- scdb_justices_data %>%
         filter(term >= 2005) %>%
         filter(minVotes == 1) %>%
@@ -628,7 +674,7 @@ scotusblog_stats <- function(decisions_path,
 
   } # Frequency in Majority (And Strength of Majority)
 
-  message('Completed Frequency in Majority')
+  message('Completed Frequency in & Strength of Majority')
 
   {
 
@@ -687,11 +733,11 @@ scotusblog_stats <- function(decisions_path,
       combined_list[['coalitions']][['unanimity_over_time']] <- suppressWarnings(unanimity_over_time)
 
       suppressWarnings(ggsave(unanimity_over_time,
-             filename = file.path(output_folder, 'unanimity_over_time.png'),
-             width = 10,
-             height = 6,
-             units = 'in',
-             bg = 'white'))
+                              filename = file.path(output_folder, 'unanimity_over_time.png'),
+                              width = 10,
+                              height = 6,
+                              units = 'in',
+                              bg = 'white'))
 
 
     } # Unanimity Current v/ Over Time (2 Lines -- One as percentage other as normalized docket)
@@ -884,18 +930,18 @@ scotusblog_stats <- function(decisions_path,
 
       } # 3 Indiviudal Figures
 
-     combined_coalitions <- ot05_ot24 + ot20_ot24 + ot24 +
+      combined_coalitions <- ot05_ot24 + ot20_ot24 + ot24 +
         plot_layout(guides = 'collect') &
         theme(legend.position = "none")
 
-     combined_list[['coalitions']][['combined_coalitions']] <- combined_coalitions
+      combined_list[['coalitions']][['combined_coalitions']] <- combined_coalitions
 
 
-     ggsave(combined_coalitions,
-            filename = file.path(output_folder, 'combined_coalitions.png'),
-            width = 12,
-            height = 8,
-            units = 'in')
+      ggsave(combined_coalitions,
+             filename = file.path(output_folder, 'combined_coalitions.png'),
+             width = 12,
+             height = 8,
+             units = 'in')
 
     } # Coalition Split Pie Charts (O5-24, 20-24, 24)
 
@@ -941,11 +987,11 @@ scotusblog_stats <- function(decisions_path,
         }
 
         ot24_decisions <- decisions[,c(8:17)] %>%
-           pivot_longer(cols = -Docket,
-                        names_to = "justice",
-                        values_to = "vote") %>%
-           rename(docket = Docket) %>%
-           mutate(majority = ifelse(vote >= 1, 2, 1))
+          pivot_longer(cols = -Docket,
+                       names_to = "justice",
+                       values_to = "vote") %>%
+          rename(docket = Docket) %>%
+          mutate(majority = ifelse(vote >= 1, 2, 1))
 
         unique_dockets <- unique(ot24_decisions$docket)
 
@@ -1169,7 +1215,7 @@ scotusblog_stats <- function(decisions_path,
 
         majorities <- bind_rows(majorities, temp_combined)
 
-        }
+      }
 
       {
 
@@ -1285,7 +1331,7 @@ scotusblog_stats <- function(decisions_path,
 
         unique_coalitions <- unique_coalitions %>%
           add_row(data.frame(term = 2024,
-                           unique_coalitions = length(unique(OT24_majority_coalitions$majority_sorted)))) %>%
+                             unique_coalitions = length(unique(OT24_majority_coalitions$majority_sorted)))) %>%
           mutate(term = as.character(term)) %>%
           add_row(term = 'Average',
                   unique_coalitions = mean(unique_coalitions$unique_coalitions, length(unique(OT24_majority_coalitions$majority_sorted))))
@@ -1356,7 +1402,7 @@ scotusblog_stats <- function(decisions_path,
         )
 
 
-      } # Construct Agreement Matrix (Regular & Colored)
+        } # Construct Agreement Matrix (Regular & Colored)
 
       {
 
@@ -1605,7 +1651,7 @@ scotusblog_stats <- function(decisions_path,
       combined_list[['opinion_lengths']][['longest_opinions']] <- longest_opinions
       combined_list[['opinion_lengths']][['shortest_opinions']] <- shortest_opinions
 
-      } # Shortest and Longest Opinions
+    } # Shortest and Longest Opinions
 
     {
 
@@ -1802,16 +1848,6 @@ scotusblog_stats <- function(decisions_path,
 
 }
 
-source('code/R/scotuswatch_source.R') # Load Source & Functions (Load Packages Too)
-
-
-scotusblog_stats <- scotusblog_stats(decisions_path <- "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions/data/OT_24_Decisions.csv",
-                                     oral_arguments <- get(load('data/term_level_combined_transcripts/scotus_OT24.rdata')),
-                                     output_folder = file.path('Stat Reviews', 'OT24_StatReview', 'scotusblog_replication', 'figures'),
-                                     opinions_processed = file.path('Stat Reviews', 'OT24_StatReview', 'decisions', 'opinions', 'combined_opinions_processed', 'combined_opinions_OT2024.rdata'),
-                                     older_opinions_processed <- "C:/Users/jaketruscott/Github/scotuswatch/data/decisions/earlier_decisions_processed.rdata")
-
-
 decisions_path <- "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions/data/OT_24_Decisions.csv"
 decisions <- read.csv(decisions_path, as.is = T)
 
@@ -1893,7 +1929,7 @@ export_scotusblog_stats <- function(scotusblog_stats_object,
 } # Export SCOTUSBLOG Stats to Excel by Topic
 
 
-
+c <- get(load(opinions_processed))
 
 
 

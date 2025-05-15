@@ -53,14 +53,24 @@
    <td style="text-align:center;"> (7-2) </td>
   </tr>
   <tr>
-   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Feliciano v. Department of Transportation </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 23-861 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 2024-12-09 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 2025-04-30 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> CAFED </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> Reverse and Remand </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> Gorsuch </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> (5-4) </td>
+   <td style="text-align:center;font-weight: bold;"> Feliciano v. Department of Transportation </td>
+   <td style="text-align:center;"> 23-861 </td>
+   <td style="text-align:center;"> 2024-12-09 </td>
+   <td style="text-align:center;"> 2025-04-30 </td>
+   <td style="text-align:center;"> CAFED </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> Gorsuch </td>
+   <td style="text-align:center;"> (5-4) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Barnes v. Felix </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 23-1239 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2025-01-22 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2025-05-15 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> CA5 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Vacate and Remand </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Kagan </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> (9-0) </td>
   </tr>
 </tbody>
 </table>

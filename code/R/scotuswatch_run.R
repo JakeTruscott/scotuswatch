@@ -181,7 +181,5 @@ scotusblog_run <- scotusblog_stats(decisions_path <- "C:/Users/jaketruscott/Gith
                                      older_opinions_processed <- "C:/Users/jaketruscott/Github/scotuswatch/data/decisions/earlier_decisions_processed.rdata")
 
 
-scotusblog_run$opinion_lengths$longest_opinions
-
 export_scotusblog_stats(scotusblog_stats_object = scotusblog_run,
                         output_path = file.path('Stat Reviews', 'OT24_StatReview', 'scotusblog_replication', 'data'))

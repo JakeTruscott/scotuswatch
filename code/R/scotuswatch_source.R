@@ -3654,6 +3654,52 @@ scotusblog_stats <- function(decisions_path,
 
     {
 
+      coalition_sizes_by_justice <- decisions %>%
+        select(Author, Coalition) %>%
+        rename(justice = Author, coalition = Coalition) %>%
+        filter(justice != 'Per Curiam') %>%
+        mutate(majority_size = case_when(
+          grepl('(Per Curiam|\\-0)', coalition, ignore.case = TRUE) ~ 9,
+          grepl('-1', coalition) ~ 8,
+          grepl('-2', coalition) ~ 7,
+          grepl('-3', coalition) ~ 6,
+          grepl('-4', coalition) ~ 5
+        )) %>%
+        group_by(justice) %>%
+        mutate(mean_coalition = round(mean(majority_size), 2),
+               total_opinions = n()) %>%
+        ungroup() %>%
+        group_by(justice, majority_size) %>%
+        summarise(opinion_count = n(),
+                  mean_coalition = mean(mean_coalition),
+                  total_opinions = mean(total_opinions), .groups = "drop") %>%
+        pivot_wider(names_from = majority_size,
+                    values_from = opinion_count,
+                    names_prefix = "maj_") %>%
+        arrange(justice) %>%
+        select(justice, total_opinions, maj_9, maj_8, maj_7, maj_6, maj_5, mean_coalition) %>%
+        replace_na(list(maj_5 = 0, maj_6 = 0, maj_7 = 0, maj_8 = 0, maj_9 = 0)) %>%
+        mutate(justice = factor(justice, levels = c('Roberts', 'Alito', 'Thomas', 'Sotomayor', 'Kagan', 'Gorsuch', 'Kavanaugh', 'Barrett', 'Jackson'))) %>%
+        arrange(justice)
+
+
+      percent_opinions_unanimous <- coalition_sizes_by_justice %>%
+        select(justice, total_opinions, maj_9) %>%
+        mutate(percent_unanimous = round(maj_9/total_opinions, 2)*100) %>%
+        select(justice, percent_unanimous)
+
+      combined_list[['frequency_in_majority']][['coalition_sizes_by_justice']] <- coalition_sizes_by_justice
+      combined_list[['frequency_in_majority']][['percent_opinions_unanimous']] <- percent_opinions_unanimous
+
+
+    } # Opinion Sizes by Justice Author
+
+    {
+
+    } # Percent Decided Unanimously by Justice Author
+
+    {
+
       solo_dissents <- scdb_justices_data %>%
         filter(term >= 2005) %>%
         filter(minVotes == 1) %>%
@@ -3680,7 +3726,7 @@ scotusblog_stats <- function(decisions_path,
 
   } # Frequency in Majority (And Strength of Majority)
 
-  message('Completed Frequency in Majority')
+  message('Completed Frequency in & Strength of Majority')
 
   {
 
@@ -4852,8 +4898,7 @@ scotusblog_stats <- function(decisions_path,
   return(combined_list)
 
 
-}
-# Returns List Object of SCOTUSBLOG Stats (Figures & Tables)
+} # Returns List Object of SCOTUSBLOG Stats (Figures & Tables)
 
 
 ###############################################################################
@@ -4895,6 +4940,20 @@ export_scotusblog_stats <- function(scotusblog_stats_object,
       }
 
     } # Special Run for 'opinions'
+
+    {
+      if (temp_topic_name == 'circuit_scorecard'){
+        temp_wb <- createWorkbook()
+        temp_item <- temp_topic
+        suppressWarnings(addWorksheet(temp_wb, as.character(temp_topic_name)))
+        suppressWarnings(suppressWarnings(writeData(temp_wb, as.character(temp_topic_name), temp_item)))
+        temp_export_path = file.path(output_path, paste0(as.character(temp_topic_name), '.xlsx')) # Temp Excel Output Path
+        suppressWarnings(saveWorkbook(temp_wb, temp_export_path, overwrite = T))
+        next
+      }
+
+
+    } # Special for circuit_scorecard
 
     if (length(temp_topic) == 0){
       next
