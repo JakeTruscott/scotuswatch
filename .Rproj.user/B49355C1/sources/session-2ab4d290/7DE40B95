@@ -1,0 +1,27 @@
+{
+    "id": "7DE40B95",
+    "path": null,
+    "project_path": null,
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1747403282209.0,
+    "source_on_save": false,
+    "relative_order": 5,
+    "properties": {
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "0,0",
+        "scrollLine": "0"
+    },
+    "folds": "0|1|359|0|\n6|3|87|2|\n89|3|166|2|\n168|3|211|2|\n213|3|258|2|\n260|3|346|2|\n",
+    "lastKnownWriteTime": 1747402084,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1747414461535,
+    "read_only": false,
+    "read_only_alternatives": []
+}
