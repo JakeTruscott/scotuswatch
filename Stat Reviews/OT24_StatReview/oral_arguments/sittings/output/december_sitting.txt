@@ -20,7 +20,7 @@
    <td style="text-align:center;width: 3cm; text-align: center;"> Curtis Gannon </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> Eric Heyer </td>
    <td style="text-align:center;width: 3cm; text-align: center;">  </td>
-   <td style="text-align:center;width: 3cm; text-align: center;"> C. A. 5th Circuit. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CA5 </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> NA </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> NA </td>
   </tr>
@@ -31,7 +31,7 @@
    <td style="text-align:center;width: 3cm; text-align: center;"> Yaira Dubin </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> Lisa S. Blatt </td>
    <td style="text-align:center;width: 3cm; text-align: center;">  </td>
-   <td style="text-align:center;width: 3cm; text-align: center;"> C. A. 10th Circuit. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CA10 </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> NA </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> NA </td>
   </tr>
@@ -42,7 +42,7 @@
    <td style="text-align:center;width: 3cm; text-align: center;"> Joshua S. Glasgow </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> Shay Dvoretzy </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> Sopan Joshi </td>
-   <td style="text-align:center;width: 3cm; text-align: center;"> C. A. District of Columbia Circuit. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CADC </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> NA </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> NA </td>
   </tr>
@@ -53,7 +53,7 @@
    <td style="text-align:center;width: 3cm; text-align: center;"> Elizabeth Prelogar </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> Matthew Rice </td>
    <td style="text-align:center;width: 3cm; text-align: center;">  </td>
-   <td style="text-align:center;width: 3cm; text-align: center;"> C. A. 6th Circuit. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CA6 </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> NA </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> NA </td>
   </tr>
@@ -64,7 +64,7 @@
    <td style="text-align:center;width: 3cm; text-align: center;"> Jeffrey L. Fisher </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> Eric J. Feigin </td>
    <td style="text-align:center;width: 3cm; text-align: center;">  </td>
-   <td style="text-align:center;width: 3cm; text-align: center;"> C. A. 3rd Circuit. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CA3 </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> NA </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> NA </td>
   </tr>
@@ -75,7 +75,7 @@
    <td style="text-align:center;width: 3cm; text-align: center;"> Andrew T. Tutt </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> Nicole F. Reaves </td>
    <td style="text-align:center;width: 3cm; text-align: center;">  </td>
-   <td style="text-align:center;width: 3cm; text-align: center;"> C. A. Federal Circuit. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CAFC </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> NA </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> NA </td>
   </tr>
@@ -86,7 +86,7 @@
    <td style="text-align:center;width: 3cm; text-align: center;"> Paul D. Clement, Edwin Kneedler </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> William M. Jay </td>
    <td style="text-align:center;width: 3cm; text-align: center;">  </td>
-   <td style="text-align:center;width: 3cm; text-align: center;"> C. A. District of Columbia Circuit. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CADC </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> NA </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> NA </td>
   </tr>
@@ -97,7 +97,7 @@
    <td style="text-align:center;width: 3cm; text-align: center;"> Thomas G. Hungar </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> Elbert Lin </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> Nicholas S. Crown </td>
-   <td style="text-align:center;width: 3cm; text-align: center;"> C. A. 4th Circuit. </td>
+   <td style="text-align:center;width: 3cm; text-align: center;"> CA4 </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> NA </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> NA </td>
   </tr>

@@ -1,0 +1,30 @@
+<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 12px; color: black; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> Case </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> Docket </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> Attorney </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> Time Speaking </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Trump v. CASA Inc. </td>
+   <td style="text-align:center;text-align: center;"> 24A884 </td>
+   <td style="text-align:center;text-align: center;"> D. John Sauer </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">27.95</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Trump v. CASA Inc. </td>
+   <td style="text-align:center;text-align: center;"> 24A884 </td>
+   <td style="text-align:center;text-align: center;"> Jeremy M. Feigenbaum </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">25.33</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Trump v. CASA Inc. </td>
+   <td style="text-align:center;text-align: center;"> 24A884 </td>
+   <td style="text-align:center;text-align: center;"> Kelsi B. Corkran </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">17.52</span> </td>
+  </tr>
+</tbody>
+</table>

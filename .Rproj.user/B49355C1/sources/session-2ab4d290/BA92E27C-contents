@@ -41,7 +41,7 @@ for (i in 1:length(sittings_files)){
 ###############################################################################
 
 cases_master <- read.csv('Stat Reviews/OT24_StatReview/cases_master/cases_master_file_OT24.csv', as.is = T)
-unique_sittings <- unique(cases_master$sitting)
+unique_sittings <- unique(cases_master$sitting[!cases_master$sitting == ''])
 
 for (i in 1:length(unique_sittings)){
 

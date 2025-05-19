@@ -1,4 +1,6 @@
 case,authorship,opinion_type,word_count
+Bufkin v. McDonough,Jackson,Dissent,6250
+Advocate Christ Medical Center v. Becerra,Barrett,Opinion,4927
 Advocate Christ Medical Center v. Becerra,Jackson,Dissent,5689
 San Francisco v. EPA,Alito,Opinion,5978
 San Francisco v. EPA,Barrett,Dissent,3986
@@ -24,8 +26,6 @@ Velazquez v. Garland,Barrett,Dissent,876
 Waetzig v. Halliburton Energy Services,Alito,Opinion,4212
 TikTok Inc. v. Garland,Sotomayor,Concurrence,226
 TikTok Inc. v. Garland,Gorsuch,Concurrence,1374
+A.A.R.P v. Trump,Kavanaugh,Concurrence,338
+A.A.R.P v. Trump,Alito,Dissent,4394
 Department of Education v. California,Kagan,Dissent,295
-Department of Education v. California,Jackson,Dissent,5292
-Trump v. J.G.G.,Kavanaugh,Concurrence,293
-Trump v. J.G.G.,Sotomayor,Dissent,5281
-Trump v. J.G.G.,Jackson,Dissent,419

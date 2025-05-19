@@ -63,14 +63,24 @@
    <td style="text-align:center;"> (5-4) </td>
   </tr>
   <tr>
-   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Barnes v. Felix </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 23-1239 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 2025-01-22 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 2025-05-15 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> CA5 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> Vacate and Remand </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> Kagan </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> (9-0) </td>
+   <td style="text-align:center;font-weight: bold;"> Barnes v. Felix </td>
+   <td style="text-align:center;"> 23-1239 </td>
+   <td style="text-align:center;"> 2025-01-22 </td>
+   <td style="text-align:center;"> 2025-05-15 </td>
+   <td style="text-align:center;"> CA5 </td>
+   <td style="text-align:center;"> Vacate and Remand </td>
+   <td style="text-align:center;"> Kagan </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> A.A.R.P v. Trump </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 24A1007 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> NA </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2025-05-16 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> NDTX </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Granted </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Per Curiam </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> (7-2) </td>
   </tr>
 </tbody>
 </table>

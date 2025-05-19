@@ -58,7 +58,7 @@
    <td style="text-align:center;width: 3cm; text-align: center;"> 11 </td>
   </tr>
   <tr>
-   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> CC/Devas </td>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> CC/Devas v. Antrix Corp. </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> NA </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> 23-1201 </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> Aaron Strett and Matthew D. McGill </td>
@@ -91,7 +91,7 @@
    <td style="text-align:center;width: 3cm; text-align: center;"> 29 </td>
   </tr>
   <tr>
-   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> Nuclear Regulatory Commission, et al. v. Texas, et al.; and No. 23-1312. Interim Storage Partners, LLC v. Texas, et al. </td>
+   <td style="text-align:center;width: 6cm; font-weight: bold;border-right:1px solid;text-align: center;"> NRC v. Texas </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> NA </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> 23-1300 </td>
    <td style="text-align:center;width: 3cm; text-align: center;"> Marlcolm Stewart / Brad Fagg </td>

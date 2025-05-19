@@ -2,7 +2,7 @@ term,justice,Majority,Concurrence,Dissent
 2021,Alito,6,6,4
 2022,Alito,6,4,7
 2023,Alito,4,8,4
-2024,Alito,3,3,2
+2024,Alito,3,3,3
 2021,Barrett,6,4,2
 2022,Barrett,6,5,4
 2023,Barrett,6,7,2
@@ -18,11 +18,11 @@ term,justice,Majority,Concurrence,Dissent
 2021,Kagan,6,2,9
 2022,Kagan,6,1,4
 2023,Kagan,7,3,2
-2024,Kagan,3,0,1
+2024,Kagan,4,0,1
 2021,Kavanaugh,5,7,2
 2022,Kavanaugh,7,6,2
 2023,Kavanaugh,6,7,3
-2024,Kavanaugh,2,3,1
+2024,Kavanaugh,2,5,1
 2021,Roberts,8,2,2
 2022,Roberts,6,0,1
 2023,Roberts,7,1,1
