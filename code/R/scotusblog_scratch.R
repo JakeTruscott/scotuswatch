@@ -147,9 +147,9 @@ scotusblog_stats <- function(decisions_path,
         group_by(term) %>%
         summarise(
           mean_elapsed = mean(days_elapsed),
-          se = sd(days_elapsed) / sqrt(n()),
-          lower_ci = mean_elapsed - 1.96 * se,
-          upper_ci = mean_elapsed + 1.96 * se)
+          p25 = quantile(days_elapsed, 0.25),
+          p75 = quantile(days_elapsed, 0.75)
+        )
 
       all_data <- scdb_cases_data %>%
         filter(term >= 2005) %>%
@@ -160,30 +160,37 @@ scotusblog_stats <- function(decisions_path,
                                      as.numeric(date_decided - date_argued) + 1, NA)) %>%
         filter(!is.na(days_elapsed))
 
-      mean_all <- mean(all_data$days_elapsed)
-      se_all <- sd(all_data$days_elapsed) / sqrt(nrow(all_data))
 
-      days_elapsed_figure <- bind_rows(days_elapsed_figure, data.frame(
-        term = 2024,
-        mean_elapsed = mean_all,
-        se = se_all,
-        lower_ci = mean_all - 1.96 * se_all,
-        upper_ci = mean_all + 1.96 * se_all
-      )) %>%
+      mean_all <- mean(all_data$days_elapsed)
+      p25_all <- quantile(all_data$days_elapsed, 0.25)
+      p75_all <- quantile(all_data$days_elapsed, 0.75)
+
+      days_elapsed_figure <- bind_rows(
+        days_elapsed_figure,
+        data.frame(
+          term = 2024,
+          mean_elapsed = mean_all,
+          p25 = p25_all,
+          p75 = p75_all
+        )
+      ) %>%
         unique()
 
       days_elapsed_figure <- ggplot(data = days_elapsed_figure, aes(x = term, y = mean_elapsed)) +
         geom_point(size = 3) +
-        geom_errorbar(aes(x = term, ymin = lower_ci, ymax = upper_ci)) +
+        geom_errorbar(aes(ymin = p25, ymax = p75), width = 0.3) +
         geom_line(linetype = 2) +
-        labs(x = '\nTerm',
-             y = 'Mean Days Between\nArgument & Decision\n') +
-        scale_y_continuous(lim = c(65, 150), breaks = seq(70, 150, 20)) +
+        labs(
+          x = '\nTerm',
+          y = 'Mean Days Between\nArgument & Decision\n') +
+        scale_y_continuous(limits = c(45, 170), breaks = seq(60, 160, 20)) +
         scale_x_continuous(breaks = seq(2006, 2024, 2)) +
         theme_minimal() +
-        theme(panel.border = element_rect(size = 1, colour = 'black', fill = NA),
-              axis.text = element_text(size = 14, colour = 'black'),
-              axis.title = element_text(size = 16, colour = 'black'))
+        theme(
+          panel.border = element_rect(size = 1, colour = 'black', fill = NA),
+          axis.text = element_text(size = 14, colour = 'black'),
+          axis.title = element_text(size = 16, colour = 'black')
+        )
 
       ggsave(days_elapsed_figure,
              filename = file.path(output_folder, 'days_elapsed_figure.png'),
@@ -1864,7 +1871,7 @@ scotusblog_stats <- function(decisions_path,
 
         suppressWarnings(agreement_matrix_all_cases <- ggplot(data = agreement_long, aes(x = Justice1, y = Justice2)) +
                            geom_tile(color = "white", size = 0.5, aes(fill = Agreement)) +
-                           geom_label(aes(label = Agreement), fill = 'white', size = 5) +
+                           geom_label(aes(label = paste0(Agreement, '%')), fill = 'white', size = 5) +
                            scale_fill_gradient(low = "coral4", high = "deepskyblue3", na.value = "white") +  # Adjust colors
                            theme_minimal() +
                            scale_x_discrete(labels = Justice1_labels) +  # Use the labels with images for the x-axis
@@ -1888,6 +1895,7 @@ scotusblog_stats <- function(decisions_path,
                              plot.title = element_text(size = 18, face = "bold", hjust = 0.5),
                              plot.subtitle = element_text(size = 15, hjust = 0.5)
                            ))
+
 
       } # Render Figure
 
@@ -1984,7 +1992,7 @@ scotusblog_stats <- function(decisions_path,
 
         suppressWarnings(agreement_matrix_close_cases <- ggplot(data = agreement_long, aes(x = Justice1, y = Justice2)) +
                            geom_tile(color = "white", size = 0.5, aes(fill = Agreement)) +
-                           geom_label(aes(label = Agreement), fill = 'white', size = 5) +
+                           geom_label(aes(label = paste0(Agreement, '%')), fill = 'white', size = 5) +
                            scale_fill_gradient(low = "coral4", high = "deepskyblue3", na.value = "white") +  # Adjust colors
                            theme_minimal() +
                            scale_x_discrete(labels = Justice1_labels) +  # Use the labels with images for the x-axis
@@ -2020,7 +2028,7 @@ scotusblog_stats <- function(decisions_path,
              units = 'in',
              bg = 'white')
 
-    } # All Cases
+    } # Close Cases (5-4, 6-3)
 
   } # Vote Agreement
 
@@ -2116,17 +2124,18 @@ scotusblog_stats <- function(decisions_path,
         summarise(
           mean_words = mean(word_count),
           se = sd(word_count) / sqrt(n()),
-          lower_ci = mean_words - 1.96 * se,
-          upper_ci = mean_words + 1.96 * se,
+          p25 = as.numeric(quantile(word_count, 0.25)),
+          p75 = as.numeric(quantile(word_count, 0.75)),
           .groups = "drop"
         ) %>%
         mutate(opinion_type = factor(opinion_type, levels = c('Majority', 'Concurrence', 'Dissent', 'Per Curiam')),
                term = as.numeric(term)) %>%
         ggplot(aes(x = term, y = mean_words, color = opinion_type, group = opinion_type)) +
         geom_point(colour = 'black') +
-        geom_errorbar(aes(ymin = lower_ci, ymax = upper_ci), width = 0.2, colour = 'black') +
+        geom_errorbar(aes(ymin = p25, ymax = p75), width = 0.2, colour = 'black') +
         geom_line(linetype = 2, colour = 'black') +
         facet_wrap(~opinion_type, scales = 'free_y') +
+        scale_y_continuous(expand = expansion(mult = c(0.15, 0.15))) +
         scale_x_continuous(breaks = seq(2016, 2024, 2))  +
         labs(y = 'Average Word Count\n',
              x = '\nTerm') +
