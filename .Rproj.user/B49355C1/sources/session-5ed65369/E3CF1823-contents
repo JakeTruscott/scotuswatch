@@ -3940,22 +3940,24 @@ scotusblog_stats <- function(decisions_path,
             grepl('(8-1)', coalition) ~ '(8-1)',
             grepl('(7-2)', coalition) ~ '(7-2)',
             grepl('(6-3)', coalition) ~ '(6-3)',
-            grepl('(5-4)', coalition) ~ '(5-4)')) %>%
+            grepl('(5-4)', coalition) ~ '(5-4)',
+            grepl('(4-4)', coalition) ~ '(4-4)')) %>%
           group_by(coalition) %>%
           summarise(count = n(), .groups = 'drop') %>%
           mutate(term = 2024)
 
         ot05_ot24 <- scdb_cases_data %>%
           filter(term >= 2005) %>%
-          select(minVotes) %>%
+          select(minVotes, majVotes) %>%
           mutate(total_cases = n()) %>%
           ungroup() %>%
-          group_by(minVotes) %>%
+          group_by(minVotes, majVotes) %>%
           reframe(coalition_count = n(),
                   total_cases = total_cases) %>%
           unique() %>%
           mutate(coalition_percentage = coalition_count/total_cases,
                  minVotes = case_when(
+                   minVotes == majVotes ~ '(4-4)',
                    minVotes == 0 ~ '(9-0)',
                    minVotes == 1 ~ '(8-1)',
                    minVotes == 2 ~ '(7-2)',
@@ -3972,7 +3974,7 @@ scotusblog_stats <- function(decisions_path,
                   coalition_percentage = coalition_count/total_cases) %>%
           unique() %>%
           filter(!is.na(total_cases)) %>%
-          mutate(minVotes = factor(minVotes, levels = c("(5-4)", "(6-3)", "(7-2)", "(8-1)", "(9-0)"))) %>%
+          mutate(minVotes = factor(minVotes, levels = c("(4-4)", "(5-4)", "(6-3)", "(7-2)", "(8-1)", "(9-0)"))) %>%
           mutate(label_text = paste0(minVotes, "\n", round(coalition_percentage * 100, 1), "%"),
                  label_pos = cumsum(coalition_percentage) - coalition_percentage / 2) %>%
           ggplot(aes(x = "", y = coalition_percentage, fill = minVotes)) +
@@ -3990,15 +3992,16 @@ scotusblog_stats <- function(decisions_path,
 
         ot20_ot24 <- scdb_cases_data %>%
           filter(term >= 2020) %>%
-          select(minVotes) %>%
+          select(minVotes, majVotes) %>%
           mutate(total_cases = n()) %>%
           ungroup() %>%
-          group_by(minVotes) %>%
+          group_by(minVotes, majVotes) %>%
           reframe(coalition_count = n(),
                   total_cases = total_cases) %>%
           unique() %>%
           mutate(coalition_percentage = coalition_count/total_cases,
                  minVotes = case_when(
+                   minVotes == majVotes ~ '(4-4)',
                    minVotes == 0 ~ '(9-0)',
                    minVotes == 1 ~ '(8-1)',
                    minVotes == 2 ~ '(7-2)',
@@ -4015,7 +4018,7 @@ scotusblog_stats <- function(decisions_path,
                   coalition_percentage = coalition_count/total_cases) %>%
           unique() %>%
           filter(!is.na(total_cases)) %>%
-          mutate(minVotes = factor(minVotes, levels = c("(5-4)", "(6-3)", "(7-2)", "(8-1)", "(9-0)"))) %>%
+          mutate(minVotes = factor(minVotes, levels = c("(4-4)", "(5-4)", "(6-3)", "(7-2)", "(8-1)", "(9-0)"))) %>%
           mutate(label_text = paste0(minVotes, "\n", round(coalition_percentage * 100, 1), "%"),
                  label_pos = cumsum(coalition_percentage) - coalition_percentage / 2) %>%
           ggplot(aes(x = "", y = coalition_percentage, fill = minVotes)) +
