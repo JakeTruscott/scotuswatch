@@ -73,14 +73,44 @@
    <td style="text-align:center;"> (9-0) </td>
   </tr>
   <tr>
-   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> A.A.R.P v. Trump </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 24A1007 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> NA </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 2025-05-16 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> NDTX </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> Granted </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> Per Curiam </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> (7-2) </td>
+   <td style="text-align:center;font-weight: bold;"> A.A.R.P v. Trump </td>
+   <td style="text-align:center;"> 24A1007 </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> 2025-05-16 </td>
+   <td style="text-align:center;"> CA5 </td>
+   <td style="text-align:center;"> Granted </td>
+   <td style="text-align:center;"> Per Curiam </td>
+   <td style="text-align:center;"> (7-2) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Kousisis v. United States </td>
+   <td style="text-align:center;"> 23-909 </td>
+   <td style="text-align:center;"> 2024-12-09 </td>
+   <td style="text-align:center;"> 2025-05-22 </td>
+   <td style="text-align:center;"> CA3 </td>
+   <td style="text-align:center;"> Affirm </td>
+   <td style="text-align:center;"> Barrett </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> OK Charter School Board v. Drummond </td>
+   <td style="text-align:center;"> 24-394 </td>
+   <td style="text-align:center;"> 2025-04-30 </td>
+   <td style="text-align:center;"> 2025-05-22 </td>
+   <td style="text-align:center;"> CA10 </td>
+   <td style="text-align:center;"> Affirm </td>
+   <td style="text-align:center;"> Per Curiam </td>
+   <td style="text-align:center;"> (4-4)* </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Seven County Infrastructure Coalition v. Eagle County, Colorado </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 23-975 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2024-12-10 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2025-05-29 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> CADC </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Reverse and Remand </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Kavanaugh </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> (8-0) </td>
   </tr>
 </tbody>
 </table>

@@ -873,6 +873,7 @@ decisions_analysis <- function(input_path,
 ###############################################################################
 
 justia_opinion_recovery <- function(opinions_path,
+                                    decisions_path,
                                     current_term,
                                     master_file){
 
@@ -956,6 +957,88 @@ justia_opinion_recovery <- function(opinions_path,
         filter(!docket_number %in% c(completed_dockets)) # Filter Out
 
     } # Filter to Current Term
+
+    {
+
+      decisions_file <- read.csv(decisions_path, as.is = T)
+      processed_dockets <- gsub('\\.rdata', '', list.files(file.path(opinions_path, 'opinions', 'opinions_processed')))
+      missing_dockets <- decisions_file$Docket[!decisions_file$Docket %in% processed_dockets]
+
+
+      if (length(missing_dockets) >= 1){
+
+        temp_pdf_location <- file.path(opinions_path, 'opinions', 'opinion_pdfs')
+        temp_recovery <- suppressMessages(suppressWarnings(scotustext::decision_processor(temp_pdf_location)))
+
+        combined_opinions <- data.frame()
+
+        {
+
+          authorship_values <- c(100, 2, 4, 5, 7, -1, -3)
+
+          opinions_authored <- decisions_file[, c(6:17)] %>%
+            mutate(PERCURIAM = ifelse(Author == 'Per Curiam' & grepl('9-0|Per Curiam', Coalition, ignore.case = T), 100, 0)) %>%
+            relocate(PERCURIAM, .after = JACKSON) %>%
+            pivot_longer(cols = ROBERTS:PERCURIAM,
+                         names_to = "opinion",
+                         values_to = "value") %>%
+            filter(value %in% authorship_values) %>%
+            mutate(opinion = ifelse(opinion == 'PERCURIAM', 'Per Curiam', opinion)) %>%
+            mutate(authorship_code = value) %>%  # New column with matched value
+            select(Docket, Author, opinion, authorship_code) %>%
+            rename(docket = Docket,
+                   author = Author,
+                   opinion_type = authorship_code) %>%
+            mutate(opinion_type = case_when(
+              .default = 'Opinion',
+              opinion_type %in% c(-1, -3) ~ 'Dissent',
+              opinion_type %in% c(2, 4) ~ 'Concurrence',
+              opinion_type %in% c(5, 7) ~ 'Special Concurrence',
+            ))
+
+          meta <- opinions_authored %>%
+            left_join(master_file, by = 'docket', relationship = 'many-to-many')
+
+        } # Recover Meta (Decisions File & Master File)
+
+        unique_recovered_dockets <- unique(temp_recovery$docket_id)
+
+        meta <- meta %>%
+          filter(docket %in% unique_recovered_dockets)
+
+        for (d in 1:length(unique_recovered_dockets)){
+
+          combined_opinions <- temp_recovery %>%
+            filter(docket_id == unique_recovered_dockets[d]) %>%
+            select(docket_id, published, word_count, text, opinion_writer) %>%
+            rename(opinion_text = text,
+                   docket = docket_id,
+                   date = published,
+                   authorship = opinion_writer) %>%
+            mutate(justia_summary = NA,
+                   authorship = gsub('\\;.*', '', authorship),
+                   authorship = gsub('CHIEF JUSTICE |JUSTICE ', '', authorship),
+                   authorship = str_to_title(authorship)) %>%
+            left_join(meta %>%
+                        filter(docket == unique_recovered_dockets[d]) %>%
+                        select(opinion, opinion_type, docket, short_hand) %>%
+                        mutate(opinion = str_to_title(opinion)) %>%
+                        rename(authorship = opinion), by = c('docket', 'authorship'), relationship = 'many-to-many') %>%
+            rename(case = short_hand) %>%
+            select(authorship, opinion_type, opinion_text, docket, date, case, justia_summary) %>%
+            mutate(date = gsub('\\(', '', gsub('\\)', '', date)),
+                   date = as.Date(date, format = '%m/%d/%y'))
+
+          temp_export_path = file.path(opinions_path, 'opinions', 'opinions_processed', paste0(unique_recovered_dockets[d], '.rdata'))
+          save(combined_opinions, file = temp_export_path)
+
+        }
+
+      } # If Any Missing (Not Published to Justia Yet...)
+
+      message('Note: Recovered ', length(unique_recovered_dockets), ' Opinions from PDF --- ')
+
+    } # Check if Any Missing (Will Overwrite in Next Stage If Opinion Located on Justia Later)
 
     if (nrow(term_cases_combined) == 0){
       message('Every Opinion Already Processed')
@@ -1230,22 +1313,27 @@ justia_opinion_recovery <- function(opinions_path,
     temp_export_path <- file.path(opinions_path, 'opinions', 'combined_opinions_processed', paste0('combined_opinions_OT', as.character(current_term), '.rdata'))
     save(term_opinions, file = temp_export_path)
 
+
   } # Combine All on Backend
 
   {
 
     justice_term_opinion_counts <- term_opinions %>%
-      filter(!authorship == 'Per Curiam') %>%
+      filter(authorship != 'Per Curiam') %>%
+      mutate(opinion_type = case_when(
+        opinion_type == 'Opinion' ~ 'Majority',
+        opinion_type == 'Special Concurrence' ~ 'Concurrence',
+        TRUE ~ opinion_type
+      )) %>%
       group_by(authorship, opinion_type) %>%
       summarise(count = n(), .groups = 'drop') %>%
-      mutate(opinion_type = ifelse(opinion_type == 'Opinion', 'Majority', opinion_type),
-             opinion_type = ifelse(opinion_type == 'Special Concurrence', 'Concurrence', opinion_type)) %>%
       pivot_wider(names_from = opinion_type, values_from = count, values_fill = 0) %>%
       mutate(Majority = as.numeric(Majority),
              Concurrence = as.numeric(Concurrence),
              Dissent = as.numeric(Dissent)) %>%
       rename(Justice = authorship) %>%
-      dplyr::select(Justice, Majority, Concurrence, Dissent)
+      select(Justice, Majority, Concurrence, Dissent)
+
 
     temp_export_path = file.path(opinions_path, 'tables', 'justice_term_opinion_counts.csv')
     write.csv(justice_term_opinion_counts, file = temp_export_path, row.names = F, quote = F)
@@ -1263,22 +1351,35 @@ justia_opinion_recovery <- function(opinions_path,
       mutate(justice = sub(".*([A-Z][a-zA-Z]*).*$", "\\1", justiceName)) %>%
       select(justice, vote, docket, term) %>%
       mutate(vote = case_when(
-        .default = 'Majority',
         vote %in% c(3, 4, 5) ~ 'Concurrence',
         vote %in% c(2, 6, 7) ~ 'Dissent',
-        vote == 8 ~ 'Divided Court')) %>%
+        vote == 8 ~ 'Divided Court',
+        .default = 'Majority'
+      )) %>%
       rename(opinion_type = vote) %>%
       group_by(term, justice, opinion_type) %>%
       summarise(count = n(), .groups = 'drop') %>%
-      bind_rows(term_opinions %>%
-                  filter(!authorship == 'Per Curiam') %>%
-                  group_by(authorship, opinion_type) %>%
-                  summarise(count = n(), .groups = 'drop') %>%
-                  mutate(opinion_type = ifelse(opinion_type == 'Opinion', 'Majority', opinion_type),
-                         opinion_type = ifelse(opinion_type == 'Special Concurrence', 'Concurrence', opinion_type),
-                         term = 2024) %>%
-                  rename(justice = authorship)) %>%
-      pivot_wider(names_from = opinion_type, values_from = count, values_fill = 0) %>%
+      bind_rows(
+        term_opinions %>%
+          filter(authorship != 'Per Curiam') %>%
+          mutate(
+            opinion_type = case_when(
+              opinion_type == 'Opinion' ~ 'Majority',
+              opinion_type == 'Special Concurrence' ~ 'Concurrence',
+              TRUE ~ opinion_type
+            ),
+            term = 2024  # make sure term is present
+          ) %>%
+          rename(justice = authorship) %>%
+          group_by(term, justice, opinion_type) %>%
+          summarise(count = n(), .groups = 'drop')
+      ) %>%
+      group_by(term, justice, opinion_type) %>%
+      summarise(count = sum(count), .groups = 'drop') %>%
+      pivot_wider(
+        names_from = opinion_type,
+        values_from = count,
+        values_fill = 0) %>%
       mutate(Majority = as.numeric(Majority),
              Concurrence = as.numeric(Concurrence),
              Dissent = as.numeric(Dissent)) %>%
@@ -3187,7 +3288,7 @@ scotusblog_stats <- function(decisions_path,
       days_elapsed_figure <- scdb_cases_data %>%
         filter(term >= 2005) %>%
         select(dateArgument, dateDecision, dateRearg, term) %>%
-        mutate(dateArgument = ifelse(!is.na(dateRearg), dateRearg, dateArgument)) %>%
+        mutate(dateArgument = coalesce(as.Date(dateRearg), as.Date(dateArgument))) %>%
         rename(date_argued = dateArgument,
                date_decided = dateDecision) %>%
         filter(!is.na(date_argued)) %>%
@@ -3205,7 +3306,7 @@ scotusblog_stats <- function(decisions_path,
 
       all_data <- scdb_cases_data %>%
         filter(term >= 2005) %>%
-        mutate(dateArgument = ifelse(!is.na(dateRearg), dateRearg, dateArgument),
+        mutate(dateArgument = coalesce(as.Date(dateRearg), as.Date(dateArgument)),
                date_argued = as.Date(dateArgument, format = "%m/%d/%Y"),
                date_decided = as.Date(dateDecision, format = "%m/%d/%Y"),
                days_elapsed = ifelse(!is.na(date_decided) & !is.na(date_argued),
@@ -3228,10 +3329,10 @@ scotusblog_stats <- function(decisions_path,
       ) %>%
         unique()
 
-      days_elapsed_figure <- ggplot(data = days_elapsed_figure, aes(x = term, y = mean_elapsed)) +
+      days_elapsed_figure <-  ggplot(data = days_elapsed_figure, aes(x = term, y = mean_elapsed)) +
         geom_point(size = 3) +
-        geom_errorbar(aes(ymin = p25, ymax = p75), width = 0.3) +
         geom_line(linetype = 2) +
+        geom_label(aes(label = round(mean_elapsed, 0)), vjust = -1.5, size = 4) +
         labs(
           x = '\nTerm',
           y = 'Mean Days Between\nArgument & Decision\n') +
@@ -3243,6 +3344,7 @@ scotusblog_stats <- function(decisions_path,
           axis.text = element_text(size = 14, colour = 'black'),
           axis.title = element_text(size = 16, colour = 'black')
         )
+
 
       ggsave(days_elapsed_figure,
              filename = file.path(output_folder, 'days_elapsed_figure.png'),
@@ -3321,30 +3423,37 @@ scotusblog_stats <- function(decisions_path,
         group_by(term) %>%
         summarise(total = sum(count), .groups = 'drop')
 
+
       decisions_over_time <- decisions_combined %>%
-        ggplot(aes(x = term, y = count)) +
-        geom_col(aes(fill = factor(vote, levels = rev(levels(vote)))), colour = 'black') +
-        geom_text(data = df_labels,
-                  aes(x = term, y = total, label = total),
-                  vjust = -0.5, size = 4, colour = 'black') +
+        ggplot(aes(x = term, y = count, fill = factor(vote, levels = rev(levels(vote))))) +
+        geom_col(colour = 'black') +
+        geom_label(
+          aes(label = count, group = factor(vote, levels = rev(levels(vote)))),
+          fill = "white",  # label background
+          position = position_stack(vjust = 0.5),
+          size = 4,
+          colour = 'black'  # label text color
+        ) +
         scale_x_continuous(breaks = seq(2006, 2024, 2)) +
         scale_y_continuous(lim = c(0, 225), breaks = seq(50, 200, 50)) +
         scale_fill_manual(
           values = c('Majority' = '#4E478A', 'Concurrence' = '#0F9147', 'Dissent' = '#FDD532'),
-          breaks = c('Majority', 'Concurrence', 'Dissent'),
+          breaks = c('Majority', 'Concurrence', 'Dissent')
         ) +
         geom_hline(yintercept = 0) +
-        labs(x = '\nTerm',
-             y = '',
-             fill = '') +
+        labs(x = '\nTerm', y = '', fill = '') +
         theme_minimal() +
-        theme(panel.border = element_rect(size = 1, colour = 'black', fill = NA),
-              axis.text = element_text(size = 14, colour = 'black'),
-              axis.title = element_text(size = 16, colour = 'black'),
-              legend.text = element_text(size = 14, colour = 'black'),
-              legend.position = 'top',
-              legend.title = element_blank(),
-              legend.box.background = element_rect(size = 1, colour = 'black', fill = NA))
+        theme(
+          panel.border = element_rect(size = 1, colour = 'black', fill = NA),
+          axis.text = element_text(size = 14, colour = 'black'),
+          axis.title = element_text(size = 16, colour = 'black'),
+          legend.text = element_text(size = 14, colour = 'black'),
+          legend.position = 'top',
+          legend.title = element_blank(),
+          legend.box.background = element_rect(size = 1, colour = 'black', fill = NA)
+        )
+
+
 
 
       combined_list[['opinions']][['opinions_over_time_figure']] <- decisions_over_time
@@ -3489,7 +3598,8 @@ scotusblog_stats <- function(decisions_path,
       }
 
 
-      justice_levels <- c('Sotomayor', 'Kagan', 'Jackson', 'Roberts', 'Kavanaugh', 'Barrett', 'Gorsuch', 'Alito', 'Thomas')
+      justice_levels <- c('Roberts', 'Thomas', 'Alito', 'Sotomayor', 'Kagan', 'Gorsuch', 'Kavanaugh', 'Barrett', 'Jackson')
+
 
       majorities <- majorities %>%
         mutate(justice_order = factor(justice, levels = justice_levels))
@@ -3507,8 +3617,9 @@ scotusblog_stats <- function(decisions_path,
 
 
       percent_in_majority <- ggplot(majorities, aes(x = justice_order, y = percent_majority)) +
-        geom_col(aes(fill = ideology), colour = 'black') +
-        scale_fill_manual(values = c('deepskyblue3', 'coral4')) +
+        geom_col(aes(fill = percent_majority), colour = 'black') +
+        #scale_fill_manual(values = c('deepskyblue3', 'coral4')) +
+        scale_fill_distiller(palette = 'Blues', direction = 1) +
         scale_y_continuous(lim = c(0, 1)) +
         geom_label(aes(label = paste0(percent_majority*100, '%'), vjust = -0.25), size = 6) +
         geom_hline(yintercept = 0) +
@@ -3582,8 +3693,8 @@ scotusblog_stats <- function(decisions_path,
 
 
       percent_in_majority_divided_cases <- ggplot(majorities, aes(x = justice_order, y = percent_majority)) +
-        geom_col(aes(fill = ideology), colour = 'black') +
-        scale_fill_manual(values = c('deepskyblue3', 'coral4')) +
+        geom_col(aes(fill = percent_majority), colour = 'black') +
+        scale_fill_distiller(palette = 'Blues', direction = 1) +
         scale_y_continuous(lim = c(0, 1)) +
         geom_label(aes(label = paste0(percent_majority*100, '%'), vjust = -0.25), size = 6) +
         geom_hline(yintercept = 0) +
@@ -3654,8 +3765,8 @@ scotusblog_stats <- function(decisions_path,
 
 
       percent_in_majority_close_cases <- ggplot(majorities, aes(x = justice_order, y = percent_majority)) +
-        geom_col(aes(fill = ideology), colour = 'black') +
-        scale_fill_manual(values = c('deepskyblue3', 'coral4')) +
+        geom_col(aes(fill = percent_majority), colour = 'black') +
+        scale_fill_distiller(palette = 'Blues', direction = 1) +
         scale_y_continuous(lim = c(0, 1)) +
         geom_label(aes(label = paste0(percent_majority*100, '%'), vjust = -0.25), size = 6) +
         geom_hline(yintercept = 0) +
@@ -3751,7 +3862,7 @@ scotusblog_stats <- function(decisions_path,
         arrange(justice) %>%
         select(justice, total_opinions, maj_9, maj_8, maj_7, maj_6, maj_5, mean_coalition) %>%
         replace_na(list(maj_5 = 0, maj_6 = 0, maj_7 = 0, maj_8 = 0, maj_9 = 0)) %>%
-        mutate(justice = factor(justice, levels = c('Roberts', 'Alito', 'Thomas', 'Sotomayor', 'Kagan', 'Gorsuch', 'Kavanaugh', 'Barrett', 'Jackson'))) %>%
+        mutate(justice = factor(justice, levels = c('Roberts', 'Thomas', 'Alito', 'Sotomayor', 'Kagan', 'Gorsuch', 'Kavanaugh', 'Barrett', 'Jackson'))) %>%
         arrange(justice)
 
 
@@ -3765,10 +3876,6 @@ scotusblog_stats <- function(decisions_path,
 
 
     } # Opinion Sizes by Justice Author
-
-    {
-
-    } # Percent Decided Unanimously by Justice Author
 
     {
 
@@ -4770,7 +4877,6 @@ scotusblog_stats <- function(decisions_path,
           rename(justice = defectors)
 
 
-
         justice_labels <- breaks %>%
           select(justice) %>%
           mutate(justice = toupper(justice)) %>%
@@ -4785,7 +4891,7 @@ scotusblog_stats <- function(decisions_path,
           mutate(type = ifelse(type == 'M1', 'Joined Coalition w/\nAll Democratic-Appointees', 'Sole Dissenter')) %>%
           ggplot(aes(x = justice, y = percent_defection, fill = type)) +
           geom_col(colour = 'black', position = position_dodge(0.9)) +
-          scale_fill_manual(values = c('deepskyblue3', 'coral4')) +
+          scale_fill_manual(values = c('grey25', 'grey75')) +
           scale_y_continuous(lim = c(0, 0.5)) +
           geom_label(
             aes(
@@ -4927,7 +5033,7 @@ scotusblog_stats <- function(decisions_path,
         suppressWarnings(agreement_matrix_all_cases <- ggplot(data = agreement_long, aes(x = Justice1, y = Justice2)) +
                            geom_tile(color = "white", size = 0.5, aes(fill = Agreement)) +
                            geom_label(aes(label = paste0(Agreement, '%')), fill = 'white', size = 5) +
-                           scale_fill_gradient(low = "coral4", high = "deepskyblue3", na.value = "white") +  # Adjust colors
+                           scale_fill_distiller(palette = 'Blues', direction = 1) +
                            theme_minimal() +
                            scale_x_discrete(labels = Justice1_labels) +  # Use the labels with images for the x-axis
                            scale_y_discrete(labels = Justice2_labels) +  # Use the labels with images for the y-axis
@@ -5048,7 +5154,7 @@ scotusblog_stats <- function(decisions_path,
         suppressWarnings(agreement_matrix_close_cases <- ggplot(data = agreement_long, aes(x = Justice1, y = Justice2)) +
                            geom_tile(color = "white", size = 0.5, aes(fill = Agreement)) +
                            geom_label(aes(label = paste0(Agreement, '%')), fill = 'white', size = 5) +
-                           scale_fill_gradient(low = "coral4", high = "deepskyblue3", na.value = "white") +  # Adjust colors
+                           scale_fill_distiller(palette = 'Blues', direction = 1) +
                            theme_minimal() +
                            scale_x_discrete(labels = Justice1_labels) +  # Use the labels with images for the x-axis
                            scale_y_discrete(labels = Justice2_labels) +  # Use the labels with images for the y-axis
@@ -5161,7 +5267,7 @@ scotusblog_stats <- function(decisions_path,
       opinion_lengths <- opinions_processed %>%
         mutate(word_count = lengths(gregexpr("\\W+", opinion_text)) + 1)
 
-      opinion_lengths_by_term <- older_opinions_combined %>%
+      opinion_lengths_by_term <-  older_opinions_combined %>%
         select(opinion_writer, opinion_type, word_count, term) %>%
         mutate(opinion_writer = gsub('(CHIEF JUSTICE |JUSTICE )', '', gsub('\\;.*', '', opinion_writer)),
                opinion_writer = str_to_title(opinion_writer),
@@ -5187,11 +5293,11 @@ scotusblog_stats <- function(decisions_path,
                term = as.numeric(term)) %>%
         ggplot(aes(x = term, y = mean_words, color = opinion_type, group = opinion_type)) +
         geom_point(colour = 'black') +
-        geom_errorbar(aes(ymin = p25, ymax = p75), width = 0.2, colour = 'black') +
         geom_line(linetype = 2, colour = 'black') +
+        geom_label(aes(label = round(mean_words, 0)), size = 3.5, vjust = -1, colour = 'black') +
         facet_wrap(~opinion_type, scales = 'free_y') +
-        scale_y_continuous(expand = expansion(mult = c(0.15, 0.15))) +
-        scale_x_continuous(breaks = seq(2016, 2024, 2))  +
+        scale_y_continuous(expand = expansion(mult = c(0.25, 0.5))) +
+        scale_x_continuous(breaks = seq(2016, 2024, 2), expand = expansion(mult = c(0.1, 0.1)))  +
         labs(y = 'Average Word Count\n',
              x = '\nTerm') +
         theme_minimal() +
@@ -5250,7 +5356,7 @@ scotusblog_stats <- function(decisions_path,
         scale_x_continuous(breaks = seq(1986, 2024, 4)) +
         geom_vline(xintercept = 2004.5, linetype = 2, size = 1.2) +
         geom_hline(yintercept = 0) +
-        scale_fill_manual(values = c('coral4', 'deepskyblue3')) +
+        scale_fill_manual(values = c('grey25', 'grey')) +
         theme(
           panel.border = element_rect(size = 1, colour = 'black', fill = NA),
           axis.text = element_text(size = 12, colour = 'black'),
@@ -5272,11 +5378,11 @@ scotusblog_stats <- function(decisions_path,
              y = '',
              title = 'Federal, State, or Municipal Laws & Acts\nDeclared Unconstitutional\n',
              fill = 'Chief Justice') +
-        scale_y_continuous(breaks = seq(2, 20, 2), lim = c(0, 20)) +
+        scale_y_continuous(breaks = seq(4, 20, 4), lim = c(0, 20)) +
         scale_x_continuous(breaks = seq(1986, 2024, 4)) +
         geom_vline(xintercept = 2004.5, linetype = 2, size = 1.2) +
         geom_hline(yintercept = 0) +
-        scale_fill_manual(values = c('coral4', 'deepskyblue3')) +
+        scale_fill_manual(values = c('grey25', 'grey')) +
         theme(
           panel.border = element_rect(size = 1, colour = 'black', fill = NA),
           axis.text = element_text(size = 12, colour = 'black'),
@@ -5300,11 +5406,11 @@ scotusblog_stats <- function(decisions_path,
              y = '',
              title = 'Total Cases Decided in Term\n',
              fill = 'Chief Justice') +
-        scale_y_continuous(breaks = seq(25, 150, 25), lim = c(0, 165)) +
+        scale_y_continuous(breaks = seq(50, 150, 50), lim = c(0, 165)) +
         scale_x_continuous(breaks = seq(1986, 2024, 4)) +
         geom_vline(xintercept = 2004.5, linetype = 2, size = 1.2) +
         geom_hline(yintercept = 0) +
-        scale_fill_manual(values = c('coral4', 'deepskyblue3')) +
+        scale_fill_manual(values = c('grey25', 'grey')) +
         theme(
           panel.border = element_rect(size = 1, colour = 'black', fill = NA),
           axis.text = element_text(size = 14, colour = 'black'),

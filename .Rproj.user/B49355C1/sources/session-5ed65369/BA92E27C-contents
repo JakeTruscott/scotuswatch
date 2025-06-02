@@ -116,6 +116,7 @@ decisions_analysis(input_path = "C:/Users/jaketruscott/Github/scotuswatch/Stat R
 ################################################################################
 
 justia_opinion_recovery(opinions_path = "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions",
+                        decisions_path = 'C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions/data/OT_24_Decisions.csv',
                         current_term = 2024,
                         master_file = cases_master)
 

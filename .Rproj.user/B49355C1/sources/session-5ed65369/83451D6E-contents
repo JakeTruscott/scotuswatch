@@ -1,0 +1,1 @@
+g <- get(load("C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions/opinions/combined_opinions_processed/combined_opinions_OT2024.rdata"))

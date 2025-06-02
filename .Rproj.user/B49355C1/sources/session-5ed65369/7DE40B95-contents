@@ -1,364 +1,234 @@
-{
+decision_processor <- function(dir_path) {
+  files <- list.files(dir_path, full.names = TRUE)
+  num_files <- length(files)
+  cat("\nDecisions to Process: ", num_files)
+  all_decisions <- NULL
   
-  custom_order <- c('Roberts', 'Stevens', 'Scalia', 'Kennedy', 'Souter', 'Thomas', 'Ginsburg', 'Breyer', 'Alito', 'Sotomayor', 'Kagan', 'Gorsuch', 'Kavanaugh', 'Barrett', 'Jackson')
-  libs <- c('Stevens', 'Sotomayor', 'Kagan', 'Jackson', 'Ginsburg', 'Breyer')
-  
-  
-  {
+  check_package_install <- function(){
     
-    breaks_1 <- data.frame()
-    unique_dockets <- scdb_cases_data %>%
-      filter(term >= 2020) %>%
-      filter(minVotes >= 1) %>%
-      select(docket) %>%
-      pull(docket)
-    
-    for (i in 1:length(unique_dockets)){
-      
-      temp_case <- scdb_justices_data %>%
-        filter(docket == unique_dockets[i]) %>%
-        filter(term >= 2020) %>%
-        select(justiceName, majority, decisionType, docket, term, caseId)
-      
-      if (temp_case$decisionType[1] %in% c(4, 5)){
-        next
+    check_and_load_packages <- function(packages) {
+      for (pkg in packages) {
+        if (!requireNamespace(pkg, quietly = TRUE)) {
+          cat(sprintf("Package '%s' is not installed. Do you want to install it? (Y/N): ", pkg))
+          response <- tolower(readline())
+          if (response == "y") {
+            install.packages(pkg)
+          } else if (response == "n") {
+            stop(sprintf("Cannot proceed without '%s' installed. Exiting.", pkg))
+          } else {
+            stop("Invalid input. Please enter Y or N. Exiting.")
+          }
+        }
+        # Load the library after installation or if already installed
+        library(pkg, character.only = TRUE)
       }
-      
-      if (nrow(temp_case) >= 10){
-        unique_case_ids <- unique(temp_case$caseId)
-        temp_case <- temp_case %>%
-          filter(caseId == unique_case_ids[1])
-      }
-      
-      temp_justices <- temp_case %>%
-        mutate(justice = sub(".*([A-Z][a-zA-Z]*).*$", "\\1", justiceName)) %>%
-        pull(justice)
-      
-      temp_majority <- temp_case %>%
-        filter(majority == 2) %>%
-        mutate(justice = sub(".*([A-Z][a-zA-Z]*).*$", "\\1", justiceName)) %>%
-        select(justice) %>%
-        mutate(
-          majority_sorted = justice %>%
-            str_split(",\\s*") %>%
-            lapply(function(justices) {
-              ordered <- factor(justices, levels = custom_order)
-              sort(ordered)
-            }) %>%
-            sapply(paste, collapse = ", ")
-        ) %>%
-        pull(majority_sorted)
-      
-      temp_cons <- temp_justices[!temp_justices %in% libs]
-      temp_libs <- temp_justices[temp_justices %in% libs]
-      majority_size <- length(which(temp_case$majority == 2))
-      minority_size <- length(which(temp_case$majority == 1))
-      temp_majority <- temp_majority
-      temp_minority <- temp_justices[!temp_justices %in% temp_majority]
-      
-      lib_majority <- ifelse(all(temp_libs %in% temp_majority), 1, 0)
-      lib_minority <- ifelse(all(temp_libs %in% temp_minority), 1, 0)
-      
-      defectors <- c()
-      
-      if (lib_majority == 1){
-        defectors <- temp_majority[!temp_majority %in% temp_libs]
-      } else if (lib_minority == 1){
-        defectors <- temp_minority[!temp_minority %in% temp_libs]
-      }
-      
-      
-      temp_combined <- data.frame(
-        docket = temp_case$docket[1],
-        term = temp_case$term[1],
-        majority_size = majority_size,
-        minority_size = minority_size,
-        stringsAsFactors = FALSE
-      )
-      
-      temp_combined$majority_coalition <- list(temp_majority)
-      temp_combined$minority_coalition <- list(temp_minority)
-      temp_combined$defectors <- ifelse(length(defectors) == 0, NA, list(defectors))
-      temp_combined$temp_justices <- list(temp_justices)
-      
-      breaks_1 <- bind_rows(breaks_1, temp_combined)
-      
     }
     
-  } # OT20-23 Breaks (Measure 1)
+    required_packages <- c('dplyr', 'rvest', 'reticulate', 'httr', 'tm', 'stringr', 'tm', 'tidyr', 'graphics', 'utils', 'htm2txt', 'zoo', 'pdftools')
+    check_and_load_packages(required_packages)
+    library(dplyr); library(rvest); library(reticulate); library(httr); library(tm); library(stringr); library(tm); library(tidyr); library(graphics); library(utils); library(htm2txt); library(zoo); library(pdftools)
+    
+  } # Check if dplyr, rvest, reticulate, and httr are installed
   
-  {
-    
-    breaks_2 <- data.frame()
-    unique_dockets <- scdb_cases_data %>%
-      filter(term >= 2020) %>%
-      filter(minVotes >= 1) %>%
-      select(docket) %>%
-      pull(docket)
-    
-    for (i in 1:length(unique_dockets)){
-      
-      temp_case <- scdb_justices_data %>%
-        filter(docket == unique_dockets[i]) %>%
-        filter(term >= 2020) %>%
-        select(justiceName, majority, decisionType, docket, term, caseId)
-      
-      if (temp_case$decisionType[1] %in% c(4, 5)){
-        next
-      }
-      
-      if (nrow(temp_case) >= 10){
-        unique_case_ids <- unique(temp_case$caseId)
-        temp_case <- temp_case %>%
-          filter(caseId == unique_case_ids[1])
-      }
-      
-      temp_justices <- temp_case %>%
-        mutate(justice = sub(".*([A-Z][a-zA-Z]*).*$", "\\1", justiceName)) %>%
-        pull(justice)
-      
-      temp_majority <- temp_case %>%
-        filter(majority == 2) %>%
-        mutate(justice = sub(".*([A-Z][a-zA-Z]*).*$", "\\1", justiceName)) %>%
-        select(justice) %>%
-        mutate(
-          majority_sorted = justice %>%
-            str_split(",\\s*") %>%
-            lapply(function(justices) {
-              ordered <- factor(justices, levels = custom_order)
-              sort(ordered)
-            }) %>%
-            sapply(paste, collapse = ", ")
-        ) %>%
-        pull(majority_sorted)
-      
-      temp_cons <- temp_justices[!temp_justices %in% libs]
-      temp_libs <- temp_justices[temp_justices %in% libs]
-      majority_size <- length(which(temp_case$majority == 2))
-      minority_size <- length(which(temp_case$majority == 1))
-      temp_majority <- temp_majority
-      temp_minority <- temp_justices[!temp_justices %in% temp_majority]
-      defectors <- c()
-      
-      
-      if (!sum(temp_cons %in% temp_majority) == 5){
-        defectors <- NA
-      } else {
-        defectors <- temp_cons[!temp_cons %in% temp_majority]
-      }
-      
-      temp_combined <- data.frame(
-        docket = temp_case$docket[1],
-        term = temp_case$term[1],
-        majority_size = majority_size,
-        minority_size = minority_size,
-        stringsAsFactors = FALSE
-      )
-      
-      temp_combined$majority_coalition <- list(temp_majority)
-      temp_combined$minority_coalition <- list(temp_minority)
-      temp_combined$defectors <- ifelse(is.na(defectors), NA, list(defectors))
-      temp_combined$temp_justices <- list(temp_justices)
-      
-      breaks_2 <- bind_rows(breaks_2, temp_combined)
-      
-    }
-    
-  } # OT20-23 Breaks (Measure 2)
+  check_package_install() # Check If Necessary Packages are Installed
   
-  {
+  decisions_cleaner <- function(file_path, dir_path) {
     
-    total_cases_OT24 <- nrow(decisions)
-    ot24_breaks_1 <- data.frame()
-    temp_libs <- libs[libs %in% str_to_title(names(decisions[8:16]))]
+    {
+      rtext <- readtext::readtext(file_path)
+      corpus <- Corpus(VectorSource(rtext$text))
+      corpus <- tm_map(corpus, content_transformer(iconv), to = "ASCII//TRANSLIT")
+      corpus <- tm_map(corpus, content_transformer(gsub), pattern = "on writ of certiorari", replacement = "<DECISION BREAK> on writ of certiorari", ignore.case = TRUE)
+      corpus <- tm_map(corpus, content_transformer(gsub), pattern = "on petition for writ of certiorari", replacement = "<DECISION BREAK> on writ of certiorari", ignore.case = TRUE)
+      corpus <- tm_map(corpus, content_transformer(gsub), pattern = "on writ of certiorari", replacement = "<DECISION BREAK> <KEEP>", ignore.case = TRUE)
+      corpus <- tm_map(corpus, content_transformer(gsub), pattern = "on petition for writ of certiorari", replacement = "<DECISION BREAK> <KEEP>", ignore.case = TRUE)
+      corpus <- tm_map(corpus, content_transformer(gsub), pattern = "certiorari to the (United States|Court|Supreme)", replacement = "<DECISION BREAK> <KEEP>", ignore.case = TRUE)
+      corpus <- tm_map(corpus, content_transformer(gsub), pattern = "appeal from the united states district court", replacement = "<DECISION BREAK> <KEEP>", ignore.case = TRUE)
+      corpus <- tm_map(corpus, content_transformer(gsub), pattern = "on bill of complaint", replacement = "<DECISION BREAK> <KEEP>", ignore.case = TRUE)
+      decisions <- data.frame(text = sapply(corpus, as.character), stringsAsFactors = FALSE)
+    } #Collect and Pre-Process Text
     
-    for (i in 1:nrow(decisions)){
-      
-      if (decisions[i,]$Coalition %in% c('(9-0)', 'Per Curiam')){
-        next
-      }
-      
-      temp_case <- decisions[i,c(8:16)]
-      temp_majority <- str_to_title(names(temp_case)[temp_case >= 1])
-      temp_minority <- str_to_title(names(temp_case)[temp_case <= -1])
-      lib_majority <- ifelse(all(temp_libs %in% temp_majority), 1, 0)
-      lib_minority <- ifelse(all(temp_libs %in% temp_minority), 1, 0)
-      defectors <- c()
-      
-      if (lib_majority == 1){
-        defectors <- temp_majority[!temp_majority %in% temp_libs]
-      } else if (lib_minority == 1){
-        defectors <- temp_minority[!temp_minority %in% temp_libs]
-      }
-      
-      
-      temp_combined <- data.frame(
-        docket = decisions[i,]$Docket,
-        term = 2024,
-        stringsAsFactors = FALSE
-      )
-      
-      temp_combined$majority_coalition <- list(temp_majority)
-      temp_combined$minority_coalition <- list(temp_minority)
-      temp_combined$defectors <- ifelse(length(defectors) == 0, NA, list(defectors))
-      temp_combined$temp_justices <- list(temp_justices)
-      
-      ot24_breaks_1 <- bind_rows(ot24_breaks_1, temp_combined)
-      
+    # Check if 'decisions' data frame is empty
+    if (nrow(decisions) == 0) {
+      message("\nError Processing PDF:", file_path)
+      return(NULL)
     }
     
     
-    
-  } # OT24 Breaks (Measure 1)
-  
-  {
-    
-    total_cases_OT24 <- nrow(decisions)
-    ot24_breaks_2 <- data.frame()
-    temp_libs <- libs[libs %in% str_to_title(names(decisions[8:16]))]
-    
-    for (i in 1:nrow(decisions)){
+    {
+      file_names_processed <- gsub(paste0(dir_path, "/"), "", file_path)
+      file_names_processed <- gsub("\\_.*", "", file_names_processed)
+      file_names_processed <- gsub(".pdf", "", file_names_processed)
+      decisions$argument <- file_names_processed
       
-      if (decisions[i,]$Coalition %in% c('(9-0)', 'Per Curiam')){
-        next
+      case_names <- c()
+      
+      for (pdf_file in file_path) {
+        pdf_metadata <- pdf_info(pdf_file)
+        title <- pdf_metadata$keys$Title
+        case_names <- c(case_names, title)
       }
       
-      temp_case <- decisions[i,c(8:16)]
-      temp_majority <- str_to_title(names(temp_case)[temp_case >= 1])
-      temp_minority <- str_to_title(names(temp_case)[temp_case <= -1])
-      lib_majority <- ifelse(all(temp_libs %in% temp_majority), 1, 0)
-      lib_minority <- ifelse(all(temp_libs %in% temp_minority), 1, 0)
-
-      defectors <- c()
+      case_names <- data.frame(case_names)
+      case_names$docket_number <- sapply(case_names$case_names, function(x) {
+        if (grepl(" ", x) & grepl("-", x)) {
+          return(sub(" .*", "", x))
+        } else {
+          return(NA)
+        }
+      })
+      case_names$published <- sapply(case_names$case_names, function(x) {
+        if (grepl("\\(", x)) {
+          x <- sub(".*\\(|\\).*", "", x)
+          x <- paste0("(", x)
+          return(x)
+        } else {
+          return(NA)
+        }
+      })
+      
+      case_names$case_names <- mapply(function(case_name, published, docket_number) {
+        if (!is.na(published)) {
+          case_name <- gsub(published, "", case_name, fixed = TRUE)
+        }
+        if (!is.na(docket_number)) {
+          case_name <- gsub(docket_number, "", case_name, fixed = TRUE)
+        }
+        return(case_name)
+      }, case_names$case_names, case_names$published, case_names$docket_number)
+      
+      decisions$argument <- case_names$case_names
+      decisions$docket_id <- case_names$docket_number
+      decisions$docket_id <- gsub("\\.", "", decisions$docket_id)
+      decisions$published <- case_names$published
       
       
-      if (!sum(temp_cons %in% temp_majority) == 5){
-        defectors <- NA
-      } else {
-        defectors <- temp_cons[!temp_cons %in% temp_majority]
+    } #File Metadata
+    {
+      decisions_test <- decisions %>%
+        mutate(text = str_split(text, "\\<DECISION BREAK\\>")) %>%
+        unnest(text) %>%
+        filter(grepl("\\<Keep\\>", text, ignore.case = TRUE)) %>%
+        filter(!grepl("syllabus\\n\\n", text, ignore.case = TRUE)) %>%
+        mutate(text = gsub("J.\\n\\n", "<END HEADER>", text, perl = TRUE)) %>%
+        mutate(text = gsub("(?<!\\S) {2,}(?!\\S)", " ", text, perl = TRUE)) %>%
+        mutate(text = gsub("(?<!\\S)\n(?!\\S)", " \n", text, perl = TRUE)) %>%
+        mutate(text = gsub("\\n\\n", " \n\n ", text, perl = TRUE)) %>%
+        mutate(text = gsub("\\n\\n ------\\n[ ]*", "<BEGIN FOOTNOTE> ", text)) %>%
+        mutate(text = gsub("\\n------\\n", " \n------\n ", text, perl = TRUE)) %>%
+        mutate(text = gsub("\\n------\\n", " <BEGIN FOOTNOTE> ", text, perl = TRUE)) %>%
+        mutate(text = gsub("in part \\n\\n", "<END HEADER> ", text, ignore.case = T)) %>%
+        mutate(text = gsub("in judgement \\n\\n", "<END HEADER> ", text, ignore.case = T)) %>%
+        mutate(text = gsub("C\\.J\\.\\, concurring", "<END HEADER> ", text, ignore.case = T)) %>%
+        mutate(text = gsub("J\\.\\, concurring", "<END HEADER> ", text, ignore.case = T)) %>%
+        mutate(text = gsub("C\\.J\\.\\, dissenting", "<END HEADER> ", text, ignore.case = T)) %>%
+        mutate(text = gsub("J\\.\\, dissenting", "<END HEADER> ", text, ignore.case = T)) %>%
+        mutate(text = str_replace_all(text, "Opinion of the Court\\s+\\n\\n", "<END HEADER> ")) %>%
+        mutate(text = str_replace_all(text, "Opinion of the Court", "<END HEADER> ")) %>%
+        mutate(text = str_replace_all(text, "Opinion of .*? , J", "<END HEADER>")) %>%
+        mutate(text = str_replace_all(text, "Order of (.*?), C\\.J\\.", "<END HEADER>")) %>%
+        mutate(text = str_replace_all(text, "\\n\\n\\s+\\d+", "<BEGIN HEADER>")) %>%
+        mutate(text = gsub("\\s{2,}", " ", text)) %>%
+        mutate(text = str_replace_all(text, "Cite as:", " <BEGIN HEADER> Cite as:"))  %>%
+        mutate(footnotes = text) %>%
+        mutate(footnotes = str_extract_all(text, "(?<=<BEGIN FOOTNOTE>)([\\s\\S]*?)(?=<BEGIN HEADER>)")) %>%
+        mutate(footnotes = sapply(footnotes, function(x) if (length(x) > 0) paste(x, collapse = "\n\n") else NA_character_))  %>%
+        mutate(text = gsub("<BEGIN FOOTNOTE>.*?<END HEADER>", "", text)) %>%
+        mutate(text = str_replace_all(text, "<BEGIN HEADER>.*?(<END HEADER>|<END SPECIAL HEADER>)", "")) %>%
+        mutate(text = gsub("<BEGIN HEADER>.*?<END SPECIAL HEADER>", "", text)) %>%
+        mutate(text = gsub(" C\\. J\\.\\,", "", text)) %>%
+        mutate(text = gsub(" C\\.J\\.\\,", "", text)) %>%
+        mutate(text = gsub(" J\\.\\,", "", text)) %>%
+        mutate(footnotes = gsub("\\n\\n {3,}(\\d+)", "<FOOTNOTE BREAK> \\1", footnotes)) %>%
+        mutate(footnotes = gsub("\\n\\n", "", footnotes)) %>%
+        mutate(footnotes = gsub("<FOOTNOTE BREAK>", "\n\n", footnotes)) %>%
+        mutate(footnotes = gsub("\\-  ", "", footnotes)) %>%
+        mutate(footnotes = gsub("\\- ", "", footnotes)) %>%
+        mutate(footnotes = gsub("\\n", " ", footnotes)) %>%
+        mutate(footnotes = gsub("  (\\d+)", "\n\n\\1", footnotes)) %>%
+        mutate(footnotes = gsub("(?<![A-Za-z0-9\\n])\\s{5,}(?![A-Za-z0-9\\n])", " ", footnotes, perl = TRUE)) %>%
+        mutate(footnotes = gsub("^\\s+", "", footnotes)) %>%
+        mutate(footnotes = gsub("(?<=\\n)(\\d+)", "[\\1]", footnotes, perl = TRUE)) %>%
+        mutate(footnotes = gsub("\\n\\n(?=\\[\\d{4,}\\])", "", footnotes, perl = TRUE)) %>%
+        mutate(footnotes = str_replace(footnotes, "^(\\d+)", "[\\1]")) %>%
+        mutate(footnotes = gsub("\\- ", "", footnotes)) %>%
+        mutate(text = gsub("\\n(?=\\d)", " [", text, perl = TRUE)) %>%
+        mutate(text = gsub("\\s(?=\\d)", "] ", text, perl = TRUE)) %>%
+        mutate(text = gsub("\\s(?=\\n)", "] ", text, perl = TRUE)) %>%
+        mutate(text = gsub("\\[(?=\\d)", "", text, perl = TRUE)) %>%
+        mutate(text = gsub("\\](?=\\n)", "", text, perl = TRUE)) %>%
+        mutate(text = gsub("\\](?=\\s)", "", text, perl = TRUE)) %>%
+        mutate(opinion = sub("\\.(.*)", "", text)) %>%
+        mutate(opinion = sub("\\.(.*)", "", text)) %>%
+        mutate(opinion = trimws(opinion) %>%
+                 paste0(".")) %>%
+        mutate(opinion_writer = str_extract_all(opinion, "(CHIEF JUSTICE|JUSTICE)\\s+(\\w+)") %>%
+                 sapply(paste, collapse = "; ") %>%
+                 sapply(function(x) gsub(" joins| join", "", x))) %>%
+        mutate(opinion_type = case_when(
+          grepl("deliv", opinion, ignore.case = T) & grepl("court", opinion, ignore.case = T) ~ "Majority Opinion",
+          grepl("dis", opinion) ~ "Dissent",
+          grepl("conc", opinion) ~ "Concurrence",
+          grepl("conc", opinion) & grepl("dis", opinion) & grepl("in part", opinion) ~ "Concur & Dissent (In Part)")) %>%
+        mutate(opinion_type = ifelse(is.na(opinion_type), "Per Curiam", opinion_type))  %>%
+        filter(!(opinion_type == "Per Curiam" & !grepl("PER CURIAM", text, ignore.case = TRUE))) %>%
+        mutate(text = ifelse(opinion_type == "Per Curiam", gsub(".*PER CURIAM", "", text), text)) %>%
+        mutate(opinion_writer = ifelse(opinion_type == "Per Curiam", "Per Curiam", opinion_writer)) %>%
+        mutate(text = sub(".*?\\.", "", text)) %>%
+        mutate(text = trimws(text)) %>%
+        mutate(text = gsub("U\\.\\sS\\.\\sC\\.\\s\\?", "U. S. C. \u00A7", text)) %>%
+        mutate(text = gsub("\\?(?=\\d)", "\u00A7", text, perl = T)) %>%
+        mutate(text = gsub("\\s{2,}", " ", text)) %>%
+        mutate(text = gsub("SUPREME COURT OF THE UNITED STATES.*", "", text)) %>%
+        mutate(text = gsub("-\\n", "", text)) %>%
+        mutate(text = gsub("\\n", " ", text)) %>%
+        select(-c(opinion)) %>%
+        mutate(word_count = str_count(text, "\\w+")) %>%
+        mutate(text = gsub("\\.(?!.*\\..*$)\\s?.*", ".", text, perl = TRUE)) %>%
+        mutate(text = gsub("\\<END HEADER\\>", "", text, perl = T)) %>%
+        mutate(text = gsub("\\<BEGIN HEADER\\>", "", text, perl = T)) %>%
+        mutate(text = gsub("\\,\\)", ", J.)", text, perl = T)) %>%
+        mutate(text = gsub("\\, \\)", ", J.)", text, perl = T)) %>%
+        select(argument, docket_id, published, text, footnotes, opinion_writer, opinion_type, word_count)
+    } #Process & Clean Docket Frame
+    
+  } #Process Opinions
+  
+  footnotes <- NULL
+  opinion <- NULL
+  opinion_type <- NULL
+  opinion_writer <- NULL
+  argument <- NULL
+  docket_id <- NULL
+  published <- NULL
+  
+  
+  start_time <- Sys.time()
+  count <- 1
+  for (i in files) {
+    tryCatch({
+      cleaned_decisions <- suppressWarnings(decisions_cleaner(file_path = i, dir_path = dir_path))
+      all_decisions <- rbind(all_decisions, cleaned_decisions)
+      if (count %% 25 == 0) {
+        message("\nCompleted ", count, " Decisions of ", length(files))
       }
-      
-      
-      temp_combined <- data.frame(
-        docket = decisions[i,]$Docket,
-        term = 2024,
-        stringsAsFactors = FALSE
-      )
-      
-      temp_combined$majority_coalition <- list(temp_majority)
-      temp_combined$minority_coalition <- list(temp_minority)
-      temp_combined$defectors <- ifelse(length(defectors) == 0, NA, list(defectors))
-      temp_combined$temp_justices <- list(temp_justices)
-      
-      ot24_breaks_2 <- bind_rows(ot24_breaks_2, temp_combined)
-      
-    }
-    
-    
-    
-  } # OT24 Breaks (Measure 1)
+      count <- count + 1
+    }, error = function(e) {
+      cat("Error with Decision ", i, ":\n")
+      print(e)
+    })
+  }
   
-  {
-    
-    total_cases_term <- scdb_cases_data %>%
-      filter(term >= 2020) %>%
-      filter(minVotes >= 1) %>%
-      select(term, docket) %>%
-      unique() %>%
-      group_by(term) %>%
-      summarise(total_cases = n()) %>%
-      add_row(term = 2024, total_cases = nrow(decisions[!grepl('(9-0|Per Curiam)', decisions$Coalition, ignore.case = T),]))
-    
-    breaks <- breaks_1 %>%
-      mutate(type = 'M1') %>%
-      bind_rows(breaks_2 %>%
-                  mutate(type = 'M2')) %>%
-      bind_rows(ot24_breaks_1 %>%
-                  mutate(type = 'M1')) %>%
-      bind_rows(ot24_breaks_2 %>%
-                  mutate(type = 'M2')) %>%
-      select(term, defectors, type) %>%
-      mutate(defectors = lapply(defectors, function(x) if (is.null(x)) NA else x)) %>%
-      unnest(defectors) %>%
-      filter(!is.na(defectors)) %>%
-      group_by(term, defectors, type) %>%
-      summarise(count = n(),
-              .groups = 'drop') %>%
-      unique() %>%
-      unique() %>%
-      group_by(defectors, type, term) %>%
-      summarise(total_defections = sum(count), .groups = 'drop') %>%
-      group_by(defectors, type) %>%
-      summarise(total_defections = sum(total_defections), .groups = 'drop') %>%
-      unique() %>%
-      mutate(total_cases = sum(total_cases_term$total_cases)) %>%
-      mutate(percent_defection = round(total_defections/total_cases, 2)) %>%
-      rename(justice = defectors) 
-
-      
-    
-    justice_labels <- breaks %>%
-      select(justice) %>%
-      mutate(justice = toupper(justice)) %>%
-      mutate(image_labels = justice_image_labels[match(justice, names(justice_image_labels))],
-             image_labels = gsub(' style\\=.*', '', image_labels),
-             image_labels = paste0(image_labels, " width='100' /><br><strong>", justice, "</strong>")) %>%
-      distinct(justice, .keep_all = TRUE) %>%
-      arrange(justice) %>%
-      pull(image_labels)
-    
-    conservative_defections <- breaks %>%
-      mutate(type = ifelse(type == 'M1', 'Joined Coalition w/\nAll Democratic-Appointees', 'Sole Dissenter')) %>%
-      ggplot(aes(x = justice, y = percent_defection, fill = type)) + 
-      geom_col(colour = 'black', position = position_dodge(0.9)) + 
-      scale_fill_manual(values = c('deepskyblue3', 'coral4')) +
-      scale_y_continuous(lim = c(0, 0.5)) +
-      geom_label(
-        aes(
-          label = paste0(round(percent_defection * 100), '%'),
-          color = type,  # text color
-          group = type   # ensures correct dodging
-        ),
-        fill = "white",  # label background
-        position = position_dodge(0.9),
-        vjust = -0.25,
-        size = 6,
-        show.legend = FALSE) +
-      scale_color_manual(values = c('black', 'black')) +
-      geom_hline(yintercept = 0) +
-      theme_minimal() +
-      scale_x_discrete(labels = justice_labels) +  # Use the labels with images for the x-axis
-      labs(x = '',
-           y = '',
-           fill = '') +
-      theme_minimal() +
-      theme(
-        panel.background = element_rect(size = 1, colour = 'black', fill = NA),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        axis.text.x = ggtext::element_markdown(size = 10, vjust = 1),
-        axis.text.y = element_blank(),
-        axis.title = element_text(size = 16, colour = 'black'),
-        legend.text = element_text(size = 14, colour = 'black'),
-        legend.position = 'none',
-        legend.title = element_blank(),
-        legend.box.background = element_rect(size = 1, colour = 'black', fill = NA))
-    
-  } # Conservative Defectors
+  end_time <- Sys.time()
+  elapsed_time <- end_time - start_time
   
-  combined_list[['coalitions']][['conservative_defections']] <- breaks
-  combined_list[['coalitions']][['conservative_defections_figure']] <- conservative_defections
+  cat("\n- - - - - - - - COMPLETION SUMMARY - - - - - - - -")
+  cat("\nCompletion Time: ", round(as.numeric(elapsed_time), 2), "Seconds")
+  cat("\nNumber of Unique Decisions: ", length(unique(all_decisions$argument)))
+  cat("\nNumber of Majority Opinions: ", sum(all_decisions$opinion_type == "Majority Opinion"))
+  cat("\nNumber of Dissents: ", sum(all_decisions$opinion_type == "Dissent"))
+  cat("\nNumber of Concurrences: ", sum(all_decisions$opinion_type == "Concurrence"))
+  cat("\nNumber of Per Curiam: ", sum(all_decisions$opinion_type == "Per Curiam"))
   
-  suppressWarnings(ggsave(conservative_defections,
-                          filename = file.path(output_folder, 'conservative_defections.png'),
-                          width = 10,
-                          height = 6,
-                          units = 'in',
-                          bg = 'white'))
-  
-  
-} # Most Common Defectors (2020-2024)
-
-
-# Measure 1: Conservatives Defecting to Coalitions with All Libs
-# Measure 2: Conservatives Being Only Defectors When All Other C's in Coalition
+  return(all_decisions)
+}
