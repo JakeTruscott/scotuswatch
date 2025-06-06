@@ -1,12 +1,14 @@
-lower_court,Affirm,Affirm and Remand,Reverse and Remand,Vacate and Remand,Granted,DIG,Reverse
-CA2,1,1,1,,,,
-CA3,1,,,,,,
-CA4,,,2,1,,,
-CA5,,,1,2,1,,
-CA7,,1,,1,,,
-CA8,1,,,,,,
-CA9,,,1,,,2,
-CA10,1,,2,1,,,1
-CA11,1,,,1,,,
-CADC,2,,1,1,,,
-NA,1,,1,,,,
+lower_court,Reverse and Remand,Affirm,Affirm and Remand,Vacate and Remand,Granted,DIG,Reverse
+CA1,1,,,,,,
+CA2,2,1,1,,,,
+CA3,,1,,,,,
+CA4,2,,,1,,,
+CA5,1,,,2,1,,
+CA6,,,,1,,,
+CA7,,,1,1,,,
+CA8,,1,,,,,
+CA9,2,,,,,3,
+CA10,2,1,,1,,,1
+CA11,,1,,1,,,
+CADC,1,2,,1,,,
+NA,1,1,,,,,

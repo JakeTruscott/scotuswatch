@@ -384,7 +384,7 @@ scotusblog_stats <- function(decisions_path,
           fill = "white",
           label.size = 0
         ) +
-        scale_x_continuous(lim = c(0, 12), breaks = seq(2, 12, 2)) +
+        scale_x_continuous(lim = c(0, 30), breaks = seq(4, 28, 4)) +
         labs(x = '',
              y = '',
              fill = '') +

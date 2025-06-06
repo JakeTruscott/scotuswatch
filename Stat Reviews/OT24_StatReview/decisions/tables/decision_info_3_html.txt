@@ -103,14 +103,34 @@
    <td style="text-align:center;"> (4-4)* </td>
   </tr>
   <tr>
-   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Seven County Infrastructure Coalition v. Eagle County, Colorado </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 23-975 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 2024-12-10 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 2025-05-29 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> CADC </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> Reverse and Remand </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> Kavanaugh </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> (8-0) </td>
+   <td style="text-align:center;font-weight: bold;"> Seven County Infrastructure Coalition v. Eagle County, Colorado </td>
+   <td style="text-align:center;"> 23-975 </td>
+   <td style="text-align:center;"> 2024-12-10 </td>
+   <td style="text-align:center;"> 2025-05-29 </td>
+   <td style="text-align:center;"> CADC </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> Kavanaugh </td>
+   <td style="text-align:center;"> (8-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Laboratory Corp of America Holdings v. Luke Davis </td>
+   <td style="text-align:center;"> 24-304 </td>
+   <td style="text-align:center;"> 2025-04-29 </td>
+   <td style="text-align:center;"> 2025-06-05 </td>
+   <td style="text-align:center;"> CA9 </td>
+   <td style="text-align:center;"> DIG </td>
+   <td style="text-align:center;"> Per Curiam </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Ames v. Ohio Dept. of Youth Services </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 23-1039 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2025-02-26 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2025-06-05 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> CA6 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Vacate and Remand </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Jackson </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> (9-0) </td>
   </tr>
 </tbody>
 </table>

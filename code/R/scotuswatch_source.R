@@ -3229,10 +3229,12 @@ scotusblog_stats <- function(decisions_path,
         total_reverse = round(total_decided - Reverse, 3)) %>%
       ungroup() %>%
       mutate(
-        total_proportion = round(total_cases / sum(total_cases), 3),
-        percent_affirm = round(total_affirm / total_decided, 3),
-        percent_reverse = round(total_reverse / total_decided, 3)) %>%
+        total_proportion = paste0(round(total_cases / sum(total_cases), 3)*100, '%'),
+        percent_affirm = paste0(round(total_affirm / total_decided, 3)*100, '%'),
+        percent_reverse = paste0(round(total_reverse / total_decided, 3)*100, '%')) %>%
       select(lower_court, total_cases, total_proportion, total_decided, total_affirm, total_reverse, percent_affirm, percent_reverse) %>%
+      mutate(percent_affirm = ifelse(percent_affirm == 'NaN%', 'NA', percent_affirm),
+             percent_reverse = ifelse(percent_reverse == 'NaN%', 'NA', percent_reverse)) %>%
       mutate(lower_court = factor(lower_court, levels = c('CA1', 'CA2', 'CA3', 'CA4', 'CA5', 'CA6', 'CA7', 'CA8', 'CA9', 'CA10', 'CA11', 'CADC', 'CAFED', 'Armed Forces', 'State Court', 'District Court', 'Original'))) %>%
       arrange(lower_court) %>%
       rename(`Court Below` = lower_court,
@@ -3537,7 +3539,7 @@ scotusblog_stats <- function(decisions_path,
           fill = "white",
           label.size = 0
         ) +
-        scale_x_continuous(lim = c(0, 12), breaks = seq(2, 12, 2)) +
+        scale_x_continuous(lim = c(0, 30), breaks = seq(4, 28, 4)) +
         labs(x = '',
              y = '',
              fill = '') +
