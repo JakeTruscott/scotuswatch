@@ -1,14 +1,14 @@
 {
-    "id": "615D0DEF",
-    "path": "C:/Users/jaketruscott/Github/scotuswatch/code/R/scotusblog_scratch.R",
-    "project_path": "code/R/scotusblog_scratch.R",
+    "id": "57506961",
+    "path": null,
+    "project_path": null,
     "type": "r_source",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1747055443922.0,
+    "created": 1749559190713.0,
     "source_on_save": false,
-    "relative_order": 7,
+    "relative_order": 6,
     "properties": {
         "tempName": "Untitled1",
         "source_window_id": "",
@@ -16,12 +16,12 @@
         "cursorPosition": "0,0",
         "scrollLine": "0"
     },
-    "folds": "7|65|2335|0|\n2350|130|2415|0|\n",
-    "lastKnownWriteTime": 1749574117,
-    "encoding": "UTF-8",
+    "folds": "4|1|94|0|\n96|1|180|0|\n105|38|178|2|\n182|1|237|0|\n239|1|292|0|\n294|1|382|0|\n",
+    "lastKnownWriteTime": 2484144704214802976,
+    "encoding": "",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1749574117917,
+    "last_content_update": 1749574007474,
     "read_only": false,
     "read_only_alternatives": []
 }
