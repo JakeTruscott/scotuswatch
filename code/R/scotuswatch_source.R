@@ -3915,29 +3915,36 @@ scotusblog_stats <- function(decisions_path,
 
     {
 
+
+      mean_unanimous <- scdb_cases_data %>%
+        filter(term >= 2005) %>%
+        select(term, minVotes, docket) %>%
+        group_by(term) %>%
+        mutate(total_cases = n()) %>%
+        ungroup() %>%
+        filter(minVotes == 0) %>%
+        group_by(term) %>%
+        mutate(unanimous_cases = n()) %>%
+        reframe(unanimous_percentage = round(unanimous_cases / total_cases, 2) * 100) %>%
+        ungroup() %>%
+        unique() %>%
+        bind_rows(
+          decisions %>%
+            select(Coalition) %>%
+            rename(coalition = Coalition) %>%
+            mutate(total_cases = n()) %>%
+            filter(grepl('(Per Curiam|9-|(8-0))', coalition, ignore.case = TRUE)) %>%
+            mutate(unanimous_cases = n()) %>%
+            mutate(unanimous_percentage = round(unanimous_cases / total_cases, 2) * 100) %>%
+            unique() %>%
+            mutate(term = 2024) %>%
+            select(term, unanimous_percentage)
+        )
+
+      mean_unanimous_value <- round(mean(mean_unanimous$unanimous_percentage), 2)
+
       unanimity_over_time <- suppressMessages(suppressWarnings(
-        scdb_cases_data %>%
-          filter(term >= 2005) %>%
-          select(term, minVotes, docket) %>%
-          group_by(term) %>%
-          mutate(total_cases = n()) %>%
-          ungroup() %>%
-          filter(minVotes == 0) %>%
-          group_by(term) %>%
-          mutate(unanimous_cases = n()) %>%
-          reframe(unanimous_percentage = round(unanimous_cases/total_cases, 2)*100) %>%
-          ungroup() %>%
-          unique() %>%
-          bind_rows(decisions %>%
-                      select(Coalition) %>%
-                      rename(coalition = Coalition) %>%
-                      mutate(total_cases = n()) %>%
-                      filter(grepl('(Per Curiam|(9-0))', coalition, ignore.case = T)) %>%
-                      mutate(unanimous_cases = n()) %>%
-                      mutate(unanimous_percentage = round(unanimous_cases/total_cases, 2)*100) %>%
-                      unique() %>%
-                      mutate(term = 2024) %>%
-                      select(term, unanimous_percentage)) %>%
+        mean_unanimous %>%
           ggplot(aes(x = term, y = unanimous_percentage)) +
           geom_point(size = 3) +
           geom_line(linewidth = 1) +
@@ -3946,12 +3953,13 @@ scotusblog_stats <- function(decisions_path,
             breaks = seq(25, 70, 5),
             labels = function(x) paste0(x, "%")) +
           scale_x_continuous(breaks = seq(2006, 2024, 2)) +
-          geom_hline(aes(yintercept = mean(unanimous_percentage)), linetype = 2, colour = 'red') +
-          geom_label(aes(x = 2019, y = mean(unanimous_percentage) + 3), label = 'Mean = 46.2%', inherit.aes = T, size = 5, colour = 'red') +
+          geom_hline(yintercept = mean_unanimous_value, linetype = 2, colour = 'red') +
+          geom_label(aes(x = 2019, y = mean_unanimous_value + 3),
+                     label = paste0('Mean = ', mean_unanimous_value, '%'),
+                     size = 5, colour = 'red') +
           geom_label(aes(label = paste0(unanimous_percentage, '%')), size = 4) +
           theme_minimal() +
-          labs(x = '\nTerm',
-               y = 'Cases Decided Unanimously\n') +
+          labs(x = '\nTerm', y = 'Cases Decided Unanimously\n') +
           theme(
             panel.border = element_rect(size = 1, colour = 'black', fill = NA),
             axis.text = element_text(size = 14, colour = 'black'),
@@ -3962,6 +3970,7 @@ scotusblog_stats <- function(decisions_path,
             legend.box.background = element_rect(size = 1, colour = 'black', fill = NA)
           )
       ))
+
 
       combined_list[['coalitions']][['unanimity_over_time']] <- suppressWarnings(unanimity_over_time)
 
@@ -4039,17 +4048,19 @@ scotusblog_stats <- function(decisions_path,
 
     {
 
+
       {
 
         coalitions_ot24 <- decisions %>%
           select(Coalition) %>%
           rename(coalition = Coalition) %>%
           mutate(coalition = case_when(
-            .default = '(9-0)',
+            .default = 'Unanimous',
+            grepl('(5-4)|(5-3)', coalition) ~ '(5-3) & (5-4)',
+            grepl('(7-1)|(7-2)', coalition) ~ '(7-1) & (7-2)',
+            grepl('(6-2)|(6-3)', coalition) ~ '(6-2) & (6-3)',
             grepl('(8-1)', coalition) ~ '(8-1)',
             grepl('(7-2)', coalition) ~ '(7-2)',
-            grepl('(6-3)', coalition) ~ '(6-3)',
-            grepl('(5-4)', coalition) ~ '(5-4)',
             grepl('(4-4)', coalition) ~ '(4-4)')) %>%
           group_by(coalition) %>%
           summarise(count = n(), .groups = 'drop') %>%
@@ -4058,35 +4069,37 @@ scotusblog_stats <- function(decisions_path,
         ot05_ot24 <- scdb_cases_data %>%
           filter(term >= 2005) %>%
           select(minVotes, majVotes) %>%
-          mutate(total_cases = n()) %>%
+          mutate(total_cases = n(),
+                 coalition = paste0('(', majVotes, '-', minVotes, ')'),
+                 coalition = ifelse(grepl('-0)', coalition, ignore.case = T), 'Unanimous', coalition)) %>%
           ungroup() %>%
-          group_by(minVotes, majVotes) %>%
+          group_by(coalition) %>%
           reframe(coalition_count = n(),
                   total_cases = total_cases) %>%
           unique() %>%
-          mutate(coalition_percentage = coalition_count/total_cases,
-                 minVotes = case_when(
-                   minVotes == majVotes ~ '(4-4)',
-                   minVotes == 0 ~ '(9-0)',
-                   minVotes == 1 ~ '(8-1)',
-                   minVotes == 2 ~ '(7-2)',
-                   minVotes == 3 ~ '(6-3)',
-                   minVotes == 4 ~ '(5-4)'
-                 )) %>%
+          mutate(coalition_percentage = coalition_count/total_cases) %>%
           bind_rows(coalitions_ot24 %>%
                       select(-c(term)) %>%
-                      rename(minVotes = coalition,
-                             coalition_count = count)) %>%
-          group_by(minVotes) %>%
+                      rename(coalition_count = count)) %>%
+          mutate(coalition = ifelse(coalition %in% c('(5-4)', '(5-3)'), '(5-3) & (5-4)', coalition),
+                 coalition = ifelse(grepl('\\(4-', coalition), '(4-4)', coalition),
+                 coalition = ifelse(coalition %in% c('(7-1)', '(7-2)'), '(7-1) & (7-2)', coalition),
+                 coalition = ifelse(coalition %in% c('(6-2)', '(6-3)'), '(6-2) & (6-3)', coalition)) %>%
+          group_by(coalition) %>%
           reframe(coalition_count = sum(coalition_count),
                   total_cases = sum(coalitions_ot24$count) + total_cases,
                   coalition_percentage = coalition_count/total_cases) %>%
           unique() %>%
           filter(!is.na(total_cases)) %>%
-          mutate(minVotes = factor(minVotes, levels = c("(4-4)", "(5-4)", "(6-3)", "(7-2)", "(8-1)", "(9-0)"))) %>%
-          mutate(label_text = paste0(minVotes, "\n", round(coalition_percentage * 100, 1), "%"),
+          mutate(label_text = paste0(coalition, "\n", round(coalition_percentage * 100, 1), "%"),
                  label_pos = cumsum(coalition_percentage) - coalition_percentage / 2) %>%
-          ggplot(aes(x = "", y = coalition_percentage, fill = minVotes)) +
+          mutate(coalition = ifelse(!coalition %in% c("(5-3) & (5-4)", "(6-2) & (6-3)", "(7-1) & (7-2)", "(8-1)", "Unanimous"), 'Other', coalition)) %>%
+          group_by(coalition) %>%
+          reframe(coalition_percentage = sum(coalition_percentage),
+                  label_text = paste0(coalition, "\n", round(coalition_percentage * 100, 1), "%"),
+                  label_pos = cumsum(coalition_percentage) - coalition_percentage / 2) %>%
+          unique() %>%
+          ggplot(aes(x = "", y = coalition_percentage, fill = coalition)) +
           geom_bar(stat = "identity", width = 1, color = "black") +
           coord_polar(theta = "y") +
           scale_fill_brewer(palette = "RdBu") +
@@ -4095,42 +4108,44 @@ scotusblog_stats <- function(decisions_path,
           theme(legend.title = element_blank(),
                 plot.title = element_markdown(hjust = 0.5, size = 18, face = 'bold'),
                 legend.position = 'none') +
-          geom_text(aes(x = 1.7, label = paste0(minVotes, '\n', scales::percent(coalition_percentage, accuracy = .1))),
+          geom_text(aes(x = 1.85, label = paste0(coalition, '\n', scales::percent(coalition_percentage, accuracy = .1))),
                     position = position_stack(vjust = .5), size = 4)
 
 
-        ot20_ot24 <- scdb_cases_data %>%
+        ot20_ot24 <-  scdb_cases_data %>%
           filter(term >= 2020) %>%
           select(minVotes, majVotes) %>%
-          mutate(total_cases = n()) %>%
+          mutate(total_cases = n(),
+                 coalition = paste0('(', majVotes, '-', minVotes, ')'),
+                 coalition = ifelse(grepl('-0)', coalition, ignore.case = T), 'Unanimous', coalition)) %>%
           ungroup() %>%
-          group_by(minVotes, majVotes) %>%
+          group_by(coalition) %>%
           reframe(coalition_count = n(),
                   total_cases = total_cases) %>%
           unique() %>%
-          mutate(coalition_percentage = coalition_count/total_cases,
-                 minVotes = case_when(
-                   minVotes == majVotes ~ '(4-4)',
-                   minVotes == 0 ~ '(9-0)',
-                   minVotes == 1 ~ '(8-1)',
-                   minVotes == 2 ~ '(7-2)',
-                   minVotes == 3 ~ '(6-3)',
-                   minVotes == 4 ~ '(5-4)'
-                 )) %>%
+          mutate(coalition_percentage = coalition_count/total_cases) %>%
           bind_rows(coalitions_ot24 %>%
                       select(-c(term)) %>%
-                      rename(minVotes = coalition,
-                             coalition_count = count)) %>%
-          group_by(minVotes) %>%
+                      rename(coalition_count = count)) %>%
+          mutate(coalition = ifelse(coalition %in% c('(5-4)', '(5-3)'), '(5-3) & (5-4)', coalition),
+                 coalition = ifelse(grepl('\\(4-', coalition), '(4-4)', coalition),
+                 coalition = ifelse(coalition %in% c('(7-1)', '(7-2)'), '(7-1) & (7-2)', coalition),
+                 coalition = ifelse(coalition %in% c('(6-2)', '(6-3)'), '(6-2) & (6-3)', coalition)) %>%
+          group_by(coalition) %>%
           reframe(coalition_count = sum(coalition_count),
                   total_cases = sum(coalitions_ot24$count) + total_cases,
                   coalition_percentage = coalition_count/total_cases) %>%
           unique() %>%
           filter(!is.na(total_cases)) %>%
-          mutate(minVotes = factor(minVotes, levels = c("(4-4)", "(5-4)", "(6-3)", "(7-2)", "(8-1)", "(9-0)"))) %>%
-          mutate(label_text = paste0(minVotes, "\n", round(coalition_percentage * 100, 1), "%"),
+          mutate(label_text = paste0(coalition, "\n", round(coalition_percentage * 100, 1), "%"),
                  label_pos = cumsum(coalition_percentage) - coalition_percentage / 2) %>%
-          ggplot(aes(x = "", y = coalition_percentage, fill = minVotes)) +
+          mutate(coalition = ifelse(!coalition %in% c("(5-3) & (5-4)", "(6-2) & (6-3)", "(7-1) & (7-2)", "(8-1)", "Unanimous"), 'Other', coalition)) %>%
+          group_by(coalition) %>%
+          reframe(coalition_percentage = sum(coalition_percentage),
+                  label_text = paste0(coalition, "\n", round(coalition_percentage * 100, 1), "%"),
+                  label_pos = cumsum(coalition_percentage) - coalition_percentage / 2) %>%
+          unique() %>%
+          ggplot(aes(x = "", y = coalition_percentage, fill = coalition)) +
           geom_bar(stat = "identity", width = 1, color = "black") +
           coord_polar(theta = "y") +
           scale_fill_brewer(palette = "RdBu") +
@@ -4139,8 +4154,9 @@ scotusblog_stats <- function(decisions_path,
           theme(legend.title = element_blank(),
                 plot.title = element_markdown(hjust = 0.5, size = 18, face = 'bold'),
                 legend.position = 'none') +
-          geom_text(aes(x = 1.7, label = paste0(minVotes, '\n', scales::percent(coalition_percentage, accuracy = .1))),
+          geom_text(aes(x = 1.85, label = paste0(coalition, '\n', scales::percent(coalition_percentage, accuracy = .1))),
                     position = position_stack(vjust = .5), size = 4)
+
 
         ot24 <- coalitions_ot24 %>%
           select(-c(term)) %>%
@@ -4160,7 +4176,7 @@ scotusblog_stats <- function(decisions_path,
           theme(legend.title = element_blank(),
                 plot.title = element_markdown(hjust = 0.5, size = 18, face = 'bold'),
                 legend.position = 'none') +
-          geom_text(aes(x = 1.7, label = paste0(minVotes, '\n', scales::percent(coalition_percentage, accuracy = .1))),
+          geom_text(aes(x = 1.85, label = paste0(minVotes, '\n', scales::percent(coalition_percentage, accuracy = .1))),
                     position = position_stack(vjust = .5), size = 4)
 
 
@@ -4175,7 +4191,7 @@ scotusblog_stats <- function(decisions_path,
 
       ggsave(combined_coalitions,
              filename = file.path(output_folder, 'combined_coalitions.png'),
-             width = 12,
+             width = 14,
              height = 8,
              units = 'in')
 

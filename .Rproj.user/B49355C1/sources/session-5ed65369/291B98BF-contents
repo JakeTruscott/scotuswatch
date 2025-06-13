@@ -1,0 +1,6 @@
+
+scdb_cases %>%
+  filter(term >= 2005) %>%
+  select(docket, term) %>%
+  group_by(term) %>%
+  summarise(count = n(), .groups = 'drop')

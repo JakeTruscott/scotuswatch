@@ -1,4 +1,5 @@
 case,authorship,opinion_type,word_count
+Kousisis v. United States,Gorsuch,Special Concurrence,3899
 Kousisis v. United States,Thomas,Concurrence,3472
 Kousisis v. United States,Sotomayor,Concurrence,2345
 Velazquez v. Garland,Gorsuch,Opinion,5760
@@ -11,13 +12,20 @@ Seven County Infrastructure Coalition v. Eagle County,Sotomayor,Special Concurre
 Catholic Charities Bureau v. WI Labor and Industry Review,Sotomayor,Opinion,4172
 Catholic Charities Bureau v. WI Labor and Industry Review,Thomas,Concurrence,4583
 Catholic Charities Bureau v. WI Labor and Industry Review,Jackson,Concurrence,2745
+A.J.T. v. Osseo Area Schools,Roberts,Opinion,3959
+A.J.T. v. Osseo Area Schools,Thomas,Concurrence,1388
+A.J.T. v. Osseo Area Schools,Sotomayor,Concurrence,1304
+Parrish v. United States,Sotomayor,NA,3766
+Parrish v. United States,Jackson,Special Concurrence,766
+Parrish v. United States,Gorsuch,Dissent,256
 Laboratory Corp. of America v. Davis,Kavanaugh,NA,1686
+Soto v. United States,Thomas,Opinion,3800
+Martin v. United States,Gorsuch,Opinion,5379
+Martin v. United States,Sotomayor,Concurrence,1740
+Commissioner of IRS v. Zuch,Barrett,Opinion,2410
+Commissioner of IRS v. Zuch,Gorsuch,Dissent,3195
 TikTok Inc. v. Garland,Sotomayor,Concurrence,226
 TikTok Inc. v. Garland,Gorsuch,Concurrence,1374
 A.A.R.P v. Trump,Kavanaugh,Concurrence,338
 A.A.R.P v. Trump,Alito,Dissent,4394
 Department of Education v. California,Kagan,Dissent,295
-Department of Education v. California,Jackson,Dissent,5292
-Trump v. J.G.G.,Kavanaugh,Concurrence,293
-Trump v. J.G.G.,Sotomayor,Dissent,5281
-Trump v. J.G.G.,Jackson,Dissent,419

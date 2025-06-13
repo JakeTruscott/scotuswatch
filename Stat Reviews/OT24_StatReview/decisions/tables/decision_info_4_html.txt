@@ -43,13 +43,73 @@
    <td style="text-align:center;"> (9-0) </td>
   </tr>
   <tr>
-   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Blom Bank v. Honickman </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 23-1259 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 2025-03-03 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 2025-06-05 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> CA2 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> Reverse and Remand </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> Thomas </td>
+   <td style="text-align:center;font-weight: bold;"> Blom Bank v. Honickman </td>
+   <td style="text-align:center;"> 23-1259 </td>
+   <td style="text-align:center;"> 2025-03-03 </td>
+   <td style="text-align:center;"> 2025-06-05 </td>
+   <td style="text-align:center;"> CA2 </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> Thomas </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> A.J.T. v. Osseo Area Schools </td>
+   <td style="text-align:center;"> 24-249 </td>
+   <td style="text-align:center;"> 2025-04-28 </td>
+   <td style="text-align:center;"> 2025-06-12 </td>
+   <td style="text-align:center;"> CA8 </td>
+   <td style="text-align:center;"> Vacate and Remand </td>
+   <td style="text-align:center;"> Roberts </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Soto v. United States </td>
+   <td style="text-align:center;"> 24-320 </td>
+   <td style="text-align:center;"> 2025-04-28 </td>
+   <td style="text-align:center;"> 2025-06-12 </td>
+   <td style="text-align:center;"> CAFED </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> Thomas </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Parrish v. United States </td>
+   <td style="text-align:center;"> 24-275 </td>
+   <td style="text-align:center;"> 2025-04-21 </td>
+   <td style="text-align:center;"> 2025-06-12 </td>
+   <td style="text-align:center;"> CA4 </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> Sotomayor </td>
+   <td style="text-align:center;"> (8-1) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Martin v. United States </td>
+   <td style="text-align:center;"> 24-362 </td>
+   <td style="text-align:center;"> 2025-04-29 </td>
+   <td style="text-align:center;"> 2025-06-12 </td>
+   <td style="text-align:center;"> CA8 </td>
+   <td style="text-align:center;"> Vacate and Remand </td>
+   <td style="text-align:center;"> Gorsuch </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Commissioner of INS v. Zuch </td>
+   <td style="text-align:center;"> 24-416 </td>
+   <td style="text-align:center;"> 2025-04-22 </td>
+   <td style="text-align:center;"> 2025-06-12 </td>
+   <td style="text-align:center;"> CA3 </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> Barrett </td>
+   <td style="text-align:center;"> (8-1) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Rivers v. Guerrero </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 23-1345 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2025-03-31 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2025-06-12 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> CA5 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Affirm </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Jackson </td>
    <td style="text-align:center;border-bottom: 2px solid;"> (9-0) </td>
   </tr>
 </tbody>

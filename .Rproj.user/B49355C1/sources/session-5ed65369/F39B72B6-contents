@@ -1,0 +1,26 @@
+scdb_cases_data %>%
+  filter(term >= 2005) %>%
+  select(term, minVotes, docket) %>%
+  group_by(term) %>%
+  mutate(total_cases = n()) %>%
+  ungroup() %>%
+  filter(minVotes == 0) %>%
+  group_by(term) %>%
+  mutate(unanimous_cases = n()) %>%
+  reframe(unanimous_percentage = round(unanimous_cases/total_cases, 2)*100) %>%
+  ungroup() %>%
+  unique() %>%
+  bind_rows(decisions %>%
+              select(Coalition) %>%
+              rename(coalition = Coalition) %>%
+              mutate(total_cases = n()) %>%
+              filter(grepl('(Per Curiam|9-|(8-0))', coalition, ignore.case = T)) %>%
+              mutate(unanimous_cases = n()) %>%
+              mutate(unanimous_percentage = round(unanimous_cases/total_cases, 2)*100) %>%
+              unique() %>%
+              mutate(term = 2024) %>%
+              select(term, unanimous_percentage)) %>%
+  print(n = 30) %>%
+  mutate(mean = mean(unanimous_percentage))
+
+unique(decisions$Coalition)
