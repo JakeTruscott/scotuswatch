@@ -4929,7 +4929,7 @@ scotusblog_stats <- function(decisions_path,
           summarise(total_defections = sum(total_defections), .groups = 'drop') %>%
           unique() %>%
           mutate(total_cases = sum(total_cases_term$total_cases)) %>%
-          mutate(percent_defection = round(total_defections/total_cases, 2)) %>%
+          mutate(percent_defection = round(total_defections/total_cases, 3)) %>%
           rename(justice = defectors)
 
 
@@ -4952,14 +4952,14 @@ scotusblog_stats <- function(decisions_path,
           scale_y_continuous(lim = c(0, 0.5)) +
           geom_label(
             aes(
-              label = paste0(round(percent_defection * 100), '%'),
+              label = paste0(percent_defection * 100, '%'),
               color = type,  # text color
               group = type   # ensures correct dodging
             ),
             fill = "white",  # label background
             position = position_dodge(0.9),
             vjust = -0.25,
-            size = 4,
+            size = 3,
             show.legend = FALSE) +
           scale_color_manual(values = c('black', 'black')) +
           geom_hline(yintercept = 0) +
@@ -4995,6 +4995,7 @@ scotusblog_stats <- function(decisions_path,
 
 
     } # Most Common Defectors (2020-2024)
+
 
     # Measure 1: Conservatives Defecting to Coalitions with All Libs
     # Measure 2: Conservatives Being Only Defectors When All Other C's in Coalition
