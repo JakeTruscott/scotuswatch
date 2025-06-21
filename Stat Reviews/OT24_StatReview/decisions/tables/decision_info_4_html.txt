@@ -103,14 +103,34 @@
    <td style="text-align:center;"> (8-1) </td>
   </tr>
   <tr>
-   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Rivers v. Guerrero </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 23-1345 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 2025-03-31 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 2025-06-12 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> CA5 </td>
+   <td style="text-align:center;font-weight: bold;"> Rivers v. Guerrero </td>
+   <td style="text-align:center;"> 23-1345 </td>
+   <td style="text-align:center;"> 2025-03-31 </td>
+   <td style="text-align:center;"> 2025-06-12 </td>
+   <td style="text-align:center;"> CA5 </td>
+   <td style="text-align:center;"> Affirm </td>
+   <td style="text-align:center;"> Jackson </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Perttu v. Richards </td>
+   <td style="text-align:center;"> 23-1324 </td>
+   <td style="text-align:center;"> 2025-02-25 </td>
+   <td style="text-align:center;"> 2025-06-18 </td>
+   <td style="text-align:center;"> CA6 </td>
+   <td style="text-align:center;"> Affirm </td>
+   <td style="text-align:center;"> Roberts </td>
+   <td style="text-align:center;"> (5-4) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> United States v. Skrmetti </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 23-477 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2025-12-04 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2025-06-18 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> CA6 </td>
    <td style="text-align:center;border-bottom: 2px solid;"> Affirm </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> Jackson </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> (9-0) </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Roberts </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> (6-3) </td>
   </tr>
 </tbody>
 </table>

@@ -1,6 +1,26 @@
 case,authorship,opinion_type,word_count
+BLOM Bank SAL v. Honickman,Jackson,Special Concurrence,1784
+NRC v. Texas,Kavanaugh,Opinion,7206
+NRC v. Texas,Gorsuch,Dissent,7609
+Perttu v. Richards,Roberts,Opinion,5271
+Perttu v. Richards,Barrett,Dissent,5271
+Rivers v. Guerrero,Jackson,Opinion,3963
+Williams v. Washington,Kavanaugh,Opinion,2999
+Williams v. Washington,Thomas,Dissent,3796
+E.M.D. Sales Inc v. Carrera,Kavanaugh,Opinion,2251
+E.M.D. Sales Inc v. Carrera,Gorsuch,Concurrence,207
+Medical Marijuana Inc. v. Horn,Barrett,Opinion,5862
+Medical Marijuana Inc. v. Horn,Jackson,Concurrence,114
 Medical Marijuana Inc. v. Horn,Thomas,Dissent,3362
 Medical Marijuana Inc. v. Horn,Kavanaugh,Dissent,8325
+United States v. Skrmetti,Roberts,Opinion,7407
+United States v. Skrmetti,Alito,Special Concurrence,6921
+United States v. Skrmetti,Thomas,Concurrence,6952
+United States v. Skrmetti,Barrett,Concurrence,2751
+United States v. Skrmetti,Barrett,Concurrence,484
+United States v. Skrmetti,Sotomayor,Dissent,7659
+United States v. Skrmetti,Sotomayor,Dissent,2309
+United States v. Skrmetti,Kagan,Dissent,257
 Bouarafa v. Mayorkas,Jackson,Opinion,3472
 Lackey v. Stinnie,Roberts,Opinion,4106
 Lackey v. Stinnie,Jackson,Dissent,5802
@@ -9,23 +29,3 @@ Andrew v. White,Thomas,Dissent,5754
 Royal Canin v. Wullschleger,Kagan,Opinion,6487
 Bufkin v. McDonough,Thomas,Opinion,5097
 Bufkin v. McDonough,Jackson,Dissent,6250
-Advocate Christ Medical Center v. Becerra,Barrett,Opinion,4927
-Advocate Christ Medical Center v. Becerra,Jackson,Dissent,5689
-San Francisco v. EPA,Alito,Opinion,5978
-San Francisco v. EPA,Barrett,Dissent,3986
-United States v. Miller,Jackson,Opinion,5798
-United States v. Miller,Gorsuch,Dissent,663
-Delligatti v. United States.,Thomas,Opinion,4718
-Delligatti v. United States.,Gorsuch,Dissent,6414
-Garland v. Vanderstok,Gorsuch,Opinion,7314
-Garland v. Vanderstok,Sotomayor,Concurrence,482
-Garland v. Vanderstok,Kavanaugh,Concurrence,430
-Garland v. Vanderstok,Jackson,Concurrence,214
-Garland v. Vanderstok,Thomas,Dissent,8036
-Garland v. Vanderstok,Alito,Dissent,1509
-Feliciano v. Department of Transportation.,Gorsuch,Opinion,4968
-Feliciano v. Department of Transportation.,Thomas,Dissent,5321
-Hungary v. Simon,Sotomayor,Opinion,6844
-Dewberry Group Inc. v. Dewberry Engineers Inc.,Kagan,Opinion,2391
-Dewberry Group Inc. v. Dewberry Engineers Inc.,Sotomayor,Concurrence,951
-Kousisis v. United States,Barrett,Opinion,6256

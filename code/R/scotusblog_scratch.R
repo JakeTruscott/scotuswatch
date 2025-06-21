@@ -1178,7 +1178,7 @@ scotusblog_stats <- function(decisions_path,
           coord_polar(theta = "y") +
           scale_fill_brewer(name = 'RdB') +
           theme_void() +
-          labs(title = '2020-2024 Terms') +
+          labs(title = '2024 Terms') +
           theme(legend.title = element_blank(),
                 plot.title = element_markdown(hjust = 0.5, size = 18, face = 'bold'),
                 legend.position = 'none') +
@@ -1379,10 +1379,10 @@ scotusblog_stats <- function(decisions_path,
 
       {
 
-        ot24_ideological_splits <- decisions[, c(7:16)] %>%
-          filter(grepl('-3', Coalition)) %>%
+        ot24_ideological_splits <- decisions[, c(7:17)] %>%
+          filter(grepl('6-3', Coalition)) %>%
           rowwise() %>%
-          mutate(ideological_split = ifelse(all(JACKSON, SOTOMAYOR, KAGAN) <= -1, 1, 0)) %>%
+          mutate(ideological_split = ifelse(all(c(JACKSON, SOTOMAYOR, KAGAN) <= -1), 1, 0)) %>%
           select(ideological_split) %>%
           summarise(ideological_split = length(which(ideological_split == 1))) %>%
           mutate(term = 2024,
