@@ -300,9 +300,14 @@ scotusblog_stats <- function(decisions_path,
           legend.position = 'top',
           legend.title = element_blank(),
           legend.box.background = element_rect(size = 1, colour = 'black', fill = NA)
+        ) +
+        geom_text(
+          data = df_labels,
+          aes(x = term, y = total + 8, label = total),  # offset above bar
+          inherit.aes = FALSE,
+          size = 4.5,
+          fontface = "bold"
         )
-
-
 
 
       combined_list[['opinions']][['opinions_over_time_figure']] <- decisions_over_time
@@ -1777,7 +1782,8 @@ scotusblog_stats <- function(decisions_path,
           unique() %>%
           mutate(total_cases = sum(total_cases_term$total_cases)) %>%
           mutate(percent_defection = round(total_defections/total_cases, 2)) %>%
-          rename(justice = defectors)
+          rename(justice = defectors) %>%
+          filter(!justice == 'Breyer')
 
 
         justice_labels <- breaks %>%
@@ -2103,7 +2109,16 @@ scotusblog_stats <- function(decisions_path,
 
     combined_list[['opinion_lengths']] <- list()
 
-    opinions_processed <- get(load(opinions_processed))
+    opinions_processed <- get(load(opinions_processed)) %>%
+      group_by(docket, authorship) %>%
+      summarise(
+        opinion_text = paste(opinion_text, collapse = " "),
+        opinion_type = first(opinion_type),
+        date = first(date),
+        case = first(case),
+        justia_summary = first(justia_summary),
+        .groups = "drop"
+      )
 
     {
 
@@ -2153,7 +2168,7 @@ scotusblog_stats <- function(decisions_path,
       combined_list[['opinion_lengths']][['longest_opinions']] <- longest_opinions
       combined_list[['opinion_lengths']][['shortest_opinions']] <- shortest_opinions
 
-    } # Shortest and Longest Opinions
+    } # Shortest and Longest Opinions (Individual Opinions)
 
     {
 
@@ -2221,6 +2236,39 @@ scotusblog_stats <- function(decisions_path,
              bg = 'white')
 
     }  # Opinion Length Comparison
+
+    {
+
+      total_opinion_lengths <- opinions_processed %>%
+        mutate(word_count = lengths(gregexpr("\\W+", opinion_text)) + 1) %>%
+        select(authorship, docket, opinion_type, word_count) %>%
+        left_join(master_file %>%
+                    select(docket, short_hand), by = 'docket') %>%
+        left_join(decisions %>%
+                    select(Coalition, Docket, Date_Argued, Date_Decided) %>%
+                    rename(coalition = Coalition,
+                           docket = Docket,
+                           date_argued = Date_Argued,
+                           date_decided = Date_Decided), by = 'docket') %>%
+        group_by(docket) %>%
+        reframe(total_words = sum(word_count),
+                total_opinions = n(),
+                total_authors = list(authorship),
+                short_hand = short_hand,
+                coalition = coalition,
+                date_decided = date_decided) %>%
+        unique() %>%
+        rename(case_name = short_hand) %>%
+        rowwise() %>%
+        mutate(total_authors = paste(unlist(total_authors), collapse = "; ")) %>%
+        ungroup() %>%
+        select(case_name, total_opinions, total_authors, coalition, total_words, date_decided) %>%
+        arrange(desc(total_words))
+
+
+      combined_list[['opinion_lengths']][['combined_opinion_lengths']] <- total_opinion_lengths
+
+    } # Longest Opinions (Total)
 
   } # Opinion Lengths
 
