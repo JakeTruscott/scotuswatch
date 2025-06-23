@@ -39,6 +39,8 @@
 
 \input{sections/oral_arguments/introduction} % Introduction
 
+\input{sections/oral_arguments/attorney_information} % Attorney Demographics Breakdown
+
 \input{sections/oral_arguments/justice_aggregate_words_time} % Combined Justice Words % Time
 
 \input{sections/oral_arguments/justice_sitting_words} % By Sitting Justice-Level Word Counts & Time Speaking

@@ -1,0 +1,170 @@
+attorney_information_analysis <- function(attorney_path, 
+                                          output_path){
+  
+
+  attorneys <- read.csv(attorney_path, as.is = T)  
+  
+  attorneys_analysis <- list()
+  
+  
+  {
+    
+    gender <- attorneys %>%
+      group_by(gender) %>%
+      summarise(count = n(), .groups = 'drop') %>%
+      mutate(total = sum(count), 
+             percent = count/total) %>%
+      ggplot(aes(x = "", y = percent, fill = gender)) +
+      geom_bar(stat = "identity", width = 1, color = "black") +
+      coord_polar(theta = "y") +
+      scale_fill_manual(values = c('gray', 'black')) +
+      theme_void() +
+      labs(title = 'Gender') +
+      theme(legend.title = element_blank(),
+            plot.title = element_markdown(hjust = 0.5, size = 18, face = 'bold'),
+            legend.position = 'none') +
+      geom_text(aes(x = 1.85, label = paste0(gender, '\n', scales::percent(percent, accuracy = .1))),
+                position = position_stack(vjust = .5), size = 5)
+  
+    attorneys_analysis[['attorney_gender']] <- gender
+    
+      
+  } # Gender
+  
+  {
+
+    
+      law_school <- attorneys %>%
+        select(law_school) %>%
+        mutate(law_school = ifelse(grepl('(Harvard|Yale|Chicago|Stanford|Columbia|Virginia|UVA|Texas|UT|Berkeley|Michigan)', law_school, ignore.case = T), law_school, 'Other'), 
+               law_school = ifelse(grepl('Michigan State', law_school), 'Other', law_school)) %>%
+        mutate(law_school = case_when(
+          .default = law_school,
+          grepl('Harvard', law_school) ~ 'Harvard', 
+          grepl('(Texas|Austin)', law_school) ~ 'Texas', 
+          grepl('Chicago', law_school) ~ 'Chicago', 
+          grepl('Yale', law_school) ~ 'Yale', 
+          grepl('Berkeley', law_school) ~ 'Cal', 
+          grepl('Columbia', law_school) ~ 'Columbia', 
+          grepl('(Virginia|UVA)', law_school) ~ 'Virginia', 
+          grepl('Michigan', law_school) ~ 'Michigan', 
+          grepl('Stanford', law_school) ~ 'Stanford')) %>%
+        group_by(law_school) %>%
+        summarise(count = n(), .groups = 'drop') %>%
+        mutate(total = sum(count), 
+               percent = (count/total)*100, 
+               law_school = factor(law_school, levels = c('Harvard', 'Texas', 'Chicago', 'Yale', 'Cal', 'Columbia', 'Virginia', 'Michigan', 'Stanford', 'Other'))) %>% 
+        ggplot(aes(x = "", y = percent, fill = law_school)) +
+        geom_bar(stat = "identity", width = 1, color = "black") +
+        coord_polar(theta = "y") +
+      scale_fill_manual(values = c(
+        'Harvard' = '#A51C30',     # Harvard Crimson
+        'Texas' = '#BF5700',       # Texas Burnt Orange
+        'Chicago' = '#800000',     # Chicago Maroon
+        'Yale' = '#00356B',        # Yale Blue
+        'Cal' = '#00274C',  # UC Berkeley Blue
+        'Columbia' = '#9BDDFF',    # Columbia Blue
+        'Virginia' = '#E57200',    # Virginia Blue (or '#E57200' for Orange)
+        'Michigan' = '#00274C',    # Michigan Blue
+        'Stanford' = '#8C1515',    # Stanford Cardinal
+        'Other' = '#000000'        # Black
+      )) + 
+      theme_void() +
+        labs(title = 'Law School') +
+        theme(legend.title = element_blank(),
+              plot.title = element_markdown(hjust = 0.5, size = 18, face = 'bold'),
+              legend.position = 'none') +
+        geom_text(aes(x = 1.85, label = paste0(law_school, '\n', round(percent, 0), '%')),
+                  position = position_stack(vjust = .5), size = 5)
+  
+    attorneys_analysis[['law_school']] <- law_school
+      
+  } # Law School
+  
+  {
+    
+    clerkship <- attorneys %>%
+      mutate(scotus_clerk = ifelse(!scotus_clerk == '', 'SCOTUS\nClerkship', 'No SCOTUS\nClerkship')) %>%
+      group_by(scotus_clerk) %>%
+      summarise(count = n(), .groups = 'drop') %>%
+      mutate(total = sum(count), 
+             percent = (count/total)) %>%
+      ggplot(aes(x = "", y = percent, fill = scotus_clerk)) +
+      geom_bar(stat = "identity", width = 1, color = "black") +
+      coord_polar(theta = "y") +
+      scale_fill_manual(values = c('gray', 'black')) +
+      theme_void() +
+      labs(title = 'SCOTUS Clerkship') +
+      theme(legend.title = element_blank(),
+            plot.title = element_markdown(hjust = 0.5, size = 18, face = 'bold'),
+            legend.position = 'none') +
+      geom_text(aes(x = 1.85, label = paste0(scotus_clerk, '\n', scales::percent(percent, accuracy = .1))),
+                position = position_stack(vjust = .5), size = 5)
+  
+    
+    clerkship_by_justice <- attorneys %>%
+      mutate(scotus_clerk = ifelse(!scotus_clerk == '', scotus_clerk, NA)) %>%
+      filter(!is.na(scotus_clerk)) %>%
+      filter(!grepl('\\(', scotus_clerk)) %>%
+      select(scotus_clerk) %>%
+      mutate(scotus_clerk = ifelse(grepl('\\;', scotus_clerk), 'Multiple Justices', scotus_clerk), 
+             scotus_clerk = gsub('Ginsberg', 'Ginsburg', scotus_clerk), 
+             scotus_clerk = gsub('John G. Roberts', 'John Roberts', scotus_clerk), 
+             scotus_clerk = gsub('.* ', '', scotus_clerk), 
+             scotus_clerk = ifelse(scotus_clerk == 'Justices', '\n\nMultiple', scotus_clerk), 
+             scotus_clerk = ifelse(scotus_clerk %in% c('Rehnquist', "O'Connor", 'Burger', 'White', 'Stevens'), 'Other', scotus_clerk)) %>%
+      group_by(scotus_clerk) %>%
+      summarise(count = n(), .groups = 'drop') %>%
+      mutate(total = sum(count), 
+             percent = (count/total), 
+             scotus_clerk = forcats::fct_reorder(scotus_clerk, percent)) %>%
+      ggplot(aes(x = "", y = percent, fill = scotus_clerk)) +
+      geom_bar(stat = "identity", width = 1, color = "black") +
+      coord_polar(theta = "y") +
+      scale_fill_grey() + 
+      theme_void() +
+      labs(title = 'Clerkship by Justice') +
+      theme(legend.title = element_blank(),
+            plot.title = element_markdown(hjust = 0.5, size = 18, face = 'bold'),
+            legend.position = 'none') +
+      geom_text(aes(x = 1.85, label = paste0(scotus_clerk, '\n', scales::percent(percent, accuracy = .1))),
+                position = position_stack(vjust = .5), size = 5)
+      
+    
+    attorneys_analysis[['clerkships']] <- clerkship
+    attorneys_analysis[['clerkships_by_justice']] <- clerkship_by_justice
+    
+  } # Clerkships
+  
+  {
+    
+    attorney_appearances <- attorneys %>%
+      select(attorney, total_arguments_OT24) %>%
+      filter(total_arguments_OT24 >= 3) %>%
+      arrange(desc(total_arguments_OT24))
+  
+    attorneys_analysis[['attorney_appearances']] <- attorney_appearances    
+    
+    
+  } # Most Common Litigators
+  
+  combined_attorneys_1 <- gender + law_school+ 
+    theme(legend.position = "none")
+
+  combined_attorneys_2 <- clerkship + clerkship_by_justice + 
+    theme(legend.position = 'none')
+  
+  attorneys_analysis[['combined_attorneys']] <- combined_attorneys  
+
+  ggsave(combined_attorneys_1, file = file.path(output_path, 'combined_attorneys_analysis_1.png'), width = 14, height = 11, units = 'in', bg = 'white')
+  ggsave(combined_attorneys_2, file = file.path(output_path, 'combined_attorneys_analysis_2.png'), width = 14, height = 11, units = 'in', bg = 'white')
+  
+    
+    
+}
+
+
+
+attorney_path <- 'Stat Reviews/OT24_StatReview/oral_arguments/attorney_information/attorney_information_OT24.csv'
+
+output_path <- 'C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/oral_arguments/attorney_information'

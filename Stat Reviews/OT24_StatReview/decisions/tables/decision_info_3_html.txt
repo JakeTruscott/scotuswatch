@@ -20,7 +20,7 @@
    <td style="text-align:center;"> DCDC </td>
    <td style="text-align:center;"> Granted </td>
    <td style="text-align:center;"> Per Curiam </td>
-   <td style="text-align:center;"> (5-4)* </td>
+   <td style="text-align:center;"> (6-3)* </td>
   </tr>
   <tr>
    <td style="text-align:center;font-weight: bold;"> Cunningham v. Cornell Univ. </td>

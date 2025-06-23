@@ -97,6 +97,9 @@ attorney_information_template(transcript = combined_transcript,
                               output_path = 'Stat Reviews/OT24_StatReview/oral_arguments/attorney_information')
 
 
+attorney_information_analysis(attorney_path <- 'Stat Reviews/OT24_StatReview/oral_arguments/attorney_information/attorney_information_OT24.csv',
+                              output_path <- 'C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/oral_arguments/attorney_information')
+
 
 ################################################################################
 # Decisions Tables
@@ -125,8 +128,8 @@ justia_opinion_recovery(opinions_path = "C:/Users/jaketruscott/Github/scotuswatc
 # Docket Recovery
 ################################################################################
 
-petitions <- c(1130:1263, 7126:7406)
-applications <- c(1051:1222)
+petitions <- c(1264:1294, 7407:7474)
+applications <- c(1223:1261)
 motions <- c(89:98)
 dockets <- c(paste0('24-', petitions), paste0('24a', applications), paste0('24m', motions))
 temp_output_path <- 'Stat Reviews/OT24_StatReview/dockets/processed_dockets'

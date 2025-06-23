@@ -54,13 +54,13 @@
   </tr>
   <tr>
    <td style="text-align:center;font-weight: bold;"> Stanley v. City of Sanford </td>
-   <td style="text-align:center;"> 23-977 </td>
+   <td style="text-align:center;"> 23-997 </td>
    <td style="text-align:center;"> 2025-01-13 </td>
    <td style="text-align:center;"> 2025-06-20 </td>
    <td style="text-align:center;"> CA11 </td>
    <td style="text-align:center;"> Affirm </td>
    <td style="text-align:center;"> Gorsuch </td>
-   <td style="text-align:center;"> (7-2)* </td>
+   <td style="text-align:center;"> (8-1)* </td>
   </tr>
   <tr>
    <td style="text-align:center;font-weight: bold;"> Diamond Alternative Energy v. EPA </td>
@@ -74,7 +74,7 @@
   </tr>
   <tr>
    <td style="text-align:center;font-weight: bold;"> McLaughlin Chiropractic v. McKesson </td>
-   <td style="text-align:center;"> 23-1266 </td>
+   <td style="text-align:center;"> 23-1226 </td>
    <td style="text-align:center;"> 2025-01-21 </td>
    <td style="text-align:center;"> 2025-06-20 </td>
    <td style="text-align:center;"> CA9 </td>
