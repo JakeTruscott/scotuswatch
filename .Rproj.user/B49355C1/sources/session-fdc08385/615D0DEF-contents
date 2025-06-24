@@ -1824,7 +1824,7 @@ scotusblog_stats <- function(decisions_path,
           pull(image_labels)
 
         defections <-  breaks %>%
-          add_row(justice = 'Kavanaugh', type = 'M2', percent_defection = 0) %>%
+          #add_row(justice = 'Kavanaugh', type = 'M2', percent_defection = 0) %>%
           mutate(type = ifelse(type == 'M1', 'Joined Coalition w/\nAll Democratic-Appointees', 'Sole Dissenter')) %>%
           ggplot(aes(x = justice, y = percent_defection, fill = type)) +
           geom_col(colour = 'black', position = position_dodge(0.9)) +

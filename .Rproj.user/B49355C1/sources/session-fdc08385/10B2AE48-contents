@@ -4,8 +4,7 @@ d <- dockets_ot01_ot24 %>%
   mutate(term_year = as.numeric(gsub('(A|M|\\-).*', '', docket_number))) %>%
   filter(term_year %in% c(15:23))
 
-dockets <- d %>%
-  filter(grepl('\\-', docket_number))
+dockets <- d
 
 dockets_15_23 <- data.frame()
 
@@ -52,5 +51,5 @@ for (i in 1:nrow(dockets)){
   
 }
 
-write.csv(dockets_15_23, file = "C:/Users/jaketruscott/Desktop/dockets_15_23.csv", row.names = F)
+write.csv(dockets_15_23, file = "C:/Users/jaketruscott/Desktop/dockets_15_23_Sopko2.csv", row.names = F)
 
