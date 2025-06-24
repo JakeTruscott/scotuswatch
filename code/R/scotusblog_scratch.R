@@ -231,12 +231,14 @@ scotusblog_stats <- function(decisions_path,
     {
 
 
-      ot24_decisions <- decisions[,c(8:16)] %>%
+      ot24_decisions <- decisions[,c(6, 8:16)] %>%
+        mutate(per_curiam = ifelse(Author == 'Per Curiam', 100, 0)) %>%
+        select(-c(Author)) %>%
         rowwise() %>%
         mutate(
-          Majority = sum(c_across(1:9) %in% c(100), na.rm = TRUE),
-          Concurrence = sum(c_across(1:9) %in% c(2, 4, 5, 7), na.rm = TRUE),
-          Dissent = sum(c_across(1:9) %in% c(-1, -3), na.rm = TRUE)) %>%
+          Majority = sum(c_across(1:10) %in% c(100), na.rm = TRUE),
+          Concurrence = sum(c_across(1:10) %in% c(2, 4, 5, 7), na.rm = TRUE),
+          Dissent = sum(c_across(1:10) %in% c(-1, -3), na.rm = TRUE)) %>%
         ungroup() %>%
         select(Majority, Concurrence, Dissent) %>%
         mutate(Majority = sum(Majority),
@@ -268,16 +270,37 @@ scotusblog_stats <- function(decisions_path,
         mutate(vote = factor(vote, levels = c('Majority', 'Concurrence', 'Dissent'))) %>%
         bind_rows(ot24_decisions)
 
-      df_labels <- decisions_combined %>%
+      cases_with_no_signed_opinions <- scdb_justices_data %>%
+        filter(term >= 2005) %>%
+        select(opinion, docket) %>%
+        group_by(docket) %>%
+        filter(all(opinion == 1)) %>%
+        ungroup() %>%
+        unique() %>%
+        left_join(scdb_cases %>%
+                    select(docket, term, decisionType), by = 'docket') %>%
+        filter(term >= 2005) %>%
+        filter(!decisionType == 5) %>% # Remove Equally Divided (Only Keep Per Curiams & Decrees)
+        group_by(term) %>%
+        summarise(count = n(), .groups = 'drop') %>%
+        mutate(vote = 'Majority')
+
+      decisions_merged <- decisions_combined %>%
+        bind_rows(cases_with_no_signed_opinions) %>%
+        group_by(term, vote) %>%
+        summarise(count = sum(count), .groups = 'drop') %>%
+        mutate(vote = factor(vote, levels = c('Dissent', 'Concurrence', 'Majority'))) # Combine PCs with Existing Metrics
+
+      df_labels <- decisions_merged %>%
         group_by(term) %>%
         summarise(total = sum(count), .groups = 'drop')
 
 
-      decisions_over_time <- decisions_combined %>%
-        ggplot(aes(x = term, y = count, fill = factor(vote, levels = rev(levels(vote))))) +
+      decisions_over_time <- decisions_merged %>%
+        ggplot(aes(x = term, y = count, fill = vote)) +
         geom_col(colour = 'black') +
         geom_label(
-          aes(label = count, group = factor(vote, levels = rev(levels(vote)))),
+          aes(label = count, group = vote),
           fill = "white",  # label background
           position = position_stack(vjust = 0.5),
           size = 4,
@@ -441,8 +464,9 @@ scotusblog_stats <- function(decisions_path,
       for (i in 1:ncol(justice_columns)){
 
         temp_justice <- justice_columns[, i]
+        temp_justice <- temp_justice[!is.na(temp_justice)] # Filter to Only Cases Participated
         temp_justice_name <- str_to_title(names(justice_columns[i]))
-        majority <- round(length(which(temp_justice >= 1))/total_cases, 2)
+        majority <- round(length(which(temp_justice >= 1))/length(temp_justice), 2)
         ideology <- ifelse(temp_justice_name %in% c('Kagan', 'Sotomayor', 'Jackson'), 'Democrat Appointee', 'Republican Appointee')
 
         majorities <- bind_rows(majorities, data.frame(justice = temp_justice_name,
@@ -475,7 +499,7 @@ scotusblog_stats <- function(decisions_path,
         #scale_fill_manual(values = c('deepskyblue3', 'coral4')) +
         scale_fill_distiller(palette = 'Blues', direction = 1) +
         scale_y_continuous(lim = c(0, 1)) +
-        geom_label(aes(label = paste0(percent_majority*100, '%'), vjust = -0.25), size = 6) +
+        geom_label(aes(label = paste0(percent_majority*100, '%'), vjust = -0.25), size = 5) +
         geom_hline(yintercept = 0) +
         theme_minimal() +
         scale_x_discrete(labels = justice_labels) +  # Use the labels with images for the x-axis
@@ -519,8 +543,10 @@ scotusblog_stats <- function(decisions_path,
       for (i in 1:ncol(justice_columns)){
 
         temp_justice <- justice_columns[, i]
+        temp_justice <- temp_justice[!is.na(temp_justice)] # Filter to Only Cases Participated
+
         temp_justice_name <- str_to_title(names(justice_columns[i]))
-        majority <- round(length(which(temp_justice >= 1))/total_cases, 2)
+        majority <- round(length(which(temp_justice >= 1))/length(temp_justice), 2)
         ideology <- ifelse(temp_justice_name %in% c('Kagan', 'Sotomayor', 'Jackson'), 'Democrat Appointee', 'Republican Appointee')
 
         majorities <- bind_rows(majorities, data.frame(justice = temp_justice_name,
@@ -550,7 +576,7 @@ scotusblog_stats <- function(decisions_path,
         geom_col(aes(fill = percent_majority), colour = 'black') +
         scale_fill_distiller(palette = 'Blues', direction = 1) +
         scale_y_continuous(lim = c(0, 1)) +
-        geom_label(aes(label = paste0(percent_majority*100, '%'), vjust = -0.25), size = 6) +
+        geom_label(aes(label = paste0(percent_majority*100, '%'), vjust = -0.25), size = 5) +
         geom_hline(yintercept = 0) +
         theme_minimal() +
         scale_x_discrete(labels = justice_labels) +  # Use the labels with images for the x-axis
@@ -593,8 +619,9 @@ scotusblog_stats <- function(decisions_path,
       for (i in 1:ncol(justice_columns)){
 
         temp_justice <- justice_columns[, i]
+        temp_justice <- temp_justice[!is.na(temp_justice)] # Filter to Only Cases Participated
         temp_justice_name <- str_to_title(names(justice_columns[i]))
-        majority <- round(length(which(temp_justice >= 1))/total_cases, 2)
+        majority <- round(length(which(temp_justice >= 1))/length(temp_justice), 2)
         ideology <- ifelse(temp_justice_name %in% c('Kagan', 'Sotomayor', 'Jackson'), 'Democrat Appointee', 'Republican Appointee')
 
         majorities <- bind_rows(majorities, data.frame(justice = temp_justice_name,
@@ -622,7 +649,7 @@ scotusblog_stats <- function(decisions_path,
         geom_col(aes(fill = percent_majority), colour = 'black') +
         scale_fill_distiller(palette = 'Blues', direction = 1) +
         scale_y_continuous(lim = c(0, 1)) +
-        geom_label(aes(label = paste0(percent_majority*100, '%'), vjust = -0.25), size = 6) +
+        geom_label(aes(label = paste0(percent_majority*100, '%'), vjust = -0.25), size = 5) +
         geom_hline(yintercept = 0) +
         theme_minimal() +
         scale_x_discrete(labels = justice_labels) +  # Use the labels with images for the x-axis
