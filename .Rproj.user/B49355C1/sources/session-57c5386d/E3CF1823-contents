@@ -3377,6 +3377,7 @@ scotusblog_stats <- function(decisions_path,
         grepl('Affirm', decision) ~ 'Affirm',
         decision %in% c('DIG', 'dig') ~ 'DIG')) %>%
       filter(lower_court %in% c('CA1', 'CA2', 'CA3', 'CA4', 'CA5', 'CA6', 'CA7', 'CA8', 'CA9', 'CA10', 'CA11', 'CADC', 'CAFED', 'CAFC')) %>%
+      filter(!decision == 'Toss') %>%
       arrange(lower_court) %>%
       group_by(lower_court, decision) %>%
       summarise(count = n(), .groups = "drop") %>%
@@ -5466,7 +5467,7 @@ scotusblog_stats <- function(decisions_path,
 
       opinion_lengths_by_justice <- opinions_processed %>%
         group_by(authorship) %>%
-        mutate(word_count = lengths(gregexpr("\\W+", opinion_text)) + 1) %>%
+        mutate(word_count =  stri_count_words(opinion_text)) %>%
         summarise(mean_words = round(mean(word_count), 2)) %>%
         filter(!authorship %in% 'Per Curiam') %>%
         rename(justice = authorship) %>%
@@ -5479,7 +5480,7 @@ scotusblog_stats <- function(decisions_path,
 
     {
       shortest_opinions <- opinions_processed %>%
-        mutate(word_count = lengths(gregexpr("\\W+", opinion_text)) + 1) %>%
+        mutate(word_count =  stri_count_words(opinion_text)) %>%
         select(authorship, docket, opinion_type, word_count) %>%
         left_join(master_file %>%
                     select(docket, short_hand), by = 'docket') %>%
@@ -5493,7 +5494,7 @@ scotusblog_stats <- function(decisions_path,
         slice_head(n = 5)
 
       longest_opinions <- opinions_processed %>%
-        mutate(word_count = lengths(gregexpr("\\W+", opinion_text)) + 1) %>%
+        mutate(word_count =  stri_count_words(opinion_text)) %>%
         select(authorship, docket, opinion_type, word_count) %>%
         left_join(master_file %>%
                     select(docket, short_hand), by = 'docket') %>%
@@ -5526,7 +5527,7 @@ scotusblog_stats <- function(decisions_path,
       }
 
       opinion_lengths <- opinions_processed %>%
-        mutate(word_count = lengths(gregexpr("\\W+", opinion_text)) + 1)
+        mutate(word_count =  stri_count_words(opinion_text))
 
       opinion_lengths_by_term <-  older_opinions_combined %>%
         select(opinion_writer, opinion_type, word_count, term) %>%
@@ -5582,7 +5583,7 @@ scotusblog_stats <- function(decisions_path,
     {
 
       total_opinion_lengths <- opinions_processed %>%
-        mutate(word_count = lengths(gregexpr("\\W+", opinion_text)) + 1) %>%
+        mutate(word_count =  stri_count_words(opinion_text)) %>%
         select(authorship, docket, opinion_type, word_count) %>%
         left_join(master_file %>%
                     select(docket, short_hand), by = 'docket') %>%
@@ -5739,8 +5740,7 @@ scotusblog_stats <- function(decisions_path,
   return(combined_list)
 
 
-}
-# Returns List Object of SCOTUSBLOG Stats (Figures & Tables)
+} # Returns List Object of SCOTUSBLOG Stats (Figures & Tables)
 
 
 ###############################################################################
