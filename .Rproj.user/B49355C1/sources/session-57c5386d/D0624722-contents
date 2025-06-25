@@ -1,0 +1,11 @@
+
+
+c <- decisions %>%
+  select(SOTOMAYOR) %>%
+  filter(!is.na(SOTOMAYOR)) %>%
+  mutate(value = ifelse(SOTOMAYOR >= 1, 'Maj', 'Min')) %>%
+  select(value) %>%
+  pull(value)
+
+table(c)
+
