@@ -128,8 +128,8 @@ justia_opinion_recovery(opinions_path = "C:/Users/jaketruscott/Github/scotuswatc
 # Docket Recovery
 ################################################################################
 
-petitions <- c(1264:1294, 7407:7474)
-applications <- c(1223:1261)
+petitions <- c(1295:1315, 7475:7501)
+applications <- c(1262:1282)
 motions <- c(89:98)
 dockets <- c(paste0('24-', petitions), paste0('24a', applications), paste0('24m', motions))
 temp_output_path <- 'Stat Reviews/OT24_StatReview/dockets/processed_dockets'

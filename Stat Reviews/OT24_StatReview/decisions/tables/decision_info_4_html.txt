@@ -13,7 +13,7 @@
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:center;font-weight: bold;"> Smith and Weesson Brands v. Estados Unidos Mexicanos </td>
+   <td style="text-align:center;font-weight: bold;"> Smith and Wesson Brands v. Estados Unidos Mexicanos </td>
    <td style="text-align:center;"> 23-1141 </td>
    <td style="text-align:center;"> 2025-03-04 </td>
    <td style="text-align:center;"> 2025-06-05 </td>
@@ -87,7 +87,7 @@
    <td style="text-align:center;"> 24-362 </td>
    <td style="text-align:center;"> 2025-04-29 </td>
    <td style="text-align:center;"> 2025-06-12 </td>
-   <td style="text-align:center;"> CA8 </td>
+   <td style="text-align:center;"> CA11 </td>
    <td style="text-align:center;"> Vacate and Remand </td>
    <td style="text-align:center;"> Gorsuch </td>
    <td style="text-align:center;"> (9-0) </td>

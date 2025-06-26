@@ -10,12 +10,13 @@
 \contentsline {subsection}{\underline {Note on Decision Coding}}{40}{subsection*.47}%
 \contentsline {subsection}{\underline {Additional Notes: Opinion Consolidations}}{40}{subsection*.48}%
 \contentsline {subsection}{Decision Information}{41}{subsection*.49}%
-\contentsline {subsection}{Decision Vote Matrices}{46}{subsection*.55}%
-\contentsline {subsection}{Coalitions and Unanimity}{51}{subsection*.61}%
-\contentsline {subsection}{Circuit Scorecard}{54}{subsection*.65}%
-\contentsline {subsection}{Opinion Authorship}{56}{subsection*.68}%
-\contentsline {section}{Dockets}{62}{section*.76}%
-\contentsline {subsection}{Variance in Filings}{63}{subsection*.78}%
-\contentsline {subsection}{Filings Origins}{65}{subsection*.82}%
-\contentsline {subsection}{Amici Variance}{70}{subsection*.92}%
+\contentsline {subsection}{Decision Vote Matrices}{47}{subsection*.56}%
+\contentsline {subsection}{Justice Alignment (OT24)}{53}{subsection*.63}%
+\contentsline {subsection}{Coalitions and Unanimity}{55}{subsection*.66}%
+\contentsline {subsection}{Circuit Scorecard}{58}{subsection*.70}%
+\contentsline {subsection}{Opinion Authorship}{60}{subsection*.73}%
+\contentsline {section}{Dockets}{66}{section*.80}%
+\contentsline {subsection}{Variance in Filings}{67}{subsection*.82}%
+\contentsline {subsection}{Filings Origins}{69}{subsection*.86}%
+\contentsline {subsection}{Amici Variance}{74}{subsection*.96}%
 \contentsfinish 

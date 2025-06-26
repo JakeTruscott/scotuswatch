@@ -20,7 +20,7 @@
    <td style="text-align:center;"> OCCA </td>
    <td style="text-align:center;"> Reverse and Remand </td>
    <td style="text-align:center;"> Sotomayor </td>
-   <td style="text-align:center;"> (6-2) </td>
+   <td style="text-align:center;"> (5-3) </td>
   </tr>
   <tr>
    <td style="text-align:center;font-weight: bold;"> Waetzig v. Halliburton Energy Services, Inc. </td>
@@ -50,7 +50,7 @@
    <td style="text-align:center;"> CA9 </td>
    <td style="text-align:center;"> Reverse and Remand </td>
    <td style="text-align:center;"> Alito </td>
-   <td style="text-align:center;"> (9-0) </td>
+   <td style="text-align:center;"> (5-4) </td>
   </tr>
   <tr>
    <td style="text-align:center;font-weight: bold;"> Bufkin v. Collins </td>

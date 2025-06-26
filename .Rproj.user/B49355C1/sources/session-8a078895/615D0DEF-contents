@@ -104,6 +104,7 @@ scotusblog_stats <- function(decisions_path,
       left_join(decisions %>%
                   rename_with(tolower) %>%
                   select(docket, date_argued, date_decided, decision, coalition, author), by = 'docket') %>%
+      filter(!is.na(date_argued)) %>%
       mutate(date_argued = as.Date(date_argued, format = "%m/%d/%Y"),
              date_decided = as.Date(date_decided, format = "%m/%d/%Y"),
              days_elapsed = ifelse(!is.na(date_decided) & !is.na(date_argued),
@@ -144,9 +145,7 @@ scotusblog_stats <- function(decisions_path,
         filter(!is.na(days_elapsed)) %>%
         group_by(term) %>%
         summarise(
-          mean_elapsed = mean(days_elapsed),
-          p25 = quantile(days_elapsed, 0.25),
-          p75 = quantile(days_elapsed, 0.75)
+          mean_elapsed = mean(days_elapsed)
         )
 
       all_data <- scdb_cases_data %>%
@@ -167,9 +166,7 @@ scotusblog_stats <- function(decisions_path,
         days_elapsed_figure,
         data.frame(
           term = 2024,
-          mean_elapsed = mean_all,
-          p25 = p25_all,
-          p75 = p75_all
+          mean_elapsed = mean(days_elapsed$days_elapsed)
         )
       ) %>%
         unique()

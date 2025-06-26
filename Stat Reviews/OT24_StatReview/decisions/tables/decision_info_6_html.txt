@@ -1,0 +1,26 @@
+<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 14px; color: black; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Case </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Docket </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Date Argued </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Date Decided </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Lower Court </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Decision </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Author </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Coalition </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Riley v. Bondi </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 23-1270 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2025-03-24 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2025-06-26 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> CA4 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Vacate and Remand </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Alito </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> (5-4) </td>
+  </tr>
+</tbody>
+</table>

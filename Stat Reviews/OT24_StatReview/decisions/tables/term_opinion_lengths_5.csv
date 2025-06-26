@@ -1,8 +1,16 @@
 case,authorship,opinion_type,word_count
-A.A.R.P v. Trump,Kavanaugh,Concurrence,338
-A.A.R.P v. Trump,Alito,Dissent,4394
-Department of Education v. California,Kagan,Dissent,295
-Department of Education v. California,Jackson,Dissent,5292
-Trump v. J.G.G.,Kavanaugh,Concurrence,293
-Trump v. J.G.G.,Sotomayor,Dissent,5281
-Trump v. J.G.G.,Jackson,Dissent,419
+Martin v. United States,Sotomayor,Concurrence,1708
+Commissioner of IRS v. Zuch,Barrett,Opinion,2367
+Commissioner of IRS v. Zuch,Gorsuch,Dissent,3137
+TikTok Inc. v. Garland,Sotomayor,Concurrence,217
+TikTok Inc. v. Garland,Gorsuch,Concurrence,1353
+Diamond Alternative Energy v. EPA,Kavanaugh,Opinion,6203
+Diamond Alternative Energy v. EPA,Sotomayor,Dissent,697
+Diamond Alternative Energy v. EPA,Jackson,Dissent,4891
+A.A.R.P v. Trump,Kavanaugh,Concurrence,333
+A.A.R.P v. Trump,Alito,Dissent,4355
+Department of Education v. California,Kagan,Dissent,290
+Department of Education v. California,Jackson,Dissent,5197
+Trump v. J.G.G.,Kavanaugh,Concurrence,288
+Trump v. J.G.G.,Sotomayor,Dissent,5196
+Trump v. J.G.G.,Jackson,Dissent,408

@@ -18,9 +18,9 @@
    <td style="text-align:center;"> NA </td>
    <td style="text-align:center;"> 2025-04-07 </td>
    <td style="text-align:center;"> DCDC </td>
-   <td style="text-align:center;"> Granted </td>
+   <td style="text-align:center;"> Vacate </td>
    <td style="text-align:center;"> Per Curiam </td>
-   <td style="text-align:center;"> (6-3)* </td>
+   <td style="text-align:center;"> (5-4)* </td>
   </tr>
   <tr>
    <td style="text-align:center;font-weight: bold;"> Cunningham v. Cornell Univ. </td>
@@ -40,10 +40,10 @@
    <td style="text-align:center;"> CA10 </td>
    <td style="text-align:center;"> Reverse and Remand </td>
    <td style="text-align:center;"> Gorsuch </td>
-   <td style="text-align:center;"> (6-3) </td>
+   <td style="text-align:center;"> (5-4) </td>
   </tr>
   <tr>
-   <td style="text-align:center;font-weight: bold;"> Advocate Crhsit Medical Center v. Kennedy, Secretary of Health and Human Services </td>
+   <td style="text-align:center;font-weight: bold;"> Advocate Christ Medical Center v. Kennedy, Secretary of Health and Human Services </td>
    <td style="text-align:center;"> 23-715 </td>
    <td style="text-align:center;"> 2024-11-05 </td>
    <td style="text-align:center;"> 2025-04-29 </td>
@@ -78,7 +78,7 @@
    <td style="text-align:center;"> NA </td>
    <td style="text-align:center;"> 2025-05-16 </td>
    <td style="text-align:center;"> CA5 </td>
-   <td style="text-align:center;"> Granted </td>
+   <td style="text-align:center;"> Vacate </td>
    <td style="text-align:center;"> Per Curiam </td>
    <td style="text-align:center;"> (7-2) </td>
   </tr>
@@ -97,7 +97,7 @@
    <td style="text-align:center;"> 24-394 </td>
    <td style="text-align:center;"> 2025-04-30 </td>
    <td style="text-align:center;"> 2025-05-22 </td>
-   <td style="text-align:center;"> CA10 </td>
+   <td style="text-align:center;"> SCOK </td>
    <td style="text-align:center;"> Affirm </td>
    <td style="text-align:center;"> Per Curiam </td>
    <td style="text-align:center;"> (4-4)* </td>
@@ -120,7 +120,7 @@
    <td style="text-align:center;"> CA9 </td>
    <td style="text-align:center;"> DIG </td>
    <td style="text-align:center;"> Per Curiam </td>
-   <td style="text-align:center;"> (9-0) </td>
+   <td style="text-align:center;"> (8-1) </td>
   </tr>
   <tr>
    <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Ames v. Ohio Dept. of Youth Services </td>

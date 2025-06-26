@@ -810,7 +810,7 @@ decisions_analysis <- function(input_path,
 
     {
 
-      lower_courts <- decisions_coalitions %>%
+      lower_courts <- read.csv(input_path, as.is = T) %>%
         select(Lower_Court, Decision, Docket) %>%
         rename(lower_court = Lower_Court,
                decision = Decision,
@@ -856,7 +856,7 @@ decisions_analysis <- function(input_path,
       write.csv(circuit_scorecard_main, file = temp_export_path, row.names = F, quote = F)
 
       temp_export_path <- file.path(output_path, 'tables', 'circuit_scorecard_with_consolidated.csv')
-      write.csv(circuit_scorecard_with_consolidated, file = temp_export_path, row.names = F, quote = T)
+      write.csv(circuit_scorecard_with_consolidated, file = temp_export_path, row.names = F, quote = F)
 
 
     } # Export
@@ -1403,7 +1403,7 @@ justia_opinion_recovery <- function(opinions_path,
       mutate(case = ifelse(!is.na(case_short), case_short, case)) %>%
       select(-c(case_short)) %>%
       rowwise() %>%
-      mutate(word_count = lengths(gregexpr("\\W+", opinion_text)) + 1) %>%
+      mutate(word_count =  stri_count_words(opinion_text)) %>%
       select(case, authorship, opinion_type, word_count) %>%
       mutate(case = gsub('\\,', '', case))
 
@@ -1447,7 +1447,7 @@ justia_opinion_recovery <- function(opinions_path,
 
   } # Average Lengths by Opinion Type (Current Term)
 
-} # Recover Decisions from Justia
+} # Recover Decisions from Justia # Recover Decisions from Justia
 
 
 ###############################################################################
@@ -1687,7 +1687,7 @@ case_data = get_case_data(term, docket)
           role = ifelse(is.null(temp$speaker$roles[k][[1]]$role_title) && is.null(temp$speaker$name[k]), "NA",
                         ifelse(is.null(temp$speaker$roles[k][[1]]$role_title), "Attorney", temp$speaker$roles[k][[1]]$role_title)),
           text = flattened_text,
-          word_count = str_count(flattened_text, "\\w+"),
+          word_count = stri_count_words(flattened_text),
           row_id = k,
           object_title = parsed_json$title
         )
@@ -3422,6 +3422,7 @@ scotusblog_stats <- function(decisions_path,
       left_join(decisions %>%
                   rename_with(tolower) %>%
                   select(docket, date_argued, date_decided, decision, coalition, author), by = 'docket') %>%
+      filter(!is.na(date_argued)) %>%
       mutate(date_argued = as.Date(date_argued, format = "%m/%d/%Y"),
              date_decided = as.Date(date_decided, format = "%m/%d/%Y"),
              days_elapsed = ifelse(!is.na(date_decided) & !is.na(date_argued),
@@ -3462,9 +3463,7 @@ scotusblog_stats <- function(decisions_path,
         filter(!is.na(days_elapsed)) %>%
         group_by(term) %>%
         summarise(
-          mean_elapsed = mean(days_elapsed),
-          p25 = quantile(days_elapsed, 0.25),
-          p75 = quantile(days_elapsed, 0.75)
+          mean_elapsed = mean(days_elapsed)
         )
 
       all_data <- scdb_cases_data %>%
@@ -3485,9 +3484,7 @@ scotusblog_stats <- function(decisions_path,
         days_elapsed_figure,
         data.frame(
           term = 2024,
-          mean_elapsed = mean_all,
-          p25 = p25_all,
-          p75 = p75_all
+          mean_elapsed = mean(days_elapsed$days_elapsed)
         )
       ) %>%
         unique()
