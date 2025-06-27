@@ -1,4 +1,8 @@
 case,authorship,opinion_type,word_count
+EPA v. Calumet Shreveport Refining,Gorsuch,Dissent,4384
+Barnes v. Felix,Kagan,Opinion,2828
+Barnes v. Felix,Kavanaugh,Concurrence,1928
+BLOM Bank SAL v. Honickman,Thomas,Opinion,3494
 BLOM Bank SAL v. Honickman,Jackson,Special Concurrence,1766
 Riley v. Bondi,Alito,Opinion,4973
 Riley v. Bondi,Thomas,Concurrence,1275
@@ -25,7 +29,3 @@ United States v. Skrmetti,Barrett,Concurrence,2771
 United States v. Skrmetti,Alito,Special Concurrence,6248
 United States v. Skrmetti,Sotomayor,Dissent,8259
 United States v. Skrmetti,Kagan,Dissent,254
-Bouarafa v. Mayorkas,Jackson,Opinion,3401
-Lackey v. Stinnie,Roberts,Opinion,4050
-Lackey v. Stinnie,Jackson,Dissent,5713
-Andrew v. White,Alito,Concurrence,82

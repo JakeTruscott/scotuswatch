@@ -1,0 +1,48 @@
+
+
+\subsection{Opinion Authorship}
+
+\IfFileExists{../../decisions/tables/term_opinion_lengths_1.csv}{
+  \termOpinionLengths{../../decisions/tables/term_opinion_lengths_1.csv}{Opinion Lengths (October Term 2024, Part 1)}
+}{}
+
+\IfFileExists{../../decisions/tables/term_opinion_lengths_2.csv}{
+  \termOpinionLengths{../../decisions/tables/term_opinion_lengths_2.csv}{Opinion Lengths (Part 2)}
+}{}
+
+\IfFileExists{../../decisions/tables/term_opinion_lengths_3.csv}{
+  \termOpinionLengths{../../decisions/tables/term_opinion_lengths_3.csv}{Opinion Lengths (Part 3)}
+}{}
+
+\IfFileExists{../../decisions/tables/term_opinion_lengths_4.csv}{
+  \termOpinionLengths{../../decisions/tables/term_opinion_lengths_4.csv}{Opinion Lengths (Part 4)}
+}{}
+
+\IfFileExists{../../decisions/tables/term_opinion_lengths_5.csv}{
+  \termOpinionLengths{../../decisions/tables/term_opinion_lengths_5.csv}{Opinion Lengths (Part 5)}
+}{}
+
+\IfFileExists{../../decisions/tables/term_opinion_lengths_6.csv}{
+  \termOpinionLengths{../../decisions/tables/term_opinion_lengths_6.csv}{Opinion Lengths (Part 6)}
+}{}
+
+\IfFileExists{../../decisions/tables/term_opinion_lengths_7.csv}{
+  \termOpinionLengths{../../decisions/tables/term_opinion_lengths_7.csv}{Opinion Lengths (Part 7)}
+}{}
+
+%\termOpinionCounts{../../decisions/tables/justice_term_opinion_counts.csv}{Number of Authored Opinions by Justice and Opinion Type (October Term 2024)}
+
+%\comparisonOpinionCounts{../../decisions/tables/justice_comparison_opinion_counts.csv}{Number of Authored Opinions by Justice and Opinion Type (2021-2024 Terms)}
+
+
+\newpage
+
+\begin{landscape}
+\begin{figure}[h]
+\centering
+\caption{Proportion of Decisions Authored by Each Justice (2024 Term)}
+\includegraphics[width=0.9\linewidth]{../../scotusblog_replication/figures/opinions_by_justice.png} \\
+%\small{Values represent proportion of cases decided unanimously (or without dissenting Justice) conditioned on the total number of decisions offered that term. Term-level coalitions for the 2021-2023 terms recovered using the \textcolor{blue}{Supreme Court Database (WUSTL/Penn State)}. Proportions include opinions decided \textit{Per Curiam} with no noted dissents.}
+\end{figure}
+\end{landscape}
+

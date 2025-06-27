@@ -2,6 +2,8 @@ case,authorship,opinion_type,word_count
 Glossip v. Oklahoma,Sotomayor,Opinion,9368
 Glossip v. Oklahoma,Barrett,Special Concurrence,1384
 Glossip v. Oklahoma,Thomas,Dissent,14227
+Hewitt v. United States,Jackson,Opinion,6154
+Hewitt v. United States,Alito,Dissent,6770
 Cunningham v. Cornell University,Sotomayor,Opinion,4674
 Cunningham v. Cornell University,Alito,Concurrence,764
 FDA v. Wages and White Lion Investments,Alito,Opinion,14114
@@ -13,6 +15,8 @@ Oklahoma v. EPA,Gorsuch,Special Concurrence,81
 Thompson v. United States.,Roberts,Opinion,2660
 Thompson v. United States.,Alito,Concurrence,952
 Thompson v. United States.,Jackson,Concurrence,223
+Free Speech Coalition v. Paxton,Thomas,Opinion,9640
+Free Speech Coalition v. Paxton,Kagan,Dissent,7141
 Wisconsin Bell  v. United States ex rel. Heath,Kagan,Opinion,4283
 Wisconsin Bell  v. United States ex rel. Heath,Thomas,Concurrence,3640
 Wisconsin Bell  v. United States ex rel. Heath,Kavanaugh,Concurrence,98
@@ -25,7 +29,3 @@ CC/Devas v. Antrix Corp.,Alito,Opinion,3523
 McLaughlin Chiropractic v. McKesson Corp,Kavanaugh,Opinion,5681
 McLaughlin Chiropractic v. McKesson Corp,Kagan,Dissent,4367
 EPA v. Calumet Shreveport Refining,Thomas,Opinion,5967
-EPA v. Calumet Shreveport Refining,Gorsuch,Dissent,4384
-Barnes v. Felix,Kagan,Opinion,2828
-Barnes v. Felix,Kavanaugh,Concurrence,1928
-BLOM Bank SAL v. Honickman,Thomas,Opinion,3494

@@ -1,4 +1,8 @@
 case,authorship,opinion_type,word_count
+Feliciano v. Department of Transportation.,Gorsuch,Opinion,4912
+Feliciano v. Department of Transportation.,Thomas,Dissent,5257
+Hungary v. Simon,Sotomayor,Opinion,6771
+Dewberry Group Inc. v. Dewberry Engineers Inc.,Kagan,Opinion,2342
 Dewberry Group Inc. v. Dewberry Engineers Inc.,Sotomayor,Concurrence,922
 Kousisis v. United States,Barrett,Opinion,6171
 Kousisis v. United States,Gorsuch,Special Concurrence,3817
@@ -25,7 +29,3 @@ A.J.T. v. Osseo Area Schools,Thomas,Concurrence,1373
 A.J.T. v. Osseo Area Schools,Sotomayor,Concurrence,1287
 Parrish v. United States,Sotomayor,Opinion,3716
 Parrish v. United States,Jackson,Special Concurrence,754
-Parrish v. United States,Gorsuch,Dissent,254
-Laboratory Corp. of America v. Davis,Kavanaugh,Dissent,1667
-Soto v. United States,Thomas,Opinion,3748
-Martin v. United States,Gorsuch,Opinion,5328

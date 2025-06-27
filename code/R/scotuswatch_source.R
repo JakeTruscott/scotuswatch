@@ -5465,7 +5465,7 @@ scotusblog_stats <- function(decisions_path,
       opinion_lengths_by_justice <- opinions_processed %>%
         group_by(authorship) %>%
         mutate(word_count =  stri_count_words(opinion_text)) %>%
-        summarise(mean_words = round(mean(word_count), 2)) %>%
+        summarise(mean_words = round(mean(word_count), 0)) %>%
         filter(!authorship %in% 'Per Curiam') %>%
         rename(justice = authorship) %>%
         mutate(justice = factor(justice, levels = c('Roberts', 'Thomas', 'Alito', 'Sotomayor', 'Kagan', 'Gorsuch', 'Kavanaugh', 'Barrett', 'Jackson'))) %>%
