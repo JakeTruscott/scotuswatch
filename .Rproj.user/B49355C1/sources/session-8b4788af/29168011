@@ -1,26 +1,26 @@
 {
-    "id": "1CE04499",
+    "id": "29168011",
     "path": "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/compilation/EmpiricalSCOTUS/sections/header/preface_statpack.tex",
     "project_path": "Stat Reviews/OT24_StatReview/compilation/EmpiricalSCOTUS/sections/header/preface_statpack.tex",
     "type": "tex",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1751121953617.0,
+    "created": 1751143808420.0,
     "source_on_save": false,
-    "relative_order": 7,
+    "relative_order": 6,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "1,0",
-        "scrollLine": "0"
+        "cursorPosition": "16,18",
+        "scrollLine": "5"
     },
     "folds": "",
-    "lastKnownWriteTime": 1751122112,
+    "lastKnownWriteTime": 1751143859,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1751122112814,
+    "last_content_update": 1751143859990,
     "read_only": false,
     "read_only_alternatives": []
 }

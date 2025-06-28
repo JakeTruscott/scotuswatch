@@ -828,9 +828,9 @@ scotusblog_stats <- function(decisions_path,
             labels = function(x) paste0(x, "%")) +
           scale_x_continuous(breaks = seq(2006, 2024, 2)) +
           geom_hline(yintercept = mean_unanimous_value, linetype = 2, colour = 'red') +
-          geom_label(aes(x = 2019, y = mean_unanimous_value + 3),
-                     label = paste0('Mean = ', mean_unanimous_value, '%'),
-                     size = 5, colour = 'red') +
+          #geom_label(aes(x = 2019, y = mean_unanimous_value + 3),
+           #          label = paste0('Mean = ', mean_unanimous_value, '%'),
+            #         size = 5, colour = 'red') +
           geom_label(aes(label = paste0(unanimous_percentage, '%')), size = 4) +
           theme_minimal() +
           labs(x = '\nTerm', y = 'Cases Decided Unanimously\n') +
