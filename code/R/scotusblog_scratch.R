@@ -751,7 +751,7 @@ scotusblog_stats <- function(decisions_path,
       combined_list[['frequency_in_majority']][['percent_opinions_unanimous']] <- percent_opinions_unanimous
 
 
-      } # Opinion Sizes by Justice Author
+    } # Opinion Sizes by Justice Author
 
     {
 
@@ -828,9 +828,9 @@ scotusblog_stats <- function(decisions_path,
             labels = function(x) paste0(x, "%")) +
           scale_x_continuous(breaks = seq(2006, 2024, 2)) +
           geom_hline(yintercept = mean_unanimous_value, linetype = 2, colour = 'red') +
-          #geom_label(aes(x = 2019, y = mean_unanimous_value + 3),
-           #          label = paste0('Mean = ', mean_unanimous_value, '%'),
-            #         size = 5, colour = 'red') +
+          geom_label(aes(x = 2019, y = mean_unanimous_value + 3),
+                     label = paste0('Mean = ', mean_unanimous_value, '%'),
+                     size = 5, colour = 'red') +
           geom_label(aes(label = paste0(unanimous_percentage, '%')), size = 4) +
           theme_minimal() +
           labs(x = '\nTerm', y = 'Cases Decided Unanimously\n') +
@@ -940,6 +940,17 @@ scotusblog_stats <- function(decisions_path,
           summarise(count = n(), .groups = 'drop') %>%
           mutate(term = 2024)
 
+        coalition_colors <- c(
+          "Unanimous" = "#2166ac",             # blue
+          "(8-1)" = "#67a9cf",                 # light blue
+          "(7-1) & (7-2)" = "#fddbc7",         # peach
+          "(6-2) & (6-3)" = "#ef8a62",         # orange-red
+          "(5-3) & (5-4)" = "#b2182b",         # deep red
+          "(4-4)" = "#d6604d",                 # reddish
+          "Other" = "#cccccc"                  # grey
+        )
+
+
         ot05_ot24 <- scdb_cases_data %>%
           filter(term >= 2005) %>%
           select(minVotes, majVotes) %>%
@@ -976,7 +987,7 @@ scotusblog_stats <- function(decisions_path,
           ggplot(aes(x = "", y = coalition_percentage, fill = coalition)) +
           geom_bar(stat = "identity", width = 1, color = "black") +
           coord_polar(theta = "y") +
-          scale_fill_brewer(palette = "RdBu") +
+          scale_fill_manual(values = coalition_colors) +
           theme_void() +
           labs(title = '2005-2024 Terms') +
           theme(legend.title = element_blank(),
@@ -1022,7 +1033,7 @@ scotusblog_stats <- function(decisions_path,
           ggplot(aes(x = "", y = coalition_percentage, fill = coalition)) +
           geom_bar(stat = "identity", width = 1, color = "black") +
           coord_polar(theta = "y") +
-          scale_fill_brewer(palette = "RdBu") +
+          scale_fill_manual(values = coalition_colors) +
           theme_void() +
           labs(title = '2020-2024 Terms') +
           theme(legend.title = element_blank(),
@@ -1044,7 +1055,7 @@ scotusblog_stats <- function(decisions_path,
           ggplot(aes(x = "", y = coalition_percentage, fill = minVotes)) +
           geom_bar(stat = "identity", width = 1, color = "black") +
           coord_polar(theta = "y") +
-          scale_fill_brewer(palette = "RdBu") +
+          scale_fill_manual(values = coalition_colors) +
           theme_void() +
           labs(title = '2024 Term') +
           theme(legend.title = element_blank(),
@@ -1205,7 +1216,7 @@ scotusblog_stats <- function(decisions_path,
           coord_polar(theta = "y") +
           scale_fill_brewer(name = 'RdB') +
           theme_void() +
-          labs(title = '2024 Terms') +
+          labs(title = '2024 Term') +
           theme(legend.title = element_blank(),
                 plot.title = element_markdown(hjust = 0.5, size = 18, face = 'bold'),
                 legend.position = 'none') +
@@ -2155,7 +2166,7 @@ scotusblog_stats <- function(decisions_path,
 
       combined_list[['opinion_lengths']][['average_opinion_lengths_by_justice']] <- opinion_lengths_by_justice
 
-    } # Average Opinion Lengths by Justice
+      } # Average Opinion Lengths by Justice
 
     {
       shortest_opinions <- opinions_processed %>%
@@ -2291,6 +2302,26 @@ scotusblog_stats <- function(decisions_path,
       combined_list[['opinion_lengths']][['combined_opinion_lengths']] <- total_opinion_lengths
 
     } # Longest Opinions (Total)
+
+    {
+
+      all_opinion_lengths <- opinions_processed %>%
+        mutate(word_count =  stri_count_words(opinion_text)) %>%
+        select(authorship, docket, opinion_type, word_count) %>%
+        left_join(master_file %>%
+                    select(docket, short_hand), by = 'docket') %>%
+        left_join(decisions %>%
+                    select(Coalition, Docket, Date_Argued, Date_Decided) %>%
+                    rename(coalition = Coalition,
+                           docket = Docket,
+                           date_argued = Date_Argued,
+                           date_decided = Date_Decided), by = 'docket') %>%
+        arrange(word_count)
+
+      combined_list[['opinion_lengths']][['all_individual_opinion_lengths']] <- all_opinion_lengths
+
+
+    } # Individual Opinion Lengths
 
   } # Opinion Lengths
 

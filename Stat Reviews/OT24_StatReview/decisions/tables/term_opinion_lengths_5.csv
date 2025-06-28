@@ -1,8 +1,14 @@
 case,authorship,opinion_type,word_count
+A.J.T. v. Osseo Area Schools,Roberts,Opinion,3911
+A.J.T. v. Osseo Area Schools,Thomas,Concurrence,1373
+A.J.T. v. Osseo Area Schools,Sotomayor,Concurrence,1287
+Parrish v. United States,Sotomayor,Opinion,3716
+Parrish v. United States,Jackson,Special Concurrence,754
 Parrish v. United States,Gorsuch,Dissent,254
-Mahmoud v. Taylor,Alito,Concurrence,11928
-Mahmoud v. Taylor,Thomas,Opinion,3289
+Mahmoud v. Taylor,Alito,Opinion,11928
+Mahmoud v. Taylor,Thomas,Concurrence,3289
 Mahmoud v. Taylor,Sotomayor,Dissent,10702
+Laboratory Corp. of America v. Davis,Per Curiam,NA,13
 Laboratory Corp. of America v. Davis,Kavanaugh,Dissent,1667
 Kennedy v. Braidwood MGMT,Kavanaugh,Opinion,12137
 Kennedy v. Braidwood MGMT,Thomas,Dissent,10459
@@ -13,17 +19,13 @@ FCC v. Consumers' Research,Jackson,Concurrence,219
 FCC v. Consumers' Research,Gorsuch,Dissent,10320
 Martin v. United States,Gorsuch,Opinion,5328
 Martin v. United States,Sotomayor,Concurrence,1708
+OK Charter School Board v. Drummond,Per Curiam,Per Curiam,22
 Commissioner of IRS v. Zuch,Barrett,Opinion,2367
 Commissioner of IRS v. Zuch,Gorsuch,Dissent,3137
+TikTok Inc. v. Garland,Per Curiam,Per Curiam,5418
 TikTok Inc. v. Garland,Sotomayor,Concurrence,217
 TikTok Inc. v. Garland,Gorsuch,Concurrence,1353
 Diamond Alternative Energy v. EPA,Kavanaugh,Opinion,6203
 Diamond Alternative Energy v. EPA,Sotomayor,Dissent,697
 Diamond Alternative Energy v. EPA,Jackson,Dissent,4891
-A.A.R.P v. Trump,Kavanaugh,Concurrence,333
-A.A.R.P v. Trump,Alito,Dissent,4355
-Department of Education v. California,Kagan,Dissent,290
-Department of Education v. California,Jackson,Dissent,5197
-Trump v. J.G.G.,Kavanaugh,Concurrence,288
-Trump v. J.G.G.,Sotomayor,Dissent,5196
-Trump v. J.G.G.,Jackson,Dissent,408
+A.A.R.P v. Trump,Per Curiam,Per Curiam,2396

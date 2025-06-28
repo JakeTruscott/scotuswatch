@@ -1409,6 +1409,8 @@ justia_opinion_recovery <- function(opinions_path,
 
     opinion_partitions <- split(opinion_lengths_term, ceiling(seq_len(nrow(opinion_lengths_term)) / 30)) # Split the dataframe into chunks of 10 rows
 
+    write.csv(opinion_lengths_term, file = file.path(opinions_path, 'tables', 'term_opinion_lengths_combined.csv'), row.names = F)
+
     for (opinion in 1:length(opinion_partitions)){
 
       temp_opinion_rows <- opinion_partitions[[opinion]]
@@ -4258,6 +4260,17 @@ scotusblog_stats <- function(decisions_path,
           summarise(count = n(), .groups = 'drop') %>%
           mutate(term = 2024)
 
+        coalition_colors <- c(
+          "Unanimous" = "#2166ac",             # blue
+          "(8-1)" = "#67a9cf",                 # light blue
+          "(7-1) & (7-2)" = "#fddbc7",         # peach
+          "(6-2) & (6-3)" = "#ef8a62",         # orange-red
+          "(5-3) & (5-4)" = "#b2182b",         # deep red
+          "(4-4)" = "#d6604d",                 # reddish
+          "Other" = "#cccccc"                  # grey
+        )
+
+
         ot05_ot24 <- scdb_cases_data %>%
           filter(term >= 2005) %>%
           select(minVotes, majVotes) %>%
@@ -4294,7 +4307,7 @@ scotusblog_stats <- function(decisions_path,
           ggplot(aes(x = "", y = coalition_percentage, fill = coalition)) +
           geom_bar(stat = "identity", width = 1, color = "black") +
           coord_polar(theta = "y") +
-          scale_fill_brewer(palette = "RdBu") +
+          scale_fill_manual(values = coalition_colors) +
           theme_void() +
           labs(title = '2005-2024 Terms') +
           theme(legend.title = element_blank(),
@@ -4340,7 +4353,7 @@ scotusblog_stats <- function(decisions_path,
           ggplot(aes(x = "", y = coalition_percentage, fill = coalition)) +
           geom_bar(stat = "identity", width = 1, color = "black") +
           coord_polar(theta = "y") +
-          scale_fill_brewer(palette = "RdBu") +
+          scale_fill_manual(values = coalition_colors) +
           theme_void() +
           labs(title = '2020-2024 Terms') +
           theme(legend.title = element_blank(),
@@ -4362,7 +4375,7 @@ scotusblog_stats <- function(decisions_path,
           ggplot(aes(x = "", y = coalition_percentage, fill = minVotes)) +
           geom_bar(stat = "identity", width = 1, color = "black") +
           coord_polar(theta = "y") +
-          scale_fill_brewer(palette = "RdBu") +
+          scale_fill_manual(values = coalition_colors) +
           theme_void() +
           labs(title = '2024 Term') +
           theme(legend.title = element_blank(),
@@ -4523,7 +4536,7 @@ scotusblog_stats <- function(decisions_path,
           coord_polar(theta = "y") +
           scale_fill_brewer(name = 'RdB') +
           theme_void() +
-          labs(title = '2024 Terms') +
+          labs(title = '2024 Term') +
           theme(legend.title = element_blank(),
                 plot.title = element_markdown(hjust = 0.5, size = 18, face = 'bold'),
                 legend.position = 'none') +
@@ -5609,6 +5622,26 @@ scotusblog_stats <- function(decisions_path,
       combined_list[['opinion_lengths']][['combined_opinion_lengths']] <- total_opinion_lengths
 
     } # Longest Opinions (Total)
+
+    {
+
+      all_opinion_lengths <- opinions_processed %>%
+        mutate(word_count =  stri_count_words(opinion_text)) %>%
+        select(authorship, docket, opinion_type, word_count) %>%
+        left_join(master_file %>%
+                    select(docket, short_hand), by = 'docket') %>%
+        left_join(decisions %>%
+                    select(Coalition, Docket, Date_Argued, Date_Decided) %>%
+                    rename(coalition = Coalition,
+                           docket = Docket,
+                           date_argued = Date_Argued,
+                           date_decided = Date_Decided), by = 'docket') %>%
+        arrange(word_count)
+
+      combined_list[['opinion_lengths']][['all_individual_opinion_lengths']] <- all_opinion_lengths
+
+
+    } # Individual Opinion Lengths
 
   } # Opinion Lengths
 

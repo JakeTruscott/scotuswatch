@@ -1,0 +1,18 @@
+case,authorship,opinion_type,word_count
+A.A.R.P v. Trump,Kavanaugh,Concurrence,333
+A.A.R.P v. Trump,Alito,Dissent,4355
+Trump v. CASA Inc.,Barrett,Opinion,5703
+Trump v. CASA Inc.,Barrett,Opinion,858
+Trump v. CASA Inc.,Barrett,Opinion,2030
+Trump v. CASA Inc.,Thomas,Concurrence,1285
+Trump v. CASA Inc.,Alito,Concurrence,857
+Trump v. CASA Inc.,Kavanaugh,Concurrence,3460
+Trump v. CASA Inc.,Sotomayor,Dissent,13825
+Trump v. CASA Inc.,Jackson,Dissent,7198
+Department of Education v. California,Per Curiam,Per Curiam,655
+Department of Education v. California,Kagan,Dissent,290
+Department of Education v. California,Jackson,Dissent,5197
+Trump v. J.G.G.,Per Curiam,Per Curiam,994
+Trump v. J.G.G.,Kavanaugh,Concurrence,288
+Trump v. J.G.G.,Sotomayor,Dissent,5196
+Trump v. J.G.G.,Jackson,Dissent,408

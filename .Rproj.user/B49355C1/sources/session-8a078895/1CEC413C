@@ -3,25 +3,25 @@
     "path": "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/compilation/EmpiricalSCOTUS/statpack_extended_OT24.Rnw",
     "project_path": "Stat Reviews/OT24_StatReview/compilation/EmpiricalSCOTUS/statpack_extended_OT24.Rnw",
     "type": "sweave",
-    "hash": "955090846",
+    "hash": "3931248341",
     "contents": "",
     "dirty": false,
     "created": 1750939610538.0,
     "source_on_save": false,
-    "relative_order": 6,
+    "relative_order": 8,
     "properties": {
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "60,26",
-        "scrollLine": "53"
+        "cursorPosition": "66,1",
+        "scrollLine": "44"
     },
     "folds": "",
-    "lastKnownWriteTime": 1751040739,
+    "lastKnownWriteTime": 1751053134,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1751040739334,
+    "last_content_update": 1751053134202,
     "read_only": false,
     "read_only_alternatives": []
 }

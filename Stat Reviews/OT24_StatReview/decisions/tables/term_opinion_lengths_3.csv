@@ -1,7 +1,10 @@
 case,authorship,opinion_type,word_count
+United States v. Skrmetti,Sotomayor,Dissent,8259
+United States v. Skrmetti,Kagan,Dissent,254
 Bouarafa v. Mayorkas,Jackson,Opinion,3401
 Lackey v. Stinnie,Roberts,Opinion,4050
 Lackey v. Stinnie,Jackson,Dissent,5713
+Andrew v. White,Per Curiam,Per Curiam,3035
 Andrew v. White,Alito,Concurrence,82
 Andrew v. White,Thomas,Dissent,5650
 Royal Canin v. Wullschleger,Kagan,Opinion,6398
@@ -26,6 +29,3 @@ Delligatti v. United States.,Gorsuch,Dissent,6319
 Garland v. Vanderstok,Gorsuch,Opinion,7223
 Garland v. Vanderstok,Sotomayor,Concurrence,468
 Garland v. Vanderstok,Kavanaugh,Concurrence,422
-Garland v. Vanderstok,Jackson,Concurrence,205
-Garland v. Vanderstok,Thomas,Dissent,7915
-Garland v. Vanderstok,Alito,Dissent,1495
