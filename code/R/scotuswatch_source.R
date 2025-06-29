@@ -3285,11 +3285,9 @@ dockets_analysis <- function(combined_dockets, output_path){
     for (i in 1:nrow(dockets)){
 
       temp_docket <- dockets[i,] # Gather Temp Docket
-      temp_docket_sheet <- temp_docket$docket_entries[[1]] %>%
+      temp_docket_sheet <- data.frame(temp_docket$docket_entries) %>%
         filter(grepl('(Amicus|Amici)', entry, ignore.case = T)) %>%
-        filter(grepl('Filed', entry, ignore.case = T)) %>%
-        filter(grepl('Distributed', entry, ignore.case = T))
-
+        filter(grepl('Filed', entry, ignore.case = T))
 
       number_amici <- nrow(temp_docket_sheet)
 
