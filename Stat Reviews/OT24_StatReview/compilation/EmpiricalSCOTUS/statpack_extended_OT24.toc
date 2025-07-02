@@ -10,12 +10,9 @@
 \contentsline {subsection}{\underline {Note on Decision Coding}}{40}{subsection*.47}%
 \contentsline {subsection}{\underline {Additional Notes: Opinion Consolidations}}{40}{subsection*.48}%
 \contentsline {subsection}{Decision Information}{41}{subsection*.49}%
-\contentsline {subsection}{Decision Vote Matrices}{47}{subsection*.56}%
-\contentsline {subsection}{Justice Alignment (OT24)}{53}{subsection*.63}%
-\contentsline {subsection}{Coalitions and Unanimity}{55}{subsection*.66}%
-\contentsline {subsection}{Opinion Authorship}{56}{subsection*.70}%
-\contentsline {section}{Dockets}{65}{section*.78}%
-\contentsline {subsection}{Variance in Filings}{66}{subsection*.80}%
-\contentsline {subsection}{Filings Origins}{68}{subsection*.84}%
-\contentsline {subsection}{Amici Variance}{73}{subsection*.94}%
+\contentsline {subsection}{Coalitions and Unanimity}{47}{subsection*.56}%
+\contentsline {section}{Dockets}{48}{section*.60}%
+\contentsline {subsection}{Variance in Filings}{49}{subsection*.62}%
+\contentsline {subsection}{Filings Origins}{54}{subsection*.66}%
+\contentsline {subsection}{Amici Variance}{59}{subsection*.76}%
 \contentsfinish 
