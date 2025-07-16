@@ -10,9 +10,8 @@
 \contentsline {subsection}{\underline {Note on Decision Coding}}{40}{subsection*.47}%
 \contentsline {subsection}{\underline {Additional Notes: Opinion Consolidations}}{40}{subsection*.48}%
 \contentsline {subsection}{Decision Information}{41}{subsection*.49}%
-\contentsline {subsection}{Coalitions and Unanimity}{47}{subsection*.56}%
-\contentsline {section}{Dockets}{48}{section*.60}%
-\contentsline {subsection}{Variance in Filings}{49}{subsection*.62}%
-\contentsline {subsection}{Filings Origins}{54}{subsection*.66}%
-\contentsline {subsection}{Amici Variance}{59}{subsection*.76}%
+\contentsline {section}{Dockets}{47}{section*.56}%
+\contentsline {subsection}{Variance in Filings}{48}{subsection*.58}%
+\contentsline {subsection}{Filings Origins}{50}{subsection*.62}%
+\contentsline {subsection}{Amici Variance}{55}{subsection*.72}%
 \contentsfinish 
