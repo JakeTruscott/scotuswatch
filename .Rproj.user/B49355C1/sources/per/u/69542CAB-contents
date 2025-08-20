@@ -1,45 +1,31 @@
-d <- 'Stat Reviews/OT24_StatReview/dockets/processed_dockets'
+all_data <- scdb_cases_data %>%
+  filter(term >= 2005) %>%
+  mutate(dateArgument = coalesce(as.Date(dateRearg), as.Date(dateArgument)),
+         date_argued = as.Date(dateArgument, format = "%m/%d/%Y"),
+         date_decided = as.Date(dateDecision, format = "%m/%d/%Y"),
+         days_elapsed = ifelse(!is.na(date_decided) & !is.na(date_argued),
+                               as.numeric(date_decided - date_argued) + 1, NA)) %>%
+  filter(!is.na(days_elapsed)) %>%
+  select(caseName, docket, term, date_argued, date_decided, majVotes, minVotes, days_elapsed) %>%
+  rename(case = caseName) %>%
+  mutate(coalition = paste0('(', majVotes, '-', minVotes, ')')) %>%
+  select(-c(minVotes, majVotes)) %>%
+  bind_rows(master_file %>%
+              left_join(decisions %>%
+                          rename_with(tolower) %>%
+                          select(docket, date_argued, date_decided, decision, coalition, author), by = 'docket') %>%
+              filter(!is.na(date_argued)) %>%
+              mutate(date_argued = as.Date(date_argued, format = "%m/%d/%Y"),
+                     date_decided = as.Date(date_decided, format = "%m/%d/%Y"),
+                     days_elapsed = ifelse(!is.na(date_decided) & !is.na(date_argued),
+                                           as.numeric(date_decided - date_argued) + 1, NA),
+                     major_case = ifelse(is.na(major_case), 0, 1)) %>%
+              select(-c(starts_with('consolidated'))) %>%
+              select(case, docket, date_argued, date_decided, coalition, days_elapsed) %>%
+              filter(!is.na(days_elapsed)) %>%
+              mutate(term = 2024) %>%
+              relocate(term, .after = 'docket')) %>%
+  arrange(desc(term)) %>%
+  mutate(case = toupper(case))
 
-d <- list.files('Stat Reviews/OT24_StatReview/dockets/processed_dockets', full.names = T)
-
-dockets <- data.frame()
-
-for (i in 1:length(d)){
-  
-  temp_d <- get(load(d[i]))
-  dockets <- bind_rows(dockets, temp_d)
-
-  if (i %% 25 == 0){
-    message(i)
-  }
-    
-}
-
-
-
-dockets_combined <- data.frame()
-
-for (i in 1:nrow(dockets)){
-  
-  temp_docket <- dockets[i,]
-  temp_docket_number <- temp_docket$docket
-  temp_docket_entries <- data.frame(temp_docket$docket_entries) %>%
-    filter(grepl('(Amicus|Amici)', entry, ignore.case = T)) %>%
-    filter(grepl('filed', entry, ignore.case = T))
-  
-  temp_entry <- data.frame(docket = temp_docket_number, amici = nrow(temp_docket_entries))
-  
-  dockets_combined <- bind_rows(dockets_combined, temp_entry)
-
-  if (i %% 50 == 0){
-    message(i)
-  }
-    
-}
-
-
-dockets_combined %>%
-  group_by(amici) %>%
-  summarise(count = n())
-
-
+write.csv(all_data, file = "C:/Users/jaketruscott/Desktop/days_elapsed_OA_decision_OT05_OT24.csv", row.names = F)
