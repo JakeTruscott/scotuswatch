@@ -1,0 +1,27 @@
+{
+    "id": "E3CF1823",
+    "path": "C:/Users/jaketruscott/Github/scotuswatch/code/R/scotuswatch_source.R",
+    "project_path": "code/R/scotuswatch_source.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1745433610454.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "8,0",
+        "scrollLine": "0"
+    },
+    "folds": "14|26|23|0|\n29|41|57|0|\n66|1|87|0|\n88|1|90|0|\n91|1|97|0|\n110|51|867|0|\n877|49|1451|0|\n1458|68|1478|0|\n1482|56|1542|0|\n1555|3|1576|2|\n1578|40|1600|2|\n1602|28|1618|2|\n1620|45|1639|2|\n1753|29|1767|2|\n1785|63|1851|0|\n1864|37|2599|0|\n2608|46|2640|0|\n2644|55|2806|0|\n2813|50|2979|0|\n2986|55|3005|0|\n3011|3|3031|2|\n3033|3|3210|2|\n3212|3|3268|2|\n3270|3|3285|2|\n3287|3|3316|2|\n3338|3|3366|2|\n3370|3|3419|2|\n3441|5|3454|6|\n3526|5|3537|4|\n5785|49|5864|0|\n",
+    "lastKnownWriteTime": 1762350285,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1762357084197,
+    "read_only": false,
+    "read_only_alternatives": []
+}

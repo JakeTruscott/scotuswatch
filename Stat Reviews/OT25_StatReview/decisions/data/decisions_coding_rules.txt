@@ -1,0 +1,12 @@
+100 = Wrote Majority
+1 = Joined Majority
+2 = Wrote Regular Concurrence
+3 = Joined Regular Concurrence
+4 = Wrote Regular Concurrence & Joined Regular Concurrence
+5 = Wrote Concurrence in Judgement
+6 = Joined Concurrence in Judgement
+7 = Wrote Special Concurrence
+8 = Joined Special Concurrence
+-1 = Wrote Dissenting Opinion
+-2 = Joined Dissenting Opinion
+-3 = Wrote Dissent & Joined Dissent

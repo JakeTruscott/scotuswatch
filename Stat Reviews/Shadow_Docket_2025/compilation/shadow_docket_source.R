@@ -1,0 +1,48 @@
+################################################################################
+# Shadow Docket Source -- Truscott
+# SCOTUSBlog -- Taraleigh Davis
+# Updated November 2025
+################################################################################
+
+###############################################################################
+# Check Update History
+###############################################################################
+
+###############################################################################
+# Load Necessary Packages & Dependencies for Reproduction
+###############################################################################
+
+check_and_install_packages <- function(){
+
+  packages <- c('anytime', 'dplyr', 'ggplot2', 'ggpattern', 'ggtext', 'ggthemes',
+                'grid', 'htmltools', 'httr', 'jsonlite', 'kableExtra', 'png',
+                'readxl', 'reticulate', 'rvest', 'scotustext', 'stringi',
+                'stringr', 'tidyr', 'tm', 'webshot2', 'purrr', 'tibble', 'httr', 'httr2',
+                'tokenizers', 'lubridate', 'scales', 'forcats', 'patchwork', 'openxlsx')
+
+  missing_packages <- packages[!packages %in% installed.packages()[, "Package"]]
+
+  # If there are missing packages
+  if (length(missing_packages) > 0) {
+    message("The following necessary packages are missing: ", paste(missing_packages, collapse = ", "))
+
+    response <- readline("Would you like to install them? (Y/N): ")
+    if (tolower(response) %in% c("yes", "y")) {
+      install.packages(missing_packages, dependencies = TRUE, quiet = TRUE)
+      message("Packages installed successfully.")
+    } else {
+      stop("Packages must be installed prior to compilation. Please install and try again.")
+    }
+  }
+
+  invisible(lapply(packages, function(pkg) {
+    suppressWarnings(suppressPackageStartupMessages(library(pkg, character.only = TRUE)))
+  }))
+
+  #message('All Packages Installed and Deployed Correctly')
+} # Check and Install Necessary Packages
+check_and_install_packages() # Deploy
+
+
+###############################################################################
+#
