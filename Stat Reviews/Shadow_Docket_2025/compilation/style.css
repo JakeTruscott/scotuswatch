@@ -32,6 +32,15 @@ body {
 }
 /* subTitle */
 
+.author-intro {
+    display: block;
+    font-size: 0.9em;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-family: "Times New Roman", Times, serif;
+}
+/* subTitle */
+
 
 
 .center-figure img {

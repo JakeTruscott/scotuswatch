@@ -1,3 +1,0 @@
-h1.title, h4.author, h4.date {
-  display: none;
-}
