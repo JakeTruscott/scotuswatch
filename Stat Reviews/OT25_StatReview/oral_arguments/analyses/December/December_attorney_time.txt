@@ -1,0 +1,150 @@
+<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 12px; color: black; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> Case </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> Docket </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> Attorney </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> Time Speaking </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Cox Communications v. Sony Music Entertainment </td>
+   <td style="text-align:center;text-align: center;"> 24-171 </td>
+   <td style="text-align:center;text-align: center;"> E. Joshua Rosenkranz </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(112, 138, 58, 255) !important;font-size: large;">24.47</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Cox Communications v. Sony Music Entertainment </td>
+   <td style="text-align:center;text-align: center;"> 24-171 </td>
+   <td style="text-align:center;text-align: center;"> Malcolm L. Stewart </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">13.67</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Cox Communications v. Sony Music Entertainment </td>
+   <td style="text-align:center;text-align: center;"> 24-171 </td>
+   <td style="text-align:center;text-align: center;"> Paul D. Clement </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">23.3</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> FS Credit Opportunities Corp. v. Saba Capital Master Fund </td>
+   <td style="text-align:center;text-align: center;"> 24-345 </td>
+   <td style="text-align:center;text-align: center;"> Max E. Schulman </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">8.1</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> FS Credit Opportunities Corp. v. Saba Capital Master Fund </td>
+   <td style="text-align:center;text-align: center;"> 24-345 </td>
+   <td style="text-align:center;text-align: center;"> Paul D. Clement </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">23.36</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> FS Credit Opportunities Corp. v. Saba Capital Master Fund </td>
+   <td style="text-align:center;text-align: center;"> 24-345 </td>
+   <td style="text-align:center;text-align: center;"> Shay Dvoretzky </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">18.6</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> NRSC v. FEC </td>
+   <td style="text-align:center;text-align: center;"> 24-621 </td>
+   <td style="text-align:center;text-align: center;"> Marc E. Elias </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">19.35</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> NRSC v. FEC </td>
+   <td style="text-align:center;text-align: center;"> 24-621 </td>
+   <td style="text-align:center;text-align: center;"> Noel J. Francisco </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">27.34</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> NRSC v. FEC </td>
+   <td style="text-align:center;text-align: center;"> 24-621 </td>
+   <td style="text-align:center;text-align: center;"> Roman Martinez </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">19.71</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> NRSC v. FEC </td>
+   <td style="text-align:center;text-align: center;"> 24-621 </td>
+   <td style="text-align:center;text-align: center;"> Sarah M. Harris </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">19.97</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Urias-Orellana v. Bondi, Att'y Gen. </td>
+   <td style="text-align:center;text-align: center;"> 24-777 </td>
+   <td style="text-align:center;text-align: center;"> Joshua Dos Santos </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">13.5</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Urias-Orellana v. Bondi, Att'y Gen. </td>
+   <td style="text-align:center;text-align: center;"> 24-777 </td>
+   <td style="text-align:center;text-align: center;"> Nicholas Rosellini </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(112, 138, 58, 255) !important;font-size: large;">23.73</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> First Choice Women's Resource Centers v. Platkin </td>
+   <td style="text-align:center;text-align: center;"> 24-781 </td>
+   <td style="text-align:center;text-align: center;"> Erin M. Hawley </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">16.81</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> First Choice Women's Resource Centers v. Platkin </td>
+   <td style="text-align:center;text-align: center;"> 24-781 </td>
+   <td style="text-align:center;text-align: center;"> Sundeep Iyer </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">26.85</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> First Choice Women's Resource Centers v. Platkin </td>
+   <td style="text-align:center;text-align: center;"> 24-781 </td>
+   <td style="text-align:center;text-align: center;"> Vivek Suri </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">6.67</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Hamm v. Smith </td>
+   <td style="text-align:center;text-align: center;"> 24-872 </td>
+   <td style="text-align:center;text-align: center;"> Harry Graver </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">14.81</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Hamm v. Smith </td>
+   <td style="text-align:center;text-align: center;"> 24-872 </td>
+   <td style="text-align:center;text-align: center;"> Robert M. Overing </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">19.16</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Hamm v. Smith </td>
+   <td style="text-align:center;text-align: center;"> 24-872 </td>
+   <td style="text-align:center;text-align: center;"> Seth P. Waxman </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(112, 138, 58, 255) !important;font-size: large;">23.73</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Olivier v. City of Brandon </td>
+   <td style="text-align:center;text-align: center;"> 24-993 </td>
+   <td style="text-align:center;text-align: center;"> Allyson N. Ho </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">24.86</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Olivier v. City of Brandon </td>
+   <td style="text-align:center;text-align: center;"> 24-993 </td>
+   <td style="text-align:center;text-align: center;"> Ashley Robertson </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">10.65</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Olivier v. City of Brandon </td>
+   <td style="text-align:center;text-align: center;"> 24-993 </td>
+   <td style="text-align:center;text-align: center;"> G. Todd Butler </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">15.97</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Trump, President of United States v. Slaughter </td>
+   <td style="text-align:center;text-align: center;"> 25-332 </td>
+   <td style="text-align:center;text-align: center;"> Amit Agarwal </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">44.54</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Trump, President of United States v. Slaughter </td>
+   <td style="text-align:center;text-align: center;"> 25-332 </td>
+   <td style="text-align:center;text-align: center;"> D. John Sauer </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">27.79</span> </td>
+  </tr>
+</tbody>
+</table>

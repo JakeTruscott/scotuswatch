@@ -66,9 +66,9 @@ for (i in 1:length(unique_sittings)){
 ###############################################################################
 
 combined_transcript <- combined_transcripts_term(
-  transcripts_folder = 'Stat Reviews/OT24_StatReview/oral_arguments/transcripts',
+  transcripts_folder = 'Stat Reviews/OT25_StatReview/oral_arguments/transcripts',
   output_folder = 'data/term_level_combined_transcripts',
-  output_name = 'scotus_OT24')
+  output_name = 'scotus_OT25')
 
 
 
@@ -77,12 +77,12 @@ combined_transcript <- combined_transcripts_term(
 # Justices & Attorney Participation
 ###############################################################################
 
-combined_transcript <- get(load('data/term_level_combined_transcripts/scotus_OT24.rdata'))
+combined_transcript <- get(load('data/term_level_combined_transcripts/scotus_OT25.rdata'))
 
 oa_analysis(transcript = combined_transcript,
             check_folder_status = T,
             master_file = cases_master,
-            output_path = 'Stat Reviews/OT24_StatReview/oral_arguments/analyses')
+            output_path = 'Stat Reviews/OT25_StatReview/oral_arguments/analyses')
 
 
 
@@ -90,15 +90,15 @@ oa_analysis(transcript = combined_transcript,
 # Attorney Information Template & Analysis
 ################################################################################
 
-combined_transcript <- get(load('data/term_level_combined_transcripts/scotus_OT24.rdata'))
+combined_transcript <- get(load('data/term_level_combined_transcripts/scotus_OT25.rdata'))
 
 attorney_information_template(transcript = combined_transcript,
                               master_file = cases_master,
-                              output_path = 'Stat Reviews/OT24_StatReview/oral_arguments/attorney_information')
+                              output_path = 'Stat Reviews/OT25_StatReview/oral_arguments/attorney_information')
 
 
-attorney_information_analysis(attorney_path <- 'Stat Reviews/OT24_StatReview/oral_arguments/attorney_information/attorney_information_OT24.csv',
-                              output_path <- 'C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/oral_arguments/attorney_information')
+attorney_information_analysis(attorney_path <- 'Stat Reviews/OT25_StatReview/oral_arguments/attorney_information/attorney_information_OT25.csv',
+                              output_path <- 'C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT25_StatReview/oral_arguments/attorney_information')
 
 
 ################################################################################
