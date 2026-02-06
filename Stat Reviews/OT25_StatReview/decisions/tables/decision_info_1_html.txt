@@ -103,14 +103,24 @@
    <td style="text-align:center;"> (9-0) </td>
   </tr>
   <tr>
-   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Berk v. Choy </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 24-440 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 2025-10-06 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 2026-01-20 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> CA3 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> Reverse and Remand </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> Barrett </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> (9-0) </td>
+   <td style="text-align:center;font-weight: bold;"> Berk v. Choy </td>
+   <td style="text-align:center;"> 24-440 </td>
+   <td style="text-align:center;"> 2025-10-06 </td>
+   <td style="text-align:center;"> 2026-01-20 </td>
+   <td style="text-align:center;"> CA3 </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> Barrett </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Klein v. Martin </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 25-51 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> NA </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2026-01-26 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> CA4 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> GRR </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Per Curiam </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> (8-1) </td>
   </tr>
 </tbody>
 </table>

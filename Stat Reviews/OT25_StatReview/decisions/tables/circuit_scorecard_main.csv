@@ -1,9 +1,9 @@
-lower_court,Reverse and Remand,Affirm,Vacate and Remand,GRR
+lower_court,Reverse and Remand,GRR,Affirm,Vacate and Remand
 CA2,1,,,
 CA3,1,,,
-CA4,1,,,
-CA6,,1,,
+CA4,1,1,,
+CA6,,,1,
 CA7,1,,,
 CA8,1,,,
-CA11,,,1,
-NA,,,,1
+CA11,,,,1
+NA,,1,,

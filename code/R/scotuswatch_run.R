@@ -105,13 +105,13 @@ attorney_information_analysis(attorney_path <- 'Stat Reviews/OT25_StatReview/ora
 # Decisions Tables
 ################################################################################
 
-decisions_analysis(input_path = "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions/data/OT_24_Decisions.csv",
-                output_path = "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions",
+decisions_analysis(input_path = "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT25_StatReview/decisions/data/OT_25_Decisions.csv",
+                output_path = "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT25_StatReview/decisions",
                 output_type = 'html',
                 cases_break = 12,
                 master_file = cases_master,
                 remove_existing_files = T,
-                current_term = '2024')
+                current_term = '2025')
 
 
 ################################################################################

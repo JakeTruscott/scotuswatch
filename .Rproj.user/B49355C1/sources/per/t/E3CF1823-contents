@@ -108,7 +108,7 @@ decisions_analysis <- function(input_path,
                             cases_break = 15,
                             master_file = cases_master,
                             remove_existing_files = T,
-                            current_term = '2024'){
+                            current_term = '2025'){
 
   decisions_file_path = input_path
 
@@ -125,7 +125,9 @@ decisions_analysis <- function(input_path,
 8 = Joined Special Concurrence
 -1 = Wrote Dissenting Opinion
 -2 = Joined Dissenting Opinion
--3 = Wrote Dissent & Joined Dissent'
+-3 = Wrote Dissent & Joined Dissent
+999 = Dissent in Denial of Cert (Would Grant Cert)
+-998 = Dissent in Granting of Cert (Would Not Grant Cert)'
 
 
   } # Coding Rules
@@ -156,7 +158,7 @@ decisions_analysis <- function(input_path,
         return('#CC0000')
       } else if (value == 'D-JD'){
         return('#990000')
-      } else if (value == 'DNP'){
+      } else if (value %in% c('DNP', 'WGC', 'WNGC')){
         return('#FFFFFF')
       }
     } #Assign Color to Box by Vote Type
@@ -187,7 +189,7 @@ decisions_analysis <- function(input_path,
 
   {
 
-    decisions <- decisions %>%
+    decisions <- decisions[,c(1:17)] %>%
       mutate(Date_Argued = anydate(Date_Argued),
              Date_Decided = anydate(Date_Decided)) %>%
       rename('Date Decided' = Date_Decided,
@@ -206,6 +208,8 @@ decisions_analysis <- function(input_path,
         . == -1 ~ 'D',
         . == -2 ~ 'JD',
         . == -3 ~ 'D-JD',
+        . == 999 ~ 'WGC',
+        . == -998 ~ 'WNGC',
         is.na(.) ~ 'DNP',
         TRUE ~ as.character(.)
       )))
@@ -661,12 +665,12 @@ decisions_analysis <- function(input_path,
         mutate(maj_votes = unlist(stringr::str_split(Coalition, pattern = '-'))[1],
                min_votes = unlist(stringr::str_split(Coalition, pattern = '-'))[2]) %>%
         ungroup() %>%
-        mutate(term = as.integer('2024'),
+        mutate(term = as.numeric(current_term),
                Coalition = paste0('(', Coalition, ')')) %>%
         select(Coalition, term)
 
       coalitions_longitudinal_figure <- scdb_cases %>%
-        filter(term >= 2021) %>%
+        filter(term >= as.numeric(current_term)-3) %>%
         select(majVotes, minVotes, term, docket) %>%
         rename(min_votes = minVotes,
                maj_votes = majVotes) %>%
@@ -726,7 +730,7 @@ decisions_analysis <- function(input_path,
     {
 
       unanimity_figure <- scdb_cases %>%
-        filter(term >= 2021) %>%
+        filter(term >= as.numeric(current_term) - 3) %>% # Last 3 Terms
         select(majVotes, minVotes, term, docket) %>%
         rename(min_votes = minVotes,
                maj_votes = majVotes) %>%
@@ -739,7 +743,7 @@ decisions_analysis <- function(input_path,
                     rowwise() %>%
                     mutate(maj_votes = unlist(stringr::str_split(Coalition, pattern = '-'))[1],
                            min_votes = unlist(stringr::str_split(Coalition, pattern = '-'))[2]) %>%
-                    mutate(term = as.integer('2024'),
+                    mutate(term = as.numeric(current_term),
                            Coalition = paste0('(', Coalition, ')'),
                            min_votes = as.numeric(min_votes)) %>%
                     select(term, min_votes)) %>%
@@ -786,6 +790,7 @@ decisions_analysis <- function(input_path,
           strip.background = element_rect(size = 1, colour = 'black', fill = 'gray75')
         )
 
+      unanimity_figure
 
 
     } # Unanimity Pie Charts

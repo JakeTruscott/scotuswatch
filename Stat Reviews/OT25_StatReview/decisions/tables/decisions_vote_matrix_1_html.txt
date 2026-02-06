@@ -12,7 +12,6 @@
 <th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">KAVANAUGH</div></th>
 <th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">BARRETT</div></th>
 <th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">JACKSON</div></th>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">Notes</div></th>
 </tr>
   <tr>
    <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Case </th>
@@ -26,7 +25,6 @@
    <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> <img src="https://api.oyez.org/sites/default/files/filefield_paths/Kavanaugh-thumb.png" style="width: 75px; height: 75px; object-fit: cover;"> </th>
    <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> <img src="https://api.oyez.org/sites/default/files/filefield_paths/barret-thumb.png" style="width: 75px; height: 75px; object-fit: cover;"> </th>
    <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> <img src="https://api.oyez.org/sites/default/files/filefield_paths/thumbnail_ketanji_brown_jackson.png" style="width: 75px; height: 75px; object-fit: cover;"> </th>
-   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;"> Notes </th>
   </tr>
  </thead>
 <tbody>
@@ -42,7 +40,6 @@
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
-   <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;">  </td>
   </tr>
   <tr>
    <td style="text-align:center;width: 3cm; font-weight: bold;border-right:1px solid;text-align: center;"> Clark v. Sweeney </td>
@@ -56,7 +53,6 @@
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
-   <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;">  </td>
   </tr>
   <tr>
    <td style="text-align:center;width: 3cm; font-weight: bold;border-right:1px solid;text-align: center;"> Doe v. Dynamic Physical Therapy, LLC </td>
@@ -70,7 +66,6 @@
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
-   <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;">  </td>
   </tr>
   <tr>
    <td style="text-align:center;width: 3cm; font-weight: bold;border-right:1px solid;text-align: center;"> Bowe v. United States </td>
@@ -84,7 +79,6 @@
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(204, 0, 0, 255) !important;">JD</span> </td>
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(102, 178, 255, 255) !important;">RC</span> </td>
-   <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> Barrett joined Gorsuch Dissent in Part 1 </td>
   </tr>
   <tr>
    <td style="text-align:center;width: 3cm; font-weight: bold;border-right:1px solid;text-align: center;"> Bost v.  Illinois Board of Elections </td>
@@ -98,7 +92,6 @@
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(255, 153, 51, 255) !important;">CJ</span> </td>
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(255, 51, 51, 255) !important;">D</span> </td>
-   <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;">  </td>
   </tr>
   <tr>
    <td style="text-align:center;width: 3cm; font-weight: bold;border-right:1px solid;text-align: center;"> Case v. Montana </td>
@@ -112,7 +105,6 @@
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
-   <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;">  </td>
   </tr>
   <tr>
    <td style="text-align:center;width: 3cm; font-weight: bold;border-right:1px solid;text-align: center;"> Barrett v. United States </td>
@@ -126,7 +118,6 @@
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: darkolivegreen !important;">M*</span> </td>
-   <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> Split Opinion by Parts; Reverse in Part </td>
   </tr>
   <tr>
    <td style="text-align:center;width: 3cm; font-weight: bold;border-right:1px solid;text-align: center;"> Coney Island Auto Parts Unlimited, Inc. v. Burton </td>
@@ -140,7 +131,6 @@
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
-   <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;">  </td>
   </tr>
   <tr>
    <td style="text-align:center;width: 3cm; font-weight: bold;border-right:1px solid;text-align: center;"> Ellingburg v. United States </td>
@@ -154,11 +144,23 @@
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: darkolivegreen !important;">M*</span> </td>
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
-   <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;">  </td>
   </tr>
   <tr>
-   <td style="text-align:center;width: 3cm; font-weight: bold;border-right:1px solid;text-align: center;border-bottom: 2px solid;"> Berk v. Choy </td>
-   <td style="text-align:center;width: 2cm; font-weight: bold;border-right:1px solid;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;border-bottom: 2px solid;"> 24-440 </td>
+   <td style="text-align:center;width: 3cm; font-weight: bold;border-right:1px solid;text-align: center;"> Berk v. Choy </td>
+   <td style="text-align:center;width: 2cm; font-weight: bold;border-right:1px solid;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> 24-440 </td>
+   <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
+   <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
+   <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
+   <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
+   <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
+   <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
+   <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
+   <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: darkolivegreen !important;">M*</span> </td>
+   <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(255, 153, 51, 255) !important;">CJ</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 3cm; font-weight: bold;border-right:1px solid;text-align: center;border-bottom: 2px solid;"> Klein v. Martin </td>
+   <td style="text-align:center;width: 2cm; font-weight: bold;border-right:1px solid;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;border-bottom: 2px solid;"> 25-51 </td>
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;border-bottom: 2px solid;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;border-bottom: 2px solid;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;border-bottom: 2px solid;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
@@ -166,9 +168,8 @@
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;border-bottom: 2px solid;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;border-bottom: 2px solid;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
    <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;border-bottom: 2px solid;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
-   <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;border-bottom: 2px solid;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: darkolivegreen !important;">M*</span> </td>
-   <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;border-bottom: 2px solid;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(255, 153, 51, 255) !important;">CJ</span> </td>
-   <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;border-bottom: 2px solid;">  </td>
+   <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;border-bottom: 2px solid;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(153, 204, 255, 255) !important;">M</span> </td>
+   <td style="text-align:center;width: 1.25cm; border-right:1px solid;vertical-align: middle; font-size: 18px;text-align: center;border-bottom: 2px solid;"> <span style="     border-radius: 4px; color: white;  padding-right: 4px; padding-left: 4px; background-color: rgba(255, 255, 255, 255) !important;">WNGC</span> </td>
   </tr>
 </tbody>
 <tfoot>
