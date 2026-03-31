@@ -113,14 +113,24 @@
    <td style="text-align:center;"> (9-0) </td>
   </tr>
   <tr>
-   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Klein v. Martin </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 25-51 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> NA </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 2026-01-26 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> CA4 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> GRR </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> Per Curiam </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> (8-1) </td>
+   <td style="text-align:center;font-weight: bold;"> Klein v. Martin </td>
+   <td style="text-align:center;"> 25-51 </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> 2026-01-26 </td>
+   <td style="text-align:center;"> CA4 </td>
+   <td style="text-align:center;"> GRR </td>
+   <td style="text-align:center;"> Per Curiam </td>
+   <td style="text-align:center;"> (8-1) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Learning Resources, Inc. v. Trump </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 24-1287 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2025-11-05 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2026-02-20 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> CADC </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Vacate and Remand </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Roberts </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> (6-3) </td>
   </tr>
 </tbody>
 </table>
