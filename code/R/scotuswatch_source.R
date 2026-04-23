@@ -1741,7 +1741,7 @@ case_data = get_case_data(term, docket)
       next
     }
 
-    if (grepl('Not Present', argument_links, ignore.case = T)){
+    if (any(grepl('Not Present', argument_links, ignore.case = T))){
       message("\033[97mERROR\033[0m: No Oral Argument Found For ", docket[temp_docket], " (", term, ")")
       next
     }

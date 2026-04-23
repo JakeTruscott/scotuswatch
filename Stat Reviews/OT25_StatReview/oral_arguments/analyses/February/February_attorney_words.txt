@@ -1,0 +1,120 @@
+<table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 12px; color: black; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> Case </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> Attorney </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> Docket </th>
+   <th style="text-align:center;font-weight: bold;color: white !important;background-color: rgba(8, 8, 8, 255) !important;text-align: center;padding: 0; margin: 0;"> Words </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Hunter v. United States </td>
+   <td style="text-align:center;text-align: center;"> Lisa S. Blatt </td>
+   <td style="text-align:center;text-align: center;"> 24-1063 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">5243</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Hunter v. United States </td>
+   <td style="text-align:center;text-align: center;"> Zoe A. Jacoby </td>
+   <td style="text-align:center;text-align: center;"> 24-1063 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(112, 138, 58, 255) !important;font-size: large;">5137</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> United States v. Hemani </td>
+   <td style="text-align:center;text-align: center;"> Erin E. Murphy </td>
+   <td style="text-align:center;text-align: center;"> 24-1234 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">5500</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> United States v. Hemani </td>
+   <td style="text-align:center;text-align: center;"> Sarah M. Harris </td>
+   <td style="text-align:center;text-align: center;"> 24-1234 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">7215</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Montgomery v. Caribe Transport II, LLC </td>
+   <td style="text-align:center;text-align: center;"> Paul D. Clement </td>
+   <td style="text-align:center;text-align: center;"> 24-1238 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">6273</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Montgomery v. Caribe Transport II, LLC </td>
+   <td style="text-align:center;text-align: center;"> Sopan Joshi </td>
+   <td style="text-align:center;text-align: center;"> 24-1238 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">2891</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Montgomery v. Caribe Transport II, LLC </td>
+   <td style="text-align:center;text-align: center;"> Theodore J. Boutrous Jr. </td>
+   <td style="text-align:center;text-align: center;"> 24-1238 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">2777</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Exxon Mobil Corp. v. Corporacion Cimex, S.A. </td>
+   <td style="text-align:center;text-align: center;"> Curtis E. Gannon </td>
+   <td style="text-align:center;text-align: center;"> 24-699 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">3192</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Exxon Mobil Corp. v. Corporacion Cimex, S.A. </td>
+   <td style="text-align:center;text-align: center;"> Jules L. Lobel </td>
+   <td style="text-align:center;text-align: center;"> 24-699 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">2541</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Exxon Mobil Corp. v. Corporacion Cimex, S.A. </td>
+   <td style="text-align:center;text-align: center;"> Morgan L. Ratner </td>
+   <td style="text-align:center;text-align: center;"> 24-699 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">2834</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Enbridge Energy, LP v. Nessel </td>
+   <td style="text-align:center;text-align: center;"> Ann M. Sherman </td>
+   <td style="text-align:center;text-align: center;"> 24-783 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">2503</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Enbridge Energy, LP v. Nessel </td>
+   <td style="text-align:center;text-align: center;"> John J. Bursch </td>
+   <td style="text-align:center;text-align: center;"> 24-783 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(112, 138, 58, 255) !important;font-size: large;">5057</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Havana Docks Corp. v. Royal Carribean Cruises </td>
+   <td style="text-align:center;text-align: center;"> Aimee W. Brown </td>
+   <td style="text-align:center;text-align: center;"> 24-983 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">2328</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Havana Docks Corp. v. Royal Carribean Cruises </td>
+   <td style="text-align:center;text-align: center;"> Paul D. Clement </td>
+   <td style="text-align:center;text-align: center;"> 24-983 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">4282</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Havana Docks Corp. v. Royal Carribean Cruises </td>
+   <td style="text-align:center;text-align: center;"> Richard D. Klingler </td>
+   <td style="text-align:center;text-align: center;"> 24-983 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">3207</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Pung v. Isabella County </td>
+   <td style="text-align:center;text-align: center;"> Frederick Liu </td>
+   <td style="text-align:center;text-align: center;"> 25-95 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(122, 130, 104, 255) !important;font-size: large;">2664</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Pung v. Isabella County </td>
+   <td style="text-align:center;text-align: center;"> Matthew T. Nelson </td>
+   <td style="text-align:center;text-align: center;"> 25-95 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">2284</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Pung v. Isabella County </td>
+   <td style="text-align:center;text-align: center;"> Philip L. Ellison </td>
+   <td style="text-align:center;text-align: center;"> 25-95 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">4695</span> </td>
+  </tr>
+</tbody>
+</table>

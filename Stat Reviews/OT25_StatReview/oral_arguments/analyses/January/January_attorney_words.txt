@@ -9,6 +9,24 @@
  </thead>
 <tbody>
   <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> M and K Employee Solutions v. Trustees of the IAM Pension Fund </td>
+   <td style="text-align:center;text-align: center;"> John E. Roberts </td>
+   <td style="text-align:center;text-align: center;"> 23-1209 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(124, 128, 115, 255) !important;font-size: large;">2468</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> M and K Employee Solutions v. Trustees of the IAM Pension Fund </td>
+   <td style="text-align:center;text-align: center;"> Kevin J. Barber </td>
+   <td style="text-align:center;text-align: center;"> 23-1209 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(127, 127, 127, 255) !important;font-size: large;">847</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> M and K Employee Solutions v. Trustees of the IAM Pension Fund </td>
+   <td style="text-align:center;text-align: center;"> Michael E. Kenneally </td>
+   <td style="text-align:center;text-align: center;"> 23-1209 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">4068</span> </td>
+  </tr>
+  <tr>
    <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Galette v. NJ Transit Corp. </td>
    <td style="text-align:center;text-align: center;"> Michael B. Kimberly </td>
    <td style="text-align:center;text-align: center;"> 24-1021 </td>
@@ -18,7 +36,7 @@
    <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Galette v. NJ Transit Corp. </td>
    <td style="text-align:center;text-align: center;"> Michael Zuckerman </td>
    <td style="text-align:center;text-align: center;"> 24-1021 </td>
-   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">5586</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">5586</span> </td>
   </tr>
   <tr>
    <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Wolford v. Lopez </td>
@@ -30,13 +48,13 @@
    <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Wolford v. Lopez </td>
    <td style="text-align:center;text-align: center;"> Neal Kumar Katyal </td>
    <td style="text-align:center;text-align: center;"> 24-1046 </td>
-   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(112, 138, 58, 255) !important;font-size: large;">4424</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(112, 138, 58, 255) !important;font-size: large;">4427</span> </td>
   </tr>
   <tr>
    <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Wolford v. Lopez </td>
    <td style="text-align:center;text-align: center;"> Sarah M. Harris </td>
    <td style="text-align:center;text-align: center;"> 24-1046 </td>
-   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(112, 138, 58, 255) !important;font-size: large;">4006</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">4006</span> </td>
   </tr>
   <tr>
    <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Little v. Hecox </td>
@@ -54,7 +72,7 @@
    <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Little v. Hecox </td>
    <td style="text-align:center;text-align: center;"> Kathleen R. Hartnett </td>
    <td style="text-align:center;text-align: center;"> 24-38 </td>
-   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">5901</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">5901</span> </td>
   </tr>
   <tr>
    <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> West Virginia v. B.P.J. </td>
@@ -66,7 +84,7 @@
    <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> West Virginia v. B.P.J. </td>
    <td style="text-align:center;text-align: center;"> Joshua A. Block </td>
    <td style="text-align:center;text-align: center;"> 24-43 </td>
-   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(114, 136, 69, 255) !important;font-size: large;">3985</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">3985</span> </td>
   </tr>
   <tr>
    <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> West Virginia v. B.P.J. </td>
@@ -84,13 +102,25 @@
    <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Chevron USA Inc. v. Plaquemines Parish </td>
    <td style="text-align:center;text-align: center;"> J. Benjamin Aguinaga </td>
    <td style="text-align:center;text-align: center;"> 24-813 </td>
-   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(117, 134, 81, 255) !important;font-size: large;">3904</span> </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(119, 132, 92, 255) !important;font-size: large;">3904</span> </td>
   </tr>
   <tr>
    <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Chevron USA Inc. v. Plaquemines Parish </td>
    <td style="text-align:center;text-align: center;"> Paul D. Clement </td>
    <td style="text-align:center;text-align: center;"> 24-813 </td>
    <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(109, 140, 46, 255) !important;font-size: large;">5050</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Trump, President of U.S. v. Cook </td>
+   <td style="text-align:center;text-align: center;"> D. John Sauer </td>
+   <td style="text-align:center;text-align: center;"> 25A312 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">5937</span> </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-right:1px solid;text-align: center;"> Trump, President of U.S. v. Cook </td>
+   <td style="text-align:center;text-align: center;"> Paul D. Clement </td>
+   <td style="text-align:center;text-align: center;"> 25A312 </td>
+   <td style="text-align:center;text-align: center;"> <span style=" font-weight: bold;    color: white !important;border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: rgba(107, 142, 35, 255) !important;font-size: large;">7108</span> </td>
   </tr>
 </tbody>
 </table>

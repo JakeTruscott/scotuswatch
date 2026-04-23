@@ -56,6 +56,16 @@ for (i in 1:length(unique_sittings)){
                                  output_path = 'Stat Reviews/OT25_StatReview/oral_arguments/transcripts',
                                  output_name = temp_output_name)
 
+  if ('24-109' %in% c(unique(temp$docket))){
+
+    temp <- temp %>%
+      mutate(callais_special = ifelse(docket == '24-109' & !grepl('reargument', object_title, ignore.case = T), 1, 0)) %>%
+      filter(!callais_special == 1) %>%
+      select(-c(callais_special))
+
+  } # Louisiana v. Callais Rehearing
+
+
   message('------ Completed ', temp_sitting)
 
 }
