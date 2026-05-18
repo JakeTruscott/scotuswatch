@@ -1,0 +1,20 @@
+decisions_combined <- scdb_justices_data %>%
+  filter(term >= 2005) %>%
+  filter(opinion == 2) %>%
+  select(term, vote, decisionType, docket, opinion, justiceName) %>%
+  mutate(vote = case_when(
+    vote %in% c(2, 6, 7) ~ 'Dissent',
+    vote %in% c(3, 4, 6, 8) ~ 'Concurrence',
+    .default = 'Majority')) %>%
+  group_by(term, vote, docket) %>%
+  summarise(count = n(), .groups = 'drop') %>%
+  unique() %>%
+  group_by(term, vote) %>%
+  summarise(count = sum(count), .groups = 'drop') %>%
+  unique() %>%
+  mutate(vote = factor(vote, levels = c('Majority', 'Concurrence', 'Dissent'))) %>%
+  bind_rows(ot25_decisions) %>%
+  group_by(term, vote) %>%
+  summarise(count = sum(count), .groups = 'drop') %>%
+  mutate(vote = factor(vote, levels = c('Dissent', 'Concurrence', 'Majority'))) %>%
+  filter(term >= 2005)

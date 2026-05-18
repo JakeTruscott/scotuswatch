@@ -1,0 +1,9 @@
+ot24 <- scdb_justices %>% filter(term == 2024) %>%
+  filter(opinion %in% c(2, 3)) %>%
+  select(term, caseName, docket, justice, justiceName, opinion)
+
+
+ot24_cases <- scdb_cases %>%
+  filter(term == 2024) %>%
+  select(term, caseName, docket, decisionType)
+

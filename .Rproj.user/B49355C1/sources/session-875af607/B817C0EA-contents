@@ -1,0 +1,441 @@
+---
+output:
+  pdf_document:
+    latex_engine: xelatex
+fontsize: 12pt
+header-includes:
+  - \usepackage{fontspec}
+  - |
+      \setmainfont[
+      Path = C:/Users/jaketruscott/AppData/Local/Microsoft/Windows/Fonts/,
+      Extension = .ttf,
+      UprightFont = Mulish-Regular,
+      BoldFont = Mulish-Bold,
+      ItalicFont = Mulish-Italic,
+      BoldItalicFont = Mulish-BoldItalic
+      ]{Mulish}
+  - \usepackage{tikz}
+  - \usepackage{multicol}
+  - \usepackage{array}
+  - \usepackage{fontawesome5}
+  - \usepackage{hyperref}
+  - \usetikzlibrary{calc}
+  - \usepackage{xcolor}
+  - \usepackage{geometry}
+  - \usepackage{tocloft}
+  - \setlength{\cftbeforesecskip}{8pt}
+  - \setlength{\cftbeforesubsecskip}{7pt}
+  - \geometry{paperwidth=13.333in, paperheight=7.5in, margin=0.25in}
+  - \definecolor{dispatchBlue}{HTML}{112537}
+  - \definecolor{dispatchRed}{HTML}{C41E3A}
+  - \usepackage{titlesec}
+  - \titleformat{\section}
+    {\color{dispatchRed}\fontsize{35pt}{38pt}\selectfont\bfseries}
+    {\thesection}{1em}{}
+  - \titleformat{\subsection}
+    {\color{dispatchRed}\fontsize{35pt}{38pt}\selectfont\bfseries}
+    {\thesubsection}{1em}{}
+  - \titleformat{\subsubsection}
+    {\color{dispatchRed}\fontsize{35pt}{38pt}\selectfont\bfseries}
+    {\thesubsubsection}{1em}{}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhf{}
+  - \fancyfoot[C]{\hspace{12in}\vspace{2mm}\thepage}
+  - \renewcommand{\headrulewidth}{0pt}
+  - \renewcommand{\footrulewidth}{0pt}
+  - |
+      \newcommand{\sidebox}[1]{
+      \hspace{-2cm}
+      \begin{tikzpicture}[outer sep=0pt,inner sep=0pt]
+      \node[
+      fill=dispatchBlue!8,
+      draw=dispatchBlue,
+      line width=1.2pt,
+      rounded corners=6pt,
+      inner sep=10pt,
+      text width=10cm,
+      align=left,
+      font=\footnotesize, 
+      ]{
+      #1
+      };
+      \end{tikzpicture}
+      }
+  - |
+      \newcommand{\footernote}[1]{
+      \begin{tikzpicture}[remember picture,overlay]
+      
+      % Box dimensions
+      \coordinate (boxSW) at ($(current page.south west)+(0.5in,0.35in)$);
+      \coordinate (boxNE) at ($(current page.south east)+(-0.5in,1.15in)$);
+
+      % Draw box
+      \filldraw[
+        fill=dispatchBlue!8,
+        draw=dispatchBlue,
+        line width=1.2pt,
+        rounded corners=6pt
+      ]
+      (boxSW) rectangle (boxNE);
+
+      % Text
+      \node[
+      anchor=north west,
+      text width=11.5in,
+      align=left,
+      font=\footnotesize
+      ]
+      at ($(boxNE)+(-11.7in,-0.05in)$)
+      {#1};
+
+      \end{tikzpicture}
+      }
+      
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+check_and_install_packages <- function(){
+
+  packages <- c('anytime', 'dplyr', 'ggplot2', 'ggpattern', 'ggtext', 'ggthemes',
+                'grid', 'htmltools', 'httr', 'jsonlite', 'kableExtra', 'png',
+                'readxl', 'reticulate', 'rvest', 'scotustext', 'stringi',
+                'stringr', 'tidyr', 'tm', 'webshot2', 'purrr', 'tibble', 'httr', 'httr2',
+                'tokenizers', 'lubridate', 'scales', 'forcats', 'patchwork', 'openxlsx')
+
+  missing_packages <- packages[!packages %in% installed.packages()[, "Package"]]
+
+  # If there are missing packages
+  if (length(missing_packages) > 0) {
+    message("The following necessary packages are missing: ", paste(missing_packages, collapse = ", "))
+
+    response <- readline("Would you like to install them? (Y/N): ")
+    if (tolower(response) %in% c("yes", "y")) {
+      install.packages(missing_packages, dependencies = TRUE, quiet = TRUE)
+      message("Packages installed successfully.")
+    } else {
+      stop("Packages must be installed prior to compilation. Please install and try again.")
+    }
+  }
+
+  invisible(lapply(packages, function(pkg) {
+    suppressWarnings(suppressPackageStartupMessages(library(pkg, character.only = TRUE)))
+  }))
+
+  message('All Packages Installed and Deployed Correctly')
+} # Check and Install Necessary Packages
+check_and_install_packages() # Deploy
+
+```
+
+<!-- Title Page -->
+
+```{=latex}
+\begin{titlepage}
+\thispagestyle{empty}
+\noindent
+
+\vspace*{0.4cm}
+
+\hspace*{0.05\textwidth} 
+% ===== LEFT COLUMN =====
+\begin{minipage}[c]{0.4\textwidth}
+\centering
+{\includegraphics[height=0.75\textwidth]{../images/scotusblog_logo.jpg}\par}
+\vspace{2cm}
+{\Huge \textbf{Final Stat Pack for the \\ 2025-26 Term}\par}
+\vspace{1cm}
+{\large \textbf{Updated: \today}\par}
+\end{minipage}
+\hfill
+% ===== RIGHT COLUMN =====
+\begin{minipage}[c]{0.5\textwidth}
+\centering
+
+{\includegraphics[height=0.6\textwidth]{../images/scotus_building.png}\par}
+{\footnotesize J. Scott Applewhite/AP Photo}
+
+\end{minipage}
+
+
+\vspace*{\fill}
+
+% AUTHOR BLOCK (flush left)
+\noindent
+\begin{minipage}[b]{\textwidth}
+\raggedright
+{\normalsize
+\emph{\textbf{Compiled by \faStarOfDavid\ Jake S. Truscott (Ph.D)}, 
+\textbf{\faStarOfDavid\ Adam Feldman (J.D., Ph.D.)}, \textbf{and an international cabal of fellow Zionists}}.
+}
+\end{minipage}
+
+\vspace*{1.5cm}
+
+
+% ===== TIKZ FOOTER (unchanged) =====
+\begin{tikzpicture}[remember picture, overlay]
+
+\coordinate (barSW) at (current page.south west);
+\coordinate (barSE) at ($(current page.south east)+(0,2.25cm)$);
+
+\fill[dispatchBlue] (barSW) rectangle (barSE);
+
+\coordinate (barMid) at ($(barSW)!0.5!(barSE)$);
+
+\coordinate (colA) at ($(current page.south west)!0.125!(current page.south east)$);
+\coordinate (colB) at ($(current page.south west)!0.35!(current page.south east)$);
+\coordinate (colC) at ($(current page.south west)!0.525!(current page.south east)$);
+\coordinate (colD) at ($(current page.south west)!0.8!(current page.south east)$);
+
+\node[text=white, font=\Large, align=center] at (colA |- barMid)
+{\href{https://www.scotusblog.com/}{\faDesktop\ www.scotusblog.com}};
+
+\node[text=white, font=\Large, align=center] at (colB |- barMid)
+{\href{https://twitter.com/SCOTUSblog}{\includegraphics[height=14pt]{../images/x_logo.png}\ @SCOTUSblog}};
+
+\node[text=white, font=\Large, align=center] at (colC |- barMid)
+{\href{https://twitter.com/SCOTUSblog}{\faTiktok\ @scotusblog}};
+
+\node[text=white, font=\Large, align=center] at (colD |- barMid)
+{\href{mailto:scotusblog@thedispatch.com}{\faEnvelope\ scotusblog@thedispatch.com}};
+
+\end{tikzpicture}
+
+\end{titlepage}
+```
+
+<!-- Table of Contents -->
+
+```{=latex}
+\newgeometry{margin=0.5in}
+\thispagestyle{empty}
+
+\setlength{\columnsep}{0.75in}
+
+\section*{Table of Contents}
+\nopagebreak
+
+\renewcommand{\contentsname}{}
+
+\vspace{-1em}
+
+\begin{multicols*}{2}
+\tableofcontents
+\end{multicols*}
+
+\clearpage
+\restoregeometry
+```
+
+<!-- Introduction -->
+
+```{=latex}
+
+\section{Introduction}
+
+{\Large \textbf{\underline{Key Findings in the Stat Pack for the 2025-26 Term}}} \par \vspace{1cm}
+
+{\large \hspace{2.5mm} \textbf{Test 1}}. Information sample 1 \par  \vspace{1cm}
+
+{\large \hspace{2.5mm}  \textbf{Test 2}}. Information sample 2 \par  \vspace{1cm}
+
+{\large \hspace{2.5mm}  \textbf{Test 3}}. Information sample 3 \par  \vspace{1cm}
+
+{\large \hspace{2.5mm}  \textbf{Test 4}}. Information sample 4 \par  \vspace{1cm}
+
+{\large \hspace{2.5mm}  \textbf{Test 5}}. Information sample 5 \par  \vspace{1cm}
+
+{\large \hspace{2.5mm}  \textbf{Test 6}}. Information sample 6 \par  \vspace{1cm}
+
+
+\newpage
+```
+
+
+<!-- Opinions Over Time -->
+
+```{=latex}
+
+\section{Opinions Over Time}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.65\linewidth]{../../scotusblog_replication/figures/decisions_over_time.png}
+    \label{fig:opinions_over_time}
+\end{figure}
+
+\footernote{
+\textbf{Notes:} (1) Figure shows the volume \& proportion of opinions (by type) authored by the Court between the 2005 and 2025 terms. Data from earlier terms were retrieved from the \href{https://scdb.la.psu.edu/}{Supreme Court Database}. Opinions delivered \emph{per curiam} are coded as a majority opinion, while special concurrences (\emph{in part}) and those concurring in judgment are both coded as concurrences. (2) The Stat Pack only focuses on ``Opinions of the Court'' and not ``Opinions Relating to Orders,'' the latter of which includes several of the cases on the emergency docket. (3) \emph{Goldey v. Fields} (24-809) was decided \emph{per curiam} on June 30, 2025 and was not included in the OT2024-25 Stat Pack. 
+}
+\newpage
+
+```
+
+<!-- Makeup of the Opinions of the Court -->
+
+\vspace{-5mm}
+```{=latex}
+\section{Makeup of the Opinions of the Court}
+```
+
+```{R makeup_of_docket, echo=FALSE}
+
+cases_master <- read.csv('../../cases_master/cases_master_file_OT25.csv', as.is = T)
+
+cases_master %>%
+  select(case, short_hand) %>%
+  arrange(case) %>%
+  mutate('Issue' = '') %>%
+  setNames(c('Case Name', 'Abbreviation', 'Issue')) %>%
+  kableExtra::kbl(format = "latex",
+                  booktabs = TRUE,
+                  longtable = TRUE,
+                  align = c('l', 'l')) %>%
+  kable_styling(latex_options = c("striped", "repeat_header"), 
+                full_width = F,
+                position = "center", font_size = 9) %>%
+  row_spec(0, bold = TRUE, align = "c") %>%
+  column_spec(1, width = "4in") %>%
+  column_spec(2, width = "2in") %>%
+  column_spec(3, width = '5.5in')
+
+```
+\newpage
+
+
+<!-- Unanimity -->
+
+```{=latex}
+
+\section{Unanimity}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.65\linewidth]{../../scotusblog_replication/figures/unanimity_over_time.png}
+    \label{fig:unanimity}
+\end{figure}
+
+\footernote{
+\textbf{Description}: This figure shows the percentage of unanimous decisions (i.e., cases decided without any
+full dissents) between OT05-OT25. These include decisions reached per curiam without any
+noted dissents. Dashed red line represent longitudinal average (\#\%) \\
+\textbf{Notes}:
+}
+\newpage
+```
+
+
+<!-- Frequency in Majority -- All Cases, Closely Divided Cases, Non-Unanimous Cases -->
+
+```{=latex}
+\addcontentsline{toc}{section}{Frequency in the Majority}
+\section*{Frequency in the Majority -- All Cases}
+\addcontentsline{toc}{subsection}{All Cases}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.65\linewidth]{../../scotusblog_replication/figures/percent_in_majority.png}
+    \label{fig:frequency_majority_all}
+\end{figure}
+
+\footernote{
+\textbf{Description}: Figure shows the percentage of cases where each justice was in the majority coalition among all cases that they participated in (including those decided \emph{unanimously}, \emph{per curiam}, or \emph{dismissed as improvidently granted}). \\
+\textbf{Notes}: (1)
+}
+\newpage
+
+
+\section*{Frequency in the Majority -- Non-Unanimous Cases}
+\addcontentsline{toc}{subsection}{Non-Unanimous Cases}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.65\linewidth]{../../scotusblog_replication/figures/percent_in_majority_non_unanimous_cases.png}
+    \label{fig:frequency_majority_non_unanimous}
+\end{figure}
+
+\footernote{
+\textbf{Description}: Figure shows the percentage of cases where each justice was in the majority coalition among cases decided without a unanimous majority. \\
+\textbf{Notes}: (1)
+}
+\newpage
+
+\section*{Frequency in the Majority -- Closely Divided Cases}
+\addcontentsline{toc}{subsection}{Closely Divided Cases}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.65\linewidth]{../../scotusblog_replication/figures/percent_in_majority_close_cases.png}
+    \label{fig:frequency_majority_close_cases}
+\end{figure}
+
+\footernote{
+\textbf{Description}: Figures show the percentage of cases where each justice was in the majority coalition among cases decided by (5-4) or (6-3) coalitions. \\
+\textbf{Notes}: (1)
+}
+\newpage
+
+```
+
+
+<!-- Justice Agreement -- All Cases & Closely Divided Cases -->
+
+```{=latex}
+\addcontentsline{toc}{section}{Justice Agreement}
+\section*{Justice Agreement -- All Cases}
+\addcontentsline{toc}{subsection}{All Cases}
+\noindent
+\begin{tabular}{@{}m{0.68\textwidth} m{0.30\textwidth}@{}}
+\includegraphics[
+width=0.8\linewidth,
+keepaspectratio
+]{../../scotusblog_replication/figures/agreement_matrix_all_cases.png}
+&
+\sidebox{
+\textbf{Description}: Figure shows the relative agreement (percent) in voting alignment shared between justices in all cases where justices participated during the 2025 term.
+
+\vspace{4mm}
+
+\textbf{Notes}: (1) Agreement can be understood as justices similarly aligning in the majority (or dissenting) coalition -- where those who concur (\emph{fully}, \emph{in part}, or \emph{in judgment}) are similarly considered as part of the majority.
+}
+
+\end{tabular}
+\newpage
+
+
+\section*{Justice Agreement -- Closely Divided Cases}
+\addcontentsline{toc}{subsection}{Closely Divided Cases}
+\noindent
+\begin{tabular}{@{}m{0.68\textwidth} m{0.30\textwidth}@{}}
+\includegraphics[
+width=0.8\linewidth,
+keepaspectratio
+]{../../scotusblog_replication/figures/agreement_matrix_close_cases.png}
+&
+\sidebox{
+\textbf{Description}: Figure shows the relative agreement (percent) in voting alignment shared between justices in cases decided by (5-4) or (6-3) coalitions in the 2025 term. 
+
+\vspace{4mm}
+
+\textbf{Notes}: (1) Agreement can be understood as justices similarly aligning in the majority (or dissenting) coalition -- where those who concur (\emph{fully}, \emph{in part}, or \emph{in judgment}) are similarly considered as part of the majority.
+}
+
+\end{tabular}
+\newpage
+
+```
+
+
+<!-- Strength of the Majority -->
+
+
+# Strength of the Majority
+# Closely Divided Cases
+# Decisions by Vote Split
+## All Cases v. Ideologically Split Cases
+# Circuit Scorecard
+# Days Between Oral Argument \& Opinion
+# Opinions Authored by Each Justice
+# Opinion Lengths
+# Voting Alignments
+# Term Index
