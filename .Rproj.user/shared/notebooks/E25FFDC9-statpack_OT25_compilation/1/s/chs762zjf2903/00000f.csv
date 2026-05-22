@@ -1,0 +1,8 @@
+"0","combined <- bind_rows(
+  coalition_sizes_coalition_by_justice,
+  coalition_sizes_percent_unanimous,
+  coalition_sizes_percent_unanimous
+)
+"
+"2","Error: object 'coalition_sizes_percent_unanimous' not found
+"

@@ -1,0 +1,8 @@
+"0","for (i in seq_len(n)) {
+  if (i %% 2 == 0) {
+    t1 <- row_spec(t1, i, background = ""#F5F5F5"")
+  }
+}
+"
+"2","Error in seq_len(n) : argument must be coercible to non-negative integer
+"

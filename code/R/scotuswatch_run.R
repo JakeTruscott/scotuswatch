@@ -95,7 +95,6 @@ oa_analysis(transcript = combined_transcript,
             output_path = 'Stat Reviews/OT25_StatReview/oral_arguments/analyses')
 
 
-
 ################################################################################
 # Attorney Information Template & Analysis
 ################################################################################
@@ -125,35 +124,50 @@ decisions_analysis(input_path = "C:/Users/jaketruscott/Github/scotuswatch/Stat R
 
 
 ################################################################################
-# Recover scotusblog Docket Info
+# Process Opinions
 ################################################################################
 
-scotusblog_dockets <- scotusblog_opinion_recovery(opinions_path = "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT25_StatReview/decisions")
+opinion_processing <- opinion_processing(opinions_path = "Stat Reviews/OT25_StatReview/decisions",
+                                         processed_opinions_path = "Stat Reviews/OT25_StatReview/decisions/opinions/opinions_processed",
+                                         export_path = "Stat Reviews/OT25_StatReview/decisions/opinions/opinions_processed")
 
+combined_opinions <- combined_processed_opinions(processed_opinions_path = "Stat Reviews/OT25_StatReview/decisions/opinions/opinions_processed")
+
+save(combined_opinions, file = 'Stat Reviews/OT25_StatReview/decisions/opinions/combined_opinions_processed/combined_opinions_OT2025.rdata')
 
 ################################################################################
 # Docket Recovery
 ################################################################################
 
-petitions <- c(1295:1315, 7475:7501)
-applications <- c(1262:1282)
-motions <- c(89:98)
-dockets <- c(paste0('24-', petitions), paste0('24a', applications), paste0('24m', motions))
-temp_output_path <- 'Stat Reviews/OT24_StatReview/dockets/processed_dockets'
+petitions <- c(1:1300, 5001:7423)
+applications <- c(1:1294)
+motions <- c(1:85)
+dockets <- c(paste0('25-', petitions), paste0('25a', applications), paste0('25m', motions))
+temp_output_path <- 'Stat Reviews/OT25_StatReview/dockets/processed_dockets'
 completed_dockets <- gsub('\\.rdata', '', list.files(temp_output_path))
 dockets <- dockets[!dockets %in% completed_dockets]
 
 for (docket in 1:length(dockets)){
 
   temp_docket <- dockets[docket]
-  temp_output_path <- 'Stat Reviews/OT24_StatReview/dockets/processed_dockets'
+  temp_output_path <- 'Stat Reviews/OT25_StatReview/dockets/processed_dockets'
   completed_dockets <- gsub('\\.rdata', '', list.files(temp_output_path))
 
   if (temp_docket %in% completed_dockets){
     next
   } else {
-    docket_search(docket_id = temp_docket,
-                  output_path = temp_output_path) # Search for Docket
+    tryCatch(
+      {
+        docket_recovery(
+          docket_id = temp_docket,
+          output_path = temp_output_path
+        )
+      },
+      error = function(e) {
+        message(paste("Skipping", temp_docket, "-", e$message))
+        NULL
+      }
+    ) # Search for Docket
   } # If Not Already Collected -- Grab it
 
   if (docket %% 25 == 0){
@@ -174,23 +188,25 @@ for (docket in 1:length(dockets)){
 
 source('code/R/scotuswatch_source.R') # Load Source & Functions (Load Packages Too)
 
-dockets_combine(dockets_path = 'Stat Reviews/OT24_StatReview/dockets/processed_dockets',
-                output_path = 'Stat Reviews/OT24_StatReview/dockets/combined_dockets/combined_dockets_OT24.rdata') # Combine Dockets to Single Frame
+dockets_combine(dockets_path = 'Stat Reviews/OT25_StatReview/dockets/processed_dockets',
+                output_path = 'Stat Reviews/OT25_StatReview/dockets/combined_dockets/combined_dockets_OT25.rdata') # Combine Dockets to Single Frame
 
-dockets_analysis(combined_dockets <- 'Stat Reviews/OT24_StatReview/dockets/combined_dockets/combined_dockets_OT24.rdata',
-                output_path = 'Stat Reviews/OT24_StatReview/dockets/analysis')
+dockets_analysis(combined_dockets <- 'Stat Reviews/OT25_StatReview/dockets/combined_dockets/combined_dockets_OT25.rdata',
+                output_path = 'Stat Reviews/OT25_StatReview/dockets/analysis')
 
 
 ################################################################################
 # SCOTUSBLOG Stats
 ################################################################################
 
-scotusblog_run <- scotusblog_stats(
-  decisions_path <- "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions/data/OT_24_Decisions.csv",
-  oral_arguments <- get(load('data/term_level_combined_transcripts/scotus_OT24.rdata')),
-  output_folder = file.path('Stat Reviews', 'OT24_StatReview', 'scotusblog_replication', 'figures'),
-  opinions_processed = file.path('Stat Reviews', 'OT24_StatReview', 'decisions', 'opinions', 'combined_opinions_processed', 'combined_opinions_OT2024.rdata'),
-  older_opinions_processed <- "C:/Users/jaketruscott/Github/scotuswatch/data/decisions/earlier_decisions_processed.rdata")
+source('code/R/scotuswatch_source.R') # Load Source & Functions (Load Packages Too)
+
+scotusblog_run <- scotusblog_stats(decisions_path = "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT25_StatReview/decisions/data/OT_25_Decisions.csv",
+                                   oral_arguments = get(load('data/term_level_combined_transcripts/scotus_OT25.rdata')),
+                                   output_folder = file.path('Stat Reviews', 'OT25_StatReview', 'scotusblog_replication', 'figures'),
+                                   opinions_processed = file.path('Stat Reviews', 'OT25_StatReview', 'decisions', 'opinions',
+                                                                  'combined_opinions_processed', 'combined_opinions_OT2025.rdata'),
+                                   older_opinions_processed = "data/decisions/earlier_decisions_processed.rdata")
 
 decisions_path <- "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT25_StatReview/decisions/data/OT_25_Decisions.csv"
 oral_arguments <- get(load('data/term_level_combined_transcripts/scotus_OT25.rdata'))
@@ -202,4 +218,4 @@ scdb_cases_data = scdb_cases
 scdb_justices_data = scdb_justices
 
 export_scotusblog_stats(scotusblog_stats_object = scotusblog_run,
-                        output_path = file.path('Stat Reviews', 'OT24_StatReview', 'scotusblog_replication', 'data'))
+                        output_path = file.path('Stat Reviews', 'OT25_StatReview', 'scotusblog_replication', 'data'))

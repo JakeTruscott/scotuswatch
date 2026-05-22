@@ -13,14 +13,34 @@
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:center;font-weight: bold;"> Postal Service v. Konan </td>
-   <td style="text-align:center;"> 24-351 </td>
-   <td style="text-align:center;"> 2025-10-08 </td>
-   <td style="text-align:center;"> 2026-02-24 </td>
-   <td style="text-align:center;"> CA5 </td>
+   <td style="text-align:center;font-weight: bold;"> Ellingburg v. United States </td>
+   <td style="text-align:center;"> 24-482 </td>
+   <td style="text-align:center;"> 2025-10-14 </td>
+   <td style="text-align:center;"> 2026-01-20 </td>
+   <td style="text-align:center;"> CA8 </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> Kavanaugh </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Klein v. Martin </td>
+   <td style="text-align:center;"> 25-51 </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> 2026-01-26 </td>
+   <td style="text-align:center;"> CA4 </td>
+   <td style="text-align:center;"> GRR </td>
+   <td style="text-align:center;"> Per Curiam </td>
+   <td style="text-align:center;"> (8-1) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Learning Resources, Inc. v. Trump </td>
+   <td style="text-align:center;"> 24-1287 </td>
+   <td style="text-align:center;"> 2025-11-05 </td>
+   <td style="text-align:center;"> 2026-02-20 </td>
+   <td style="text-align:center;"> CADC </td>
    <td style="text-align:center;"> Vacate and Remand </td>
-   <td style="text-align:center;"> Thomas </td>
-   <td style="text-align:center;"> (5-4) </td>
+   <td style="text-align:center;"> Roberts </td>
+   <td style="text-align:center;"> (6-3) </td>
   </tr>
   <tr>
    <td style="text-align:center;font-weight: bold;"> Hain Celestial Group, Inc. v. Palmquist </td>
@@ -40,16 +60,6 @@
    <td style="text-align:center;"> CA10 </td>
    <td style="text-align:center;"> Affirm and Remand </td>
    <td style="text-align:center;"> Kagan </td>
-   <td style="text-align:center;"> (9-0) </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;font-weight: bold;"> Villareal v. Texas </td>
-   <td style="text-align:center;"> 24-557 </td>
-   <td style="text-align:center;"> 2025-10-06 </td>
-   <td style="text-align:center;"> 2026-02-25 </td>
-   <td style="text-align:center;"> TXCRIM </td>
-   <td style="text-align:center;"> Affirm </td>
-   <td style="text-align:center;"> Jackson </td>
    <td style="text-align:center;"> (9-0) </td>
   </tr>
   <tr>
@@ -73,13 +83,54 @@
    <td style="text-align:center;"> (9-0) </td>
   </tr>
   <tr>
-   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Urias-Orellana v. Bondi </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 24-777 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 2025-12-01 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 2026-03-04 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> CA1 </td>
+   <td style="text-align:center;font-weight: bold;"> Enbridge Energy, LP v. Nessel </td>
+   <td style="text-align:center;"> 24-783 </td>
+   <td style="text-align:center;"> 2026-02-26 </td>
+   <td style="text-align:center;"> 2026-04-22 </td>
+   <td style="text-align:center;"> CA6 </td>
+   <td style="text-align:center;"> Affirm </td>
+   <td style="text-align:center;"> Sotomayor </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Hencely v. Fluor Corp. </td>
+   <td style="text-align:center;"> 24-924 </td>
+   <td style="text-align:center;"> 2025-11-03 </td>
+   <td style="text-align:center;"> 2026-04-22 </td>
+   <td style="text-align:center;"> CA4 </td>
+   <td style="text-align:center;"> Vacate and Remand </td>
+   <td style="text-align:center;"> Thomas </td>
+   <td style="text-align:center;"> (6-3) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> First Choice Women<u>s Resource Centers, Inc. v. Davenport </u>
+</td>
+   <td style="text-align:center;"> 24-781 </td>
+   <td style="text-align:center;"> 2025-12-02 </td>
+   <td style="text-align:center;"> 2026-04-29 </td>
+   <td style="text-align:center;"> CA3 </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> Gorsuch </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Louisiana v. Callais </td>
+   <td style="text-align:center;"> 24-109 </td>
+   <td style="text-align:center;"> 2025-10-15 </td>
+   <td style="text-align:center;"> 2026-04-29 </td>
+   <td style="text-align:center;"> WDLA </td>
+   <td style="text-align:center;"> Affirm and Remand </td>
+   <td style="text-align:center;"> Alito </td>
+   <td style="text-align:center;"> (6-3) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Jules v. Andre Balazs Properties </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 25-83 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2026-03-30 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2026-05-14 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> CA2 </td>
    <td style="text-align:center;border-bottom: 2px solid;"> Affirm </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> Jackson </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Sotomayor </td>
    <td style="text-align:center;border-bottom: 2px solid;"> (9-0) </td>
   </tr>
 </tbody>

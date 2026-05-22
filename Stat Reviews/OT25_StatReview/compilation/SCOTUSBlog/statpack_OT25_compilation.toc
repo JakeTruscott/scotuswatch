@@ -9,13 +9,14 @@
 \contentsline {section}{Justice Agreement}{10}{table.1}%
 \contentsline {subsection}{All Cases}{10}{table.1}%
 \contentsline {subsection}{Closely Divided Cases}{11}{table.1}%
-\contentsline {section}{Strength of the Majority}{12}{table.1}%
-\contentsline {section}{Closely Divided Cases}{12}{table.1}%
-\contentsline {section}{Decisions by Vote Split}{12}{table.1}%
-\contentsline {subsection}{All Cases v. Ideologically Split Cases}{12}{table.1}%
-\contentsline {section}{Circuit Scorecard}{12}{table.1}%
-\contentsline {section}{Days Between Oral Argument \& Opinion}{12}{table.1}%
-\contentsline {section}{Opinions Authored by Each Justice}{12}{table.1}%
-\contentsline {section}{Opinion Lengths}{12}{table.1}%
-\contentsline {section}{Voting Alignments}{12}{table.1}%
-\contentsline {section}{Term Index}{13}{table.1}%
+\contentsline {subsection}{Strength of the Majority}{12}{table.1}%
+\contentsline {subsection}{Closely Divided Cases}{13}{table.1}%
+\contentsline {section}{Decisions by Vote Split}{14}{table.1}%
+\contentsline {subsection}{All Cases}{14}{table.1}%
+\contentsline {subsection}{Ideologically Split Cases}{15}{table.1}%
+\contentsline {subsection}{Circuit Scorecard}{16}{table.1}%
+\contentsline {section}{Days Between Oral Argument \& Opinion}{17}{table.1}%
+\contentsline {section}{Opinions Authored by Each Justice}{17}{table.1}%
+\contentsline {section}{Opinion Lengths}{17}{table.1}%
+\contentsline {section}{Voting Alignments}{17}{table.1}%
+\contentsline {section}{Term Index}{17}{table.1}%

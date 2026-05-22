@@ -1,0 +1,41 @@
+justia_html_recovery <- function(scdb_match, temp_case){
+  
+  combined_opinions <- list()
+  
+  temp_case_link <- paste0('https://supreme.justia.com/', temp_link) # Compile Justia Link
+  case_source_temp <- read_html(temp_justia) #Retrieve Case Source
+  
+  {
+    
+    opinions_list <- case_source_temp %>%
+      html_nodes("#opinions-list") %>%
+      html_nodes("li") # List of Opinions for Case
+    
+    href_values <- opinions_list %>%
+      html_nodes("a") %>%
+      html_attr("href")  # Retrieve Justia ID #'s
+    
+    title_values <- opinions_list %>%
+      html_nodes("a") %>%
+      html_text() %>%
+      gsub("\\t+", " ", .) # Retrieve Opinion Type (Author)
+    
+    temp_opinions <- data.frame(opinion = title_values,
+                                justice = gsub('.*\\(', '', gsub('\\)', '',  title_values)),
+                                opinion_type = trimws(gsub('\\(.*', '', title_values)),
+                                justia_id = href_values,
+                                updated_justia_link = paste0( temp_case_link, href_values)) # Combine Into DF
+    
+  } # Get Opinions List - Href Values - Title Values -- Recover Temp Opinions Before Processing
+  
+  for (opinion in 1:nrow(temp_opinions)){
+    
+    temp_opinion <- temp_opinions[opinion,] # Get Temp Opinion
+    
+  
+  
+ 
+  
+  return(combined_opinions)
+  
+} # Recover HTML

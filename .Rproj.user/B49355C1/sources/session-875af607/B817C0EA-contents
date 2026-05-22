@@ -103,7 +103,7 @@ check_and_install_packages <- function(){
                 'grid', 'htmltools', 'httr', 'jsonlite', 'kableExtra', 'png',
                 'readxl', 'reticulate', 'rvest', 'scotustext', 'stringi',
                 'stringr', 'tidyr', 'tm', 'webshot2', 'purrr', 'tibble', 'httr', 'httr2',
-                'tokenizers', 'lubridate', 'scales', 'forcats', 'patchwork', 'openxlsx')
+                'tokenizers', 'lubridate', 'scales', 'forcats', 'patchwork', 'openxlsx', 'readxl')
 
   missing_packages <- packages[!packages %in% installed.packages()[, "Package"]]
 
@@ -129,6 +129,28 @@ check_and_install_packages <- function(){
 check_and_install_packages() # Deploy
 
 ```
+
+```{r setup2, include = F}
+
+cases_master <- read.csv('../../cases_master/cases_master_file_OT25.csv', as.is = T)
+
+scotusblog_stats_files <- list.files('../../scotusblog_replication/data', full.names = F)
+
+scotusblog_stats <- list()
+
+for (i in 1:length(scotusblog_stats_files)){
+  temp_stat <- scotusblog_stats_files[i]
+  temp_stat_name <- gsub('\\.xlsx', '', temp_stat)
+  temp_sheets <- excel_sheets(file.path('../../scotusblog_replication/data', temp_stat))
+  df_list <- lapply(temp_sheets, function(s) {
+  read_excel(path = file.path('../../scotusblog_replication/data', temp_stat), sheet = s)
+})
+  names(df_list) <- temp_sheets
+  scotusblog_stats[[as.character(temp_stat_name)]] <- df_list
+}
+
+```
+
 
 <!-- Title Page -->
 
@@ -428,12 +450,369 @@ keepaspectratio
 
 <!-- Strength of the Majority -->
 
+```{r strength_of_majority_tables, message=FALSE, warning=FALSE, results='asis', echo=F}
 
-# Strength of the Majority
-# Closely Divided Cases
-# Decisions by Vote Split
-## All Cases v. Ideologically Split Cases
-# Circuit Scorecard
+justices <- scotusblog_stats$frequency_in_majority$perc_opinions_unanimous$justice 
+
+df <- scotusblog_stats$frequency_in_majority$coalition_sizesjustice %>%
+  setNames(c('Justice', 'Total Opinions', 'Unanimous', '(8-1)', '(7-2)', '(6-3)', '(5-4)', 'Average Majority Size')) %>%
+  bind_rows(
+    summarise(.,
+              Justice = "Total",
+              across(`Total Opinions`:`(5-4)`, sum, na.rm = TRUE),
+              `Average Majority Size` = mean(as.numeric(`Average Majority Size`), na.rm = TRUE))) %>%
+  mutate(`Average Majority Size` = round(`Average Majority Size`, 2))
+
+names(df)[1] <- ''
+
+k <- kableExtra::kbl(df,
+                     format = "latex",
+                     booktabs = TRUE,
+                     align = c('l', rep('c', 7)))
+
+for (i in seq_len(nrow(df))) {
+  if (i %% 2 == 0) {
+    k <- kableExtra::row_spec(k, i, background = "#F5F5F5")
+  }
+}
+
+t1 <- k %>% 
+  kableExtra::row_spec(9, extra_latex_after = '\\midrule\\vspace{-5mm}') %>%
+  kableExtra::row_spec(0, bold = TRUE) %>%
+  kableExtra::row_spec(10, bold = TRUE) %>%
+  kableExtra::column_spec(1, bold = TRUE)
+
+
+df <- data.frame(Justice = justices) %>% 
+  left_join(scotusblog_stats$frequency_in_majority$solo_dissents_current_term %>%
+              group_by(Justice) %>%
+  summarise(case_count =  n(),
+    case_names = paste0(short_hand, collapse = ", " ), .groups = "drop") %>%
+              mutate(Justice = str_to_title(Justice)) , 
+  by = 'Justice') %>%
+  mutate(case_count = ifelse(is.na(case_count), '', as.character(case_count)), 
+         case_names = ifelse(is.na(case_names), '', as.character(case_names))) %>%
+  setNames(c('', 'OT25', 'Case(s)')) 
+
+
+
+k <-  kableExtra::kbl(df, booktabs = TRUE,
+                  longtable = F,
+                  align = c('c', 'c', 'l')) %>%
+  kableExtra::column_spec(1, width = "3cm", bold = TRUE) %>%
+  kableExtra::column_spec(3, width = "10cm") %>%
+  kableExtra::row_spec(0, bold = TRUE, align = 'c')
+  
+for (i in seq_len(nrow(df))) {
+  if (i %% 2 == 0) {
+    k <- kableExtra::row_spec(k, i, background = "#F5F5F5")
+  }
+}
+
+t2 <- k 
+
+
+side_text <- "
+\\textbf{Description (Above)}: Table above provides an overview of coalition types given different Justices authoring majority opinions. For example, of the \\# majority opinions authored by Justice Neil Gorsuch, \\# were opinions representing a unanimous Court -- while \\# were in cases decided by a (7-2) Court. On average, Justice Gorsuch's opinions represented majorities of approximately \\# Justices. \\par \\vspace{2.5mm}
+
+\\textbf{Description (Below)}: Table below stratifies opinions decided in OT25 to those decided with a single dissenting Justice. For example, Justice Ketanji Brown Jackson was the sole dissenter in \\# cases this term: \\emph{Chiles} (Docket \\#) 
+
+\\vspace{4mm}
+
+\\textbf{Notes}: (1) Only cases where a sole dissenter authored an opinion are included. For instance, Justice Jackson's preference to have denied certiorar in \\emph{Klein v. Martin} (25-51) is not included because it does not include a written opinion. (2) Moreover, only cases with a signed majority opinion are included in this analysis – cases decided \\emph{per curiam} with no signed majority opinion are omitted.
+"
+
+left_col <- paste0(
+  "\\vspace{-5mm}\n",
+  "\\begin{center}\n",
+  "Variance in Majority Coalition Sizes by Opinion Author\\\\\n",
+  t1,
+  "\\end{center}\n\n",
+
+  "\\vspace{0.4cm}\n\n",
+
+  "\\begin{center}\n",
+  "Cases Decided with a Single Dissenting Justice\\\\\n",
+  t2,
+  "\\end{center}\n"
+)
+
+cat("\\section*{Strength of the Majority}\n")
+cat("\\addcontentsline{toc}{subsection}{Strength of the Majority}\n")
+cat("\\noindent\n")
+
+cat("\\begin{tabular}{@{}m{0.64\\textwidth} m{0.04\\textwidth} m{0.30\\textwidth}@{}}\n")
+
+# LEFT COLUMN
+cat(left_col)
+
+# BUFFER COLUMN (empty spacer)
+cat("\n&\n")
+
+# actually middle column content (must be blank but still present)
+cat(" ")
+
+cat("\n&\n")
+
+# RIGHT COLUMN
+cat("\\sidebox{\n")
+cat(side_text)
+cat("\n}\n")
+
+cat("\\end{tabular}\n")
+cat("\\newpage")
+```
+
+<!-- Closely Divided Cases -->
+
+```{r closely_divided_cases, message=FALSE, warning=FALSE, results='asis', echo=F}
+
+justices <- scotusblog_stats$frequency_in_majority$perc_opinions_unanimous$justice 
+
+closely_divided_cases_conditons <- list()
+
+{
+  
+  ideological_split <- scotusblog_stats$coalitions$ot25_coalitions %>%
+    filter(majority_sorted == 'Roberts, Alito, Thomas, Gorsuch, Kavanaugh, Barrett') %>%
+    mutate(condition = "6-3 with Justices Sotomayor, Kagan, and Jackson Dissenting",  
+             percent_all_cases = round(count/nrow(cases_master)*100, 0), 
+           percent_all_cases = paste0(percent_all_cases, '%')) %>%
+    select(condition, percent_all_cases, case)
+  
+
+} # 6-3 -- Libs v. Cons
+
+{
+  
+  thomas_alito_gorsuch_dissent <- scotusblog_stats$coalitions$ot25_coalitions %>%
+    filter(str_count(majority_sorted, ", ") + 1 == 6) %>%
+    filter(!grepl('Thomas', majority_sorted)) %>%
+    filter(!grepl('Alito', majority_sorted)) %>%
+    filter(!grepl('Gorsuch', majority_sorted)) %>%
+    mutate(condition = "6-3 with Justices Thomas, Alito, and Gorsuch Dissenting", 
+           percent_all_cases = as.character('0%')) 
+  
+  if (!nrow(thomas_alito_gorsuch_dissent) == 0){
+    thomas_alito_gorsuch_dissent <- thomas_alito_gorsuch_dissent %>%
+      mutate(percent_all_cases = round(count/nrow(cases_master)*100, 0), 
+             percent_all_cases = paste0(percent_all_cases, '%')) %>%
+    select(condition, percent_all_cases, case)
+  } else {
+    thomas_alito_gorsuch_dissent <- data.frame('condition' =  "6-3 with Justices Thomas, Alito, and Gorsuch Dissenting", 
+           'percent_all_cases' = as.character('0%'), 
+           'case' = '')
+  }
+  
+
+} # 6-3 -- Thomas Alito Gorsuch Dissent
+
+{
+  
+  liberal_justices <- c("Sotomayor", "Kagan", "Jackson")
+  
+  sotomayor_kagan_jackson_all_dissent <- scotusblog_stats$coalitions$ot25_coalitions %>%
+    mutate(n_missing_liberals = purrr::map_int(str_split(majority_sorted, ", "),
+      ~ length(setdiff(liberal_justices, .x)))) %>%
+    filter(n_missing_liberals == 3) %>%
+    mutate(condition = "Cases with Justices Sotomayor, Kagan, and Jackson All Dissenting",
+           percent_all_cases = as.character('0%')) 
+
+if (nrow(sotomayor_kagan_jackson_all_dissent) != 0) {
+  sotomayor_kagan_jackson_all_dissent <- sotomayor_kagan_jackson_all_dissent %>%
+    summarise(case = paste(case, collapse = ", "),
+              case = gsub('\\;', ',', case), 
+                count = sum(count)) %>%
+    mutate(percent_all_cases = round(count / nrow(cases_master) * 100, 0),
+           percent_all_cases = paste0(percent_all_cases, "%"), 
+           condition = "Cases with Justices Sotomayor, Kagan, and Jackson All in Dissent") %>%
+    select(condition, percent_all_cases, case) 
+}
+  
+
+} # Sotomayor Kagan Jackson all in dissent (Not Just 6-3)
+
+{
+  
+  conservatives <- c('Roberts', 'Thomas', 'Alito', 'Gorsuch', 'Kavanaugh', 'Barrett')
+  conservative_dissenters <- scotusblog_stats$coalitions$ot25_coalitions %>%
+    mutate(missing_conservatives = purrr::map_chr(str_split(majority_sorted, ", "),
+      ~ paste(setdiff(conservatives, .x), collapse = ", ")),
+    n_missing_conservatives = purrr::map_int(str_split(majority_sorted, ", "),
+      ~ length(setdiff(conservatives, .x)))) %>%
+  filter(n_missing_conservatives >= 3) %>% 
+    select(-c(n_missing_conservatives, missing_conservatives)) %>%
+    summarise(case = paste(case, collapse = ", "), 
+                count = sum(count)) %>%
+    mutate(condition = "Cases with Three or More Conservative Justices Dissenting", 
+           percent_all_cases = as.character('0%')) 
+      
+  
+  if (!nrow(conservative_dissenters) == 0){
+    conservative_dissenters <- conservative_dissenters %>%
+      mutate(percent_all_cases = round(count/nrow(cases_master)*100, 0), 
+             percent_all_cases = paste0(percent_all_cases, '%')) %>%
+    select(condition, percent_all_cases, case)
+  }
+  
+} # 3 Or More Conservative Justices Dissenting
+
+
+combined <- ideological_split %>%
+  bind_rows(thomas_alito_gorsuch_dissent) %>%
+  bind_rows(sotomayor_kagan_jackson_all_dissent) %>%
+  bind_rows(conservative_dissenters) %>%
+  select(condition, percent_all_cases, case) %>%
+  setNames(c('Condition', 'Percent of All Cases', 'Cases'))
+
+k <- kableExtra::kbl(
+  combined,
+  format = "latex",
+  booktabs = TRUE,
+  longtable = FALSE,
+  align = c("l", "c", "l")) %>%
+  kableExtra::column_spec(1, width = "8cm", bold = TRUE) %>%
+  kableExtra::column_spec(2, width = "5cm") %>%
+  kableExtra::column_spec(3, width = "12cm") %>%
+  kableExtra::row_spec(0, bold = TRUE, align = 'c') %>%
+  kableExtra::row_spec(1:nrow(combined), extra_latex_after = "\\addlinespace[2.5em]")
+  
+for (i in seq_len(nrow(combined))) {
+  if (i %% 2 == 0) {
+    k <- kableExtra::row_spec(k, i, background = "#F5F5F5")
+  }
+}
+
+t <- k 
+
+
+cat("\\section*{Closely Divided Cases}\n")
+cat("\\addcontentsline{toc}{subsection}{Closely Divided Cases}\n")
+cat("\\noindent\n")
+
+cat("\\begin{center}\n")
+cat(t)
+cat("\\end{center}\n\n")
+cat("\\newpage")
+
+```
+
+<!-- Decisions by Vote Split -->
+
+```{=latex}
+
+\addcontentsline{toc}{section}{Decisions by Vote Split}
+\section*{Decisions by Vote Split -- All Cases}
+\addcontentsline{toc}{subsection}{All Cases}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.32\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../scotusblog_replication/figures/ot05_ot25_splits.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../scotusblog_replication/figures/ot20_ot25_splits.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../scotusblog_replication/figures/ot25_splits.png}
+    \end{minipage}
+\end{figure}
+
+\footernote{
+\textbf{Description}: Figures show the percent of cases decided by different coalition sizes between the 2005 and 2025 terms. For instances where justices were recused or did not participate in an otherwise unanimous decision, we coded these as \emph{unanimous} (e.g., 8-0 decisions were included in calculating 9-0 coalitions). \\
+\textbf{Notes}: (1)
+}
+\newpage
+
+
+
+\section*{Decisions by Vote Split -- Ideologically Split Cases}
+\addcontentsline{toc}{subsection}{Ideologically Split Cases}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.32\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../scotusblog_replication/figures/ot05_ot25_ideological.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../scotusblog_replication/figures/ot20_ot25_ideological.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../scotusblog_replication/figures/ot25_ideological.png}
+    \end{minipage}
+\end{figure}
+\footernote{
+\textbf{Description}: Figures show the percent of cases decided by ideologically split coalitions (e.g., 5-4 or 6-3), such that ideologically liberal and conservative justices represent competing coalitions. Ideology was derived by referencing each justices’ associated \href{http://mqscores.wustl.edu/}{\textbf{Martin-Quinn}} score. For reference, such a split during the 2025 term would be a majority consisting of Chief Justice Roberts and Justices Thomas, Alito, Gorsuch, Kavanaugh, and Barrett – with a competing (dissenting) coalition of Justices Sotomayor, Kagan, and Jackson. \\
+
+\textbf{Notes}: (1)
+}
+\newpage
+
+```
+
+<!-- Circuit Scorecard -->
+
+```{r circuit_scorecard, message=FALSE, warning=FALSE, results='asis', echo=F}
+
+circuit_scorecard <- scotusblog_stats$circuit_scorecard$circuit_scorecard[,-c(2,3)] %>%
+  bind_rows(
+    summarise(.,
+              'Court Below' = 'Total',
+              across(`# Decided`:`# Reversed`, sum, na.rm = TRUE),
+              `% Affirmed` = '', 
+              `% Reversed` = ''))
+
+k <- kableExtra::kbl(circuit_scorecard,
+                     format = "latex",
+                     booktabs = TRUE,
+                     align = c(rep('c', 8)))
+
+for (i in seq_len(nrow(circuit_scorecard))) {
+  if (i %% 2 == 0) {
+    k <- kableExtra::row_spec(k, i, background = "#F5F5F5")
+  }
+}
+
+t <- k %>% 
+  kableExtra::row_spec(0, bold = TRUE, extra_latex_after = '\\midrule') %>%
+  kableExtra::column_spec(1, bold = TRUE, width = '5cm') %>%
+  kableExtra::row_spec(nrow(circuit_scorecard)-1, extra_latex_after = '\\midrule') %>%
+  kableExtra::row_spec(1:nrow(circuit_scorecard), extra_latex_after = "\\addlinespace[0.5em]") %>%
+  kableExtra::column_spec(2:ncol(circuit_scorecard), width = '4cm') 
+
+bottom <- "
+\\textbf{Description}: We treat consolidated cases emerging from the same lower court as single entries. \\par 
+
+\\vspace{4mm}
+
+\\textbf{Notes}: (1) 
+"
+
+cat("\\section*{Circuit Scorecard}\n")
+cat("\\addcontentsline{toc}{subsection}{Circuit Scorecard}\n")
+cat("\\noindent\n")
+
+cat("\\begin{center}\n")
+cat(t)
+cat("\\end{center}\n\n")
+
+cat("\\footernote{\n")
+cat(bottom)
+cat("\n}\n")
+
+cat("\\newpage")
+
+```
+
+
 # Days Between Oral Argument \& Opinion
 # Opinions Authored by Each Justice
 # Opinion Lengths

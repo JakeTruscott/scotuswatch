@@ -1346,6 +1346,10 @@ scotusblog_stats <- function(decisions_path,
           stringsAsFactors = FALSE
         )
 
+        if (is.na(temp_combined$term)){
+          next
+        }
+
         temp_combined$majority_coalition <- list(temp_majority)
         temp_combined$temp_justices <- list(temp_justices)
 
@@ -1453,6 +1457,7 @@ scotusblog_stats <- function(decisions_path,
 
         unique_coalitions <- data.frame()
         terms <- unique(majorities$term)
+        terms <- terms[!is.na(terms)]
 
         for (i in 1:length(unique(terms))){
 
@@ -1464,6 +1469,7 @@ scotusblog_stats <- function(decisions_path,
           temp_coalitions <- length(temp_coalitions)
           unique_coalitions <- bind_rows(unique_coalitions, data.frame(term = terms[i],
                                                                        unique_coalitions = temp_coalitions))
+
         }
 
         unique_coalitions <- unique_coalitions %>%
@@ -1480,7 +1486,7 @@ scotusblog_stats <- function(decisions_path,
 
 
 
-    } # Most Common Coalitions (OT10-23)
+    } # Most Common Coalitions (OT10-24)
 
     {
 
@@ -1829,7 +1835,7 @@ scotusblog_stats <- function(decisions_path,
           arrange(justice) %>%
           pull(image_labels)
 
-        defections <-  breaks %>%
+        defections <- breaks %>%
           #add_row(justice = 'Kavanaugh', type = 'M2', percent_defection = 0) %>%
           mutate(type = ifelse(type == 'M1', 'Joined Coalition w/\nAll Democratic-Appointees', 'Sole Dissenter')) %>%
           ggplot(aes(x = justice, y = percent_defection, fill = type)) +
@@ -2143,21 +2149,17 @@ scotusblog_stats <- function(decisions_path,
     combined_list[['opinion_lengths']] <- list()
 
     opinions_processed <- get(load(opinions_processed)) %>%
-      group_by(docket, authorship) %>%
-      summarise(
-        opinion_text = paste(opinion_text, collapse = " "),
-        opinion_type = first(opinion_type),
-        date = first(date),
-        case = first(case),
-        justia_summary = first(justia_summary),
-        .groups = "drop"
-      )
+      mutate(authorship = gsub('\\;.*', '', opinion_writer),
+             authorship = gsub('((CHIEF )JUSTICE |JUSTICE )', '', authorship),
+             authorship = trimws(authorship),
+             authorship = str_to_title(authorship)) %>%
+      rename(docket = docket_id)
 
     {
 
       opinion_lengths_by_justice <- opinions_processed %>%
         group_by(authorship) %>%
-        mutate(word_count =  stri_count_words(opinion_text)) %>%
+        mutate(word_count =  stri_count_words(text)) %>%
         summarise(mean_words = round(mean(word_count), 0)) %>%
         filter(!authorship %in% 'Per Curiam') %>%
         rename(justice = authorship) %>%
@@ -2170,7 +2172,7 @@ scotusblog_stats <- function(decisions_path,
 
     {
       shortest_opinions <- opinions_processed %>%
-        mutate(word_count =  stri_count_words(opinion_text)) %>%
+        mutate(word_count =  stri_count_words(text)) %>%
         select(authorship, docket, opinion_type, word_count) %>%
         left_join(master_file %>%
                     select(docket, short_hand), by = 'docket') %>%
@@ -2184,7 +2186,7 @@ scotusblog_stats <- function(decisions_path,
         slice_head(n = 5)
 
       longest_opinions <- opinions_processed %>%
-        mutate(word_count =  stri_count_words(opinion_text)) %>%
+        mutate(word_count =  stri_count_words(text)) %>%
         select(authorship, docket, opinion_type, word_count) %>%
         left_join(master_file %>%
                     select(docket, short_hand), by = 'docket') %>%
@@ -2217,17 +2219,23 @@ scotusblog_stats <- function(decisions_path,
       }
 
       opinion_lengths <- opinions_processed %>%
-        mutate(word_count =  stri_count_words(opinion_text))
+        mutate(word_count =  stri_count_words(text))
 
       opinion_lengths_by_term <-  older_opinions_combined %>%
-        select(opinion_writer, opinion_type, word_count, term) %>%
-        mutate(opinion_writer = gsub('(CHIEF JUSTICE |JUSTICE )', '', gsub('\\;.*', '', opinion_writer)),
+        select(opinion_writer, opinion_type, word_count, term, docket_id) %>%
+        mutate(opinion_writer = ifelse(is.na(opinion_writer) & opinion_type == 'Per Curiam', 'Per Curiam', opinion_writer),
+               opinion_writer = gsub('(CHIEF JUSTICE |JUSTICE )', '', gsub('\\;.*', '', opinion_writer)),
                opinion_writer = str_to_title(opinion_writer),
-               opinion_type = ifelse(opinion_type == 'Majority Opinion', 'Majority', opinion_type)) %>%
+               opinion_type = case_when(
+                 is.na(opinion_writer) ~ 'Per Curiam',
+                 is.na(opinion_type) & opinion_writer == 'Per Curiam' ~ 'Per Curiam',
+                 opinion_type %in% c('Majority Opinion', 'Opinion') ~ 'Majority',
+                 opinion_type %in% c('Concurrence', 'Special Concurrence') ~ 'Concurrence',
+                 .default = opinion_type)) %>%
         bind_rows(opinion_lengths %>%
                     select(authorship, opinion_type, word_count) %>%
                     rename(opinion_writer = authorship) %>%
-                    mutate(term = '2024',
+                    mutate(term = '2025',
                            opinion_type = case_when(
                              opinion_type %in% c('Concurrence', 'Special Concurrence') ~ 'Concurrence',
                              opinion_type %in% c('Dissent') ~ 'Dissent',
@@ -2273,7 +2281,7 @@ scotusblog_stats <- function(decisions_path,
     {
 
       total_opinion_lengths <- opinions_processed %>%
-        mutate(word_count =  stri_count_words(opinion_text)) %>%
+        mutate(word_count =  stri_count_words(text)) %>%
         select(authorship, docket, opinion_type, word_count) %>%
         left_join(master_file %>%
                     select(docket, short_hand), by = 'docket') %>%
@@ -2306,7 +2314,7 @@ scotusblog_stats <- function(decisions_path,
     {
 
       all_opinion_lengths <- opinions_processed %>%
-        mutate(word_count =  stri_count_words(opinion_text)) %>%
+        mutate(word_count =  stri_count_words(text)) %>%
         select(authorship, docket, opinion_type, word_count) %>%
         left_join(master_file %>%
                     select(docket, short_hand), by = 'docket') %>%
@@ -2327,140 +2335,11 @@ scotusblog_stats <- function(decisions_path,
 
   message('Completed Opinion Lengths')
 
-  {
-
-    combined_list[['precedent_unconstitutional']] <- list()
-
-
-    {
-
-    } # OT24 Declaration Unconstitutional/Precedent Alteration
-
-
-    {
-
-      precedent_unconstitutional <- scdb_cases_data %>%
-        filter(term >= 1986) %>%
-        group_by(term) %>%
-        summarise(
-          declarationUncon_count = sum(!declarationUncon == 1, na.rm = TRUE),
-          precedentAlteration_count = sum(precedentAlteration == 1, na.rm = TRUE),
-          total_cases = n())
-
-      precedents_altered <- precedent_unconstitutional %>%
-        mutate(chief = ifelse(term >= 2005, 'Roberts Court (2005-Present)', 'Rehnquist Court (1986-2004)'),
-               chief = factor(chief, levels = c('Rehnquist Court (1986-2004)', 'Roberts Court (2005-Present)'))) %>%
-        ggplot(aes(x = term, y = precedentAlteration_count)) +
-        geom_col(aes(fill = chief), colour = 'black') +
-        theme_minimal() +
-        labs(x = '',
-             y = '',
-             title = 'Precedents Altered\n',
-             fill = 'Chief Justice') +
-        scale_y_continuous(breaks = seq(1, 6, 1), lim = c(0, 6)) +
-        scale_x_continuous(breaks = seq(1986, 2024, 4)) +
-        geom_vline(xintercept = 2004.5, linetype = 2, size = 1.2) +
-        geom_hline(yintercept = 0) +
-        scale_fill_manual(values = c('grey25', 'grey')) +
-        theme(
-          panel.border = element_rect(size = 1, colour = 'black', fill = NA),
-          axis.text = element_text(size = 12, colour = 'black'),
-          axis.title = element_text(size = 16, colour = 'black'),
-          legend.text = element_text(size = 14, colour = 'black'),
-          legend.position = 'top',
-          legend.title = element_blank(),
-          legend.box.background = element_rect(size = 1, colour = 'black', fill = NA),
-          plot.title = element_text(size = 16, colour = 'black', hjust = 0.5, face = 'bold')
-        )
-
-      unconstitutional <- precedent_unconstitutional %>%
-        mutate(chief = ifelse(term >= 2005, 'Roberts Court (2005-Present)', 'Rehnquist Court (1986-2004)'),
-               chief = factor(chief, levels = c('Rehnquist Court (1986-2004)', 'Roberts Court (2005-Present)'))) %>%
-        ggplot(aes(x = term, y = declarationUncon_count)) +
-        geom_col(aes(fill = chief), colour = 'black') +
-        theme_minimal() +
-        labs(x = '',
-             y = '',
-             title = 'Federal, State, or Municipal Laws & Acts\nDeclared Unconstitutional\n',
-             fill = 'Chief Justice') +
-        scale_y_continuous(breaks = seq(4, 20, 4), lim = c(0, 20)) +
-        scale_x_continuous(breaks = seq(1986, 2024, 4)) +
-        geom_vline(xintercept = 2004.5, linetype = 2, size = 1.2) +
-        geom_hline(yintercept = 0) +
-        scale_fill_manual(values = c('grey25', 'grey')) +
-        theme(
-          panel.border = element_rect(size = 1, colour = 'black', fill = NA),
-          axis.text = element_text(size = 12, colour = 'black'),
-          axis.title = element_text(size = 16, colour = 'black'),
-          legend.text = element_text(size = 14, colour = 'black'),
-          legend.position = 'top',
-          legend.title = element_blank(),
-          legend.box.background = element_rect(size = 1, colour = 'black', fill = NA),
-          plot.title = element_text(size = 16, colour = 'black', hjust = 0.5, face = 'bold')
-
-        )
-
-      total_cases <- precedent_unconstitutional %>%
-        mutate(chief = ifelse(term >= 2005, 'Roberts Court (2005-Present)', 'Rehnquist Court (1986-2004)'),
-               chief = factor(chief, levels = c('Rehnquist Court (1986-2004)', 'Roberts Court (2005-Present)'))) %>%
-        ggplot(aes(x = term, y = total_cases)) +
-        geom_col() +
-        geom_col(aes(fill = chief), colour = 'black') +
-        theme_minimal() +
-        labs(x = '\nTerm',
-             y = '',
-             title = 'Total Cases Decided in Term\n',
-             fill = 'Chief Justice') +
-        scale_y_continuous(breaks = seq(50, 150, 50), lim = c(0, 165)) +
-        scale_x_continuous(breaks = seq(1986, 2024, 4)) +
-        geom_vline(xintercept = 2004.5, linetype = 2, size = 1.2) +
-        geom_hline(yintercept = 0) +
-        scale_fill_manual(values = c('grey25', 'grey')) +
-        theme(
-          panel.border = element_rect(size = 1, colour = 'black', fill = NA),
-          axis.text = element_text(size = 14, colour = 'black'),
-          axis.title = element_text(size = 16, colour = 'black'),
-          legend.text = element_text(size = 14, colour = 'black'),
-          legend.position = 'top',
-          legend.title = element_blank(),
-          legend.box.background = element_rect(size = 1, colour = 'black', fill = NA),
-          plot.title = element_text(size = 16, colour = 'black', hjust = 0.5, face = 'bold')
-
-        )
-
-
-
-    } # OT1986-OT23
-
-    combined_list[['precedent_unconstitutional']][['precedent_unconstitutional']] <- precedent_unconstitutional
-
-    constitutional_precedents <- (precedents_altered + unconstitutional)/total_cases +
-      plot_layout(guides = 'collect') &
-      theme(legend.position = "bottom",
-            legend.background = element_rect(size = 1, colour = 'black', fill = NA))
-
-    ggsave(constitutional_precedents,
-           filename = file.path(output_folder, 'constitutional_precedents.png'),
-           width = 12,
-           height = 8,
-           units = 'in')
-
-  } # Precedent Alteration/Declaration Unconstitutional
-
   return(combined_list)
 
 
 }
 
-decisions_path <- "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT24_StatReview/decisions/data/OT_24_Decisions.csv"
-decisions <- read.csv(decisions_path, as.is = T)
-master_file = cases_master
-oral_arguments <- get(load('data/term_level_combined_transcripts/scotus_OT24.rdata'))
-output_folder = file.path('Stat Reviews', 'OT24_StatReview', 'scotusblog_replication', 'figures')
-opinions_processed = file.path('Stat Reviews', 'OT24_StatReview', 'decisions', 'opinions', 'combined_opinions_processed', 'combined_opinions_OT2024.rdata')
-older_opinions_processed <- "C:/Users/jaketruscott/Github/scotuswatch/data/decisions/earlier_decisions_processed.rdata"
-scdb_cases_data = scdb_cases
-scdb_justices_data = scdb_justices
 
 
 

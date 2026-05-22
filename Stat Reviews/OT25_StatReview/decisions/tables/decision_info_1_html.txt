@@ -13,16 +13,6 @@
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:center;font-weight: bold;"> Pitts v. Mississippi </td>
-   <td style="text-align:center;"> 24-1159 </td>
-   <td style="text-align:center;"> NA </td>
-   <td style="text-align:center;"> 2025-11-24 </td>
-   <td style="text-align:center;"> SCMS </td>
-   <td style="text-align:center;"> Reverse </td>
-   <td style="text-align:center;"> Per Curiam </td>
-   <td style="text-align:center;"> (9-0) </td>
-  </tr>
-  <tr>
    <td style="text-align:center;font-weight: bold;"> Clark v. Sweeney </td>
    <td style="text-align:center;"> 25-52 </td>
    <td style="text-align:center;"> NA </td>
@@ -53,6 +43,16 @@
    <td style="text-align:center;"> (5-4) </td>
   </tr>
   <tr>
+   <td style="text-align:center;font-weight: bold;"> Barrett v. United States </td>
+   <td style="text-align:center;"> 24-5774 </td>
+   <td style="text-align:center;"> 2025-10-07 </td>
+   <td style="text-align:center;"> 2026-01-14 </td>
+   <td style="text-align:center;"> CA2 </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> Jackson </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
    <td style="text-align:center;font-weight: bold;"> Bost v.  Illinois Board of Elections </td>
    <td style="text-align:center;"> 24-568 </td>
    <td style="text-align:center;"> 2025-10-08 </td>
@@ -73,13 +73,13 @@
    <td style="text-align:center;"> (9-0) </td>
   </tr>
   <tr>
-   <td style="text-align:center;font-weight: bold;"> Barrett v. United States </td>
-   <td style="text-align:center;"> 25-5774 </td>
-   <td style="text-align:center;"> 2025-10-07 </td>
-   <td style="text-align:center;"> 2026-01-14 </td>
-   <td style="text-align:center;"> CA2 </td>
+   <td style="text-align:center;font-weight: bold;"> Berk v. Choy </td>
+   <td style="text-align:center;"> 24-440 </td>
+   <td style="text-align:center;"> 2025-10-06 </td>
+   <td style="text-align:center;"> 2026-01-20 </td>
+   <td style="text-align:center;"> CA3 </td>
    <td style="text-align:center;"> Reverse and Remand </td>
-   <td style="text-align:center;"> Jackson </td>
+   <td style="text-align:center;"> Barrett </td>
    <td style="text-align:center;"> (9-0) </td>
   </tr>
   <tr>
@@ -93,44 +93,44 @@
    <td style="text-align:center;"> (9-0) </td>
   </tr>
   <tr>
-   <td style="text-align:center;font-weight: bold;"> Ellingburg v. United States </td>
-   <td style="text-align:center;"> 24-482 </td>
-   <td style="text-align:center;"> 2025-10-14 </td>
-   <td style="text-align:center;"> 2026-01-20 </td>
-   <td style="text-align:center;"> CA8 </td>
-   <td style="text-align:center;"> Reverse and Remand </td>
-   <td style="text-align:center;"> Kavanaugh </td>
-   <td style="text-align:center;"> (9-0) </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;font-weight: bold;"> Berk v. Choy </td>
-   <td style="text-align:center;"> 24-440 </td>
-   <td style="text-align:center;"> 2025-10-06 </td>
-   <td style="text-align:center;"> 2026-01-20 </td>
-   <td style="text-align:center;"> CA3 </td>
-   <td style="text-align:center;"> Reverse and Remand </td>
-   <td style="text-align:center;"> Barrett </td>
-   <td style="text-align:center;"> (9-0) </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;font-weight: bold;"> Klein v. Martin </td>
-   <td style="text-align:center;"> 25-51 </td>
-   <td style="text-align:center;"> NA </td>
-   <td style="text-align:center;"> 2026-01-26 </td>
+   <td style="text-align:center;font-weight: bold;"> Cox Communications, Inc. v. Sony Music Entertainment </td>
+   <td style="text-align:center;"> 24-171 </td>
+   <td style="text-align:center;"> 2025-12-01 </td>
+   <td style="text-align:center;"> 2026-03-25 </td>
    <td style="text-align:center;"> CA4 </td>
-   <td style="text-align:center;"> GRR </td>
-   <td style="text-align:center;"> Per Curiam </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> Thomas </td>
+   <td style="text-align:center;"> (9-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Chiles v. Salazar </td>
+   <td style="text-align:center;"> 24-539 </td>
+   <td style="text-align:center;"> 2025-10-07 </td>
+   <td style="text-align:center;"> 2026-03-31 </td>
+   <td style="text-align:center;"> CA10 </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> Gorsuch </td>
    <td style="text-align:center;"> (8-1) </td>
   </tr>
   <tr>
-   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Learning Resources, Inc. v. Trump </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 24-1287 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 2025-11-05 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 2026-02-20 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> CADC </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> Vacate and Remand </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> Roberts </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> (6-3) </td>
+   <td style="text-align:center;font-weight: bold;"> Chevron USA Inc. v. Plaquemines Parish </td>
+   <td style="text-align:center;"> 24-813 </td>
+   <td style="text-align:center;"> 2026-01-12 </td>
+   <td style="text-align:center;"> 2026-04-17 </td>
+   <td style="text-align:center;"> CA5 </td>
+   <td style="text-align:center;"> Vacate and Remand </td>
+   <td style="text-align:center;"> Thomas </td>
+   <td style="text-align:center;"> (8-0) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> District of Columbia v. R.W. </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 25-248 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> NA </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2026-04-20 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> DDC </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Reverse and Remand </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Per Curiam </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> (7-2) </td>
   </tr>
 </tbody>
 </table>
