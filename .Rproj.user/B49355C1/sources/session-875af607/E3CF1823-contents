@@ -5385,7 +5385,7 @@ export_scotusblog_stats <- function(scotusblog_stats_object,
     {
 
       if (temp_topic_name == 'opinions'){
-        temp_topic <- scotusblog_stats_object[[i]][['2024 Opinions by Justice']]
+        temp_topic <- scotusblog_stats_object[[i]][['2025 Opinions by Justice']]
         temp_item <- temp_topic %>%
           purrr::imap_dfr(function(justice_data, justice_name) {
             purrr::imap_dfr(justice_data, function(opinion_data, opinion_type) {

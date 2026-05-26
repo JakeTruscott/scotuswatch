@@ -1,5 +1,0 @@
-"0","cases_master <- read.csv('../../cases_master/cases_master_file_OT25.csv', as.is. = T)
-"
-"2","Error in read.table(file = file, header = header, sep = sep, quote = quote,  : 
-  unused argument (as.is. = TRUE)
-"
