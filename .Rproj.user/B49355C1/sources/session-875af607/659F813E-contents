@@ -1,1 +1,0 @@
-sc <- read.csv("C:/Users/jaketruscott/Desktop/supremecourt_gov_decisions.csv", as.is = T)

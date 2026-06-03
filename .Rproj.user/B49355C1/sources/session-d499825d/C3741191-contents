@@ -1,0 +1,23 @@
+library(dplyr)
+library(jsonlite)
+
+
+combined_dockets_json <- combined_dockets %>%
+  rowwise() %>%
+  mutate(
+    docket_entries = toJSON(
+      list(docket_entries = docket_entries),
+      auto_unbox = TRUE), 
+    counsel = toJSON(
+      list(counsel = counsel),
+      auto_unbox = TRUE)
+  ) %>%
+  ungroup()
+
+combined_dockets_json$title <- gsub("\\s+", " ", combined_dockets_json$title)
+combined_dockets_json$petitioner <- gsub("\\,$", "", combined_dockets_json$petitioner)
+
+
+View(combined_dockets_json)
+
+write.csv(combined_dockets_json, "C:/Users/jaketruscott/Desktop/OT25_dockets.csv", row.names = F)

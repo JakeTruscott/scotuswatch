@@ -1,0 +1,28 @@
+{
+    "id": "B817C0EA",
+    "path": "C:/Users/jaketruscott/Github/scotuswatch/Stat Reviews/OT25_StatReview/compilation/SCOTUSBlog/statpack_OT25_compilation.Rmd",
+    "project_path": "Stat Reviews/OT25_StatReview/compilation/SCOTUSBlog/statpack_OT25_compilation.Rmd",
+    "type": "r_markdown",
+    "hash": "4072714253",
+    "contents": "",
+    "dirty": false,
+    "created": 1778685440334.0,
+    "source_on_save": true,
+    "relative_order": 4,
+    "properties": {
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "1662,14",
+        "scrollLine": "1651",
+        "last_setup_crc32": ""
+    },
+    "folds": "98|27|132|0|\n134|26|183|0|\n142|44|151|0|\n153|1|166|0|\n188|11|260|0|\n264|11|283|0|\n287|11|307|0|\n312|11|327|0|\n336|35|358|0|\n386|11|440|0|\n445|11|488|0|\n492|88|618|0|\n622|82|763|0|\n628|1|638|0|\n640|1|662|0|\n664|1|687|0|\n689|1|712|0|\n767|11|824|0|\n828|78|878|0|\n883|69|1009|0|\n1016|97|1113|0|\n1117|11|1135|0|\n1145|52|1196|0|\n1198|55|1265|0|\n1272|11|1294|0|\n1296|81|1437|0|\n1439|11|1445|0|\n1450|11|1454|0|\n1762|11|1771|0|\n",
+    "lastKnownWriteTime": 1779884322,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1779897558032,
+    "read_only": false,
+    "read_only_alternatives": []
+}

@@ -1,8 +1,0 @@
-library(chromote)
-
-# Kill old chromote/chrome processes
-chromote::default_chromote_object$close()
-
-# Optional: restart R session here if needed
-
-b <- ChromoteSession$new()
