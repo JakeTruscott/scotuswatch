@@ -93,7 +93,35 @@ header-includes:
 
       \end{tikzpicture}
       }
+  - |
+      \newcommand{\footernotevoting}[1]{
+      \begin{tikzpicture}[remember picture,overlay]
       
+      % Box dimensions
+      \coordinate (boxSW) at ($(current page.south west)+(0.5in,0.10in)$);
+      \coordinate (boxNE) at ($(current page.south east)+(-0.5in,1.8in)$);
+
+      % Draw box
+      \filldraw[
+        fill=dispatchBlue!8,
+        draw=dispatchBlue,
+        line width=1.2pt,
+        rounded corners=6pt
+      ]
+      (boxSW) rectangle (boxNE);
+
+      % Text
+      \node[
+      anchor=center,
+      text width=11.5in,
+      align=left,
+      font=\footnotesize
+      ]
+      at ($(boxSW)!0.5!(boxNE)$)
+      {#1};
+
+      \end{tikzpicture}
+      }      
 ---
 
 ```{r setup, include=FALSE}
@@ -289,7 +317,7 @@ escape_latex <- function(x) {
 
 \section{Introduction}
 
-{\Large \textbf{\underline{Key Findings in the Stat Pack for the 2025-26 Term}}} \par \vspace{1cm}
+{\Large \textbf{\underline{Key Findings in the Stat Pack for the 2025-26 term}}} \par \vspace{1cm}
 
 {\large \hspace{2.5mm} \textbf{Test 1}}. Information sample 1 \par  \vspace{1cm}
 
@@ -321,7 +349,7 @@ escape_latex <- function(x) {
 \end{figure}
 
 \footernote{
-\textbf{Notes:} (1) Figure shows the volume \& proportion of opinions (by type) authored by the Court between the 2005 and 2025 terms. Data from earlier terms were retrieved from the \href{https://scdb.la.psu.edu/}{Supreme Court Database}. Opinions delivered \emph{per curiam} are coded as a majority opinion, while special concurrences (\emph{in part}) and those concurring in judgment are both coded as concurrences. (2) The Stat Pack only focuses on ``Opinions of the Court'' and not ``Opinions Relating to Orders,'' the latter of which includes several of the cases on the emergency docket. (3) \emph{Goldey v. Fields} (24-809) was decided \emph{per curiam} on June 30, 2025 and was not included in the OT2024-25 Stat Pack. 
+\textbf{Notes:} (1) Figure shows the volume \& proportion of opinions (by type) authored by the Court between the 2005 and 2025 terms. Data from earlier terms were retrieved from the \href{https://scdb.la.psu.edu/}{Supreme Court Database}. Opinions delivered \emph{per curiam} are coded as a majority opinion, while special concurrences (\emph{in part}) and those concurring in judgment are both coded as concurrences.
 }
 \newpage
 
@@ -375,8 +403,7 @@ cases_master %>%
 \footernote{
 \textbf{Description}: This figure shows the percentage of unanimous decisions (i.e., cases decided without any
 full dissents) between OT05-OT25. These include decisions reached per curiam without any
-noted dissents. Dashed red line represent longitudinal average. \par \vspace{4mm}
-\textbf{Notes}:
+noted dissents. Dashed red line represent longitudinal average.
 }
 \newpage
 ```
@@ -396,10 +423,6 @@ noted dissents. Dashed red line represent longitudinal average. \par \vspace{4mm
 
 \footernote{
 \textbf{Description}: Figure shows the percentage of cases where each justice was in the majority coalition among all cases that they participated in (including those decided \emph{unanimously}, \emph{per curiam}, or \emph{dismissed as improvidently granted}). 
-
-\vspace{4mm}
-
-\textbf{Notes}: (1)
 }
 \newpage
 
@@ -414,10 +437,6 @@ noted dissents. Dashed red line represent longitudinal average. \par \vspace{4mm
 
 \footernote{
 \textbf{Description}: Figure shows the percentage of cases where each justice was in the majority coalition among cases decided without a unanimous majority. 
-
-\vspace{4mm}
-
-\textbf{Notes}: (1)
 }
 \newpage
 
@@ -431,10 +450,6 @@ noted dissents. Dashed red line represent longitudinal average. \par \vspace{4mm
 
 \footernote{
 \textbf{Description}: Figures show the percentage of cases where each justice was in the majority coalition among cases decided by (5-4) or (6-3) coalitions. 
-
-\vspace{4mm}
-
-\textbf{Notes}: (1)
 }
 \newpage
 
@@ -455,7 +470,7 @@ keepaspectratio
 ]{../../scotusblog_replication/figures/agreement_matrix_all_cases.png}
 &
 \sidebox{
-\textbf{Description}: Figure shows the relative agreement (percent) in voting alignment shared between justices in all cases where justices participated during the 2025 term.
+\textbf{Description}: Figure shows the relative agreement (percent) in voting alignment shared between justices in all cases where justices participated during the 2025-26 term.
 
 \vspace{4mm}
 
@@ -476,7 +491,7 @@ keepaspectratio
 ]{../../scotusblog_replication/figures/agreement_matrix_close_cases.png}
 &
 \sidebox{
-\textbf{Description}: Figure shows the relative agreement (percent) in voting alignment shared between justices in cases decided by (5-4) or (6-3) coalitions in the 2025 term. 
+\textbf{Description}: Figure shows the relative agreement (percent) in voting alignment shared between justices in cases decided by (5-4) or (6-3) coalitions in the 2025-26 term. 
 
 \vspace{4mm}
 
@@ -631,7 +646,7 @@ closely_divided_cases_conditons <- list()
   ideological_split <- scotusblog_stats$coalitions$ot25_coalitions %>%
     filter(majority_sorted == 'Roberts, Alito, Thomas, Gorsuch, Kavanaugh, Barrett') %>%
     mutate(condition = "6-3 with Justices Sotomayor, Kagan, and Jackson Dissenting",  
-             percent_all_cases = round(count/nrow(cases_master)*100, 0), 
+             percent_all_cases = round(count/nrow(decisions)*100, 1), 
            percent_all_cases = paste0(percent_all_cases, '%')) %>%
     select(condition, percent_all_cases, case)
   
@@ -650,7 +665,7 @@ closely_divided_cases_conditons <- list()
   
   if (!nrow(thomas_alito_gorsuch_dissent) == 0){
     thomas_alito_gorsuch_dissent <- thomas_alito_gorsuch_dissent %>%
-      mutate(percent_all_cases = round(count/nrow(cases_master)*100, 0), 
+      mutate(percent_all_cases = round(count/nrow(decisions)*100, 1), 
              percent_all_cases = paste0(percent_all_cases, '%')) %>%
     select(condition, percent_all_cases, case)
   } else {
@@ -678,7 +693,7 @@ if (nrow(sotomayor_kagan_jackson_all_dissent) != 0) {
     summarise(case = paste(case, collapse = ", "),
               case = gsub('\\;', ',', case), 
                 count = sum(count)) %>%
-    mutate(percent_all_cases = round(count / nrow(cases_master) * 100, 0),
+    mutate(percent_all_cases = round(count / nrow(decisions) * 100, 1),
            percent_all_cases = paste0(percent_all_cases, "%"), 
            condition = "Cases with Justices Sotomayor, Kagan, and Jackson All in Dissent") %>%
     select(condition, percent_all_cases, case) 
@@ -705,7 +720,7 @@ if (nrow(sotomayor_kagan_jackson_all_dissent) != 0) {
   
   if (!nrow(conservative_dissenters) == 0){
     conservative_dissenters <- conservative_dissenters %>%
-      mutate(percent_all_cases = round(count/nrow(cases_master)*100, 0), 
+      mutate(percent_all_cases = round(count/nrow(decisions)*100, 1), 
              percent_all_cases = paste0(percent_all_cases, '%')) %>%
     select(condition, percent_all_cases, case)
   }
@@ -735,10 +750,9 @@ k <- kableExtra::kbl(
   format = "latex",
   booktabs = TRUE,
   align = c("l", "c", "l"),
-  escape = FALSE
-) %>%
+  escape = FALSE) %>%
   kableExtra::column_spec(1, latex_column_spec = "L{8cm}", bold = TRUE) %>%
-  kableExtra::column_spec(2, latex_column_spec = "m{5cm}") %>%
+  kableExtra::column_spec(2, latex_column_spec = "m{6.5cm}") %>%
   kableExtra::column_spec(3, latex_column_spec = "m{12cm}") %>%
   kableExtra::kable_styling(latex_options = c("hold_position"),
                             font_size = 11,
@@ -757,10 +771,12 @@ cat("\\section{Closely Divided Cases}\n")
 cat("\\noindent\n")
 
 cat("\\begin{center}\n")
+cat("{\n")
+cat("\\renewcommand{\\arraystretch}{3.5}\n")
 cat(k)
+cat("}\n")
 cat("\\end{center}\n\n")
 cat("\\newpage")
-
 ```
 
 <!-- Decisions by Vote Split -->
@@ -789,8 +805,7 @@ cat("\\newpage")
 \end{figure}
 
 \footernote{
-\textbf{Description}: Figures show the percent of cases decided by different coalition sizes between the 2005 and 2025 terms. For instances where justices were recused or did not participate in an otherwise unanimous decision, we coded these as \emph{unanimous} (e.g., 8-0 decisions were included in calculating 9-0 coalitions). \vspace{4mm}
-\textbf{Notes}: (1)
+\textbf{Description}: Figures show the percent of cases decided by different coalition sizes between the 2005 and 2025 terms. For instances where justices were recused or did not participate in an otherwise unanimous decision, we coded these as \emph{unanimous} (e.g., 8-0 decisions were included in calculating 9-0 coalitions). 
 }
 \newpage
 
@@ -816,9 +831,7 @@ cat("\\newpage")
     \end{minipage}
 \end{figure}
 \footernote{
-\textbf{Description}: Figures show the percent of cases decided by ideologically split coalitions (e.g., 5-4 or 6-3), such that ideologically liberal and conservative justices represent competing coalitions. Ideology was derived by referencing each justices’ associated \href{http://mqscores.wustl.edu/}{\textbf{Martin-Quinn}} score. For reference, such a split during the 2025 term would be a majority consisting of Chief Justice Roberts and Justices Thomas, Alito, Gorsuch, Kavanaugh, and Barrett – with a competing (dissenting) coalition of Justices Sotomayor, Kagan, and Jackson. \vspace{4mm}
-
-\textbf{Notes}: (1)
+\textbf{Description}: Figures show the percent of cases decided by ideologically split coalitions, consisting of Chief Justice Roberts and Justices Thomas, Alito, Gorsuch, Kavanaugh, and Barrett on one side, and Justices Sotomayor, Kagan, and Jackson on the other.
 }
 \newpage
 
@@ -835,6 +848,12 @@ circuit_scorecard <- scotusblog_stats$circuit_scorecard$circuit_scorecard[,-c(2,
               across(`# Decided`:`# Reversed`, sum, na.rm = TRUE),
               `% Affirmed` = '', 
               `% Reversed` = ''))
+
+additional_rows <- scotusblog_stats$scorecard_consolidated_notes[[1]] %>%
+  rowwise() %>%
+  mutate(merge = paste0(consolidated_docket_1, ' (', consolidated_lower_court_1, ', ', consolidated_split, ')'))
+
+additional_rows <- paste(additional_rows$merge, collapse = '; ')
 
 k <- kableExtra::kbl(circuit_scorecard,
                      format = "latex",
@@ -855,13 +874,12 @@ t <- k %>%
   kableExtra::row_spec(1:nrow(circuit_scorecard), extra_latex_after = "\\addlinespace[0.5em]") %>%
   kableExtra::column_spec(2:ncol(circuit_scorecard), width = '4cm') 
 
-bottom <- "
+bottom <- paste0("
 \\textbf{Description}: Table reflects the rates of affirmance and reversal for cases decided during OT25 that emerged from the U.S. Courts of Appeals.  \\par 
 
 \\vspace{4mm}
 
-\\textbf{Notes}: (1) We treat consolidated cases emerging from the same lower court as single entries.(2) Decisions that were granted review but subsequently dismissed (as improvidently granted) are omitted.
-"
+\\textbf{Notes}: (1) We treat consolidated cases emerging from the same lower court as single entries. (2) Decisions that were granted review but subsequently dismissed (as improvidently granted) are omitted. (3) Table further includes the following decisions from consolidated proceedings: ", additional_rows)
 
 cat("\\section{Circuit Scorecard}\n")
 cat("\\noindent\n")
@@ -1283,7 +1301,7 @@ cat("\\newpage")
 \hspace*{-0.75cm}
 \begin{tabular}{@{}c l c l c l c l@{}}
 
-\fbox{\colorbox[HTML]{4f4789}{\rule{0pt}{1.4ex}\rule{1.4ex}{0pt}}} & Joined Dissent &
+\fbox{\colorbox[HTML]{4f4789}{\rule{0pt}{1.4ex}\rule{1.4ex}{0pt}}} & Joined Majority &
 \fbox{\colorbox[HTML]{ff0000}{\rule{0pt}{1.4ex}\rule{1.4ex}{0pt}}} & Joined Dissent &
 \fbox{\colorbox[HTML]{70ac47}{\rule{0pt}{1.4ex}\rule{1.4ex}{0pt}}} & \parbox{4.2cm}{Authored Special \\ (\emph{In Part}) Concurrence \\ (or \emph{In Judgment})} &
 \fbox{\colorbox[HTML]{ffffff}{\rule{0pt}{1.4ex}\rule{1.4ex}{0pt}}} & Did Not Participate \\
@@ -1298,7 +1316,7 @@ cat("\\newpage")
 
 voting_alignment <- decisions[,-c(1, 2, 4)] %>%
   left_join(cases_master, by = c('Docket' = 'docket')) %>%
-  select(short_hand, Date_Decided, Coalition, Author, SOTOMAYOR, KAGAN, JACKSON, ROBERTS, KAVANAUGH, BARRETT, GORSUCH, ALITO, THOMAS) %>%
+    select(short_hand, Date_Decided, Coalition, Author, ROBERTS, THOMAS, ALITO, SOTOMAYOR, KAGAN, GORSUCH, KAVANAUGH, BARRETT, JACKSON) %>%
   rename(
     `Case Name` = short_hand,
     Decided = Date_Decided,
@@ -1326,14 +1344,16 @@ voting_alignment <- voting_alignment %>%
       background = case_when(
         is.na(.) ~ "white",
         . %in% c(2, 4, 5, 7) ~ "#70ac47",
-        . %in% c(1, 100, 999) ~ "#4f4789",
-        TRUE ~ "#ff0000"
+        . %in% c(1, 3, 6, 8, 100, 999) ~ "#4f4789",
+        . %in% c(-1:-1000) ~ "#ff0000", 
+        TRUE ~ "white"
       ),
       color = case_when(
         is.na(.) ~ "white",
         . %in% c(2, 4, 5, 7) ~ "#70ac47",
-        . %in% c(1, 100, 999) ~ "#4f4789",
-        TRUE ~ "#ff0000"
+        . %in% c(1, 3, 6, 8, 100, 999) ~ "#4f4789",
+        . %in% c(-1:-1000) ~ "#ff0000", 
+        TRUE ~ "white"
       ),
       escape = FALSE
     )
@@ -1438,8 +1458,8 @@ cat(tbl)
 ```
 
 ```{=latex}
-
-\footernote{
+\newpage
+\footernotevoting{
 \textbf{Notes}: `r notes_latex`
 }
 \newpage
@@ -1761,12 +1781,8 @@ cat(t3)
 
 
 ```{=latex}
-
 \footernote{
-\textbf{Guide}: \textbf{A} = \emph{Affirmed} \quad \textbf{V} = \emph{Vacated} \quad \textbf{R} = \emph{Reversed} \quad \textbf{G} = \emph{Granted} \quad \textbf{DIG} = \emph{Dismissed as Improvidently Granted} \quad \textbf{PC} = \emph{Per Curiam} \quad \textbf{Court} = \emph{Court Below} \\ \hspace{1.1cm} \textbf{Days} = \emph{Days Elapsed Between Argument and Decision} \par \vspace{4mm}
-
-\textbf{Notes}: (1) 
-
+\textbf{Guide}: \textbf{A} = \emph{Affirmed} \quad \textbf{V} = \emph{Vacated} \quad \textbf{R} = \emph{Reversed} \quad \textbf{G} = \emph{Granted} \quad \textbf{DIG} = \emph{Dismissed as Improvidently Granted} \quad \textbf{PC} = \emph{Per Curiam} \quad \textbf{Court} = \emph{Court Below} \\ \hspace{1.1cm} \textbf{Days} = \emph{Days Elapsed Between Argument and Decision}
 }
 \newpage
 ```

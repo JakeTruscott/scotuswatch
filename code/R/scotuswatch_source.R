@@ -3017,6 +3017,10 @@ scotusblog_stats <- function(decisions_path,
 
   {
 
+    additional_circuit_scorecard_rows <- master_file %>%
+      filter(!is.na(consolidated_split), !consolidated_split == '') %>%
+      filter(consolidated_lower_court_1 %in% c('CA1', 'CA2', 'CA3', 'CA4', 'CA5', 'CA6', 'CA7', 'CA8', 'CA9', 'CA10', 'CA11', 'CADC', 'CAFED', 'CAFC'))
+
     circuit_scorecard <- master_file %>%
       select(lower_court, docket) %>%
       left_join(decisions %>%
@@ -3024,13 +3028,18 @@ scotusblog_stats <- function(decisions_path,
                   select(docket, decision), by = 'docket') %>%
       unique() %>%
       filter(!is.na(decision)) %>%
+      bind_rows(additional_circuit_scorecard_rows %>%
+                  select(consolidated_lower_court_1, consolidated_docket_1, consolidated_split) %>%
+                  rename(lower_court = consolidated_lower_court_1,
+                         docket = consolidated_docket_1,
+                         decision = consolidated_split)) %>%
       mutate(decision = case_when(
         grepl('Reverse', decision) ~ 'Reverse',
         grepl('Granted', decision) ~ 'Toss',
         grepl('Vacate', decision) ~ 'Reverse',
         grepl('Affirm', decision) ~ 'Affirm',
         decision %in% c('DIG', 'dig') ~ 'DIG')) %>%
-      filter(lower_court %in% c('CA1', 'CA2', 'CA3', 'CA4', 'CA5', 'CA6', 'CA7', 'CA8', 'CA9', 'CA10', 'CA11', 'CADC', 'CAFED', 'CAFC')) %>%
+      filter(lower_court %in% c('CA1', 'CA2', 'CA3', 'CA4', 'CA5', 'CA6', 'CA7', 'CA8', 'CA9', 'CA10', 'CA11', 'CADC', 'CAFED')) %>%
       filter(!decision == 'Toss') %>%
       arrange(lower_court) %>%
       group_by(lower_court, decision) %>%
@@ -3062,7 +3071,7 @@ scotusblog_stats <- function(decisions_path,
              `% Reversed` = percent_reverse)
 
     combined_list[['circuit_scorecard']] <- circuit_scorecard
-
+    combined_list[['circuit_scorecard_consolidated_notes']] <- data.frame(additional_circuit_scorecard_rows)
 
   } # Circuit Scorecard
 
@@ -4047,7 +4056,7 @@ scotusblog_stats <- function(decisions_path,
           coord_polar(theta = "y") +
           scale_fill_manual(values = coalition_colors) +
           theme_void() +
-          labs(title = paste0(max(scdb_cases_data$term) + 1, ' Term')) +
+          labs(title = paste0(max(scdb_cases_data$term) + 1, '-26 Term')) +
           theme(legend.title = element_blank(),
                 plot.title = element_markdown(hjust = 0.5, size = 18, face = 'bold'),
                 legend.position = 'none') +
@@ -4172,7 +4181,7 @@ scotusblog_stats <- function(decisions_path,
                       mutate(term = 2025)) %>%
           mutate(ideologically_split = ifelse(docket %in% ideologically_split, 1, 0)) %>%
           group_by(ideologically_split) %>%
-          summarise(split_percentage = n() / total_cases_1 * 100) %>%
+          summarise(split_percentage = round((n() / total_cases_1), 2) * 100) %>%
           ungroup() %>%
           mutate(ideologically_split = ifelse(ideologically_split == 1, 'Ideologically Split', 'No Split')) %>%
           ggplot(aes(x = "", y = split_percentage, fill = ideologically_split)) +
@@ -4196,7 +4205,7 @@ scotusblog_stats <- function(decisions_path,
                       mutate(term = 2025)) %>%
           mutate(ideologically_split = ifelse(docket %in% ideologically_split, 1, 0)) %>%
           group_by(ideologically_split) %>%
-          summarise(split_percentage = n() / total_cases_2 * 100) %>%
+          summarise(split_percentage = round((n() / total_cases_2), 2) * 100) %>%
           ungroup() %>%
           mutate(ideologically_split = ifelse(ideologically_split == 1, 'Ideologically Split', 'No Split')) %>%
           ggplot(aes(x = "", y = split_percentage, fill = ideologically_split)) +
@@ -4216,7 +4225,8 @@ scotusblog_stats <- function(decisions_path,
           unique() %>%
           mutate(ideologically_split = ifelse(docket %in% ideologically_split, 1, 0)) %>%
           group_by(ideologically_split) %>%
-          summarise(split_percentage = n() / length(unique(ot25_decisions$docket)) * 100) %>%
+          summarise(split_percentage = round((n() / nrow(decisions)) * 100, 1),
+                    split_count = n()) %>%
           ungroup() %>%
           mutate(ideologically_split = ifelse(ideologically_split == 1, 'Ideologically Split', 'No Split')) %>%
           ggplot(aes(x = "", y = split_percentage, fill = ideologically_split)) +
@@ -4224,7 +4234,7 @@ scotusblog_stats <- function(decisions_path,
           coord_polar(theta = "y") +
           scale_fill_brewer(name = 'RdB') +
           theme_void() +
-          labs(title = paste0(max(scdb_cases_data$term) + 1, ' Term')) +
+          labs(title = paste0(max(scdb_cases_data$term) + 1, '-26 Term')) +
           theme(legend.title = element_blank(),
                 plot.title = element_markdown(hjust = 0.5, size = 18, face = 'bold'),
                 legend.position = 'none') +
@@ -5182,12 +5192,12 @@ scotusblog_stats <- function(decisions_path,
     {
 
       opinion_lengths_by_justice <- opinions_processed %>%
-        group_by(authorship) %>%
         mutate(word_count =  stri_count_words(text)) %>%
+        group_by(authorship) %>%
         summarise(mean_words = round(mean(word_count), 0)) %>%
-        filter(!authorship %in% 'Per Curiam') %>%
+        #filter(!authorship %in% 'Per Curiam') %>%
         rename(justice = authorship) %>%
-        mutate(justice = factor(justice, levels = c('Roberts', 'Thomas', 'Alito', 'Sotomayor', 'Kagan', 'Gorsuch', 'Kavanaugh', 'Barrett', 'Jackson'))) %>%
+        mutate(justice = factor(justice, levels = c('Roberts', 'Thomas', 'Alito', 'Sotomayor', 'Kagan', 'Gorsuch', 'Kavanaugh', 'Barrett', 'Jackson', 'Per Curiam'))) %>%
         arrange(justice)
 
       combined_list[['opinion_lengths']][['average_opinion_lengths_by_justice']] <- opinion_lengths_by_justice
@@ -5419,6 +5429,21 @@ export_scotusblog_stats <- function(scotusblog_stats_object,
 
 
     } # Special for circuit_scorecard
+
+    {
+      if (temp_topic_name == 'circuit_scorecard_consolidated_notes'){
+        temp_wb <- createWorkbook()
+        temp_item <- temp_topic
+        suppressWarnings(addWorksheet(temp_wb, as.character('scorecard_consolidated_notes')))
+        suppressWarnings(suppressWarnings(writeData(temp_wb, as.character('scorecard_consolidated_notes'), temp_item)))
+        temp_export_path = file.path(output_path, paste0(as.character('scorecard_consolidated_notes'), '.xlsx')) # Temp Excel Output Path
+        suppressWarnings(saveWorkbook(temp_wb, temp_export_path, overwrite = T))
+        next
+      }
+
+
+    } # Special for circuit_scorecard_consolidated_notes
+
 
     if (length(temp_topic) == 0){
       next
