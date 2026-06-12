@@ -3475,7 +3475,7 @@ scotusblog_stats <- function(decisions_path,
         geom_col(aes(fill = percent_majority), colour = 'black') +
         #scale_fill_manual(values = c('deepskyblue3', 'coral4')) +
         scale_fill_distiller(palette = 'Blues', direction = 1) +
-        scale_y_continuous(lim = c(0, 1)) +
+        scale_y_continuous(lim = c(0, 1), expand = c(0.075, 0)) +
         geom_label(aes(label = paste0(percent_majority*100, '%'), vjust = -0.25), size = 5) +
         geom_hline(yintercept = 0) +
         theme_minimal() +
@@ -3552,7 +3552,7 @@ scotusblog_stats <- function(decisions_path,
       percent_in_majority_divided_cases <- ggplot(majorities, aes(x = justice_order, y = percent_majority)) +
         geom_col(aes(fill = percent_majority), colour = 'black') +
         scale_fill_distiller(palette = 'Blues', direction = 1) +
-        scale_y_continuous(lim = c(0, 1)) +
+        scale_y_continuous(lim = c(0, 1), expand = c(0.075, 0)) +
         geom_label(aes(label = paste0(percent_majority*100, '%'), vjust = -0.25), size = 5) +
         geom_hline(yintercept = 0) +
         theme_minimal() +
@@ -3625,7 +3625,7 @@ scotusblog_stats <- function(decisions_path,
       percent_in_majority_close_cases <- ggplot(majorities, aes(x = justice_order, y = percent_majority)) +
         geom_col(aes(fill = percent_majority), colour = 'black') +
         scale_fill_distiller(palette = 'Blues', direction = 1) +
-        scale_y_continuous(lim = c(0, 1)) +
+        scale_y_continuous(lim = c(0, 1), expand = c(0.075, 0)) +
         geom_label(aes(label = paste0(percent_majority*100, '%'), vjust = -0.25), size = 5) +
         geom_hline(yintercept = 0) +
         theme_minimal() +
