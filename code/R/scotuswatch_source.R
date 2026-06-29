@@ -216,6 +216,7 @@ decisions_analysis <- function(input_path,
 -1 = Wrote Dissenting Opinion
 -2 = Joined Dissenting Opinion
 -3 = Wrote Dissent & Joined Dissent
+-4 = Wrote Special Concurrence AND joined dissent
 999 = Dissent in Denial of Cert (Would Grant Cert)
 -998 = Dissent in Granting of Cert (Would Not Grant Cert)'
 
@@ -241,7 +242,7 @@ decisions_analysis <- function(input_path,
         return('#FFCC99')
       } else if (value == 'SC'){
         return('#B265FF')
-      } else if(value == 'JSC'){
+      } else if(value %in% c('JSC', 'SC-JD')){
         return('#6600CC')
       } else if (value == 'D'){
         return('#FF3333')
@@ -299,6 +300,7 @@ decisions_analysis <- function(input_path,
         . == -1 ~ 'D',
         . == -2 ~ 'JD',
         . == -3 ~ 'D-JD',
+        . == -4 ~ 'SC-JD',
         . == 999 ~ 'WGC',
         . == -998 ~ 'WNGC',
         is.na(.) ~ 'DNP',
@@ -3034,11 +3036,13 @@ scotusblog_stats <- function(decisions_path,
                          docket = consolidated_docket_1,
                          decision = consolidated_split)) %>%
       mutate(decision = case_when(
+        decision %in% c('GRR', 'GVR') ~ 'Reverse',
         grepl('Reverse', decision) ~ 'Reverse',
         grepl('Granted', decision) ~ 'Toss',
         grepl('Vacate', decision) ~ 'Reverse',
         grepl('Affirm', decision) ~ 'Affirm',
         decision %in% c('DIG', 'dig') ~ 'DIG')) %>%
+      filter(!decision == 'DIG') %>%
       filter(lower_court %in% c('CA1', 'CA2', 'CA3', 'CA4', 'CA5', 'CA6', 'CA7', 'CA8', 'CA9', 'CA10', 'CA11', 'CADC', 'CAFED')) %>%
       filter(!decision == 'Toss') %>%
       arrange(lower_court) %>%
@@ -3211,7 +3215,7 @@ scotusblog_stats <- function(decisions_path,
         rowwise() %>%
         mutate(
           Majority = sum(c_across(1:10) %in% c(100), na.rm = TRUE),
-          Concurrence = sum(c_across(1:10) %in% c(2, 4, 5, 7), na.rm = TRUE),
+          Concurrence = sum(c_across(1:10) %in% c(2, 4, 5, 7, -4), na.rm = TRUE), # -4 = Wrote Special but Joined Dissent
           Dissent = sum(c_across(1:10) %in% c(-1, -3), na.rm = TRUE)) %>%
         ungroup() %>%
         select(Majority, Concurrence, Dissent) %>%
@@ -3338,7 +3342,7 @@ scotusblog_stats <- function(decisions_path,
         temp_col <- ot25_decisions[, c(as.character(i), 'short_hand')]
 
         opinions[[as.character(i)]][['Majority']] <- c(temp_col$short_hand[which(temp_col[,1] == 100)])
-        opinions[[as.character(i)]][['Concurrence']] <- c(temp_col$short_hand[which(temp_col[,1] %in% c(2, 4, 5, 7))])
+        opinions[[as.character(i)]][['Concurrence']] <- c(temp_col$short_hand[which(temp_col[,1] %in% c(2, 4, 5, 7, -4))]) # -4 = Wrote Special, Joined Dissent
         opinions[[as.character(i)]][['Dissent']] <- c(temp_col$short_hand[which(temp_col[,1] %in% c(-1, -3))])
 
       }
@@ -3775,8 +3779,6 @@ scotusblog_stats <- function(decisions_path,
       combined_list[['frequency_in_majority']][['solo_dissents_current_term']] <- solo_dissents_current_term
 
     } # Solo Dissents (Current & Past Terms)
-
-
 
   } # Frequency in Majority (And Strength of Majority)
 
@@ -5189,6 +5191,10 @@ scotusblog_stats <- function(decisions_path,
              authorship = str_to_title(authorship)) %>%
       rename(docket = docket_id)
 
+    omit_word_counts <- decisions %>%
+      filter(Decision == 'DIG') %>%
+      pull(Docket) # Omitting DIGS
+
     {
 
       opinion_lengths_by_justice <- opinions_processed %>%
@@ -5216,6 +5222,7 @@ scotusblog_stats <- function(decisions_path,
                            docket = Docket,
                            date_argued = Date_Argued,
                            date_decided = Date_Decided), by = 'docket') %>%
+        filter(!docket %in% omit_word_counts) %>% # Omit DIGS
         arrange(word_count) %>%
         slice_head(n = 5)
 
@@ -5231,6 +5238,7 @@ scotusblog_stats <- function(decisions_path,
                            date_argued = Date_Argued,
                            date_decided = Date_Decided), by = 'docket') %>%
         arrange(desc(word_count)) %>%
+        filter(!docket %in% omit_word_counts) %>% # Omit DIGS
         slice_head(n = 5)
 
 

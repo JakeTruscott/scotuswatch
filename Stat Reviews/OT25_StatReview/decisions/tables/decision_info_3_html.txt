@@ -83,16 +83,6 @@
    <td style="text-align:center;"> (8-1) </td>
   </tr>
   <tr>
-   <td style="text-align:center;font-weight: bold;"> Montgomery v. Caribe Transport II, LLC </td>
-   <td style="text-align:center;"> 24-1238 </td>
-   <td style="text-align:center;"> 2026-03-04 </td>
-   <td style="text-align:center;"> 2026-05-14 </td>
-   <td style="text-align:center;"> CA7 </td>
-   <td style="text-align:center;"> Reverse and Remand </td>
-   <td style="text-align:center;"> Barrett </td>
-   <td style="text-align:center;"> (9-0) </td>
-  </tr>
-  <tr>
    <td style="text-align:center;font-weight: bold;"> Havana Docks Corp. v. Royal Caribbean Cruises, Ltd. </td>
    <td style="text-align:center;"> 24-983 </td>
    <td style="text-align:center;"> 2026-02-23 </td>
@@ -113,14 +103,34 @@
    <td style="text-align:center;"> (9-0) </td>
   </tr>
   <tr>
-   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Hamm v. Smith </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 24-872 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> NA </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 2026-05-21 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> CA11 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> DIG </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> Per Curiam </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> Per Curiam </td>
+   <td style="text-align:center;font-weight: bold;"> Hamm v. Smith </td>
+   <td style="text-align:center;"> 24-872 </td>
+   <td style="text-align:center;"> 2025-12-10 </td>
+   <td style="text-align:center;"> 2026-05-21 </td>
+   <td style="text-align:center;"> CA11 </td>
+   <td style="text-align:center;"> DIG </td>
+   <td style="text-align:center;"> Per Curiam </td>
+   <td style="text-align:center;"> (7-2) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Margolin v. NAIJ </td>
+   <td style="text-align:center;"> 25-767 </td>
+   <td style="text-align:center;"> NA </td>
+   <td style="text-align:center;"> 2026-05-26 </td>
+   <td style="text-align:center;"> CA4 </td>
+   <td style="text-align:center;"> GRR </td>
+   <td style="text-align:center;"> Per Curiam </td>
+   <td style="text-align:center;"> Per Curiam </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Flowers Foods, Inc. v. Brock </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 24-935 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2026-03-25 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2026-05-28 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> CA10 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Affirm </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Gorsuch </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> (9-0) </td>
   </tr>
 </tbody>
 </table>

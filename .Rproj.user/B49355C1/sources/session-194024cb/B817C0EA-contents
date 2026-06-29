@@ -2,6 +2,7 @@
 output:
   pdf_document:
     latex_engine: xelatex
+    keep_tex: TRUE
 fontsize: 12pt
 header-includes:
   - \usepackage{fontspec}
@@ -15,6 +16,7 @@ header-includes:
       BoldItalicFont = Mulish-BoldItalic
       ]{Mulish}
   - \usepackage{tikz}
+  - \usepackage{atbegshi}
   - \usepackage{multicol}
   - \usepackage{array}
   - \usepackage{fontawesome5}
@@ -25,9 +27,11 @@ header-includes:
   - \usepackage{geometry}
   - \usepackage{tocloft}
   - \newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
+  - \newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
   - \setlength{\cftbeforesecskip}{8pt}
   - \setlength{\cftbeforesubsecskip}{7pt}
   - \geometry{paperwidth=13.333in, paperheight=7.5in, margin=0.25in}
+  - \setlength{\footskip}{18pt} % adjust 15–25pt depending on taste
   - \definecolor{dispatchBlue}{HTML}{112537}
   - \definecolor{dispatchRed}{HTML}{C41E3A}
   - \usepackage{titlesec}
@@ -41,11 +45,20 @@ header-includes:
     {\color{dispatchRed}\fontsize{35pt}{38pt}\selectfont\bfseries}
     {\thesubsubsection}{1em}{}
   - \usepackage{fancyhdr}
+  - \fancypagestyle{fancy}{
+      \fancyhf{}
+      \fancyfoot[R]{\normalsize\thepage}
+      \renewcommand{\headrulewidth}{0pt}
+      \renewcommand{\footrulewidth}{0pt}
+    }
+  - \fancypagestyle{plain}{
+      \fancyhf{}
+      \fancyfoot[R]{\normalsize\thepage}
+      \renewcommand{\headrulewidth}{0pt}
+      \renewcommand{\footrulewidth}{0pt}
+    }
   - \pagestyle{fancy}
-  - \fancyhf{}
-  - \fancyfoot[C]{\hspace{12in}\vspace{2mm}\thepage}
-  - \renewcommand{\headrulewidth}{0pt}
-  - \renewcommand{\footrulewidth}{0pt}
+  - \setlength{\footskip}{15pt}
   - |
       \newcommand{\sidebox}[1]{
       \hspace{-2cm}
@@ -70,7 +83,7 @@ header-includes:
       
       % Box dimensions
       \coordinate (boxSW) at ($(current page.south west)+(0.5in,0.10in)$);
-      \coordinate (boxNE) at ($(current page.south east)+(-0.5in,1.35in)$);
+      \coordinate (boxNE) at ($(current page.south east)+(-0.5in,1.15in)$);
 
       % Draw box
       \filldraw[
@@ -94,12 +107,41 @@ header-includes:
       \end{tikzpicture}
       }
   - |
+      \newcommand{\footernoteopinionlengths}[1]{
+      \begin{tikzpicture}[remember picture,overlay]
+      
+      % Box dimensions
+      \coordinate (boxSW) at ($(current page.south west)+(0.5in,0.10in)$);
+      \coordinate (boxNE) at ($(current page.south east)+(-0.5in,1.9in)$);
+
+      % Draw box
+      \filldraw[
+        fill=dispatchBlue!8,
+        draw=dispatchBlue,
+        line width=1.2pt,
+        rounded corners=6pt
+      ]
+      (boxSW) rectangle (boxNE);
+
+      % Text
+      \node[
+      anchor=center,
+      text width=11.5in,
+      align=left,
+      font=\footnotesize
+      ]
+      at ($(boxSW)!0.5!(boxNE)$)
+      {#1};
+
+      \end{tikzpicture}
+      }      
+  - |
       \newcommand{\footernotevoting}[1]{
       \begin{tikzpicture}[remember picture,overlay]
       
       % Box dimensions
       \coordinate (boxSW) at ($(current page.south west)+(0.5in,0.10in)$);
-      \coordinate (boxNE) at ($(current page.south east)+(-0.5in,1.8in)$);
+      \coordinate (boxNE) at ($(current page.south east)+(-0.5in,3in)$);
 
       % Draw box
       \filldraw[
@@ -291,29 +333,48 @@ escape_latex <- function(x) {
 <!-- Table of Contents -->
 
 ```{=latex}
-\newgeometry{margin=0.5in}
-\thispagestyle{empty}
 
-\setlength{\columnsep}{0.75in}
+\clearpage
+\begingroup
+\pagestyle{empty}
+\pagenumbering{gobble}
 
 \section*{Table of Contents}
+
 \nopagebreak
 
 \renewcommand{\contentsname}{}
 
-\vspace{-1em}
+\vspace{-1.25cm}
 
-\begin{multicols*}{2}
+\makeatletter
+\renewcommand{\@dotsep}{4.5}
+\makeatother
+
+\renewcommand{\cftsubsecfont}{\footnotesize}
+\renewcommand{\cftsubsecpagefont}{\footnotesize}
+
+\setlength{\cftbeforesubsecskip}{-1.5pt}
+
 \tableofcontents
-\end{multicols*}
 
 \clearpage
-\restoregeometry
+\endgroup
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\pagestyle{fancy}
+
 ```
 
 <!-- Introduction -->
 
 ```{=latex}
+
+\clearpage
+\thispagestyle{fancy}
+\pagenumbering{arabic}
+\setcounter{page}{1}
 
 \section{Introduction}
 
@@ -348,9 +409,6 @@ escape_latex <- function(x) {
     \label{fig:opinions_over_time}
 \end{figure}
 
-\footernote{
-\textbf{Notes:} (1) Figure shows the volume \& proportion of opinions (by type) authored by the Court between the 2005 and 2025 terms. Data from earlier terms were retrieved from the \href{https://scdb.la.psu.edu/}{Supreme Court Database}. Opinions delivered \emph{per curiam} are coded as a majority opinion, while special concurrences (\emph{in part}) and those concurring in judgment are both coded as concurrences.
-}
 \newpage
 
 ```
@@ -367,22 +425,78 @@ escape_latex <- function(x) {
 cases_master <- read.csv('../../cases_master/cases_master_file_OT25.csv', as.is = T)
 
 cases_master %>%
-  select(case, short_hand) %>%
+  select(case, short_hand, issue) %>%
   arrange(case) %>%
-  mutate('Issue' = '') %>%
+  #mutate('Issue' = '') %>%
   setNames(c('Case Name', 'Abbreviation', 'Issue')) %>%
   kableExtra::kbl(format = "latex",
+                  escape = F,
                   linesep = '', 
                   booktabs = TRUE,
                   longtable = TRUE,
-                  align = c('l', 'l')) %>%
+                  align = c('l', 'c', 'c')) %>%
   kable_styling(latex_options = c("striped", "repeat_header"), 
                 full_width = F,
-                position = "center", font_size = 11) %>%
+                position = "center", 
+                font_size = 10) %>%
   row_spec(0, bold = TRUE, align = "c") %>%
-  column_spec(1, width = "4in") %>%
-  column_spec(2, width = "2in") %>%
-  column_spec(3, width = '5.5in')
+  column_spec(1, width = "5in") %>%
+  column_spec(2, width = "3in") %>%
+  column_spec(3, width = '3in')
+
+
+```
+\newpage
+
+```{=latex}
+\section*{Most Frequent Issues}
+\addcontentsline{toc}{subsection}{Most Frequent Issues}
+```
+
+```{R makeup_of_docket_table, message=FALSE, warning=FALSE, results='asis', echo=F}
+
+cases_master <- read.csv('../../cases_master/cases_master_file_OT25.csv', as.is = T)
+
+combined <- cases_master %>%
+  count(issue, name = "count") %>%
+  group_by(count) %>%
+  summarise(issues = paste(sort(issue), collapse = ", "), .groups = "drop") %>%
+  select(issues, count) %>%
+  arrange(desc(count)) %>%
+  setNames(c('Issue(s)', 'OT25-26 Cases'))
+
+k <- cases_master %>%
+  count(issue, name = "count") %>%
+  group_by(count) %>%
+  summarise(issues = paste(sort(issue), collapse = ", "), .groups = "drop") %>%
+  select(issues, count) %>%
+  arrange(desc(count)) %>%
+  setNames(c('Issue(s)', 'OT25-26 Cases')) %>%
+  kableExtra::kbl(
+    format = "latex",
+    booktabs = TRUE,
+    align = c("l", "c"),
+    escape = FALSE) %>%
+  kableExtra::column_spec(1, latex_column_spec = "L{20cm}") %>%
+  kableExtra::column_spec(2, latex_column_spec = "C{4cm}") %>%
+  kableExtra::kable_styling(
+    latex_options = c("hold_position"),
+    font_size = 11,
+    position = "center"
+  ) %>% 
+  kableExtra::row_spec(
+    which(seq_len(nrow(combined)) %% 2 == 0),
+    background = "#F5F5F5") %>%
+  row_spec(0, bold = TRUE, align = "c") 
+
+cat("\\begin{center}\n")
+cat("{\n")
+cat("\\renewcommand{\\arraystretch}{3.5}\n")
+cat(as.character(k))
+cat("}\n")
+cat("\\end{center}\n\n")
+cat("\\newpage")
+
 
 ```
 \newpage
@@ -472,14 +586,10 @@ keepaspectratio
 \sidebox{
 \textbf{Description}: Figure shows the relative agreement (percent) in voting alignment shared between justices in all cases where justices participated during the 2025-26 term.
 
-\vspace{4mm}
-
-\textbf{Notes}: (1) Agreement can be understood as justices similarly aligning in the majority (or dissenting) coalition -- where those who concur (\emph{fully}, \emph{in part}, or \emph{in judgment}) are similarly considered as part of the majority.
 }
 
 \end{tabular}
-\newpage
-
+\clearpage
 
 \section*{Justice Agreement -- Closely Divided Cases}
 \addcontentsline{toc}{subsection}{Closely Divided Cases}
@@ -491,150 +601,73 @@ keepaspectratio
 ]{../../scotusblog_replication/figures/agreement_matrix_close_cases.png}
 &
 \sidebox{
-\textbf{Description}: Figure shows the relative agreement (percent) in voting alignment shared between justices in cases decided by (5-4) or (6-3) coalitions in the 2025-26 term. 
-
-\vspace{4mm}
-
-\textbf{Notes}: (1) Agreement can be understood as justices similarly aligning in the majority (or dissenting) coalition -- where those who concur (\emph{fully}, \emph{in part}, or \emph{in judgment}) are similarly considered as part of the majority.
+\textbf{Description}: Figure shows the relative agreement (percent) in voting alignment shared between justices in cases decided by (5-4) or (6-3) coalitions in the 2025-26 term.
 }
 
 \end{tabular}
+\clearpage
+
+```
+
+<!-- Decisions by Vote Split -->
+
+```{=latex}
+
+\addcontentsline{toc}{section}{Decisions by Vote Split}
+\section*{Decisions by Vote Split -- All Cases}
+\addcontentsline{toc}{subsection}{All Cases}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.32\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../scotusblog_replication/figures/ot05_ot25_splits.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../scotusblog_replication/figures/ot20_ot25_splits.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../scotusblog_replication/figures/ot25_splits.png}
+    \end{minipage}
+\end{figure}
+
+\footernote{
+\textbf{Description}: Figures show the percent of cases decided by different coalition sizes between the 2005 and 2025 terms. For instances where justices were recused or did not participate in an otherwise unanimous decision, we coded these as \emph{unanimous} (e.g., 8-0 decisions were included in calculating 9-0 coalitions). 
+}
+\newpage
+
+
+
+\section*{Decisions by Vote Split -- Ideologically Split Cases}
+\addcontentsline{toc}{subsection}{Ideologically Split Cases}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.32\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../scotusblog_replication/figures/ot05_ot25_ideological.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../scotusblog_replication/figures/ot20_ot25_ideological.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../scotusblog_replication/figures/ot25_ideological.png}
+    \end{minipage}
+\end{figure}
+\footernote{
+\textbf{Description}: Figures show the percent of cases decided by ideologically split coalitions, consisting of Chief Justice Roberts and Justices Thomas, Alito, Gorsuch, Kavanaugh, and Barrett on one side, and Justices Sotomayor, Kagan, and Jackson on the other.
+}
 \newpage
 
 ```
 
-<!-- Strength of the Majority -->
-
-```{r strength_of_majority_tables, message=FALSE, warning=FALSE, results='asis', echo=F}
-
-justices <- scotusblog_stats$frequency_in_majority$perc_opinions_unanimous$justice 
-
-df <- scotusblog_stats$frequency_in_majority$coalition_sizesjustice %>%
-  setNames(c('Justice', 'Total Opinions', 'Unanimous', '(8-1)', '(7-2)', '(6-3)', '(5-4)', 'Average Majority Size')) %>%
-  bind_rows(
-    summarise(.,
-              Justice = "Total",
-              across(`Total Opinions`:`(5-4)`, sum, na.rm = TRUE),
-              `Average Majority Size` = mean(as.numeric(`Average Majority Size`), na.rm = TRUE))) %>%
-  mutate(`Average Majority Size` = round(`Average Majority Size`, 2))
-
-names(df)[1] <- ''
-
-k <- kableExtra::kbl(df,
-                     format = "latex",
-                     linesep = '', 
-                     booktabs = TRUE,
-                     align = c('l', rep('c', 7)))
-
-for (i in seq_len(nrow(df))) {
-  if (i %% 2 == 0) {
-    k <- kableExtra::row_spec(k, i, background = "#F5F5F5")
-  }
-}
-
-t1 <- k %>% 
-  kableExtra::row_spec(9, extra_latex_after = '\\midrule\\vspace{-5mm}') %>%
-  kableExtra::row_spec(0, bold = TRUE) %>%
-  kableExtra::row_spec(10, bold = TRUE) %>%
-  kableExtra::column_spec(1, bold = TRUE)
-
-
-df <- data.frame(Justice = justices) %>% 
-  left_join(scotusblog_stats$frequency_in_majority$solo_dissents_current_term %>%
-              group_by(Justice) %>%
-  summarise(case_count =  n(),
-    case_names = paste0(short_hand, collapse = ", " ), .groups = "drop") %>%
-              mutate(Justice = str_to_title(Justice)) , 
-  by = 'Justice') %>%
-  mutate(case_count = ifelse(is.na(case_count), '', as.character(case_count)), 
-         case_names = ifelse(is.na(case_names), '', as.character(case_names))) %>%
-  setNames(c('', 'OT25', 'Case(s)')) 
-
-
-
-k <-  kableExtra::kbl(df, 
-                      booktabs = TRUE,
-                      linesep = '', 
-                      escape = F, 
-                  longtable = F,
-                  align = c('c', 'c', 'l')) %>%
-  kableExtra::column_spec(1, width = "3cm", bold = TRUE) %>%
-  kableExtra::column_spec(3, width = "10cm") %>%
-  kableExtra::row_spec(0, bold = TRUE, align = 'c')
-  
-for (i in seq_len(nrow(df))) {
-  if (i %% 2 == 0) {
-    k <- kableExtra::row_spec(k, i, background = "#F5F5F5")
-  }
-}
-
-t2 <- k 
-
-gorsuch_unanimous <- scotusblog_stats$frequency_in_majority$coalition_sizesjustice[scotusblog_stats$frequency_in_majority$coalition_sizesjustice$justice == 'Gorsuch',]$maj_9
-gorsuch_7_2 <- scotusblog_stats$frequency_in_majority$coalition_sizesjustice[scotusblog_stats$frequency_in_majority$coalition_sizesjustice$justice == 'Gorsuch',]$maj_7
-gorsuch_opinions <- scotusblog_stats$frequency_in_majority$coalition_sizesjustice[scotusblog_stats$frequency_in_majority$coalition_sizesjustice$justice == 'Gorsuch',]$total_opinions
-gorsuch_mean <- scotusblog_stats$frequency_in_majority$coalition_sizesjustice[scotusblog_stats$frequency_in_majority$coalition_sizesjustice$justice == 'Gorsuch',]$mean_coalition
-
-jackson_solo <- data.frame(Justice = justices) %>% 
-  left_join(scotusblog_stats$frequency_in_majority$solo_dissents_current_term %>%
-              group_by(Justice) %>%
-  summarise(case_count =  n(),
-    case_names = paste0(short_hand, collapse = ", " ), .groups = "drop") %>%
-              mutate(Justice = str_to_title(Justice)) , 
-  by = 'Justice') %>%
-  filter(Justice == "Jackson") 
-
-side_text <- paste0("
-\\textbf{Description (Above)}: Table above provides an overview of coalition types given different Justices authoring majority opinions. For example, of the ", gorsuch_opinions, " majority opinions authored by Justice Neil Gorsuch, ", gorsuch_unanimous  ," are opinions representing a unanimous Court -- while ", gorsuch_7_2, " of his majority opinions are in cases decided by a (7-2) Court. On average, Justice Gorsuch's opinions represented majorities of approximately ", gorsuch_mean ," Justices. \\par \\vspace{2.5mm}
-
-\\textbf{Description (Below)}: Table below stratifies opinions decided in OT25 to those decided with a single dissenting Justice. For example, Justice Ketanji Brown Jackson was the sole dissenter in ", jackson_solo$case_count, " case(s) this term (\\emph{", paste(jackson_solo$case_names, collapse = ', '), "})
-
-\\vspace{4mm}
-
-\\textbf{Notes}: (1) Only cases where a sole dissenter authored an opinion are included. For instance, Justice Jackson's preference to have denied certiorari in \\emph{Klein v. Martin} (25-51) is not included because it does not include a written opinion. (2) Moreover, only cases with a signed majority opinion are included in this analysis – cases decided \\emph{per curiam} with no signed majority opinion are omitted.
-")
-
-left_col <- paste0(
-  "\\vspace{-5mm}\n",
-  "\\begin{center}\n",
-  "Variance in Majority Coalition Sizes by Opinion Author\\\\\n",
-  t1,
-  "\\end{center}\n\n",
-
-  "\\vspace{0.4cm}\n\n",
-
-  "\\begin{center}\n",
-  "Cases Decided with a Single Dissenting Justice\\\\\n",
-  t2,
-  "\\end{center}\n"
-)
-
-cat("\\section{Strength of the Majority}\n")
-cat("\\noindent\n")
-
-cat("\\begin{tabular}{@{}m{0.64\\textwidth} m{0.04\\textwidth} m{0.30\\textwidth}@{}}\n")
-
-# LEFT COLUMN
-cat(left_col)
-
-# BUFFER COLUMN (empty spacer)
-cat("\n&\n")
-
-# actually middle column content (must be blank but still present)
-cat(" ")
-
-cat("\n&\n")
-
-# RIGHT COLUMN
-cat("\\sidebox{\n")
-cat(side_text)
-cat("\n}\n")
-
-cat("\\end{tabular}\n")
-cat("\\newpage")
-```
-
-<!-- Closely Divided Cases -->
+<!-- Closely Divided Cases -->W
 
 ```{r closely_divided_cases, message=FALSE, warning=FALSE, results='asis', echo=F}
 
@@ -686,7 +719,7 @@ closely_divided_cases_conditons <- list()
     mutate(n_missing_liberals = purrr::map_int(str_split(majority_sorted, ", "),
       ~ length(setdiff(liberal_justices, .x)))) %>%
     filter(n_missing_liberals == 3) %>%
-    mutate(condition = "Cases with Justices Sotomayor, Kagan, and Jackson All Dissenting",
+    mutate(condition = "Cases with Justices Sotomayor, Kagan, and Jackson all Dissenting",
            percent_all_cases = as.character('0%')) 
 
 if (nrow(sotomayor_kagan_jackson_all_dissent) != 0) {
@@ -753,11 +786,12 @@ k <- kableExtra::kbl(
   align = c("l", "c", "l"),
   escape = FALSE) %>%
   kableExtra::column_spec(1, latex_column_spec = "L{8cm}", bold = TRUE) %>%
-  kableExtra::column_spec(2, latex_column_spec = "m{6.5cm}") %>%
+  kableExtra::column_spec(2, latex_column_spec = "C{6.5cm}") %>%
   kableExtra::column_spec(3, latex_column_spec = "m{12cm}") %>%
   kableExtra::kable_styling(latex_options = c("hold_position"),
                             font_size = 11,
-                            position = "center")
+                            position = "center") %>%
+  row_spec(0, bold = TRUE, align = "c") 
   
 k <- k %>%
   kableExtra::row_spec(
@@ -780,63 +814,6 @@ cat("\\end{center}\n\n")
 cat("\\newpage")
 ```
 
-<!-- Decisions by Vote Split -->
-
-```{=latex}
-
-\addcontentsline{toc}{section}{Decisions by Vote Split}
-\section*{Decisions by Vote Split -- All Cases}
-\addcontentsline{toc}{subsection}{All Cases}
-\begin{figure}[h!]
-    \centering
-    \begin{minipage}{0.32\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../scotusblog_replication/figures/ot05_ot25_splits.png}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.32\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../scotusblog_replication/figures/ot20_ot25_splits.png}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.32\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../scotusblog_replication/figures/ot25_splits.png}
-    \end{minipage}
-\end{figure}
-
-\footernote{
-\textbf{Description}: Figures show the percent of cases decided by different coalition sizes between the 2005 and 2025 terms. For instances where justices were recused or did not participate in an otherwise unanimous decision, we coded these as \emph{unanimous} (e.g., 8-0 decisions were included in calculating 9-0 coalitions). 
-}
-\newpage
-
-
-
-\section*{Decisions by Vote Split -- Ideologically Split Cases}
-\addcontentsline{toc}{subsection}{Ideologically Split Cases}
-\begin{figure}[h!]
-    \centering
-    \begin{minipage}{0.32\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../scotusblog_replication/figures/ot05_ot25_ideological.png}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.32\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../scotusblog_replication/figures/ot20_ot25_ideological.png}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.32\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../scotusblog_replication/figures/ot25_ideological.png}
-    \end{minipage}
-\end{figure}
-\footernote{
-\textbf{Description}: Figures show the percent of cases decided by ideologically split coalitions, consisting of Chief Justice Roberts and Justices Thomas, Alito, Gorsuch, Kavanaugh, and Barrett on one side, and Justices Sotomayor, Kagan, and Jackson on the other.
-}
-\newpage
-
-```
 
 <!-- Circuit Scorecard -->
 
@@ -848,7 +825,18 @@ circuit_scorecard <- scotusblog_stats$circuit_scorecard$circuit_scorecard[,-c(2,
               'Court Below' = 'Total',
               across(`# Decided`:`# Reversed`, sum, na.rm = TRUE),
               `% Affirmed` = '', 
-              `% Reversed` = ''))
+              `% Reversed` = '')) 
+
+total_affirmed <- circuit_scorecard[nrow(circuit_scorecard),3]
+total_reversed <- circuit_scorecard[nrow(circuit_scorecard),4]
+total_decided <- circuit_scorecard[nrow(circuit_scorecard),2]
+
+total_affirmed <- round((total_affirmed/total_decided)*100, 2)
+total_reversed <- round((total_reversed/total_decided)*100, 2)
+
+circuit_scorecard$`% Affirmed`[nrow(circuit_scorecard)] <- paste0(unlist(total_affirmed), '%')
+circuit_scorecard$`% Reversed`[nrow(circuit_scorecard)] <- paste0(unlist(total_reversed), '%')
+  
 
 additional_rows <- scotusblog_stats$scorecard_consolidated_notes[[1]] %>%
   rowwise() %>%
@@ -894,6 +882,147 @@ cat(bottom)
 cat("\n}\n")
 
 cat("\\newpage")
+
+```
+
+
+<!-- Opinions Authored by Each Justice -->
+
+# Opinions Authored by Each Justice
+
+```{r opinion_authored_by_each_justice, message=FALSE, warning=FALSE, echo=FALSE, results='asis'}
+
+
+all_justices <- c('Roberts', 'Thomas', 'Alito', 'Sotomayor', 'Kagan', 'Gorsuch', 'Kavanaugh', 'Barrett', 'Jackson' )
+
+make_wide <- function(df) {
+  df %>%
+    group_by(Justice) %>%
+    mutate(row_id = row_number()) %>%
+    ungroup() %>%
+    select(Justice, row_id, Case) %>%
+    pivot_wider(names_from = Justice, values_from = Case) %>%
+    select(-row_id) %>%
+    { 
+      missing_cols <- setdiff(all_justices, names(.))
+      for (col in missing_cols) .[[col]] <- NA
+      .[, all_justices]
+    }
+}
+
+majorities <- scotusblog_stats$opinions$opinions_by_justice %>%
+  filter(Opinion_Type == "Majority") %>%
+  make_wide()
+
+dissents <- scotusblog_stats$opinions$opinions_by_justice %>%
+  filter(Opinion_Type == "Dissent") %>%
+  make_wide()
+
+concurrences <- scotusblog_stats$opinions$opinions_by_justice %>%
+  filter(!Opinion_Type %in% c("Majority", "Dissent")) %>%
+  make_wide()
+
+majorities <- majorities %>%
+  mutate(across(everything(), as.character)) %>%
+  mutate(across(everything(), ~ tidyr::replace_na(.x, ""))) %>%
+  kbl(format = "latex",
+      booktabs = TRUE,
+      linesep = '', 
+      longtable = TRUE,
+      escape = F, 
+      align = 'c') %>%
+  add_header_above(c("Majority Opinions" = 9),escape = FALSE) %>%
+  kable_styling(
+    font_size = 8,
+    latex_options = c("striped", "repeat_header")
+  ) %>%
+  column_spec(1:9, width = "3cm") %>%
+  row_spec(0, bold = T, font_size = 9)
+
+majorities <- gsub(
+  "Majority Opinions",
+  "\\\\normalsize \\\\textbf{Majority Opinions}",
+  as.character(majorities)
+)
+
+concurrences <- concurrences %>%
+  mutate(across(everything(), as.character)) %>%
+  mutate(across(everything(), ~ tidyr::replace_na(.x, ""))) %>%
+  kbl(format = "latex",
+      booktabs = TRUE,
+      linesep = '', 
+      longtable = TRUE,
+      escape = F, 
+      align = 'c') %>%
+  add_header_above(c("Concurring Opinions" = 9)) %>%
+  kable_styling(
+    font_size = 8,
+    latex_options = c("striped", "repeat_header")
+  ) %>%
+  column_spec(1:9, width = "3cm") %>%
+  row_spec(0, bold = T, font_size = 9)
+
+concurrences <- gsub(
+  "Concurring Opinions",
+  "\\\\normalsize \\\\textbf{Concurring Opinions}",
+  as.character(concurrences)
+)
+
+
+dissents <- dissents %>%
+  mutate(across(everything(), as.character)) %>%
+  mutate(across(everything(), ~ tidyr::replace_na(.x, ""))) %>%
+  kbl(format = "latex",
+      booktabs = TRUE,
+      linesep = '', 
+      longtable = TRUE,
+      escape = F, 
+      align = 'c') %>%
+  add_header_above(c("Dissenting Opinions" = 9)) %>%
+  kable_styling(
+    font_size = 8,
+    latex_options = c("striped", "repeat_header")
+  ) %>%
+  column_spec(1:9, width = "3cm") %>%
+  row_spec(0, bold = T, font_size = 9)
+
+dissents <- gsub(
+  "Dissenting Opinions",
+  "\\\\normalsize \\\\textbf{Dissenting Opinions}",
+  as.character(dissents)
+)
+
+
+t1 <- gsub("\\\\bottomrule", "", as.character(majorities))
+t2 <- gsub("\\\\bottomrule", "", as.character(concurrences))
+t3 <- as.character(dissents)
+
+cat("\\vspace{-0.75cm}")
+cat(t1)
+cat("\\vspace{-0.75cm}")
+cat(t2)
+cat("\\vspace{-0.75cm}")
+cat(t3)
+
+
+```
+
+\newpage
+
+```{=latex}
+
+\section*{Opinions Authored by Each Justice (Cont.)}
+\begin{figure}[h!]
+    \centering
+      \includegraphics[width=0.75\linewidth]{../../scotusblog_replication/figures/opinions_by_justice.png}
+\end{figure}
+
+\footernote{
+\textbf{Description}: Figure shows the volume and proportion of opinions (by type) authored by each justice during the 2025 term.
+
+}
+\newpage
+
 
 ```
 
@@ -1030,135 +1159,9 @@ cat("
 ```
 
 
-<!-- Opinions Authored by Each Justice -->
-
-# Opinions Authored by Each Justice
-
-```{r opinion_authored_by_each_justice, message=FALSE, warning=FALSE, echo=FALSE, results='asis'}
-
-
-all_justices <- c('Roberts', 'Thomas', 'Alito', 'Sotomayor', 'Kagan', 'Gorsuch', 'Kavanaugh', 'Barrett', 'Jackson' )
-
-make_wide <- function(df) {
-  df %>%
-    group_by(Justice) %>%
-    mutate(row_id = row_number()) %>%
-    ungroup() %>%
-    select(Justice, row_id, Case) %>%
-    pivot_wider(names_from = Justice, values_from = Case) %>%
-    select(-row_id) %>%
-    { 
-      missing_cols <- setdiff(all_justices, names(.))
-      for (col in missing_cols) .[[col]] <- NA
-      .[, all_justices]
-    }
-}
-
-majorities <- scotusblog_stats$opinions$opinions_by_justice %>%
-  filter(Opinion_Type == "Majority") %>%
-  make_wide()
-
-dissents <- scotusblog_stats$opinions$opinions_by_justice %>%
-  filter(Opinion_Type == "Dissent") %>%
-  make_wide()
-
-concurrences <- scotusblog_stats$opinions$opinions_by_justice %>%
-  filter(!Opinion_Type %in% c("Majority", "Dissent")) %>%
-  make_wide()
-
-majorities <- majorities %>%
-  mutate(across(everything(), as.character)) %>%
-  mutate(across(everything(), ~ tidyr::replace_na(.x, ""))) %>%
-  kbl(format = "latex",
-      booktabs = TRUE,
-      linesep = '', 
-      longtable = TRUE,
-      escape = F, 
-      align = 'c') %>%
-  add_header_above(c("Majority Opinions" = 9)) %>%
-  kable_styling(
-    font_size = 9,
-    latex_options = c("striped", "repeat_header")
-  ) %>%
-  column_spec(1:9, width = "3cm") %>%
-  row_spec(0, bold = T)
-
-concurrences <- concurrences %>%
-  mutate(across(everything(), as.character)) %>%
-  mutate(across(everything(), ~ tidyr::replace_na(.x, ""))) %>%
-  kbl(format = "latex",
-      booktabs = TRUE,
-      linesep = '', 
-      longtable = TRUE,
-      escape = F, 
-      align = 'c') %>%
-  add_header_above(c("Concurring Opinions" = 9)) %>%
-  kable_styling(
-    font_size = 9,
-    latex_options = c("striped", "repeat_header")
-  ) %>%
-  column_spec(1:9, width = "3cm") %>%
-  row_spec(0, bold = T)
-
-dissents <- dissents %>%
-  mutate(across(everything(), as.character)) %>%
-  mutate(across(everything(), ~ tidyr::replace_na(.x, ""))) %>%
-  kbl(format = "latex",
-      booktabs = TRUE,
-      linesep = '', 
-      longtable = TRUE,
-      escape = F, 
-      align = 'c') %>%
-  add_header_above(c("Dissenting Opinions" = 9)) %>%
-  kable_styling(
-    font_size = 9,
-    latex_options = c("striped", "repeat_header")
-  ) %>%
-  column_spec(1:9, width = "3cm") %>%
-  row_spec(0, bold = T)
-
-t1 <- gsub("\\\\bottomrule", "", as.character(majorities))
-t2 <- gsub("\\\\bottomrule", "", as.character(concurrences))
-t3 <- as.character(dissents)
-
-
-cat(t1)
-cat("\\vspace{-0.75cm}")
-
-cat(t2)
-cat("\\vspace{-0.75cm}")
-
-cat(t3)
-
-
-```
-
-\newpage
-
-```{=latex}
-
-\section*{Opinions Authored by Each Justice (Cont.)}
-\begin{figure}[h!]
-    \centering
-      \includegraphics[width=0.75\linewidth]{../../scotusblog_replication/figures/opinions_by_justice.png}
-\end{figure}
-
-\footernote{
-\textbf{Description}: Figure shows the volume and proportion of opinions (by type) authored by each justice during the 2025 term.
-
-\vspace{4mm}
-
-\textbf{Notes}: (1) Special concurrences (\emph{in part}) and those concurring \emph{in judgment} are similarly coded as concurrences.
-}
-\newpage
-
-
-```
-
-
 <!-- Opinion Lengths -->
 
-\vspace{-5mm}
+\vspace{-10mm}
 ```{=latex}
 \section{Opinion Lengths}
 ```
@@ -1200,14 +1203,21 @@ scotusblog_stats$opinion_lengths$shortest_opinions %>%
   row_spec(0, bold = TRUE, align = "c") %>%
   column_spec(4, width = '6cm') %>%
   row_spec(5, extra_latex_after = "\\midrule") %>%
-  row_spec(10, extra_latex_after = "\\midrule") 
+  row_spec(10, extra_latex_after = "\\midrule")
 
 
 bottom <- "
-\\textbf{Notes}: (1) Longest (Total Combined) table represents cases with the largest total word count combined across the published majority and separate opinions. For example, the 7 opinions published in \\emph{Learning Resources, Inc. v. Trump} (24-1287) totaled approximately 45,000 words -- which included both a dissent filed by Justice Kavanaugh ($\\approx$ 17,000 words), as well as a separate concurrence filed by Justice Gorsuch ($\\approx$ 14,000 words). 
+\\textbf{Descriptions}: \\par \\vspace{2.5mm} 
+
+\\textbf{Longest (Total Combined)}: Table represents cases with the largest total word count combined across the published majority and separate opinions. For example, the 7 opinions published in \\emph{Learning Resources, Inc. v. Trump} (24-1287) totaled approximately 45,000 words -- which included both a dissent filed by Justice Kavanaugh ($\\approx$ 17,000 words), as well as a separate concurrence filed by Justice Gorsuch ($\\approx$ 14,000 words). \\par \\vspace{2.5mm}
+
+\\textbf{Shortest (Longest) (Individual Opinions)}: Table represents the shortest (longest) opinions filed by individual justices (or per curiam). For example, Justice Kagan's dissenting opinion in \\emph{Louisiana v. Callais} represents one of the longest individual opinions this term at approximately 13,900 words. \\par \\vspace{2.5mm}
+
+\\textbf{Notes}: (1) Cases that were dismissed as improvidently granted (e.g., \\emph{Hamm v. Smith}) are omitted from \\emph{smallest individual opinions}. 
+
 "
 
-cat("\\footernote{\n")
+cat("\\footernoteopinionlengths{\n")
 cat(bottom)
 cat("\n}\n")
 
@@ -1234,7 +1244,8 @@ opinion_lengths <- scotusblog_stats$opinion_lengths$average_opinion_lengthsjusti
     font_size = 10,
     latex_options = c("striped", "repeat_header")
   ) %>%
-  column_spec(c(1, 2), width = "5cm")
+  column_spec(c(1, 2), width = "5cm") %>%
+  row_spec(row = 0, bold = T)
 
 side_text = c('test')
 
@@ -1324,13 +1335,14 @@ voting_alignment <- decisions[,-c(1, 2, 4)] %>%
     Decided = Date_Decided,
     Vote = Coalition) %>%
   mutate(Vote = ifelse(Vote == 'Per Curiam', 'PC', Vote), 
-         Author = ifelse(Author == 'Per Curiam', 'PC', Author))
+         Author = ifelse(Author == 'Per Curiam', 'PC', Author)) %>%
+  mutate(across(-c(`Case Name`, Decided, Vote, Author), ~ ifelse(is.na(.), 0, .)))
 
 undecided <- cases_master %>%
   filter(!sitting == '') %>%
   filter(!docket %in% c(decisions$Docket)) %>%
   select(short_hand) %>%
-  rename(`Case Name` = short_hand)
+  rename(`Case Name` = short_hand) 
 
 voting_alignment <- voting_alignment %>%
   bind_rows(undecided) %>%
@@ -1347,29 +1359,35 @@ justice_cols <- names(voting_alignment)[
   )
 ]
 
+#\\fill[red] (-0.55em,-0.15em) rectangle (0.55em,0.55em);
+# color (x left, y left) shape (x right,y right)
 
 voting_alignment <- voting_alignment %>%
   mutate(across(
-    all_of(justice_cols),
-    ~ cell_spec(
-      " ",
-      background = case_when(
-        is.na(.) ~ "white",
-        . %in% c(4, 5, 7) ~ "#70ac47",
-        . %in% c(1, 2, 3, 6, 8, 100, 999) ~ "#4f4789",
-        . %in% c(-1:-1000) ~ "#ff0000", 
-        TRUE ~ "white"
+  all_of(justice_cols),
+  ~ case_when(
+      . == -4 ~ cell_spec(
+        "\\tikz[baseline=0pt]{
+           \\fill[red] (-3em,-0.1em) rectangle (3em,0.75em);
+         }",
+        background = "#70ac47",
+        color = "white",
+        escape = FALSE
       ),
-      color = case_when(
-        is.na(.) ~ "white",
-        . %in% c( 4, 5, 7) ~ "#70ac47",
-        . %in% c(1, 2, 3, 6, 8, 100, 999) ~ "#4f4789",
-        . %in% c(-1:-1000) ~ "#ff0000", 
-        TRUE ~ "white"
-      ),
-      escape = FALSE
-    )
-  ))
+      TRUE ~ cell_spec(
+        " ",
+        background = case_when(
+          . == 0 ~ "white",
+          . %in% c(4, 5, 7) ~ "#70ac47",
+          . %in% c(1, 2, 3, 6, 8, 100, 999) ~ "#4f4789",
+          . < 0 ~ "#ff0000",
+          TRUE ~ "white"
+        ),
+        color = "white",
+        escape = FALSE
+      )
+  )
+))
 
 
 justice_image_paths <- c(
@@ -1534,7 +1552,9 @@ temp_cols <- c(rbind(
       grepl('Affirm', decision) ~ 'A', 
       grepl('Vacate', decision) ~ 'V', 
       grepl('Reverse', decision)~ 'R', 
-      grepl('(Grant|Granted|GRR)', decision, decision)~ 'G', 
+      decision == 'GRR' ~ 'GRR', 
+      decision == 'GVR' ~ 'GVR', 
+      grepl('(Grant|Granted)', decision, decision)~ 'G', 
       grepl('DIG', decision) ~ 'DIG'), 
       days_elapsed = paste0(days_elapsed, 'd'), 
       author = ifelse(author == 'Per Curiam', 'PC', author))
@@ -1548,7 +1568,9 @@ temp_cols <- c(rbind(
       grepl('Affirm', decision) ~ 'A', 
       grepl('Vacate', decision) ~ 'V', 
       grepl('Reverse', decision)~ 'R', 
-      grepl('(Grant|Granted|GRR)', decision, decision)~ 'G', 
+      decision == 'GRR' ~ 'GRR', 
+      decision == 'GVR' ~ 'GVR', 
+      grepl('(Grant|Granted)', decision, decision)~ 'G', 
       grepl('DIG', decision) ~ 'DIG'), 
       days_elapsed = paste0(days_elapsed, 'd'), 
       author = ifelse(author == 'Per Curiam', 'PC', author))
@@ -1562,7 +1584,9 @@ temp_cols <- c(rbind(
       grepl('Affirm', decision) ~ 'A', 
       grepl('Vacate', decision) ~ 'V', 
       grepl('Reverse', decision)~ 'R', 
-      grepl('(Grant|Granted|GRR)', decision, decision)~ 'G', 
+      decision == 'GRR' ~ 'GRR', 
+      decision == 'GVR' ~ 'GVR', 
+      grepl('(Grant|Granted)', decision, decision)~ 'G', 
       grepl('DIG', decision) ~ 'DIG'), 
       days_elapsed = paste0(days_elapsed, 'd'), 
       author = ifelse(author == 'Per Curiam', 'PC', author))
@@ -1593,7 +1617,9 @@ temp_cols <- c(rbind(
       grepl('Affirm', decision) ~ 'A', 
       grepl('Vacate', decision) ~ 'V', 
       grepl('Reverse', decision)~ 'R', 
-      grepl('(Grant|Granted|GRR)', decision, decision)~ 'G', 
+      decision == 'GRR' ~ 'GRR', 
+      decision == 'GVR' ~ 'GVR', 
+      grepl('(Grant|Granted)', decision, decision)~ 'G', 
       grepl('DIG', decision) ~ 'DIG'), 
       days_elapsed = paste0(days_elapsed, 'd'), 
       author = ifelse(author == 'Per Curiam', 'PC', author))
@@ -1607,7 +1633,9 @@ temp_cols <- c(rbind(
       grepl('Affirm', decision) ~ 'A', 
       grepl('Vacate', decision) ~ 'V', 
       grepl('Reverse', decision)~ 'R', 
-      grepl('(Grant|Granted|GRR)', decision, decision)~ 'G', 
+      decision == 'GRR' ~ 'GRR', 
+      decision == 'GVR' ~ 'GVR', 
+      grepl('(Grant|Granted)', decision, decision)~ 'G', 
       grepl('DIG', decision) ~ 'DIG'), 
       days_elapsed = paste0(days_elapsed, 'd'), 
       author = ifelse(author == 'Per Curiam', 'PC', author))
@@ -1621,7 +1649,9 @@ temp_cols <- c(rbind(
       grepl('Affirm', decision) ~ 'A', 
       grepl('Vacate', decision) ~ 'V', 
       grepl('Reverse', decision)~ 'R', 
-      grepl('(Grant|Granted|GRR)', decision, decision)~ 'G', 
+      decision == 'GRR' ~ 'GRR', 
+      decision == 'GVR' ~ 'GVR', 
+      grepl('(Grant|Granted)', decision, decision)~ 'G', 
       grepl('DIG', decision) ~ 'DIG'), 
       days_elapsed = paste0(days_elapsed, 'd'), 
       author = ifelse(author == 'Per Curiam', 'PC', author))
@@ -1648,13 +1678,15 @@ sitting_3_df[
 ] <- scotusblog_stats$term_index$April %>%
   select(short_hand, author, coalition, days_elapsed, decision, lower_court) %>%
   mutate(decision = case_when(
-    grepl('Affirm', decision) ~ 'A', 
-    grepl('Vacate', decision) ~ 'V', 
-    grepl('Reverse', decision)~ 'R', 
-    grepl('(Grant|Granted|GRR)', decision, decision)~ 'G', 
-    grepl('DIG', decision) ~ 'DIG'), 
-    days_elapsed = paste0(days_elapsed, 'd'), 
-    author = ifelse(author == 'Per Curiam', 'PC', author))
+      grepl('Affirm', decision) ~ 'A', 
+      grepl('Vacate', decision) ~ 'V', 
+      grepl('Reverse', decision)~ 'R', 
+      decision == 'GRR' ~ 'GRR', 
+      decision == 'GVR' ~ 'GVR', 
+      grepl('(Grant|Granted)', decision, decision)~ 'G', 
+      grepl('DIG', decision) ~ 'DIG'), 
+      days_elapsed = paste0(days_elapsed, 'd'), 
+      author = ifelse(author == 'Per Curiam', 'PC', author))
 
 sitting_3_df[
   1:nrow(scotusblog_stats$term_index$No_Argument),
@@ -1662,13 +1694,15 @@ sitting_3_df[
 ] <- scotusblog_stats$term_index$No_Argument %>%
   select(short_hand, author, coalition, days_elapsed, decision, lower_court) %>%
   mutate(decision = case_when(
-    grepl('Affirm', decision) ~ 'A', 
-    grepl('Vacate', decision) ~ 'V', 
-    grepl('Reverse', decision)~ 'R', 
-    grepl('(Grant|Granted|GRR)', decision, decision)~ 'G', 
-    grepl('DIG', decision) ~ 'DIG'), 
-    days_elapsed = paste0(days_elapsed, 'd'), 
-    author = ifelse(author == 'Per Curiam', 'PC', author))
+      grepl('Affirm', decision) ~ 'A', 
+      grepl('Vacate', decision) ~ 'V', 
+      grepl('Reverse', decision)~ 'R', 
+      decision == 'GRR' ~ 'GRR', 
+      decision == 'GVR' ~ 'GVR', 
+      grepl('(Grant|Granted)', decision, decision)~ 'G', 
+      grepl('DIG', decision) ~ 'DIG'), 
+      days_elapsed = paste0(days_elapsed, 'd'), 
+      author = ifelse(author == 'Per Curiam', 'PC', author))
 
 
 combined_sittings <- bind_rows(scotusblog_stats$term_index)
@@ -1736,7 +1770,7 @@ t1 <- sitting_1_df %>%
       align = c('l', rep('c', 5), 'l', rep('c', 5), 'l', rep('c', 5)), 
       col.names = rep(c("Case", "Author", "Vote", "Days", "Decision", "Court"), 3)) %>%
   add_header_above(c("October Sitting" = 6, "November Sitting" = 6, "December Sitting" = 6)) %>%
-  kable_styling(latex_options = c("scale_down", "hold_position", "striped"), 
+  kable_styling(latex_options = c("hold_position", "striped"), 
                 font_size = 8, 
                 position = "center") %>%
   row_spec(0, bold = TRUE) %>%
@@ -1752,7 +1786,7 @@ t2 <- sitting_2_df %>%
       align = c('l', rep('c', 5), 'l', rep('c', 5), 'l', rep('c', 5)), 
       col.names = rep(c("Case", "Author", "Vote", "Days", "Decision", "Court"), 3)) %>%
   add_header_above(c("January Sitting" = 6, "February Sitting" = 6, "March Sitting" = 6)) %>%
-  kable_styling(latex_options = c("scale_down", "hold_position", "striped"), 
+  kable_styling(latex_options = c("hold_position", "striped"), 
                 font_size = 8, 
                 position = "center") %>%
   row_spec(0, bold = TRUE) %>%
@@ -1768,7 +1802,7 @@ t3 <- sitting_3_df %>%
       align = c('l', rep('c', 5), 'l', rep('c', 5), 'l', 'c'), 
       col.names = c(rep(c("Case", "Author", "Vote", "Days", "Decision", "Court"), 2), ' ', ' ')) %>%
   add_header_above(c("April Sitting" = 6, "No Oral Argument" = 6, "Totals" = 2)) %>%
-  kable_styling(latex_options = c("scale_down", "hold_position", "striped"), 
+  kable_styling(latex_options = c("hold_position", "striped"), 
                 font_size = 8, 
                 position = "center") %>%
   row_spec(0, bold = TRUE) %>%
@@ -1776,6 +1810,55 @@ t3 <- sitting_3_df %>%
   column_spec(c(2:6, 8:12), width = '1.25cm') %>%
   column_spec(13, bold = T, width = '6cm') %>%
   column_spec(c(14), width = '3cm') 
+
+t1 <- gsub(
+  "October Sitting",
+  "\\\\normalsize \\\\textbf{October Sitting}",
+  as.character(t1)
+)
+t1 <- gsub(
+  "November Sitting",
+  "\\\\normalsize \\\\textbf{November Sitting}",
+  as.character(t1)
+)
+t1 <- gsub(
+  "December Sitting",
+  "\\\\normalsize \\\\textbf{December Sitting}",
+  as.character(t1)
+)
+
+
+t2 <- gsub(
+  "January Sitting",
+  "\\\\normalsize \\\\textbf{January Sitting}",
+  as.character(t2)
+)
+t2 <- gsub(
+  "February Sitting",
+  "\\\\normalsize \\\\textbf{February Sitting}",
+  as.character(t2)
+)
+t2 <- gsub(
+  "March Sitting",
+  "\\\\normalsize \\\\textbf{March Sitting}",
+  as.character(t2)
+)
+
+t3 <- gsub(
+  "April Sitting",
+  "\\\\normalsize \\\\textbf{April Sitting}",
+  as.character(t3)
+)
+t3 <- gsub(
+  "No Oral Argument",
+  "\\\\normalsize \\\\textbf{No Oral Argument}",
+  as.character(t3)
+)
+t3 <- gsub(
+  "Totals",
+  "\\\\normalsize \\\\textbf{Totals}",
+  as.character(t3)
+)
 
 
 t1 <- gsub("\\\\bottomrule", "", as.character(t1))
@@ -1797,7 +1880,7 @@ cat(t3)
 
 ```{=latex}
 \footernote{
-\textbf{Guide}: \textbf{A} = \emph{Affirmed} \quad \textbf{V} = \emph{Vacated} \quad \textbf{R} = \emph{Reversed} \quad \textbf{G} = \emph{Granted} \quad \textbf{DIG} = \emph{Dismissed as Improvidently Granted} \quad \textbf{PC} = \emph{Per Curiam} \quad \textbf{Court} = \emph{Court Below} \\ \hspace{1.1cm} \textbf{Days} = \emph{Days Elapsed Between Argument and Decision}
+\textbf{A} = \emph{Affirmed} \quad \textbf{V} = \emph{Vacated} \quad \textbf{R} = \emph{Reversed} \quad \textbf{G} = \emph{Granted} \quad \textbf{DIG} = \emph{Dismissed as Improvidently Granted} \quad \textbf{GRR} = \emph{Granted, Reversed, and Remanded} \\ \textbf{GVR} = \emph{Granted, Vacated, and Remanded}  \quad \textbf{PC} = \emph{Per Curiam} \quad \textbf{Court} = \emph{Court Below} \quad \textbf{Days} = \emph{Days Elapsed Between Argument and Decision}
 }
 \newpage
 ```

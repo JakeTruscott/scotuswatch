@@ -1,22 +1,22 @@
-\contentsline {section}{Introduction}{2}{Doc-Start}%
-\contentsline {section}{Opinions Over Time}{3}{Doc-Start}%
-\contentsline {section}{Makeup of the Opinions of the Court}{4}{Doc-Start}%
-\contentsline {section}{Unanimity}{7}{table.1}%
-\contentsline {section}{Frequency in the Majority}{8}{table.1}%
-\contentsline {subsection}{All Cases}{8}{table.1}%
-\contentsline {subsection}{Non-Unanimous Cases}{9}{table.1}%
-\contentsline {subsection}{Closely Divided Cases}{10}{table.1}%
-\contentsline {section}{Justice Agreement}{11}{table.1}%
-\contentsline {subsection}{All Cases}{11}{table.1}%
-\contentsline {subsection}{Closely Divided Cases}{12}{table.1}%
-\contentsline {section}{Strength of the Majority}{13}{table.1}%
+\contentsline {section}{Introduction}{1}{Doc-Start}%
+\contentsline {section}{Opinions Over Time}{2}{Doc-Start}%
+\contentsline {section}{Makeup of the Opinions of the Court}{3}{Doc-Start}%
+\contentsline {subsection}{Most Frequent Issues}{5}{table.1}%
+\contentsline {section}{Unanimity}{6}{table.1}%
+\contentsline {section}{Frequency in the Majority}{7}{table.1}%
+\contentsline {subsection}{All Cases}{7}{table.1}%
+\contentsline {subsection}{Non-Unanimous Cases}{8}{table.1}%
+\contentsline {subsection}{Closely Divided Cases}{9}{table.1}%
+\contentsline {section}{Justice Agreement}{10}{table.1}%
+\contentsline {subsection}{All Cases}{10}{table.1}%
+\contentsline {subsection}{Closely Divided Cases}{11}{table.1}%
+\contentsline {section}{Decisions by Vote Split}{12}{table.1}%
+\contentsline {subsection}{All Cases}{12}{table.1}%
+\contentsline {subsection}{Ideologically Split Cases}{13}{table.1}%
 \contentsline {section}{Closely Divided Cases}{14}{table.1}%
-\contentsline {section}{Decisions by Vote Split}{15}{table.1}%
-\contentsline {subsection}{All Cases}{15}{table.1}%
-\contentsline {subsection}{Ideologically Split Cases}{16}{table.1}%
-\contentsline {section}{Circuit Scorecard}{17}{table.1}%
-\contentsline {section}{Days Between Oral Argument \& Opinion}{18}{table.1}%
-\contentsline {section}{Opinions Authored by Each Justice}{19}{table.1}%
-\contentsline {section}{Opinion Lengths}{21}{table.4}%
-\contentsline {section}{Opinion Lengths (Cont.)}{22}{table.5}%
-\contentsline {section}{Voting Alignments}{23}{table.6}%
+\contentsline {section}{Circuit Scorecard}{15}{table.1}%
+\contentsline {section}{Opinions Authored by Each Justice}{16}{table.1}%
+\contentsline {section}{Days Between Oral Argument \& Opinion}{18}{table.4}%
+\contentsline {section}{Opinion Lengths}{19}{table.4}%
+\contentsline {section}{Opinion Lengths (Cont.)}{20}{table.5}%
+\contentsline {section}{Voting Alignments}{21}{table.6}%

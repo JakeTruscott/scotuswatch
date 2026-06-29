@@ -10,6 +10,7 @@
 -1 = Wrote Dissenting Opinion
 -2 = Joined Dissenting Opinion
 -3 = Wrote Dissent & Joined Dissent
+-4 = Wrote Special Concurrence (In Part) but ALSO Joined Dissent
 
 999 = Dissent in Denial of Cert (Would Grant Cert)
 -998 = Dissent in Granting of Cert (Would Not Grant Cert)
