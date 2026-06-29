@@ -868,7 +868,7 @@ bottom <- paste0("
 
 \\vspace{4mm}
 
-\\textbf{Notes}: (1) We treat consolidated cases emerging from the same lower court as single entries. (2) Decisions that were granted review but subsequently dismissed (as improvidently granted) are omitted. (3) Table further includes the following decisions from consolidated proceedings: ", additional_rows)
+\\textbf{Notes}: (1) We treat consolidated cases emerging from the same lower court as single entries. (2) Decisions that were granted review but subsequently dismissed (as improvidently granted) are omitted. (3) \\emph{Trump v. Cook} (25A312) resulted in a denial of an application for stay and is treated here as having \\emph{Affirmed} CADC. (4) Table further includes the following decisions from consolidated proceedings: ", additional_rows)
 
 cat("\\section{Circuit Scorecard}\n")
 cat("\\noindent\n")
@@ -1549,7 +1549,8 @@ temp_cols <- c(rbind(
   ] <- scotusblog_stats$term_index$October %>%
     select(short_hand, author, coalition, days_elapsed, decision, lower_court) %>%
     mutate(decision = case_when(
-      grepl('Affirm', decision) ~ 'A', 
+      grepl('Affirm', decision,) ~ 'A', 
+      grepl('Deny', decision, ignore.case= T) ~ 'D', 
       grepl('Vacate', decision) ~ 'V', 
       grepl('Reverse', decision)~ 'R', 
       decision == 'GRR' ~ 'GRR', 
@@ -1566,6 +1567,7 @@ temp_cols <- c(rbind(
     select(short_hand, author, coalition, days_elapsed, decision, lower_court) %>%
     mutate(decision = case_when(
       grepl('Affirm', decision) ~ 'A', 
+      grepl('Deny', decision, ignore.case= T) ~ 'D', 
       grepl('Vacate', decision) ~ 'V', 
       grepl('Reverse', decision)~ 'R', 
       decision == 'GRR' ~ 'GRR', 
@@ -1582,6 +1584,7 @@ temp_cols <- c(rbind(
     select(short_hand, author, coalition, days_elapsed, decision, lower_court) %>%
     mutate(decision = case_when(
       grepl('Affirm', decision) ~ 'A', 
+      grepl('Deny', decision, ignore.case= T) ~ 'D', 
       grepl('Vacate', decision) ~ 'V', 
       grepl('Reverse', decision)~ 'R', 
       decision == 'GRR' ~ 'GRR', 
@@ -1615,6 +1618,7 @@ temp_cols <- c(rbind(
     select(short_hand, author, coalition, days_elapsed, decision, lower_court) %>%
     mutate(decision = case_when(
       grepl('Affirm', decision) ~ 'A', 
+      grepl('Deny', decision, ignore.case= T) ~ 'D', 
       grepl('Vacate', decision) ~ 'V', 
       grepl('Reverse', decision)~ 'R', 
       decision == 'GRR' ~ 'GRR', 
@@ -1631,6 +1635,7 @@ temp_cols <- c(rbind(
     select(short_hand, author, coalition, days_elapsed, decision, lower_court) %>%
     mutate(decision = case_when(
       grepl('Affirm', decision) ~ 'A', 
+      grepl('Deny', decision, ignore.case= T) ~ 'D', 
       grepl('Vacate', decision) ~ 'V', 
       grepl('Reverse', decision)~ 'R', 
       decision == 'GRR' ~ 'GRR', 
@@ -1647,6 +1652,7 @@ temp_cols <- c(rbind(
     select(short_hand, author, coalition, days_elapsed, decision, lower_court) %>%
     mutate(decision = case_when(
       grepl('Affirm', decision) ~ 'A', 
+      grepl('Deny', decision, ignore.case= T) ~ 'D', 
       grepl('Vacate', decision) ~ 'V', 
       grepl('Reverse', decision)~ 'R', 
       decision == 'GRR' ~ 'GRR', 
@@ -1679,6 +1685,7 @@ sitting_3_df[
   select(short_hand, author, coalition, days_elapsed, decision, lower_court) %>%
   mutate(decision = case_when(
       grepl('Affirm', decision) ~ 'A', 
+      grepl('Deny', decision, ignore.case= T) ~ 'D', 
       grepl('Vacate', decision) ~ 'V', 
       grepl('Reverse', decision)~ 'R', 
       decision == 'GRR' ~ 'GRR', 
@@ -1695,6 +1702,7 @@ sitting_3_df[
   select(short_hand, author, coalition, days_elapsed, decision, lower_court) %>%
   mutate(decision = case_when(
       grepl('Affirm', decision) ~ 'A', 
+      grepl('Deny', decision, ignore.case= T) ~ 'D', 
       grepl('Vacate', decision) ~ 'V', 
       grepl('Reverse', decision)~ 'R', 
       decision == 'GRR' ~ 'GRR', 
@@ -1878,9 +1886,10 @@ cat(t3)
 ```
 
 
+
 ```{=latex}
 \footernote{
-\textbf{A} = \emph{Affirmed} \quad \textbf{V} = \emph{Vacated} \quad \textbf{R} = \emph{Reversed} \quad \textbf{G} = \emph{Granted} \quad \textbf{DIG} = \emph{Dismissed as Improvidently Granted} \quad \textbf{GRR} = \emph{Granted, Reversed, and Remanded} \\ \textbf{GVR} = \emph{Granted, Vacated, and Remanded}  \quad \textbf{PC} = \emph{Per Curiam} \quad \textbf{Court} = \emph{Court Below} \quad \textbf{Days} = \emph{Days Elapsed Between Argument and Decision}
+\textbf{A} = \emph{Affirmed} \quad \textbf{V} = \emph{Vacated} \quad \textbf{R} = \emph{Reversed} \quad \textbf{G} = \emph{Granted} \quad \textbf{D} = Denied (Petition, Stay, etc.) \quad \textbf{DIG} = \emph{Dismissed as Improvidently Granted} \quad \textbf{GRR} = \emph{Granted, Reversed, and Remanded} \quad \textbf{GVR} = \emph{Granted, Vacated, and Remanded}  \quad \textbf{PC} = \emph{Per Curiam} \quad \textbf{Court} = \emph{Court Below} \quad \textbf{Days} = \emph{Days Elapsed Between Argument and Decision}
 }
 \newpage
 ```

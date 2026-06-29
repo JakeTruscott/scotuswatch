@@ -3037,6 +3037,7 @@ scotusblog_stats <- function(decisions_path,
                          decision = consolidated_split)) %>%
       mutate(decision = case_when(
         decision %in% c('GRR', 'GVR') ~ 'Reverse',
+        grepl('deny', decision, ignore.case = T) ~ 'Affirm', # Denying Petition or Stay = Affirming Lower
         grepl('Reverse', decision) ~ 'Reverse',
         grepl('Granted', decision) ~ 'Toss',
         grepl('Vacate', decision) ~ 'Reverse',
