@@ -1015,6 +1015,7 @@ decision_processor <- function(temp_pdf){
       corpus <- tm_map(corpus, content_transformer(gsub), pattern = "certiorari to the (United States|Court|Supreme)", replacement = "<DECISION BREAK> <KEEP>", ignore.case = TRUE)
       corpus <- tm_map(corpus, content_transformer(gsub), pattern = "appeal(s) from the united states district court", replacement = "<DECISION BREAK> <KEEP>", ignore.case = TRUE)
       corpus <- tm_map(corpus, content_transformer(gsub), pattern = "on bill of complaint", replacement = "<DECISION BREAK> <KEEP>", ignore.case = TRUE)
+      corpus <- tm_map(corpus, content_transformer(gsub), pattern = "on application for (stay)", replacement = "<DECISION BREAK> <KEEP>", ignore.case = TRUE)
       corpus <- tm_map(corpus, content_transformer(gsub), pattern = "on application to (affirm|vacate)", replacement = "<DECISION BREAK> <KEEP>", ignore.case = TRUE)
 
       decisions <- data.frame(text = sapply(corpus, as.character), stringsAsFactors = FALSE)
@@ -1106,7 +1107,7 @@ decision_processor <- function(temp_pdf){
                footnotes = text,
                footnotes = str_extract_all(text, "(?<=<BEGIN FOOTNOTE>)([\\s\\S]*?)(?=<BEGIN HEADER>)"),
                footnotes = sapply(footnotes, function(x) if (length(x) > 0) paste(x, collapse = "\n\n") else NA_character_),
-               text = gsub("<BEGIN FOOTNOTE>.*?<END HEADER>", "", text),
+               text = gsub("<BEGIN FOOTNOTE>.*?<END FOOTNOTE>", "", text),
                text = str_replace_all(text, "<BEGIN HEADER>.*?(<END HEADER>|<END SPECIAL HEADER>)", ""),
                text = gsub("<BEGIN HEADER>.*?<END SPECIAL HEADER>", "", text),
                text = gsub(" C\\. J\\.\\,", "", text),
@@ -1132,7 +1133,7 @@ decision_processor <- function(temp_pdf){
                text = gsub("\\](?=\\n)", "", text, perl = TRUE),
                text = gsub("\\](?=\\s)", "", text, perl = TRUE),
                opinion = gsub('(.*\\. Decided|.*\\. Argued)', '', trimws(text)),
-               opinion = gsub('No\\.', 'No', text),
+               #opinion = gsub('No\\.', 'No', text),
                opinion =  sub("\\..*$", "", opinion)) %>%
         mutate(opinion_writer = str_extract_all(opinion, "(CHIEF JUSTICE|JUSTICE)\\s+(\\w+)") %>%
                  sapply(paste, collapse = "; ") %>%
@@ -1214,6 +1215,7 @@ opinion_processing <- function(opinions_path,
 
   if (length(needing_to_be_processed) == 0){
     message('All Opinions Already Processed!')
+    return(NULL)
   } else {
     message(length(needing_to_be_processed), ' Opinions to Processs --- ')
   }
@@ -2621,6 +2623,184 @@ docket_recovery <- function(docket_id, output_path){
   save(combined_temp, file = temp_output_path)
 }
 
+counsel_missing_docket_search <- function (docket_id){
+
+  process_docket_id <- function(docket_id) {
+    docket_url_newer <- "https://www.supremecourt.gov/search.aspx?filename=/docket/docketfiles/html/public/"
+    docket_url_older <- "https://www.supremecourt.gov/search.aspx?filename=/docketfiles/"
+    term <- as.data.frame(docket_id)
+    term <- term %>% mutate(type = 3) %>% mutate(type = ifelse(grepl("m",
+                                                                     docket_id, ignore.case = T), 2, type)) %>% mutate(type = ifelse(grepl("a",
+                                                                                                                                           docket_id, ignore.case = T), 1, type)) %>% mutate(type = ifelse(grepl("o",
+                                                                                                                                                                                                                 docket_id, ignore.case = T), 4, type)) %>% mutate(year = as.numeric(gsub("\\-.*|a.*|A.*|m.*|M.*|Original.*|original.*|o.*|O.*|Orig.*|orig.*",
+                                                                                                                                                                                                                                                                                          "", docket_id))) %>% mutate(year = ifelse(as.numeric(year) %in%
+                                                                                                                                                                                                                                                                                                                                      0:9, as.character(paste0(sprintf("%02d", year))),
+                                                                                                                                                                                                                                                                                                                                    as.character(year))) %>% mutate(docket_number = gsub(".*\\-|.*a|.*A|.*m|.*M|.*Original|.*original|.*o|.*O|.*Orig|.*orig",
+                                                                                                                                                                                                                                                                                                                                                                                         "", docket_id)) %>% mutate(year = gsub("[^0-9]",
+                                                                                                                                                                                                                                                                                                                                                                                                                                "", year), docket_number = gsub("[^0-9]", "", docket_number)) %>%
+      mutate(html = ifelse(as.numeric(year) > 50, "HTM",
+                           ifelse(as.numeric(year) < 17, "HTM", ifelse(as.numeric(year) >=
+                                                                         17 & as.numeric(year) < 30, "HTML", "HTM")))) %>%
+      mutate(url = case_when(type == 1 & html == "HTM" ~
+                               paste0(docket_url_older, year, "a", docket_number,
+                                      ".htm"), type == 1 & html == "HTML" ~ paste0(docket_url_newer,
+                                                                                   year, "a", docket_number, ".html"), type == 2 &
+                               html == "HTM" ~ paste0(docket_url_older, year,
+                                                      "m", docket_number, ".htm"), type == 2 & html ==
+                               "HTML" ~ paste0(docket_url_newer, year, "m",
+                                               docket_number, ".html"), type == 3 & html ==
+                               "HTM" ~ paste0(docket_url_older, year, "-", docket_number,
+                                              ".htm"), type == 3 & html == "HTML" ~ paste0(docket_url_newer,
+                                                                                           year, "-", docket_number, ".html"), type == 4 &
+                               html == "HTM" ~ paste0(docket_url_older, year,
+                                                      "o", docket_number, ".htm"), type == 4 & html ==
+                               "HTML" ~ paste0(docket_url_newer, year, "o",
+                                               docket_number, ".html")))
+    urls <- term$url
+    return(urls)
+  }
+  docket_info <- function(response, docket) {
+    html_content <- httr::content(response, as = "text")
+    parsed_html <- rvest::read_html(html_content)
+    info_meta <- parsed_html %>% rvest::html_element("#docketinfo") %>%
+      rvest::html_table(fill = T) %>% dplyr::select(X1,
+                                                    X2) %>% dplyr::rename(information = X1, entry = X2) %>%
+      dplyr::mutate(information = ifelse(grepl("Linked with",
+                                               information, ignore.case = T), gsub("Linked with",
+                                                                                   "Linked with:", information, ignore.case = T),
+                                         information), entry = ifelse(grepl("Linked with\\:",
+                                                                            information, ignore.case = T), gsub(".*with\\:",
+                                                                                                                "", trimws(information)), entry), information = ifelse(grepl("Linked with\\:",
+                                                                                                                                                                             information), gsub("with\\:.*", "with:", information),
+                                                                                                                                                                       information), entry = trimws(entry)) %>% dplyr::filter(grepl("\\:",
+                                                                                                                                                                                                                                    information)) %>% dplyr::mutate(information = gsub("\\:",
+                                                                                                                                                                                                                                                                                       "", information), entry = ifelse(entry == "", NA,
+                                                                                                                                                                                                                                                                                                                        entry)) %>% tidyr::pivot_wider(names_from = information,
+                                                                                                                                                                                                                                                                                                                                                       values_from = entry) %>% dplyr::rename_with(~gsub(" ",
+                                                                                                                                                                                                                                                                                                                                                                                                         "_", tolower(.x))) %>% dplyr::mutate(petitioner = trimws(gsub(" v\\..*",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                       "", title)), petitioner = trimws(gsub(" Petitioner.*",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             "", petitioner)), petitioner = trimws(gsub("\\, et al\\.\\,$",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ", et al.", petitioner)), respondent = trimws(gsub(".* v\\.",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           "", title)), docket = docket) %>% dplyr::relocate(petitioner,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             respondent, .after = title) %>% dplyr::relocate(docket,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             .after = title)
+    if (!"linked_with" %in% names(info_meta)) {
+      info_meta <- info_meta %>% dplyr::mutate(linked_with = NA) %>%
+        dplyr::relocate(linked_with, .after = docketed)
+    }
+    else {
+      info_meta <- info_meta %>% dplyr::mutate(linked_with = ifelse(linked_with %in%
+                                                                      c("\\:", ":", "\\: ", " \\:"), NA, linked_with))
+    }
+    return(info_meta)
+  }
+  docket_entries <- function(response) {
+    proceedings <- httr::content(response, as = "text") %>%
+      read_html() %>% html_element("#proceedings")
+    rows <- proceedings %>% html_elements("table.ProceedingItem tr")
+    temp_docket_entries <- purrr::map_dfr(rows, function(row) {
+      date <- row %>% html_element(".ProceedingDate") %>%
+        html_text(trim = TRUE)
+      text_cell <- row %>% html_elements("td") %>% .[[2]]
+      description <- text_cell %>% html_text(trim = TRUE)
+      main_doc <- text_cell %>% html_elements(".documentlinks a") %>%
+        purrr::keep(~html_text(.x, trim = TRUE) %in%
+                      c("Main Document", "Petition"))
+      tibble(date = lubridate::mdy(date), description = description,
+             url = if (length(main_doc) > 0) {
+               html_attr(main_doc, "href")
+             }
+             else {
+               NA_character_
+             })
+    })
+    return(temp_docket_entries)
+  }
+  counsel <- function(response) {
+    html_content <- httr::content(response, as = "text")
+    doc <- html_content %>% gsub("(<br>|<br/>|<br />)", "\n",
+                                 .) %>% read_html()
+    cards <- doc %>% html_element("#Contacts") %>% html_elements(".card")
+    counsel_temp <- purrr::map_df(cards, function(card) {
+      section <- card %>% html_element(".card-heading") %>%
+        html_text(trim = TRUE)
+      names <- card %>% html_elements(".ContactName") %>%
+        html_text(trim = TRUE)
+      data <- card %>% html_elements(".ContactData2") %>%
+        html_text(trim = TRUE)
+      data <- data %>% str_replace_all("\\r|\\n", "\n") %>%
+        str_split("\n") %>% lapply(function(x) trimws(x[x !=
+                                                          ""])) %>% lapply(function(x) x[nzchar(trimws(x))])
+      tibble(section = section, contact_name = names, contact_data = data) %>%
+        mutate(counsel_of_record = ifelse(grepl("Counsel of Record",
+                                                contact_name, ignore.case = T), "Counsel of Record",
+                                          "Other"), contact_name = stringr::str_squish(gsub("Counsel of.*",
+                                                                                            "", contact_name, ignore.case = T)))
+    })
+    return(counsel_temp)
+  }
+  principal_counsel <- function(temp_counsel) {
+    principal_counsel <- temp_counsel %>% dplyr::filter(counsel_of_record ==
+                                                          "Counsel of Record") %>% filter(!section == "Other Attorneys")
+    return(principal_counsel)
+  }
+  check_package_install <- function() {
+    check_and_load_packages <- function(packages) {
+      for (pkg in packages) {
+        if (!requireNamespace(pkg, quietly = TRUE)) {
+          cat(sprintf("Package '%s' is not installed. Do you want to install it? (Y/N): ",
+                      pkg))
+          response <- tolower(readline())
+          if (response == "y") {
+            install.packages(pkg)
+          }
+          else if (response == "n") {
+            stop(sprintf("Cannot proceed without '%s' installed. Exiting.",
+                         pkg))
+          }
+          else {
+            stop("Invalid input. Please enter Y or N. Exiting.")
+          }
+        }
+        library(pkg, character.only = TRUE)
+      }
+    }
+    required_packages <- c("dplyr", "rvest", "reticulate",
+                           "httr", "tm", "stringr", "tm", "tidyr", "graphics",
+                           "utils", "htm2txt", "zoo", "pdftools")
+    check_and_load_packages(required_packages)
+    library(dplyr)
+    library(rvest)
+    library(reticulate)
+    library(httr)
+    library(tm)
+    library(stringr)
+    library(tm)
+    library(tidyr)
+    library(graphics)
+    library(utils)
+    library(htm2txt)
+    library(zoo)
+    library(pdftools)
+  }
+  suppressMessages(suppressWarnings(suppressPackageStartupMessages(check_package_install())))
+  temp_docket_url <- process_docket_id(docket_id)
+  response <- httr::GET(temp_docket_url)
+  temp_docket_info <- docket_info(response, docket_id)
+  temp_docket_entries <- docket_entries(response)
+  temp_counsel <- counsel(response)
+  if (nrow(temp_counsel) >= 1){
+    temp_principal_counsel <- principal_counsel(temp_counsel)
+    combined_temp <- temp_docket_info %>% dplyr::mutate(docket_entries = list(temp_docket_entries),
+                                                        counsel = list(temp_counsel))
+  } else {
+    combined_temp <- temp_docket_info %>% dplyr::mutate(docket_entries = list(temp_docket_entries),
+                                                        counsel = list(temp_counsel))
+  }
+
+
+  return(combined_temp)
+}
 
 ###############################################################################
 # Docket Analysis
@@ -3965,9 +4145,9 @@ scotusblog_stats <- function(decisions_path,
                   total_cases = total_cases) %>%
           unique() %>%
           mutate(coalition_percentage = coalition_count/total_cases) %>%
-          bind_rows(coalitions_ot25 %>%
-                      select(-c(term)) %>%
-                      rename(coalition_count = count)) %>%
+          #bind_rows(coalitions_ot25 %>%
+          #            select(-c(term)) %>%
+          #            rename(coalition_count = count)) %>%
           mutate(coalition = ifelse(coalition %in% c('(5-4)', '(5-3)'), '(5-3) & (5-4)', coalition),
                  coalition = ifelse(grepl('\\(4-', coalition), '(4-4)', coalition),
                  coalition = ifelse(coalition %in% c('(7-1)', '(7-2)'), '(7-1) & (7-2)', coalition),
@@ -3991,7 +4171,7 @@ scotusblog_stats <- function(decisions_path,
           coord_polar(theta = "y") +
           scale_fill_manual(values = coalition_colors) +
           theme_void() +
-          labs(title = paste0('2005-', max(scdb_cases_data$term) + 1, ' Terms')) +
+          labs(title = paste0('2005-', max(scdb_cases_data$term) , ' Terms')) +
           theme(legend.title = element_blank(),
                 plot.title = element_markdown(hjust = 0.5, size = 18, face = 'bold'),
                 legend.position = 'none') +
@@ -4011,9 +4191,9 @@ scotusblog_stats <- function(decisions_path,
                   total_cases = total_cases) %>%
           unique() %>%
           mutate(coalition_percentage = coalition_count/total_cases) %>%
-          bind_rows(coalitions_ot25 %>%
-                      select(-c(term)) %>%
-                      rename(coalition_count = count)) %>%
+          #bind_rows(coalitions_ot25 %>%
+          #            select(-c(term)) %>%
+          #            rename(coalition_count = count)) %>%
           mutate(coalition = ifelse(coalition %in% c('(5-4)', '(5-3)'), '(5-3) & (5-4)', coalition),
                  coalition = ifelse(grepl('\\(4-', coalition), '(4-4)', coalition),
                  coalition = ifelse(coalition %in% c('(7-1)', '(7-2)'), '(7-1) & (7-2)', coalition),
@@ -4037,7 +4217,8 @@ scotusblog_stats <- function(decisions_path,
           coord_polar(theta = "y") +
           scale_fill_manual(values = coalition_colors) +
           theme_void() +
-          labs(title = paste0('2020-', max(scdb_cases_data$term) + 1, ' Terms')) +
+          #labs(title = paste0('2020-', max(scdb_cases_data$term) + 1, ' Terms')) +
+          labs(title = paste0('2020-', max(scdb_cases_data$term) , ' Terms')) +
           theme(legend.title = element_blank(),
                 plot.title = element_markdown(hjust = 0.5, size = 18, face = 'bold'),
                 legend.position = 'none') +
@@ -4178,10 +4359,10 @@ scotusblog_stats <- function(decisions_path,
         splits_ot05_ot25 <- scdb_cases_data %>%
           filter(term >= 2005) %>%
           select(term, docket) %>%
-          bind_rows(ot25_decisions %>%
-                      select(docket) %>%
-                      unique() %>%
-                      mutate(term = 2025)) %>%
+          #bind_rows(ot25_decisions %>%
+          #            select(docket) %>%
+           #           unique() %>%
+           #           mutate(term = 2025)) %>%
           mutate(ideologically_split = ifelse(docket %in% ideologically_split, 1, 0)) %>%
           group_by(ideologically_split) %>%
           summarise(split_percentage = round((n() / total_cases_1), 2) * 100) %>%
@@ -4192,7 +4373,7 @@ scotusblog_stats <- function(decisions_path,
           coord_polar(theta = "y") +
           scale_fill_brewer(name = 'RdB') +
           theme_void() +
-          labs(title = paste0('2005-', max(scdb_cases_data$term) + 1, ' Terms')) +
+          labs(title = paste0('2005-', max(scdb_cases_data$term), ' Terms')) +
           theme(legend.title = element_blank(),
                 plot.title = element_markdown(hjust = 0.5, size = 18, face = 'bold'),
                 legend.position = 'none') +
@@ -4202,10 +4383,10 @@ scotusblog_stats <- function(decisions_path,
         splits_ot20_ot25 <- scdb_cases_data %>%
           filter(term >= 2020) %>%
           select(term, docket) %>%
-          bind_rows(ot25_decisions %>%
-                      select(docket) %>%
-                      unique() %>%
-                      mutate(term = 2025)) %>%
+          #bind_rows(ot25_decisions %>%
+          #            select(docket) %>%
+           #           unique() %>%
+           #           mutate(term = 2025)) %>%
           mutate(ideologically_split = ifelse(docket %in% ideologically_split, 1, 0)) %>%
           group_by(ideologically_split) %>%
           summarise(split_percentage = round((n() / total_cases_2), 2) * 100) %>%
@@ -4216,7 +4397,7 @@ scotusblog_stats <- function(decisions_path,
           coord_polar(theta = "y") +
           scale_fill_brewer(name = 'RdB') +
           theme_void() +
-          labs(title = paste0('2020-', max(scdb_cases_data$term) + 1, ' Terms')) +
+          labs(title = paste0('2020-', max(scdb_cases_data$term), ' Terms')) +
           theme(legend.title = element_blank(),
                 plot.title = element_markdown(hjust = 0.5, size = 18, face = 'bold'),
                 legend.position = 'none') +
@@ -5190,7 +5371,11 @@ scotusblog_stats <- function(decisions_path,
              authorship = gsub('((CHIEF )JUSTICE |JUSTICE )', '', authorship),
              authorship = trimws(authorship),
              authorship = str_to_title(authorship)) %>%
-      rename(docket = docket_id)
+      rename(docket = docket_id) %>%
+      mutate(docket = ifelse(grepl('Trump v. Cook', argument, ignore.case = T), '25A312', docket),
+             docket = ifelse(grepl('Mirabelli', argument, ignore.case = T), '25A810', docket),
+             argument = ifelse(grepl('Trump v. Cook', argument, ignore.case = T), 'Trump v. Cook', argument),
+             argument = ifelse(grepl('Mirabelli v. Bonta', argument, ignore.case = T), 'Mirabelli v. Bonta ', argument))
 
     omit_word_counts <- decisions %>%
       filter(Decision == 'DIG') %>%

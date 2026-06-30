@@ -127,6 +127,8 @@ decisions_analysis(input_path = "C:/Users/jaketruscott/Github/scotuswatch/Stat R
 # Process Opinions
 ################################################################################
 
+source('code/R/scotuswatch_source.R') # Load Source & Functions (Load Packages Too)
+
 opinion_processing <- opinion_processing(opinions_path = "Stat Reviews/OT25_StatReview/decisions",
                                          processed_opinions_path = "Stat Reviews/OT25_StatReview/decisions/opinions/opinions_processed",
                                          export_path = "Stat Reviews/OT25_StatReview/decisions/opinions/opinions_processed")
@@ -139,9 +141,9 @@ save(combined_opinions, file = 'Stat Reviews/OT25_StatReview/decisions/opinions/
 # Docket Recovery
 ################################################################################
 
-petitions <- c(1:1300, 5001:7423)
-applications <- c(1:1294)
-motions <- c(1:85)
+petitions <- c(1:1427, 5000:7700)
+applications <- c(1:1454)
+motions <- c(1:91)
 dockets <- c(paste0('25-', petitions), paste0('25a', applications), paste0('25m', motions))
 temp_output_path <- 'Stat Reviews/OT25_StatReview/dockets/processed_dockets'
 completed_dockets <- gsub('\\.rdata', '', list.files(temp_output_path))
@@ -164,6 +166,8 @@ for (docket in 1:length(dockets)){
         )
       },
       error = function(e) {
+        combined_temp <- counsel_missing_docket_search(docket_id)
+        save(combined_temp, file = file.path(temp_output_path, paste0(temp_docket, '.rdata')))
         message(paste("Skipping", temp_docket, "-", e$message))
         NULL
       }
@@ -174,7 +178,7 @@ for (docket in 1:length(dockets)){
     message('Completed ', docket, ' of ', length(dockets))
   }
 
-  Sys.sleep(5)
+  Sys.sleep(3)
 
 
 

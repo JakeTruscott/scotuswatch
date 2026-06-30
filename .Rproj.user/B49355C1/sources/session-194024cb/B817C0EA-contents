@@ -107,6 +107,35 @@ header-includes:
       \end{tikzpicture}
       }
   - |
+      \newcommand{\footernoteindex}[1]{
+      \begin{tikzpicture}[remember picture,overlay]
+      
+      % Box dimensions
+      \coordinate (boxSW) at ($(current page.south west)+(0.5in,0.10in)$);
+      \coordinate (boxNE) at ($(current page.south east)+(-0.5in,1in)$);
+
+      % Draw box
+      \filldraw[
+        fill=dispatchBlue!8,
+        draw=dispatchBlue,
+        line width=1.2pt,
+        rounded corners=6pt
+      ]
+      (boxSW) rectangle (boxNE);
+
+      % Text
+      \node[
+      anchor=center,
+      text width=11.5in,
+      align=left,
+      font=\footnotesize
+      ]
+      at ($(boxSW)!0.5!(boxNE)$)
+      {#1};
+
+      \end{tikzpicture}
+      }
+  - |
       \newcommand{\footernoteopinionlengths}[1]{
       \begin{tikzpicture}[remember picture,overlay]
       
@@ -141,7 +170,7 @@ header-includes:
       
       % Box dimensions
       \coordinate (boxSW) at ($(current page.south west)+(0.5in,0.10in)$);
-      \coordinate (boxNE) at ($(current page.south east)+(-0.5in,3in)$);
+      \coordinate (boxNE) at ($(current page.south east)+(-0.5in,3.40in)$);
 
       % Draw box
       \filldraw[
@@ -372,6 +401,14 @@ escape_latex <- function(x) {
 ```{=latex}
 
 \clearpage
+\newgeometry{
+  paperwidth=13.333in,
+  paperheight=7.5in,
+  left=0.25in,
+  right=0.6in,
+  top=0.25in,
+  bottom=0.25in
+}
 \thispagestyle{fancy}
 \pagenumbering{arabic}
 \setcounter{page}{1}
@@ -380,18 +417,22 @@ escape_latex <- function(x) {
 
 {\Large \textbf{\underline{Key Findings in the Stat Pack for the 2025-26 term}}} \par \vspace{1cm}
 
-{\large \hspace{2.5mm} \textbf{Test 1}}. Information sample 1 \par  \vspace{1cm}
+\begin{enumerate}
 
-{\large \hspace{2.5mm}  \textbf{Test 2}}. Information sample 2 \par  \vspace{1cm}
+\item \Large \textbf{Roberts (Again) and Kavanaugh at the Helm}. \normalsize Chief Justice Roberts and Justice Kavanaugh tied for the top frequencies in the majority, followed by Justice Barrett. Roberts and Kavanaugh were both in majority 95\% of the time while Barrett was in the majority 92\% of the time. This ordering is the same for frequencies in the majority in non-unanimous and closely divided cases. \par \vspace{2.5mm}
 
-{\large \hspace{2.5mm}  \textbf{Test 3}}. Information sample 3 \par  \vspace{1cm}
+\item \Large \textbf{Ideological Splits in Closely Divided Cases}. \normalsize 1 in 5 of Court’s decisions this term were decided 6-3 along ideological lines. This far exceeds the 11\% average for the 2020-2021 through 2024-2025 terms. \par \vspace{2.5mm}
 
-{\large \hspace{2.5mm}  \textbf{Test 4}}. Information sample 4 \par  \vspace{1cm}
+\item \Large \textbf{Birds of the Same Feather (Vote Together)}. \normalsize Multiple justice pairs agreed at the highest level. Across all cases, Justices Kagan and Sotomayor, Kavanaugh and (CJ) Roberts, Jackson and Sotomayor, and Thomas and Alito all agreed 94\% of the time. \par \vspace{2.5mm}
 
-{\large \hspace{2.5mm}  \textbf{Test 5}}. Information sample 5 \par  \vspace{1cm}
+\item \Large \textbf{Justices Thomas and Jackson are (Again) Prolific Writers}. \normalsize  Justice Thomas authored the most opinions this term with 28 (total) and the most concurrences with 15, while Justice Jackson authored the second most with 26 (total) but had the most dissents with 10. Chief Justice Roberts authored the fewest with 6 total (all majority opinions). \par \vspace{2.5mm}
 
-{\large \hspace{2.5mm}  \textbf{Test 6}}. Information sample 6 \par  \vspace{1cm}
+\item \Large \textbf{Some (Very) Long Opinions}. \normalsize The longest overall decision this term was \emph{Trump v. Barbara} (Birthright Citizenship) at over 60,000 total words, while the longest individual opinions were Justice Thomas’ dissent in \emph{Barbara} and Justice Kavanaugh’s dissent in the \emph{Learning Resources} (Tariffs). Chief Justice Roberts averaged the longest opinions this term at approximately 7,100 words. Moreover, 4 of the 5 longest individual opinions this term were dissents.
 
+\end{enumerate}
+
+\clearpage
+\restoregeometry
 
 \newpage
 ```
@@ -443,59 +484,6 @@ cases_master %>%
   column_spec(1, width = "5in") %>%
   column_spec(2, width = "3in") %>%
   column_spec(3, width = '3in')
-
-
-```
-\newpage
-
-```{=latex}
-\section*{Most Frequent Issues}
-\addcontentsline{toc}{subsection}{Most Frequent Issues}
-```
-
-```{R makeup_of_docket_table, message=FALSE, warning=FALSE, results='asis', echo=F}
-
-cases_master <- read.csv('../../cases_master/cases_master_file_OT25.csv', as.is = T)
-
-combined <- cases_master %>%
-  count(issue, name = "count") %>%
-  group_by(count) %>%
-  summarise(issues = paste(sort(issue), collapse = ", "), .groups = "drop") %>%
-  select(issues, count) %>%
-  arrange(desc(count)) %>%
-  setNames(c('Issue(s)', 'OT25-26 Cases'))
-
-k <- cases_master %>%
-  count(issue, name = "count") %>%
-  group_by(count) %>%
-  summarise(issues = paste(sort(issue), collapse = ", "), .groups = "drop") %>%
-  select(issues, count) %>%
-  arrange(desc(count)) %>%
-  setNames(c('Issue(s)', 'OT25-26 Cases')) %>%
-  kableExtra::kbl(
-    format = "latex",
-    booktabs = TRUE,
-    align = c("l", "c"),
-    escape = FALSE) %>%
-  kableExtra::column_spec(1, latex_column_spec = "L{20cm}") %>%
-  kableExtra::column_spec(2, latex_column_spec = "C{4cm}") %>%
-  kableExtra::kable_styling(
-    latex_options = c("hold_position"),
-    font_size = 11,
-    position = "center"
-  ) %>% 
-  kableExtra::row_spec(
-    which(seq_len(nrow(combined)) %% 2 == 0),
-    background = "#F5F5F5") %>%
-  row_spec(0, bold = TRUE, align = "c") 
-
-cat("\\begin{center}\n")
-cat("{\n")
-cat("\\renewcommand{\\arraystretch}{3.5}\n")
-cat(as.character(k))
-cat("}\n")
-cat("\\end{center}\n\n")
-cat("\\newpage")
 
 
 ```
@@ -667,7 +655,7 @@ keepaspectratio
 
 ```
 
-<!-- Closely Divided Cases -->W
+<!-- Closely Divided Cases -->
 
 ```{r closely_divided_cases, message=FALSE, warning=FALSE, results='asis', echo=F}
 
@@ -767,7 +755,7 @@ combined <- ideological_split %>%
   bind_rows(sotomayor_kagan_jackson_all_dissent) %>%
   bind_rows(conservative_dissenters) %>%
   select(condition, percent_all_cases, case) %>%
-  setNames(c('Condition', 'Percent of All Cases', 'Cases')) %>%
+  setNames(c('Alignment', 'Percent of All Cases', 'Cases')) %>%
   mutate(Cases = gsub('\\;', ',', Cases)) %>%
   mutate(across(everything(), ~ {
     .x %>%
@@ -1164,12 +1152,15 @@ cat("
 \vspace{-10mm}
 ```{=latex}
 \section{Opinion Lengths}
+\vspace{-1cm}
 ```
 
 ```{R opinion_lengths, echo=FALSE, results = 'asis'}
 
 scotusblog_stats$opinion_lengths$shortest_opinions %>%
-  bind_rows(scotusblog_stats$opinion_lengths$longest_opinions) %>%
+  mutate(word_count = round(word_count, -1)) %>%
+  bind_rows(scotusblog_stats$opinion_lengths$longest_opinions %>%
+              mutate(word_count = round(word_count, -2))) %>%
   mutate(type = c('', 'Shortest', '(Individual Opinions)', '', '', '', 'Longest', '(Individual Opinions)', '', '')) %>%
   select(type, short_hand, opinion_type, authorship, coalition, word_count, date_decided) %>%
   bind_rows(
@@ -1182,10 +1173,11 @@ scotusblog_stats$opinion_lengths$shortest_opinions %>%
         coalition = coalition,
         date_decided = date_decided,
         authorship = total_authors,
-        word_count = total_words
-      ) %>%
+        word_count = total_words) %>%
+      mutate(word_count = round(word_count, -2)) %>%
       mutate(type = c('', '', '', '', 'Longest', '(Total Combined)', '', '', '', ''))) %>%
-  mutate(word_count = scales::comma(word_count), 
+  mutate(word_count = scales::comma(word_count),
+         word_count = paste0('≈', word_count), 
          coalition = ifelse(coalition == 'Per Curiam', 'PC', coalition)) %>%
   setNames(c('', 'Case', 'Opinion Type (Total Opinions)', 'Author(s)', 'Vote', 'Word Count', 'Decided')) %>%
   kableExtra::kbl(
@@ -1209,9 +1201,9 @@ scotusblog_stats$opinion_lengths$shortest_opinions %>%
 bottom <- "
 \\textbf{Descriptions}: \\par \\vspace{2.5mm} 
 
-\\textbf{Longest (Total Combined)}: Table represents cases with the largest total word count combined across the published majority and separate opinions. For example, the 7 opinions published in \\emph{Learning Resources, Inc. v. Trump} (24-1287) totaled approximately 45,000 words -- which included both a dissent filed by Justice Kavanaugh ($\\approx$ 17,000 words), as well as a separate concurrence filed by Justice Gorsuch ($\\approx$ 14,000 words). \\par \\vspace{2.5mm}
+\\textbf{Longest (Total Combined)}: Table represents cases with the largest total word count combined across the published majority and separate opinions. For example, the 7 opinions published in \\emph{Learning Resources, Inc. v. Trump} (24-1287) totaled approximately 50,000 words -- which included both a dissent filed by Justice Kavanaugh ($\\approx$ 19,000 words), as well as a separate concurrence filed by Justice Gorsuch ($\\approx$ 14,700 words). \\par \\vspace{2.5mm}
 
-\\textbf{Shortest (Longest) (Individual Opinions)}: Table represents the shortest (longest) opinions filed by individual justices (or per curiam). For example, Justice Kagan's dissenting opinion in \\emph{Louisiana v. Callais} represents one of the longest individual opinions this term at approximately 13,900 words. \\par \\vspace{2.5mm}
+\\textbf{Shortest (Longest) (Individual Opinions)}: Table represents the shortest (longest) opinions filed by individual justices (or per curiam). For example, Justice Kagan's dissenting opinion in \\emph{Louisiana v. Callais} represents one of the longest individual opinions this term at approximately 16,000 words. \\par \\vspace{2.5mm}
 
 \\textbf{Notes}: (1) Cases that were dismissed as improvidently granted (e.g., \\emph{Hamm v. Smith}) are omitted from \\emph{smallest individual opinions}. 
 
@@ -1783,7 +1775,7 @@ t1 <- sitting_1_df %>%
                 position = "center") %>%
   row_spec(0, bold = TRUE) %>%
   column_spec(c(1, 7, 13), width = '2.75cm') %>%
-  column_spec(c(2:6, 8:12, 14:18), width = '1.25cm')
+  column_spec(c(2:6, 8:12, 14:18), width = '1.1cm')
 
 t2 <- sitting_2_df %>%
   kbl(format = "latex",
@@ -1799,7 +1791,7 @@ t2 <- sitting_2_df %>%
                 position = "center") %>%
   row_spec(0, bold = TRUE) %>%
   column_spec(c(1, 7, 13), width = '2.75cm') %>%
-  column_spec(c(2:6, 8:12, 14:18), width = '1.25cm') 
+  column_spec(c(2:6, 8:12, 14:18), width = '1.1cm')
 
 t3 <- sitting_3_df %>%
   kbl(format = "latex",
@@ -1814,10 +1806,10 @@ t3 <- sitting_3_df %>%
                 font_size = 8, 
                 position = "center") %>%
   row_spec(0, bold = TRUE) %>%
-  column_spec(c(1, 7), width = '2.75cm') %>%
-  column_spec(c(2:6, 8:12), width = '1.25cm') %>%
-  column_spec(13, bold = T, width = '6cm') %>%
-  column_spec(c(14), width = '3cm') 
+  column_spec(c(1, 7), width = "2.75cm") %>%
+  column_spec(c(2:6, 8:12), width = "1.1cm") %>%
+  column_spec(13, width = "7.1cm") %>%
+  column_spec(14, width = "2.8cm")
 
 t1 <- gsub(
   "October Sitting",
@@ -1888,7 +1880,7 @@ cat(t3)
 
 
 ```{=latex}
-\footernote{
+\footernoteindex{
 \textbf{A} = \emph{Affirmed} \quad \textbf{V} = \emph{Vacated} \quad \textbf{R} = \emph{Reversed} \quad \textbf{G} = \emph{Granted} \quad \textbf{D} = Denied (Petition, Stay, etc.) \quad \textbf{DIG} = \emph{Dismissed as Improvidently Granted} \quad \textbf{GRR} = \emph{Granted, Reversed, and Remanded} \quad \textbf{GVR} = \emph{Granted, Vacated, and Remanded}  \quad \textbf{PC} = \emph{Per Curiam} \quad \textbf{Court} = \emph{Court Below} \quad \textbf{Days} = \emph{Days Elapsed Between Argument and Decision}
 }
 \newpage

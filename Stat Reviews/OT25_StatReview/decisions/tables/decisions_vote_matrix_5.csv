@@ -1,8 +1,13 @@
 Case,Docket,Author,ROBERTS,THOMAS,ALITO,SOTOMAYOR,KAGAN,GORSUCH,KAVANAUGH,BARRETT,JACKSON
-T. M. v. Univ. of MD Medical Sys. Corp.,25-197,Sotomayor,JD,M,M,M*,JD,JD,M,D,M
+T. M. v. Univ. of MD Medical Sys. Corp.,25-197,Sotomayor,JD,RC,M,M*,JD,JD,M,D,M
 McCarthy v. Hernandez,25-748,Per Curiam,M,M,M,WNGC,WNGC,M,M,M,WNGC
 Cisco Systems Inc. v. DOE I,24-856,Barrett,M,M,M,D,JD,M,M,M*,SC-JD
 Exxon Mobil Corp. v. Corporacion Cimex S.A.,24-699,Kavanaugh,M,M,M,JD,D,M,M*,M,JD
 Landor v. LA DOC,23-1197,Gorsuch,M,M,M,JD,JD,M*,M,M,D
-Pung v. Isabella County,25-95,Alito,M,SC,M*,RC,M,JRC,M,M,JRC
+Pung v. Isabella County,25-95,Alito,M,SC,M*,RC,M,JSC,M,M,JRC
 Blanche Acting Atty Gen. v. Lau,25-429,Thomas,M,M*,M,JD,JD,M,M,M,D
+Monsanto Co. v. Durnell,24-1068,Kavanaugh,M,RC,M,M,M,JD,M*,M,D
+Wolford v. Lopez,24-1046,Alito,M,JRC,M*,JD,D,JRC,M,RC,D
+Mullin Sec. of Homeland v. Al Otro Lado,25-5,Alito,M,RC,M*,D,JD,M,M,M,D-JD
+Mullin Sec. of Homeland Security v. Doe,25-1083,Alito,M,RC,M*,JD,D,M,M,M,JD
+Watson v. RNC,24-1260,Barrett,M,JD,D,M,M,JD,JD,M*,M

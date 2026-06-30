@@ -58,7 +58,7 @@
    <td style="text-align:center;"> 2025-12-03 </td>
    <td style="text-align:center;"> 2026-03-20 </td>
    <td style="text-align:center;"> CA5 </td>
-   <td style="text-align:center;"> Affirm </td>
+   <td style="text-align:center;"> Reverse </td>
    <td style="text-align:center;"> Kagan </td>
    <td style="text-align:center;"> (9-0) </td>
   </tr>
@@ -110,7 +110,7 @@
    <td style="text-align:center;"> CA11 </td>
    <td style="text-align:center;"> DIG </td>
    <td style="text-align:center;"> Per Curiam </td>
-   <td style="text-align:center;"> (7-2) </td>
+   <td style="text-align:center;"> (5-4) </td>
   </tr>
   <tr>
    <td style="text-align:center;font-weight: bold;"> Margolin v. NAIJ </td>
@@ -120,7 +120,7 @@
    <td style="text-align:center;"> CA4 </td>
    <td style="text-align:center;"> GRR </td>
    <td style="text-align:center;"> Per Curiam </td>
-   <td style="text-align:center;"> Per Curiam </td>
+   <td style="text-align:center;"> (9-0) </td>
   </tr>
   <tr>
    <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Flowers Foods, Inc. v. Brock </td>

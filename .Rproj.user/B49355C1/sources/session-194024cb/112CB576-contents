@@ -1,0 +1,23 @@
+scotusblog_stats$opinion_lengths$shortest_opinions %>%
+  mutate(word_count = round(word_count, -1)) %>%
+  bind_rows(scotusblog_stats$opinion_lengths$longest_opinions %>%
+              mutate(word_count = round(word_count, -2))) %>%
+  mutate(type = c('', 'Shortest', '(Individual Opinions)', '', '', '', 'Longest', '(Individual Opinions)', '', '')) %>%
+  select(type, short_hand, opinion_type, authorship, coalition, word_count, date_decided) %>%
+  bind_rows(
+    scotusblog_stats$opinion_lengths$combined_opinion_lengths %>%
+      arrange(desc(total_words)) %>%
+      slice_head(n = 10) %>%
+      transmute(
+        opinion_type = paste0('(', total_opinions, ' Opinions', ')'),
+        short_hand = case_name,
+        coalition = coalition,
+        date_decided = date_decided,
+        authorship = total_authors,
+        word_count = total_words) %>%
+      mutate(word_count = round(word_count, -2)) %>%
+      mutate(type = c('', '', '', '', 'Longest', '(Total Combined)', '', '', '', ''))) %>%
+  mutate(word_count = scales::comma(word_count),
+         word_count = paste0('≈', word_count), 
+         coalition = ifelse(coalition == 'Per Curiam', 'PC', coalition)) %>%
+  setNames(c('', 'Case', 'Opinion Type (Total Opinions)', 'Author(s)', 'Vote', 'Word Count', 'Decided'))

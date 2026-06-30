@@ -55,7 +55,7 @@
   <tr>
    <td style="text-align:center;font-weight: bold;"> Landor v. Louisiana Dept of Corrections and Public Safety </td>
    <td style="text-align:center;"> 23-1197 </td>
-   <td style="text-align:center;"> 2026-11-10 </td>
+   <td style="text-align:center;"> 2025-11-10 </td>
    <td style="text-align:center;"> 2026-06-23 </td>
    <td style="text-align:center;"> CA5 </td>
    <td style="text-align:center;"> Affirm </td>
@@ -73,14 +73,64 @@
    <td style="text-align:center;"> (9-0) </td>
   </tr>
   <tr>
-   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Blanche v. Lau </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 25-429 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 2026-04-22 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> 2026-06-23 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> CA2 </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> Vacate and Remand </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> Thomas </td>
-   <td style="text-align:center;border-bottom: 2px solid;"> (6-3) </td>
+   <td style="text-align:center;font-weight: bold;"> Blanche v. Lau </td>
+   <td style="text-align:center;"> 25-429 </td>
+   <td style="text-align:center;"> 2026-04-22 </td>
+   <td style="text-align:center;"> 2026-06-23 </td>
+   <td style="text-align:center;"> CA2 </td>
+   <td style="text-align:center;"> Vacate and Remand </td>
+   <td style="text-align:center;"> Thomas </td>
+   <td style="text-align:center;"> (6-3) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Monsanto v. Durnell </td>
+   <td style="text-align:center;"> 24-1068 </td>
+   <td style="text-align:center;"> 2026-04-27 </td>
+   <td style="text-align:center;"> 2026-06-25 </td>
+   <td style="text-align:center;"> CAMOE </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> Kavanaugh </td>
+   <td style="text-align:center;"> (7-2) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Wolford v. Lopez </td>
+   <td style="text-align:center;"> 24-1046 </td>
+   <td style="text-align:center;"> 2026-01-20 </td>
+   <td style="text-align:center;"> 2026-06-25 </td>
+   <td style="text-align:center;"> CA9 </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> Alito </td>
+   <td style="text-align:center;"> (6-3) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Mullin v. Al Otro Lado </td>
+   <td style="text-align:center;"> 25-5 </td>
+   <td style="text-align:center;"> 2026-03-24 </td>
+   <td style="text-align:center;"> 2026-06-25 </td>
+   <td style="text-align:center;"> CA9 </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> Alito </td>
+   <td style="text-align:center;"> (6-3) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;"> Mullin v. Doe </td>
+   <td style="text-align:center;"> 25-1083 </td>
+   <td style="text-align:center;"> 2026-04-29 </td>
+   <td style="text-align:center;"> 2026-06-25 </td>
+   <td style="text-align:center;"> CA2 </td>
+   <td style="text-align:center;"> Reverse and Remand </td>
+   <td style="text-align:center;"> Alito </td>
+   <td style="text-align:center;"> (6-3) </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;font-weight: bold;border-bottom: 2px solid;"> Watson v. Republican National Committee </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 24-1260 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2026-03-23 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> 2026-06-29 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> CA5 </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Reverse and Remand </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> Barrett </td>
+   <td style="text-align:center;border-bottom: 2px solid;"> (5-4) </td>
   </tr>
 </tbody>
 </table>
