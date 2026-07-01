@@ -1,0 +1,8 @@
+"0","t3 <- gsub(
+  ""April Sitting"",
+  ""\\\\normalsize \\\\textbf{April Sitting}"",
+  as.character(t3)
+)
+"
+"2","Error: object 't3' not found
+"
