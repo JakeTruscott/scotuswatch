@@ -1,0 +1,27 @@
+{
+    "id": "C1051AB5",
+    "path": null,
+    "project_path": null,
+    "type": "r_source",
+    "hash": "3438780001",
+    "contents": "",
+    "dirty": false,
+    "created": 1783348730599.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "0,0",
+        "scrollLine": "0"
+    },
+    "folds": "7|65|2417|0|\n13|3|41|2|\n45|3|106|2|\n110|3|227|2|\n231|3|459|2|\n463|3|809|2|\n817|5|886|4|\n888|5|948|4|\n950|5|1129|4|\n1133|7|1197|6|\n1181|44|1194|8|\n1311|5|1347|4|\n1349|5|1555|4|\n1557|5|1955|4|\n1965|3|2209|2|\n2213|3|2410|2|\n",
+    "lastKnownWriteTime": 20,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1783349246539,
+    "read_only": false,
+    "read_only_alternatives": []
+}

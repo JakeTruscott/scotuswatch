@@ -4353,16 +4353,19 @@ scotusblog_stats <- function(decisions_path,
 
       {
 
-        total_cases_1 <- nrow(scdb_cases_data[scdb_cases_data$term >= 2005,]) + length(unique(ot25_decisions$docket))
-        total_cases_2 <- nrow(scdb_cases_data[scdb_cases_data$term >= 2020,]) + length(unique(ot25_decisions$docket))
+        #total_cases_1 <- nrow(scdb_cases_data[scdb_cases_data$term >= 2005,]) + length(unique(ot25_decisions$docket))
+        #total_cases_2 <- nrow(scdb_cases_data[scdb_cases_data$term >= 2020,]) + length(unique(ot25_decisions$docket))
+
+        total_cases_1 <- nrow(scdb_cases_data[scdb_cases_data$term >= 2005,])
+        total_cases_2 <- nrow(scdb_cases_data[scdb_cases_data$term >= 2020,])
 
         splits_ot05_ot25 <- scdb_cases_data %>%
           filter(term >= 2005) %>%
           select(term, docket) %>%
           #bind_rows(ot25_decisions %>%
           #            select(docket) %>%
-           #           unique() %>%
-           #           mutate(term = 2025)) %>%
+          #           unique() %>%
+          #           mutate(term = 2025)) %>%
           mutate(ideologically_split = ifelse(docket %in% ideologically_split, 1, 0)) %>%
           group_by(ideologically_split) %>%
           summarise(split_percentage = round((n() / total_cases_1), 2) * 100) %>%
@@ -4385,8 +4388,8 @@ scotusblog_stats <- function(decisions_path,
           select(term, docket) %>%
           #bind_rows(ot25_decisions %>%
           #            select(docket) %>%
-           #           unique() %>%
-           #           mutate(term = 2025)) %>%
+          #           unique() %>%
+          #           mutate(term = 2025)) %>%
           mutate(ideologically_split = ifelse(docket %in% ideologically_split, 1, 0)) %>%
           group_by(ideologically_split) %>%
           summarise(split_percentage = round((n() / total_cases_2), 2) * 100) %>%
@@ -5566,8 +5569,7 @@ scotusblog_stats <- function(decisions_path,
   return(combined_list)
 
 
-}
-# Returns List Object of SCOTUSBLOG Stats (Figures & Tables)
+} # Returns List Object of SCOTUSBLOG Stats (Figures & Tables)
 
 
 ###############################################################################
